@@ -1,0 +1,72 @@
+<?php
+/**
+ *   Template for QBlog settings move eblog 
+ *   -------------------------------------------
+ *   ./plugin/qblog/qblog_eblog_template.html
+ *   
+ *   Copyright (c) 2012 hokuken
+ *   http://hokuken.com/
+ *   
+ *   created  : 12/08/10
+ *   modified :
+ *   
+ */
+?>
+<script type="text/javascript">
+$(function(){
+	$("#move-start").click(function(){
+		
+		$("#qblog-move-list tbody tr").each(function(i){
+			var $tr = $(this);
+			var pagename = $(this).attr("pagename");
+
+			$.ajaxQueue({
+				url: "index.php",
+				data: {cmd:"qblog", mode:"move_from_eblog", "pagename": pagename, "eblog_page": "<?php echo $eblog_page ?>"},
+				dataType: "json",
+				success: function(res){
+					if (res.success) {
+						$("td:first-child",$tr).append('<span class="badge badge-success" style="margin-right:5px;"><i class="icon-ok icon-white" style="margin-right:2px;"></i>OK</span>');
+					
+						if ($tr.next().length == 0)
+						{
+							// 終了処理
+							alert("引越しが完了しました。\nブログトップへ移動します");
+							location.href = "<?php echo $script. '?' . $qblog_defaultpage; ?>";
+						}
+					}
+				}
+			});
+		});
+	});
+});
+</script>
+
+
+<div>
+	<h2>簡易ブログからの引越し</h2>
+	<p>以下の日付の記事を引越します</p>
+	<p>
+		<input id="move-start" type="button" value="引越する" class="btn btn-primary" />
+		<a href="<?php echo h($script).'?cmd=qblog#misc'?>" class="btn btn-mini">キャンセル</a>
+	</p>
+
+	<table id="qblog-move-list" class="table">
+	<thead>
+		<tr>
+			<th>済</th>
+			<th>日付</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	<?php foreach ($eblog_datas as $pagename => $data) : ?>
+		<tr pagename="<?php echo h($pagename) ?>">
+			<td></td>
+			<td><a href="<?php echo $script.'?'.rawurlencode($pagename) ?>"><?php echo h($data['date'])?></td>
+		</tr>
+	<?php endforeach; ?>
+
+	</tbody>
+	</table>
+</div>

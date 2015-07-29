@@ -1,0 +1,299 @@
+/**
+ *   QBlog CSS
+ *   -------------------------------------------
+ *   ./plugin/qblog/qblog.css
+ *
+ *   Copyright (c) 2012 hokuken
+ *   http://hokuken.com/
+ *
+ *   created  : 12/07/30
+ *   modified :
+ */
+
+#qblog_add_post{
+margin: 10px 0;
+}
+#qblog_add_post a {
+	color: #fff;
+}
+#qblog_list {
+/* 	background-color: red; */
+}
+.qblog-list .pagination li a{
+  font-size: 12px;
+}
+.qblog-list ul {
+  margin: 0;
+  padding: 0;
+}
+.qblog-list ul li{
+  list-style: none;
+}
+
+.qblog-list-table {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.qblog-list-table ul li{
+  min-height: 120px;
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #EEE;
+}
+
+#qblog .qblog-list-line h2{
+  font-size: 14px;
+  line-height: 1.5em;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+.qblog-list-line {
+  border: 1px solid #CCC;
+  padding: 10px;
+  height: 180px;
+  overflow-y: scroll;
+  margin-top: 15px;
+  margin-bottom: 24px;
+}
+
+.qblog-list-line .qblog_thumbnail {
+  display: none;
+}
+.qblog-list-line .qblog_date {
+  position: static;
+  background-color: transparent;
+  color: #333;
+  padding: 0px;
+  top: 0px;
+  float:left;
+  width: auto;
+  font-size: 14px;
+  margin-right: 14px;
+}
+.qblog-list-line .qblog_abstract {
+  display: none;
+}
+.qblog-list-line ul.pagination {
+  display: none;
+}
+
+#qblog h2{
+background-image: none;
+background-color: transparent;
+font-size: 20px;
+border:none;
+padding: 0;
+margin: 0;
+font-weight: normal;
+}
+#qblog h2.qblog_title a{
+color:#333;
+}
+#qblog h2.qblog_title a:hover{
+color:#000;
+}
+
+.qblog_thumbnail {
+width: 120px;
+height: 120px;
+float: left;
+margin-right: 16px;
+display: block;
+}
+.qblog_date {
+position: absolute;
+top:100px;
+left:0px;
+width:120px;
+height: 20px;
+background: #333;
+background: rgba( 0, 0, 0 , 0.7);
+color: white;
+padding:2px 0;
+text-align: center;
+font-size: 13px;
+letter-spacing: 0.1em;
+line-height: normal;
+}
+.qblog_abstract {
+font-size: 14px;
+margin: 1em 0;
+}
+.qblog_abstract a {
+	text-decoration: none;
+	color: inherit;
+}
+.qblog_post_eyecatch {
+	width: auto;
+	margin: 0 auto;
+	text-align: center;
+	max-width: 100%;
+}
+.qblog_post_eyecatch img {
+	max-width: 100%;
+}
+#body .pager {
+margin: 18px 0;
+padding: 0;
+}
+.qblog_post_date {
+font-size: 13px;
+color: #000;
+float:left;
+}
+.bar ul.qblog_categories li, .bar ul.qblog_archives li, .bar ul.qblog_recent li, .bar ul.qblog_recent_comments li{
+font-size: 13px;
+border-bottom: 1px dotted #ccc;
+margin-top:2px;
+}
+.bar ul.qblog_categories li a, .bar ul.qblog_archives li a, .bar ul.qblog_recent li a, .bar ul.qblog_recent_comments li a{
+  display: block;
+}
+#body #qblog_comment_list{
+margin:0;
+padding: 0;
+list-style: none;
+}
+#qblog_comment_list li {
+	margin-bottom: 20px;
+}
+#qblog_comment_list li.do_accept{
+	background-color: #fee;
+}
+#qblog_comment_list li.qblog_admin_comment {
+}
+#qblog_comment_list hr{
+border: none;
+border-top: 1px dotted #ccc;
+}
+.qblog_error {
+	color: red;
+	font-weight: bold;
+}
+#qblog_comment_auth_msg{
+font-size: 12px;
+margin-left:10px;
+}
+.qblog_comment_auth_code{
+font-weight: bold;
+margin: 0 6px 0 10px;
+font-size: 14px;
+}
+#qblog_comment_auth_msg input{
+	width: 4em;
+}
+.qblog_comment_title{
+font-weight: bold;
+font-size: 16px;
+padding: 0 15px;
+}
+.qblog_comment_body{
+margin-top: 5px;
+padding: 0 15px;
+}
+.qblog_comment_footer{
+text-align: right;
+font-size: 12px;
+padding: 0 15px;
+}
+.qblog_comment_footer .badge {
+padding: 1px 9px 0px;
+}
+.qblog_comment_control{
+text-align: right;
+}
+.qblog_comment_preview {
+border: 1px solid #aaa;
+}
+#qblog_comment_form{
+color: #333;
+background: #EEE;
+border-radius: 6px;
+padding: 20px;
+border: 1px solid #DDD;
+font-size: 12px;
+}
+#content a.qblog_category {
+}
+#content a.qblog_category:hover {
+background-color:#999;
+}
+#content a.qblog_comment_reply {
+}
+#content a.qblog_comment_reply:hover {
+}
+.qblog_comment_footer a.badge:hover {
+background-color: #999;
+}
+#body div.qblog-set {
+	margin-top: 20px;
+}
+#body div.qblog-set > h2 {
+	margin-bottom: 20px;
+}
+#body div.qblog-set ul{
+	margin: 0;
+}
+#body div.well > h2 {
+	margin-top: 0;
+}
+.tab-content div.form-actions{
+padding-bottom: 0px;
+}
+input#qblog_rss_url[readonly]{
+cursor: text;
+}
+
+a.badge {
+  color:white;
+  background-color: #999;
+}
+
+a.badge:hover {
+  color:white;
+  text-decoration: none;
+  background-color: #999;
+}
+
+.title {
+padding-top: 8px;
+margin-bottom: 1em;
+text-align: right;
+display: block;
+}
+
+.badge {
+  font-size: 11px;
+}
+
+.qblog_recent,
+.qblog_categories,
+.qblog_recent_comments,
+.qblog_archives {
+  list-style: none;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right:0;
+}
+
+.bar .qblog_recent .list-group-item:first-child,
+.bar .qblog_categories  .list-group-item:first-child,
+.bar .qblog_recent_comments  .list-group-item:first-child,
+.bar .qblog_archives .list-group-item:first-child,
+.bar .qblog_recent .list-group-item:last-child,
+.bar .qblog_categories  .list-group-item:last-child,
+.bar .qblog_recent_comments  .list-group-item:last-child,
+.bar .qblog_archives .list-group-item:last-child {
+  border-bottom: 1px dotted #ccc;
+}
+
+.qblog_categories:before,
+.qblog_categories:after{
+  content: " ";
+  display: table;
+}
+.qblog_categories:after {
+    clear: both;
+}

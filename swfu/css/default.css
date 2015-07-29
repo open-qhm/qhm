@@ -1,0 +1,216 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+.textleft{
+	text-align: left;
+}
+
+/* General Style Info */
+body {
+	background: #333;
+	color: #fff;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size:90%;
+	margin: 0;
+}
+a {
+	color: #0066FF;
+	text-decoration: none;
+}
+a:hover {
+	color: #0071C7;
+	text-decoration: underline;
+	background-color: #ff9;
+	font-weight: bold;
+}
+a img {
+	border:none;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+}
+h1 {
+	background:#fff;
+	color: #0071C7;
+	font-size: 100%;
+	margin: 0.1em 0;
+}
+h2 {
+	background:#fff;
+	color: #e32;
+	font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif;
+	font-size: 190%;
+	margin: 0.3em 0;
+	padding-top: 0.8em;
+}
+h3 {
+	color: #993;
+	font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif;
+	font-size: 125%;
+	padding-top: 1em;
+}
+h4 {
+	color: #993;
+	font-weight: normal;
+	padding-top: 0.5em;
+}
+ul, li {
+	margin: 0 12px;
+}
+
+p {
+	line-height: 1.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+p.navi {
+	line-height: 1em;
+	margin:0px;
+	text-align: right;
+}
+
+fieldset {
+	padding: 15px;
+}
+legend {
+	padding-left: 1em;
+}
+
+/* Layout */
+#container {
+	text-align: left;
+}
+
+#header{
+	padding: 3px 20px;
+}
+#header h1 {
+	color: #fff;
+	padding: 0px 20px;
+	background-color: #333;
+}
+#content{
+	background: #fff;
+	clear: both;
+	color: #333;
+	padding: 10px 20px 40px 20px;
+	overflow: auto;
+}
+#footer {
+	clear: both;
+	padding: 0px 10px;
+	text-align: right;
+}
+
+/* Tables */
+table {
+	clear: both;
+	color: #333;
+	margin-bottom: 10px;
+}
+table tr td{
+	padding: 7px;
+}
+
+
+
+#menubar{
+	width:20%;
+	float:left;
+	border-right:1px dashed #333;
+}
+#main_contents{
+	width:75%;
+	float:right;
+}
+
+div.pagination{
+	width:100%;
+	overflow:hidden;
+}
+div.pagination ul{
+	position: relative;
+	float:left;
+	left:50%;
+	list-style-type:none;
+}
+div.pagination ul li{
+	position: relative;
+	float: left;
+	right: 50%;
+}
+
+div.elbox{
+	padding: 10px;
+	float:left;
+	width: 30%;
+}
+
+div.insert_buttons {
+	margin: 5px 0 5px 0;
+	line-height: 15px;
+}
+
+
+table.eltable{
+	background-color:#ddd;
+}
+table.eltable tr td{
+	padding: 10px;
+	vertical-align: top;
+	background-color: #fff;
+}
+
+table.eltable tr td a{
+	color:navy;
+}
+
+form.style_form input{
+	border:1px solid #ccc;
+	padding:2px;
+	margin-left:1px;
+}
+form.style_form input:hover{
+	background-color: #fcc;
+}
+
+.editmode a:hover{
+	text-decoration:none !important;
+	background:none !important;
+}
+
+.list_file_name {
+	font-weight: bold;
+	display: inline-block;
+	width: 140px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* !File Upload */
+td.file_preview {
+	text-align: center;
+}
+
+.editmode.btn-filename {
+  height: 20px;
+  line-height: 20px;
+  padding:0 3px;
+  border-radius:4px;
+  font-size:9px;
+  border:1px solid #ccc;
+  background-color:#fff;
+  text-shadow: 1px 1px 3px rgba(255,255,255,.7);
+  background: -moz-linear-gradient(top center, #fff 0%, #fff 30%, #ddd 100%);
+  background: -webkit-gradient(linear, center top, center bottom, from(#fff), color-stop(0.3, #fff), to(#ddd));
+  background: linear-gradient(top center, #fff 0%, #fff 30%, #ddd 100%);
+  cursor: pointer;
+}
+
+.editmode.btn-filename:hover {
+  background-color: #eee;
+}

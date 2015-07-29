@@ -1,0 +1,35 @@
+<h2>未登録ファイルのチェック</h2>
+
+<p>データベースの再構築を行いました。<br />
+処理結果は、以下の通りです。</p>
+<p><b>削除済みデータ</b><br />
+<?php
+if(!isset($log_del[1])){
+	echo '削除済みなし';
+}
+else{
+
+	unset($log_del[0]);
+	echo 'ファイルが存在しなかったもの '.count($log_del).'件<br />';
+	foreach($log_del as $k=>$v){
+		echo ' - '.$v.'<br />'; 
+	}
+}
+?>
+</p>
+<br />
+
+<p><b>未登録データ</b><br />
+<?php
+if(!isset($log[1])){
+	echo '未登録 0件でした';
+}
+else{
+	unset($log[0]);
+	echo '登録数 '.count($log).'件<br />';	
+	foreach($log as $k=>$v){
+		echo ' - '.$v.'<br />';
+	}
+}
+?>
+</p>

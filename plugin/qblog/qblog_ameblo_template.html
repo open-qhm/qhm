@@ -1,0 +1,83 @@
+<?php
+/**
+ *   Template for QBlog settings move ameblo 
+ *   -------------------------------------------
+ *   ./plugin/qblog/qblog_ameblo_template.html
+ *   
+ *   Copyright (c) 2012 hokuken
+ *   http://hokuken.com/
+ *   
+ *   created  : 12/08/10
+ *   modified :
+ *   
+ */
+?>
+<script type="text/javascript">
+$(function(){
+	$("#move-start").click(function(){
+		
+		$("#qblog-move-list tbody tr").each(function(i){
+			var $tr = $(this);
+			var $moveId = $(this).attr("move-id");
+
+			$.ajaxQueue({
+				url: "index.php",
+				data: {cmd:"qblog", mode:"move", "move_id": $moveId},
+				dataType: "json",
+				success: function(res){
+					if (res.success) {
+						if (res.amember) {
+							$("td:first-child",$tr).append('<span class="badge badge-warning" style="margin-right:5px;"><i class="icon-warning-sign icon-white" style="margin-right:2px;"></i>アメンバー限定</span>');
+						}
+						else {
+							$("td:first-child",$tr).append('<span class="badge badge-success" style="margin-right:5px;"><i class="icon-ok icon-white" style="margin-right:2px;"></i>OK</span>');
+						}
+					
+						if ($tr.next().length == 0)
+						{
+							// 終了処理
+							alert("引越しが完了しました。\nブログトップへ移動します");
+							location.href = "<?php echo $script.'?'.$qblog_defaultpage ?>";
+						}
+					}
+				}
+			});
+		});
+	});
+});
+</script>
+
+<div>
+	<h2>アメブロからの引越し</h2>
+	<p>以下の記事を引越します</p>
+
+		<p>
+			<input id="move-start" type="button" value="引越する" class="btn btn-primary" />
+			<a href="<?php echo h($script).'?cmd=qblog#misc'?>" class="btn btn-mini">キャンセル</a>
+		</p>
+
+	<table id="qblog-move-list" class="table">
+	<thead>
+		<tr>
+			<th>済</th>
+			<th>日付</th>
+			<th>タイトル</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php foreach ($blogdata as $key => $blog) : ?>
+		<tr move-id="<?php echo h($key) ?>">
+			<td>
+			<?php if ($blog['complete']) : ?>
+				<span class="badge badge-success" style="margin-right:5px;">
+					<i class="icon-ok icon-white" style="margin-right:2px;"></i>OK
+				</span>
+			<?php endif; ?>
+			</td>
+			<td><?php echo h($blog['date']) ?></td>
+			<td><a href="<?php echo h($blog['url']) ?>"><?php echo h($blog['title']) ?></a></td>
+		</tr>
+	<?php endforeach; ?>
+	</tbody>
+	</table>
+</div>

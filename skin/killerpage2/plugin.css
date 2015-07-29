@@ -1,0 +1,553 @@
+@charset "utf-8";
+
+/* PageAction
+----------------------------------------------------------------------------- */
+/* 表示 */
+#page_action .pa_edit,
+#page_action .pa_attach,
+#page_action .pa_diff,
+#page_action .pa_backup{
+	height:20px;
+	background-repeat:no-repeat;
+	padding-left:20px;
+}
+.pa_edit{
+	background-image:url("../../../image/edit.png");
+}
+.pa_attach{
+	background-image:url("../../../image/file.png");
+}
+.pa_diff{
+	background-image:url("../../../image/diff.png");
+}
+.pa_backup{
+	background-image:url("../../../image/backup.png");
+}
+
+/* 非表示 */
+.pa_reload,
+.pa_newpage,
+.pa_freeze,
+.pa_unfreeze,
+.pa_list,
+.pa_serch,
+.pa_whatnew,
+.pa_help{
+	display:none;
+}
+
+/* ExternalLink (skin/river/external_link.js)
+----------------------------------------------------------------------------- */
+.external_link{
+	background-repeat:no-repeat;
+	background-position:right;
+	background-image:url("../external_link.gif");
+	padding-right:15px;
+}
+
+/* EditForm
+----------------------------------------------------------------------------- */
+.edit_form{
+	clear:both;
+}
+div.edit_form textarea{
+	font-size:13pt;
+	width:95%;
+	min-width:99%;
+}
+
+/* EditPreview
+----------------------------------------------------------------------------- */
+div#preview{
+	background-color:#ffffcc;
+	margin-bottom:20px;
+	border-right:solid 2px #ccc;
+	border-bottom:solid 2px #ccc;
+}
+
+/* Paragraph Link
+----------------------------------------------------------------------------- */
+.anchor_super{
+	font-size:0.4em;
+	vertical-align:40%;
+}
+.super_index{
+	color:#f90;
+	font-size:0.4em;
+	vertical-align:40%;
+}
+div.side_bar a.anchor_super{
+	display:none;
+}
+div.jumpmenu{
+	font-size:0.6em;
+	text-align:right;
+	float:right;
+}
+div.jumpmenu a{
+	text-decoration:none;
+}
+
+/* Note
+----------------------------------------------------------------------------- */
+.note_super{
+	font-size:0.6em;
+	vertical-align:30%;
+}
+/* Diff
+------------------------------------------------------------------------------*/
+span.diff_added{
+	color:blue;
+}
+span.diff_removed{
+	color:red;
+}
+
+/* Serch
+----------------------------------------------------------------------------- */
+strong.word0{
+	background-color:#FFFF66;
+}
+strong.word1{
+	background-color:#A0FFFF;
+}
+strong.word2{
+	background-color:#99FF99;
+}
+strong.word3{
+	background-color:#FF9999;
+}
+strong.word4{
+	background-color:#FF66FF;
+}
+strong.word5{
+	background-color:#880000;
+	color:white;
+}
+strong.word6{
+	background-color:#00AA00;
+	color:white;
+}
+strong.word7{
+	background-color:#886800;
+	color:white;
+}
+strong.word8{
+	background-color:#004699;
+	color:white;
+}
+strong.word9{
+	background-color:#990099;
+	color:white;
+}
+
+/* Amazon (amazon.inc.phpの改造)
+----------------------------------------------------------------------------- */
+.amazon{
+	padding:.5em 1.5em .5em 1.5em;
+	text-align:center
+}
+div.side_bar div.amazon{
+	margin-top:0.5em;
+	padding:0px;
+}
+
+/* Calender (calendar*.inc.php)
+----------------------------------------------------------------------------- */
+table.style_calendar{
+	width:200px;
+	height:230px;
+	border:solid 1px;
+	background-color:#ccc;
+	text-align:center;
+	font-size:15px;
+}
+td.style_td_caltop{
+	background-color:#fff;
+	text-align:center;
+}
+td.style_td_today{
+	background-color:#ff9;
+	text-align:center;
+}
+td.style_td_sat{
+	background-color:#ddd;
+	text-align:center;
+}
+td.style_td_sun{
+	background-color:#fdd;
+	text-align:center;
+}
+td.style_td_blank{
+	background-color:#fff;
+	text-align:center;
+}
+td.style_td_day{
+	background-color:#eee;
+	text-align:center;
+}
+td.style_td_week{
+	color:#666;
+	background-color:#ccc;
+	font-weight:bold;
+	text-align:center;
+}
+table.style_calendar a{
+	color:black;
+	text-decoration:none;
+}
+table.style_calendar a strong{
+	color:#f60;
+	text-decoration:underline;
+}
+table.style_calendar a:hover strong{
+	color:#666;
+}
+
+.bar table.style_calendar{
+	border:none;
+	text-align:center;
+	font-size:14px;
+	background-color:transparent;
+	width:83%;
+	height:auto;
+	min-width:99%;
+	margin:0px auto;
+}
+.bar table.style_calendar a{
+	color:black;
+	background-color:transparent;
+	text-decoration:none;
+}
+.bar table.style_calendar a strong{
+	color:#666;
+	text-decoration:underline;
+}
+.bar td.style_td_caltop{
+	text-align:center;
+	background-color:transparent;
+}
+.bar td.style_td_week{
+	color:#000;
+	text-align:center;
+	font-weight:normal;
+	background-color:transparent;
+}
+.bar td.style_td_sat{
+	text-align:center;
+	background-color:transparent;
+}
+.bar td.style_td_sun{
+	text-align:center;
+	background-color:transparent;
+}
+.bar td.style_td_blank{
+	text-align:center;
+	background-color:transparent;
+}
+.bar td.style_td_day{
+	text-align:center;
+	background-color:transparent;
+}
+.bar td.style_td_today{
+	text-align:center;
+	background-color:transparent;
+}
+
+/* Clear (clear.inc.php)
+----------------------------------------------------------------------------- */
+.clear{
+	clear:both;
+}
+
+
+/* Contents (contents.inc.php)
+----------------------------------------------------------------------------- */
+div.contents{
+	border:solid 1px #999;
+	border-right:none;
+	border-bottom:solid 1px #fff;
+	width:80%;
+	margin:15px 0px;
+}
+div.contents:before{
+	content:"もくじ";
+	color:#fff;
+	background-color:#999;
+	font-size:12px;
+	font-weight:bold;
+	line-height:1em;
+	display:block;
+	width:3.5em;
+	text-align:center;
+	padding:2px;
+}
+div.contents ul{
+	margin:7px 0 15px 25px;
+}
+
+/* Contents (contentsx.inc.php)
+----------------------------------------------------------------------------- */
+table.toc{
+	font-size:1em;
+	border:solid 1px #eee;
+	border-right:none;
+	border-bottom:solid 1px #fff;
+	margin:15px 0px;
+}
+.toctitle{
+	color:#fff;
+	background-color:#b0b0b0;
+	font-size:12px;
+	font-weight:bold;
+	line-height:1em;
+	text-align:center;
+	padding:2px;
+}
+.contentsx ul{
+	margin:0px 0px;
+}
+.contentsx li{
+	margin:3px 0px;
+}
+
+/* Counter (counter.inc.php)
+----------------------------------------------------------------------------- */
+div.counter{
+	font-size:70%;
+}
+
+/* Hr (hr.inc.php)
+----------------------------------------------------------------------------- */
+hr.short_line{
+	text-align:center;
+	width:80%;
+	margin:0px auto;
+}
+
+/* Image (ref.inc.php)
+----------------------------------------------------------------------------- */
+div.img_margin{
+	margin-left:10px;
+	margin-right:10px;
+}
+
+div.img_margin_left{
+	margin: 0px 1em 0em 0px;
+}
+
+div.img_margin_right{
+	margin: 0px 0px 0em 1em;
+}
+
+/* for style plugin by hokuken 
+---------------------------------*/
+div.ie5s{
+	text-align:center;
+}
+
+div.ie5s div.img_margin_left{
+	margin: 1em 1em 1em 0px;
+}
+
+div.ie5s div.img_margin_right{
+	margin: 1em 0px 1em 1em;
+}
+
+/* Incluede (include.inc.php)
+----------------------------------------------------------------------------- */
+h5.side_label{
+	text-align:center;
+}
+
+/* Navi (navi.inc.php)
+----------------------------------------------------------------------------- */
+ul.navi{
+	text-align:center;
+}
+li.navi_none{
+	display:inline;
+	float:none;
+}
+li.navi_left{
+	display:inline;
+	float:left;
+	text-align:left;
+}
+li.navi_right{
+	display:inline;
+	float:right;
+	text-align:right;
+}
+
+/* New (new.inc.php)
+----------------------------------------------------------------------------- */
+span.comment_date{
+	font-size:x-small;
+}
+span.new1{
+	color:red;
+	font-size:x-small;
+}
+span.new5{
+	color:green;
+	font-size:xx-small;
+}
+
+/* Popular (popular.inc.php)
+----------------------------------------------------------------------------- */
+span.counter{
+	font-size:1em;
+}
+
+/* vote.inc.php
+----------------------------------------------------------------------------- */
+td.vote_label{
+	background-color:#FFCCCC;
+}
+td.vote_td1{
+	background-color:#DDE5FF;
+}
+td.vote_td2{
+	background-color:#EEF5FF;
+}
+
+
+/* tag plugin
+------------------------------------------------------------------------------- */
+#body .htmltagcloud{
+  font-size: 12px;
+  line-height:340%;
+}
+.menubar .htmltagcloud{ 
+  font-size: 6px;
+  line-height:340%;
+}
+
+.menubar .htmltagcloud span{
+  display: block;
+}
+
+.tagcloud0  { font-size: 100%;} 
+.tagcloud1  { font-size: 110%;} 
+.tagcloud2  { font-size: 120%;} 
+.tagcloud3  { font-size: 130%;} 
+.tagcloud4  { font-size: 140%;} 
+.tagcloud5  { font-size: 150%;} 
+.tagcloud6  { font-size: 160%;} 
+.tagcloud7  { font-size: 170%;} 
+.tagcloud8  { font-size: 180%;} 
+.tagcloud9  { font-size: 190%;} 
+.tagcloud10 { font-size: 200%;} 
+.tagcloud11 { font-size: 210%;} 
+.tagcloud12 { font-size: 220%;} 
+.tagcloud13 { font-size: 230%;} 
+.tagcloud14 { font-size: 240%;} 
+.tagcloud15 { font-size: 250%;} 
+.tagcloud16 { font-size: 260%;} 
+.tagcloud17 { font-size: 270%;} 
+.tagcloud18 { font-size: 280%;} 
+.tagcloud19 { font-size: 290%;} 
+.tagcloud20 { font-size: 300%;} 
+.tagcloud21 { font-size: 310%;} 
+.tagcloud22 { font-size: 320%;} 
+.tagcloud23 { font-size: 330%;} 
+.tagcloud24 { font-size: 340%;} 
+
+
+/* licence 
+----------------------------------------*/
+div#licence {
+	margin:10px;
+}
+div#licence,
+div#licence a,
+div#licence a:hover{
+	text-decoration:none;
+	font-size:9px;
+	text-align:right;
+	color:#888;
+}
+
+/* lightbox2 plugin 
+-------------------------------------------*/
+
+#lightbox{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	text-align: center;
+	line-height: 0;
+	}
+
+#lightbox a img{ border: none; }
+
+#outerImageContainer{
+	position: relative;
+	background-color: #fff;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	}
+
+#imageContainer{
+	padding: 10px;
+	}
+
+#loading{
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	height: 25%;
+	width: 100%;
+	text-align: center;
+	line-height: 0;
+	}
+#hoverNav{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	}
+#imageContainer>#hoverNav{ left: 0;}
+#hoverNav a{ outline: none;}
+
+#prevLink, #nextLink{
+	width: 49%;
+	height: 100%;
+	background: transparent url(../../../plugin/lightbox2/images/blank.gif) no-repeat; /* Trick IE into showing hover */
+	display: block;
+	}
+#prevLink { left: 0; float: left;}
+#nextLink { right: 0; float: right;}
+#prevLink:hover, #prevLink:visited:hover { background: url(../../../plugin/lightbox2/images/prev.gif) left 15% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover { background: url(../../../plugin/lightbox2/images/next.gif) right 15% no-repeat; }
+
+
+#imageDataContainer{
+	font: 10px Verdana, Helvetica, sans-serif;
+	background-color: #fff;
+	margin: 0 auto;
+	line-height: 1.4em;
+	overflow: auto;
+	width: 100%	
+	}
+
+#imageData{	padding:0 10px; color: #666; }
+#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
+#imageData #caption{ font-weight: bold;	}
+#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}			
+#imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em;	}	
+		
+#overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	width: 100%;
+	height: 500px;
+	background-color: #000;
+}

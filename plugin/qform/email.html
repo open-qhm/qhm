@@ -1,0 +1,25 @@
+<?php if (is_bootstrap_skin()): ?>
+
+  <div class="form-group clearfix qform-vertical-form-group">
+    <div class="col-sm-12">
+      <input type="text" name="qform[email]" value="<?php echo h($str) ?>" class="form-control" required>
+    </div>
+  </div>
+  <?php if (trim($el['confirm'])): ?>
+    <div class="form-group clearfix qform-vertical-form-group">
+      <div class="col-sm-12">
+        <input type="text" name="qform[email2]" value="<?php echo isset($posted['email2'])? h($posted['email2']): '' ?>" class="form-control" required placeholder="<?php echo $qm->m['plg_qform']['msg_email2'] ?>">
+      </div>
+    </div>
+  <?php endif ?>
+
+<?php else: ?>
+
+  <input type="text" name="qform[email]" value="<?php echo h($str) ?>" required>
+  <?php if (trim($el['confirm'])): ?>
+    <br><br>
+    <input type="text" name="qform[email2]" value="<?php echo isset($posted['email2'])? h($posted['email2']): '' ?>" required>
+    <span class="qform-help-block"><?php echo $qm->m['plg_qform']['msg_email2'] ?></span>
+  <?php endif ?>
+
+<?php endif ?>

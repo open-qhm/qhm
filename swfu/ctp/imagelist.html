@@ -1,0 +1,34 @@
+<h2>画像名一覧</h2>
+
+<p>
+<?php
+$arr = array();
+foreach($images as $k=>$v)
+{
+	$arr[] = '<a href="#index_'.$k.'">'.$k.'</a>';
+}
+echo implode('<span style="color:#999"> | </span>',$arr);
+?>
+</p>
+
+<?php foreach($images as $k=>$imgs): ?>
+<h3 id="index_<?php echo $k?>" style="border-bottom:1px solid rgb(153, 153, 51);margin-top:1.5em;"><?php echo $k?></h3>
+<ul style="margin:1em;line-height:1.5em;">
+<?php
+	foreach($imgs as $img)
+	{
+		$p = $img['page_name'];
+		$r_p = rawurlencode($p);
+		$p = ($p=='')?'未分類':$p;
+		
+		$class = '';	
+		if(preg_match('/.*(jpeg|png|gif|jpg)$/i',$img['name']))
+			$class = 'class="screenshot"';
+		else
+			$class = 'class="tooltip"';
+			
+		echo '<li><a href="view.php?id='.$img['id'].'" '.$class.' title="'.$img['description'].'" rel="d/'.$img['name'].'">'.$img['name'].'</a>&nbsp;&nbsp;[<a href="list.php?page='.$r_p.'" style="font-size:80%">'.$p.'</a>]</li>'."\n";
+	}
+?>
+</ul>
+<?php endforeach; ?>

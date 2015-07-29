@@ -1,0 +1,403 @@
+
+/* -------------------------------------------------- 
+赤のボックス一覧
+-------------------------------------------------- */
+
+/* - Solid, White - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_red_swl{
+	border: solid 1px #f00; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 100%;        /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_swm{
+	border: solid 1px #f00; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 80%;        /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_sws{
+	border: solid 1px #f00; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Solid, Similar - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_red_ssl{
+	border: solid 1px #f00; /* (s)olid */
+	background-color: #fee; /* (s)imilar */
+	max-width: 100%;        /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_ssm{
+	border: solid 1px #f00; /* (s)olid */
+	background-color: #fee; /* (s)imilar */
+	max-width: 80%;         /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_sss{
+	border: solid 1px #f00; /* (s)olid */
+	background-color: #fee; /* (s)imilar */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Dashed, White - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_red_dwl{
+	border: dashed 2px #f00; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 100%;         /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_dwm{
+	border: dashed 2px #f00; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 80%;          /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_dws{
+	border: dashed 2px #f00; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 60%;          /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Dashed, Similar - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_red_dsl{
+	border: dashed 2px #f00; /* (d)ashed */
+	background-color: #fee;  /* (s)imilar */
+	max-width: 100%;         /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_dsm{
+	border: dashed 2px #f00; /* (d)ashed */
+	background-color: #fee; /* (s)imilar */
+	max-width: 80%;         /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_red_dss{
+	border: dashed 2px #f00; /* (d)ashed */
+	background-color: #fee; /* (s)imilar */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+
+
+/* ------------------------------------------------
+ 青のボックス一覧
+-------------------------------------------------- */
+
+/* - Solid, White - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_blue_swl{
+	border: solid 1px #00f; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 100%;        /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_swm{
+	border: solid 1px #00f; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 80%;        /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_sws{
+	border: solid 1px #00f; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Solid, Similar - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_blue_ssl{
+	border: solid 1px #00f; /* (s)olid */
+	background-color: #eef; /* (s)imilar */
+	max-width: 100%;        /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_ssm{
+	border: solid 1px #00f; /* (s)olid */
+	background-color: #eef; /* (s)imilar */
+	max-width: 80%;         /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_sss{
+	border: solid 1px #00f; /* (s)olid */
+	background-color: #eef; /* (s)imilar */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Dashed, White - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_blue_dwl{
+	border: dashed 2px #00f; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 100%;         /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_dwm{
+	border: dashed 2px #00f; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 80%;          /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_dws{
+	border: dashed 2px #00f; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 60%;          /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Dashed, Similar - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_blue_dsl{
+	border: dashed 2px #00f; /* (d)ashed */
+	background-color: #eef;  /* (s)imilar */
+	max-width: 100%;         /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_dsm{
+	border: dashed 2px #00f; /* (d)ashed */
+	background-color: #eef; /* (s)imilar */
+	max-width: 80%;         /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_blue_dss{
+	border: dashed 2px #00f; /* (d)ashed */
+	background-color: #eef; /* (s)imilar */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+
+
+/* --------------------------------------------------
+黒のボックス一覧
+-------------------------------------------------- */
+
+/* - Solid, White - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_black_swl{
+	border: solid 1px #000; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 100%;        /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_swm{
+	border: solid 1px #000; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 80%;        /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_sws{
+	border: solid 1px #000; /* (s)olid */
+	background-color: #fff; /* (w)hite */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Solid, Similar - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_black_ssl{
+	border: solid 1px #000; /* (s)olid */
+	background-color: #eee; /* (s)imilar */
+	max-width: 100%;        /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_ssm{
+	border: solid 1px #000; /* (s)olid */
+	background-color: #eee; /* (s)imilar */
+	max-width: 80%;         /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_sss{
+	border: solid 1px #000; /* (s)olid */
+	background-color: #eee; /* (s)imilar */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Dashed, White - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_black_dwl{
+	border: dashed 2px #000; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 100%;         /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_dwm{
+	border: dashed 2px #000; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 80%;          /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_dws{
+	border: dashed 2px #000; /* (d)ashed */
+	background-color: #fff;  /* (w)hite */
+	max-width: 60%;          /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+/* - Dashed, Similar - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+div.box_black_dsl{
+	border: dashed 2px #000; /* (d)ashed */
+	background-color: #eee;  /* (s)imilar */
+	max-width: 100%;         /* (l)arge */
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_dsm{
+	border: dashed 2px #000; /* (d)ashed */
+	background-color: #eee; /* (s)imilar */
+	max-width: 80%;         /* (m)iddle */
+	width: 80%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+div.box_black_dss{
+	border: dashed 2px #000; /* (d)ashed */
+	background-color: #eee; /* (s)imilar */
+	max-width: 60%;         /* (s)mall */
+	width: 60%;
+	text-align:left;
+	padding: 0px 1.5em 0px 1.5em;
+	margin: 1em auto;
+}
+
+
+
+

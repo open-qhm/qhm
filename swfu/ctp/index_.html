@@ -1,0 +1,44 @@
+<?php
+
+if($page_name=='')
+{
+	$uplink_query = '';
+	$uplink_msg = '';
+}
+else
+{
+	$uplink_query = '?page='.rawurlencode($page_name);
+	$uplonk_msg = $page_name.'へ<br />';
+}
+
+?>
+<!-- == コンテンツ ================= -->
+
+
+<h2>簡単アップローダー swfu Front v2</h2>
+
+<p>QHMプロと連携して、画像、音声、PDFファイルなどを、ページに貼り付けます。<br />
+表示、ポップアップ表示、ダウンロードボタン、再生などを簡単に実現できます。</p>
+
+<h3>基本的な使い方</h3>
+<div style="float:left;"><img src="images/man_tenpu.png" title="添付" /></div>
+<p>ページ編集中に、「添付」をクリックして開きます。<br />
+編集中のページに、関連づけられた画像や、ファイルの一覧が表示されます。<br /><br />
+</p>
+<div style="float:left;"><img src="images/man_insert.png" title="挿入" /></div>
+<p>← 編集状態だと、挿入ボタンが表示されるので、<br />
+　ページ内に貼り付けします。</p>
+<div style="clear:both;"></div>
+
+
+<h3>全体の構成</h3>
+<div style="float:left;"><img src="images/man_all.png" title="全体" /></div>
+<p>表示の並び替えをすると、ファイルが探しやすくなります。左メニューから、他のページの画像を探すこともできます。</p>
+<div style="clear:both;"></div>
+
+<h3>ファイルのチェック</h3>
+<div style="float:left;"><img src="images/man_filecheck.png" title="ファイルチェック" /></div>
+ファイルサイズの大きいと、サーバーの制限でSWFUからアップできません。<br />
+その際は、FTPソフトで直接、swfu/d/ フォルダにアップし、「ファイルチェック」を実行してSWFUに読み込ませてください。
+<div style="clear:both;"></div>
+

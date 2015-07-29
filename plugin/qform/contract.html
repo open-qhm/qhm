@@ -1,0 +1,14 @@
+<?php if ($err): ?>
+  <p class="<?php echo is_bootstrap_skin() ? 'text-danger' : 'qform-danger' ?>"><?php echo $err ?></p>
+<?php else: ?>
+  <div class="qform-contract">
+    <?php echo $contract ?>
+  </div>
+<?php endif ?>
+
+<div class="qform-contract-action-panel">
+	<label>
+	  <input type="checkbox" name="qform[contract]" value="<?php echo h($qm->m['plg_qform']['agree']) ?>" required>
+	  <?php echo $cblabel ?>
+  </label>
+</div>

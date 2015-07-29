@@ -1,0 +1,23 @@
+<div class="qform-radio-controls">
+  <?php foreach ($el['option'] as $k => $v): ?>
+    <?php if ($el['inline']): ?>
+
+      <label class="radio-inline">
+        <input type="radio" name="qform[<?php echo h($el['id']) ?>]" value="<?php echo h($v)?>"
+          <?php echo $checked_value == $v ? 'checked' : '' ?>
+        > <?php echo h($v) ?>
+      </label>
+
+    <?php else: ?>
+
+      <div class="radio">
+        <label>
+          <input type="radio" name="qform[<?php echo h($el['id']) ?>]" value="<?php echo h($v)?>"
+            <?php echo $checked_value == $v ? 'checked' : '' ?>
+          > <?php echo h($v) ?>
+        </label>
+      </div>
+
+    <?php endif ?>
+  <?php endforeach ?>
+</div>

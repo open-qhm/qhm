@@ -1,0 +1,5 @@
+<textarea name="qform[<?php echo h($el['id']) ?>]" rows="<?php echo h($el['rows']) ?>"
+  <?php if (is_bootstrap_skin()): ?>
+    class="form-control"
+  <?php endif ?>
+><?php echo h($memo_value) ?></textarea>

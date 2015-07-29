@@ -1,0 +1,13 @@
+<div>
+  <select name="qform[state]"
+    <?php if (is_bootstrap_skin()): ?>
+      class="form-control"
+    <?php endif ?>
+  >
+    <?php foreach ($states as $state): ?>
+      <option value="<?php echo h($state) ?>"
+        <?php echo $state == $selected_state ? 'selected' : '' ?>
+      ><?php echo h($state) ?></option>
+    <?php endforeach ?>
+  </select>
+</div>

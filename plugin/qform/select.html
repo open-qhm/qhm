@@ -1,0 +1,11 @@
+<select name="qform[<?php echo h($el['id']) ?>]"
+  <?php if (is_bootstrap_skin()): ?>
+    class="form-control"
+  <?php endif ?>
+>
+  <?php foreach ($el['option'] as $k => $v): ?>
+    <option value="<?php echo h($v)?>" <?php echo $v == $selected_value ? 'selected' : '' ?>>
+      <?php echo h($v)?>
+    </option>
+  <?php endforeach ?>
+</select>

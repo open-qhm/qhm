@@ -1,0 +1,23 @@
+<?php if (is_bootstrap_skin()): ?>
+
+  <div class="qform-inline-controls">
+    <input type="text" name="qform[lname]" value="<?php echo h($lname) ?>" class="form-control"
+      <?php echo $el['validation'] ? 'required' : '' ?>
+    >
+    <input type="text" name="qform[fname]" value="<?php echo h($fname) ?>" class="form-control"
+      <?php echo $fname_el['validation'] ? 'required' : '' ?>
+    >
+  </div>
+
+<?php else: ?>
+
+  <div class="qform-inline-controls">
+    <input type="text" name="qform[lname]" value="<?php echo h($lname) ?>" size="10"
+      <?php echo $el['validation'] ? 'required' : '' ?>
+    >
+    <input type="text" name="qform[fname]" value="<?php echo h($fname) ?>" size="10"
+      <?php echo $fname_el['validation'] ? 'required' : '' ?>
+    >
+  </div>
+
+<?php endif ?>

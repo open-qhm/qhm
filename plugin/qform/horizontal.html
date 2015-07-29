@@ -1,0 +1,26 @@
+<?php if (is_bootstrap_skin()):?>
+
+  <div class="qform-bootstrap qform-horizontal">
+    <?php foreach ($data_set as $d): ?>
+      <div class="form-group">
+        <label for="" class="control-label col-sm-3"><?php echo $d['label']?> <?php echo isset($d['valid']) && $d['valid'] ? $astar : '' ?></label>
+        <div class="col-sm-9">
+          <?php echo $d['content'] ?>
+          <span class="help-block"><?php echo $d['exp'] ?></span>
+        </div>
+      </div>
+    <?php endforeach ?>
+  </div>
+
+<?php else: ?>
+
+  <table class="qform_table" colspan="0">
+    <?php foreach ($data_set as $d):?>
+      <tr>
+        <th><?php echo $d['label']?> <?php echo isset($d['valid']) && $d['valid'] ? $astar : '' ?></th>
+        <td><?php echo $d['content'] ?><span class="help-block qform-help-block"><?php echo $d['exp'] ?></span></td>
+      </tr>
+    <?php endforeach ?>
+  </table>
+
+<?php endif ?>

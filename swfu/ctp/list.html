@@ -1,0 +1,195 @@
+<?php
+$name = $image['name'];
+$path = BASE.SWFU_DATA_DIR.$image['name'];
+
+if($page_name=='')
+{
+	$uplink_query = '';
+	$uplink_msg = '';
+}
+else
+{
+	$uplink_query = '?page='.rawurlencode($page_name);
+	$uplink_msg = $page_name.'へ<br />';
+}
+
+
+/*********************************** 準備 : ここまで　**************************************/
+?>
+<style type="text/css">
+
+.file_upload {
+  position: relative;
+  overflow: hidden;
+  direction: ltr;
+  cursor: default;
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  width: 1px;
+  height: 1px;
+  line-height: 1px;
+  background: white;
+  border: none;
+}
+
+.file_upload_small {
+  width: 1px;
+  height: 1px;
+  line-height: 1px;
+  font-size: 1px;
+  background: white;
+  border: none;
+}
+
+.file_upload_large {
+  width: 100%;
+  height: 150px;
+  line-height: 150px;
+  font-size: 20px;
+  background: palegreen;
+  border: 1px solid limegreen;
+}
+
+#file_upload.file_upload {
+	padding: 0;
+}
+
+</style>
+
+<?php if(!count($images)):?>
+<h2 style="margin-top:0px;padding-top:0px"><?php echo $h2title?></h2>
+
+<!-- File Upload -->
+<form id="file_upload" action="upload2.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" multiple>
+    <button>Upload</button>
+    <div>Click</div>
+    <input type="hidden" name="page" value="<?php echo h($page_name)?>" />
+</form>
+<table id="files"></table>
+
+
+<p>ファイル 0件です</p>
+
+
+<?php else:?>
+
+<h2 style="margin-top:0px;padding-top:0px"><?php echo $h2title?></h2>
+
+
+
+<!-- File Upload -->
+<form id="file_upload" action="upload2.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" multiple>
+    <button>Upload</button>
+    <div>Click</div>
+    <input type="hidden" name="page" value="<?php echo h($page_name)?>" />
+</form>
+<table id="files"></table>
+
+
+<?php echo $pagination_link?>
+<div style="font-size:11px;text-align:center;">
+ <div style="float:right;"><?php echo $order_link?></div>
+ <span id="cmd_msg" style="background-color:orange;font-weight:bold;padding:5px;display:none;">挿入しました</span>
+ <div style="clear:both;"></div>
+</div>
+<?php
+/********************** テーブル表示（ややこしい）**************************/
+$num = count($images);
+$rows = ceil($num/$cols);
+
+echo "<table class=\"eltable\">\n";
+for($r=0, $cnt=0; $r<$rows; $r++)
+{
+	echo "<tr>\n";
+	for($c=0; $c<$cols; $c++,$cnt++)
+	{
+		if($cnt < $num){
+			$img = $images[$cnt];
+			echo '<td>';
+			echo el($img['name'], $img['created'], true, $img['size'], $img['id'], $img['description']);
+			
+			/* 貼り付けボタンの出力 */
+			echo '<div class="insert_buttons">', get_buttons($img), '</div>';
+
+			echo '</td>'."\n";
+		}
+		else{
+			echo '<td></td>'."\n";
+		}
+	}
+	echo "</tr>\n";
+}
+echo '</table>';
+?>
+
+
+<?php endif;?>
+
+<?php if (count($images) > 0):?>
+
+<div style="margin-bottom:20px;">
+<a href="#" id="openSlideshowBox">[+]これらのファイルを使ってスライドショーや音楽プレイヤーを貼り付ける</a>
+
+<!-- ! スライドショー -->
+<div class="slideshowbox" style="float:left;width:250px;height:50px;">
+	スライドショー <a href="#" onclick="insert_val('slideshow_wiki');" class="editmode">[貼付け]</a><br />
+<textarea readonly="readonly" cols="30" rows="2" id="slideshow_wiki" onclick="this.select();">
+//高さは必ず指定してください。例）200
+#slideshow(200){{
+<?php foreach ($images as $img):?>
+<?php echo BASE . SWFU_DATA_DIR . $img['name']?>,<?php echo $img['description'], "\n"?>
+<?php endforeach;echo "\n"?>
+}}
+</textarea>
+</div>
+
+<!-- ! ボタン付きスライドショー -->
+<div class="slideshowbox" style="float:left;width:250px;height:50px;">
+	ボタン付きスライドショー <a href="#" onclick="insert_val('slides_wiki');" class="editmode">[貼付け]</a><br />
+<textarea readonly="readonly" cols="30" rows="2" id="slides_wiki" onclick="this.select();">
+// 幅570px、高さ270px でピッタリの大きさです
+// 書式）ファイル,リンク先ページ名,画像の説明
+#slides{{
+<?php foreach ($images as $img):?>
+<?php echo BASE . SWFU_DATA_DIR . $img['name']?>,,<?php echo $img['description'], "\n"?>
+<?php endforeach;echo "\n"?>
+}}
+</textarea>
+</div>
+
+<!-- ! colorboxスライドショー -->
+<div class="slideshowbox" style="float:left;width:250px;height:50px;">
+	colorboxスライドショー <a href="#" onclick="insert_val('colorbox_slideshow_wiki');" class="editmode">[貼付け]</a><br />
+<textarea readonly="readonly" cols="30" rows="2" id="colorbox_slideshow_wiki" onclick="this.select();">
+// &show のcolorbox スライドショーを使います。
+// コンテンツには高さ120px で表示します。
+<?php foreach ($images as $img):?>&show(<?php echo BASE . SWFU_DATA_DIR . $img['name']?>,colorbox=slideshow<?php echo date("Ymd")?>,zoom,0x120,<?php echo $img['description']?>); <?php endforeach;echo "\n"?>
+</textarea>
+</div>
+
+<!-- ! JPlayer -->
+<div class="slideshowbox" style="float:left;width:250px;height:50px;">
+	音楽プレイリスト <a href="#" onclick="insert_val('jplayer_wiki');" class="editmode">[貼付け]</a><br />
+<textarea readonly="readonly" cols="30" rows="2" id="jplayer_wiki" onclick="this.select();">
+// MP3 ファイルが使用可能です。
+#JPlayer{{
+<?php foreach ($images as $img):?>
+<?php echo $img['description']?>,<?php echo BASE . SWFU_DATA_DIR . $img['name'], "\n"?>
+<?php endforeach;echo "\n"?>
+}}
+</textarea>
+</div>
+
+
+<div style="clear:both;"></div>
+</div>
+<?php endif;?>
+
+<?php echo $page_form_set?>
+<?php echo $page_form?>

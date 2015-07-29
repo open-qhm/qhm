@@ -1,0 +1,27 @@
+# QHM Configuration : Start
+
+# Prohibit direct access
+<FilesMatch "\.(ini\.php|lng\.php|txt|gz|tgz)$">
+	Order allow,deny
+	Deny from all
+</FilesMatch>
+
+<FilesMatch "^robots.txt$">
+	Order allow,deny
+	Allow from all
+</FilesMatch>
+
+## Add Content-Type for web-fonts and videos
+## needs mod_mime.c
+<IfModule mod_mime.c>
+	# Web fonts
+	AddType application/font-woff  .woff
+	AddType application/x-font-ttf .ttf
+	AddType image/svg+xml          .svg
+
+	# Videos
+	AddType video/mp4  .mp4
+	AddType video/webm .webm
+</IfModule>
+
+# QHM Configuration : End

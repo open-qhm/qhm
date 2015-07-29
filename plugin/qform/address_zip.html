@@ -1,0 +1,73 @@
+<?php if (is_bootstrap_skin()): ?>
+
+  <div class="qform-address-container">
+    <div class="form-group">
+      <label><?php echo $qm->m['plg_qform']['zipcode'] ?></label>
+      <input type="text" name="qform[address_zip]" value="<?php echo h($arr['zip']) ?>"
+        <?php echo $zip_el['validation'] != '' ? 'required' : '' ?>
+        class="form-control qform-address-zip-input"
+      >
+    </div>
+
+    <div class="form-group">
+      <label><?php echo $qm->m['plg_qform']['state'] ?></label>
+      <select name="qform[address_state]" class="form-control">
+        <?php foreach ($states as $state): ?>
+          <option value="<?php echo h($state) ?>"
+            <?php echo $state == $selected_state ? 'selected' : '' ?>
+          ><?php echo h($state) ?></option>
+        <?php endforeach ?>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label><?php echo $qm->m['plg_qform']['city'] ?></label>
+      <input type="text" name="qform[address_city]" value="<?php echo h($arr['city']) ?>"
+        <?php echo $city_el['validation'] != '' ? 'required' : '' ?>
+        class="form-control"
+      >
+    </div>
+
+    <div class="form-group">
+      <label><?php echo $qm->m['plg_qform']['street'] ?></label>
+      <input type="text" name="qform[address_street]" value="<?php echo h($arr['street']) ?>"
+        <?php echo $street_el['validation'] != '' ? 'required' : '' ?>
+        class="form-control"
+      >
+    </div>
+  </div>
+
+<?php else: ?>
+
+  <p class="qform-address-container">
+    <?php echo $qm->m['plg_qform']['zipcode'] ?> :
+    <input type="text" name="qform[address_zip]" value="<?php echo h($arr['zip']) ?>"
+      <?php echo $zip_el['validation'] != '' ? 'required' : '' ?>
+      class="qform-address-zip-input"
+    >
+    <br>
+
+    <?php echo $qm->m['plg_qform']['state'] ?> :
+    <select name="qform[address_state]">
+      <?php foreach ($states as $state): ?>
+        <option value="<?php echo h($state) ?>"
+          <?php echo $state == $selected_state ? 'selected' : '' ?>
+        ><?php echo h($state) ?></option>
+      <?php endforeach ?>
+    </select><br>
+
+    <?php echo $qm->m['plg_qform']['city'] ?> :
+    <input type="text" name="qform[address_city]" value="<?php echo h($arr['city']) ?>"
+      <?php echo $city_el['validation'] != '' ? 'required' : '' ?>
+      class="qform-address-city-input"
+    >
+    <br>
+
+    <?php echo $qm->m['plg_qform']['street'] ?> :
+    <input type="text" name="qform[address_street]" value="<?php echo h($arr['street']) ?>"
+      <?php echo $street_el['validation'] != '' ? 'required' : '' ?>
+      class="qform-address-street-input"
+    >
+  </p>
+
+<?php endif ?>

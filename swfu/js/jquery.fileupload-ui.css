@@ -1,0 +1,102 @@
+@charset "utf-8";
+.file_upload {
+	position: relative;
+	overflow: hidden;
+	direction: ltr;
+	padding: 20px 10px;
+	cursor: pointer;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	color: #999;
+	font-weight: bold;
+	font-size: 18px;
+	width: 320px;
+	height: 40px;
+	line-height: 40px;
+	border: 3px dashed #ccc;
+}
+
+
+.file_upload div {
+}
+.file_upload div:before{
+	content: url(arrow1.png);
+}
+.file_upload div:after{
+	content: "ここにファイルをドロップ";
+}
+.file_upload:hover {
+	background: #FFFFCC;
+	border: 3px dashed #ccc;
+}
+.file_upload:hover div:before{
+	content: "";
+}
+.file_upload:hover div:after{
+	content: "クリックしてファイルを選択";
+	color: #0066FF;
+}
+
+.file_upload_small {
+  width: 320px;
+  height: 40px;
+  line-height: 40px;
+  font-size: auto;
+  background: #FFFFCC;
+  border: 3px dashed #CCC;
+}
+
+.file_upload_large {
+  width: 640px;
+  height: 150px;
+  line-height: 150px;
+  font-size: 20px;
+  background: #FFFFCC;
+  border: 3px dashed #CCC;
+  color:#666;
+}
+.file_upload_large div:before {
+content: url(arrow.png);
+}
+.file_upload_large div:after {
+content: "";
+}
+
+.file_upload_highlight {
+  background: #FFFFCC;
+}
+
+.file_upload input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  border: 300px solid transparent;
+  opacity: 0;
+  -ms-filter: 'alpha(opacity=0)';
+  filter: alpha(opacity=0);
+  -o-transform: translate(-300px, -300px) scale(10);
+  -moz-transform: translate(-800px, 0) scale(10);
+  cursor: pointer;
+}
+
+.file_upload iframe, .file_upload button {
+  display: none;
+}
+
+.file_upload_preview img {
+  width: 80px;
+}
+
+.file_upload_progress .ui-progressbar-value {
+  background: url(pbar-ani.gif);
+}
+
+.file_upload_progress div {
+  width: 150px;
+  height: 15px;
+}
+
+.file_upload_cancel button {
+  cursor: pointer;
+}

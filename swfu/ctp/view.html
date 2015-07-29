@@ -1,0 +1,206 @@
+<?php
+$name = $image['name'];
+$path = BASE.SWFU_DATA_DIR.$image['name'];
+
+if($page_name=='')
+{
+	$uplink_query = '';
+	$uplink_msg = '';
+}
+else
+{
+	$uplink_query = '?page='.rawurlencode($page_name);
+	$uplonk_msg = $page_name.'へ<br />';
+}
+
+$ibtn = '<img src="images/insert_btn.png" alt="insert" title="コマンドを挿入" />';
+$btnimg = array(
+	'ref' => '<img src="images/btn_ref.png" alt="貼り付け" title="貼り付けコマンドを挿入" />',
+	'ref_ard' => '<img src="images/btn_ref_around.png" alt="回り込み貼り付け" title="回り込み貼り付けコマンドを挿入" />',
+	'dlbtn' => '<img src="images/btn_dlbutton.png" alt="ダウンロードボタン" title="ダウンロードボタンコマンドを挿入" />',
+	'dllnk' => '<img src="images/btn_dllink.png" alt="ダウンロードリンク" title="ダウンロードリンクコマンドを挿入" />',
+	'lbx' => '<img src="images/btn_lightbx.png" alt="lightbox2" title="lightbox2コマンドを挿入" />',
+	'gbx' => '<img src="images/btn_greybx.png" alt="greybox" title="greyboxコマンドを挿入" />',
+	'video' => '<img src="images/btn_playvideo.png" alt="playvideo" title="playvideoコマンドを挿入" />',
+	'music' => '<img src="images/btn_playlist.png" alt="playlist" title="playlistコマンドを挿入" />',
+	'mv' => '<img src="images/btn_ref.png" alt="メインビジュアル" title="メインビジュアル" />',
+	'logo' => '<img src="images/btn_ref.png" alt="ロゴ画像" title="ロゴ画像" />',
+);
+
+
+?>
+<!-- == コンテンツ ================= -->
+<?php
+if(!isset($image)){
+echo '<h2>指定されたファイルは、存在しません</h2>';
+exit;
+}
+?>
+<script type="text/javascript">
+<!--
+function showConfirm(){
+	var ans = window.confirm('ファイルを上書きしてよろしいですか？');
+	if (ans) {
+	}
+	else {
+		return false;
+	}
+}
+//-->
+</script>
+<h2 style="margin-top:0px;padding-top:0px"><?php echo $name?> の詳細</h2>
+
+<?php echo el($image['name'],$image['created'],$image['size'],false,$image['id'],h($image['description']));?>
+<?php if(preg_match('/.*(jpeg|png|gif|jpg)$/i', $name)){?>
+<!-- ! ==== 画像の場合 ============= -->
+<?php //コマンドの作成
+$btn_dscr = h($image['description']);
+$btn_dscr2 = h(addcslashes($image['description'], "'"));
+$past = "&amp;show({$name},,{$btn_dscr2});";
+$past_ard = "#show({$name},aroundr,{$btn_dscr2})";
+$lightbx2 = "&amp;show({$name},lightbox2=group,50%,{$btn_dscr2});";
+$greybx = "&amp;show({$name},greybox=group,50%,{$btn_dscr2});";
+$mv = "#main_visual({$path})";
+$logo = "#logo_image({$path})";
+$redirect_url = _getHost().'/'.BASE . 'list.php';
+$callback_url = _getHost().'/'.BASE . 'upload_api.php';
+$img_url = _getHost().'/'.BASE.SWFU_DATA_DIR.$image['name'];
+$info = getimagesize(SWFU_DATA_DIR.$name);
+$img_size = ($info !== FALSE) ? ($info[0].'x'.$info[1]) : '';
+$api_params = array(
+	'apikey=' . rawurlencode($apikey),
+	'import=img',
+	'img=' . rawurlencode($img_url),
+	'redirect=' . rawurlencode($redirect_url),
+	'callback=' . rawurlencode($callback_url),
+	'name=' . rawurlencode($image['name']),
+	'description=' . rawurlencode($image['description']),
+	'size=' . rawurlencode($img_size)
+);
+if ($page_name !== '')
+{
+	$api_params[] = 'page='. rawurlencode($page_name);
+}
+$api_url = EDIT_IMG_API_URL . '?' . join('&', $api_params);
+?>
+<?php if (get_qhm_option('support')): ?>
+<a href="<?php echo h($api_url)?>">画像縮小ツールで縮小する</a>
+<?php endif ?>
+
+<table>
+  <tr>
+    <td style="padding-left: 0;">
+貼り付け
+<input type="text" value="<?php echo $past?>" onclick="this.select();" size="12" readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past?>');"><?php echo $btnimg['ref']?></a>
+<br />
+回り込み
+<input type="text" value="<?php echo $past_ard?>" onclick="this.select();"  size="12"  readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past_ard?>');"><?php echo $btnimg['ref_ard']?></a>
+    </td>
+    <td>
+lightbox2
+<input type="text" value="<?php echo $lightbx2?>" onclick="this.select();" size="12"  readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $lightbx2?>');"><?php echo $btnimg['lbx']?></a><br />
+greybox&nbsp;&nbsp;
+<input type="text" value="<?php echo $greybx?>" onclick="this.select();" size="12"  readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $greybx?>');"><?php echo $btnimg['gbx']?></a>
+    </td>
+  </tr>
+</table>
+
+<p>
+	メインビジュアル<br />
+	<input type="text" readonly="readonly" value="<?php echo h($mv)?>" onclick="this.select();" size="20" />
+	<a href="#" class="editmode" onclick="insert_cmd('<?php echo h($mv)?>');"><?php echo $btnimg['mv']?></a><br />
+	ロゴ画像<br />
+	<input type="text" value="<?php echo h($logo)?>" onclick="this.select();" size="20" />
+	<a href="#" class="editmode" onclick="insert_cmd('<?php echo h($logo)?>');"><?php echo $btnimg['logo']?></a><br />
+</p>
+
+<p><img src="d/<?php echo $image['name']?>" title="<?php echo $btn_dscr?>" alt="<?php echo $btn_dscr?>" style="max-width:600px;max-height:600px;" /></p>
+
+
+<?php }else if( preg_match('/.*(swf|mov|ram|wmv|avi|flv)$/i',$name) ){ ?>
+<!-- ! ==== 動画の場合 ============= -->
+<?php  //コマンドの作成
+$past = "#playvideo({$path},幅,高さ);";
+?>
+<p>Playvideoプラグイン<br />
+<input type="text" value="<?php echo $past;?>" readonly="readonly" onclick="this.select();" />
+ <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past?>');"><?php echo $btnimg['video']?></a></p>
+
+
+<?php }else if( preg_match('/.*mp3$/i',$name) ){ ?>
+<!-- ! ==== MP3の場合 ============= -->
+<?php  //コマンドの作成
+$past = "#JPlayer{{
+{$image['description']},{$path}
+}}
+";
+$past2 = str_replace("\n", "\\n", $past);
+
+?>
+<p>Playlistプラグイン<br />
+<textarea readonly="readonly" onclick="this.select();"><?php echo $past;?></textarea>
+ <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past2?>');"><?php echo $btnimg['music']?></a>
+ </p>
+
+
+<?php } else{ ?>
+<!-- ==== それ以外の場合 =============-->
+
+<?php } ?>
+
+<?php  //コマンドの作成
+$past = "&dlbutton({$path});";
+$past2 = "&dllink({$path}){ここに表示名、画像};";
+?>
+
+<p>ダウンロードボタン<br />
+<input type="text" value="<?php echo $past?>" readonly="readonly" onclick="this.select();" />
+ <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past?>');"><?php echo $btnimg['dlbtn']?></a></p>
+<p>ダウンロードリンク<br />
+<input type="text" value="<?php echo $past2?>" readonly="readonly" onclick="this.select();" />
+ <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past2?>');"><?php echo $btnimg['dllnk']?></a></p>
+<p>URL<br />
+<input type="text" value="<?php echo _getHost().'/'.BASE.SWFU_DATA_DIR.$name?>" onclick="this.select();"   readonly="readonly" /> <a href="<?php echo _getHost().'/'.BASE.SWFU_DATA_DIR.$name?>" target="_blank"><img src="images/out_link.png" alt="別ウインドウで開く" title="別ウインドウで開く" /></a></p>
+<p>Dir<br />
+<input type="text" value="<?php echo $path?>" onclick="this.select();" readonly="readonly" />
+</p>
+<p>関連ページ： <a href="list.php?page=<?php echo rawurlencode($image['page_name'])?>" title="<?php echo $image['page_name']?>へ移動"><?php echo $image['page_name']?></a><br />
+関連ラベル： <?php
+$labels = explode(',',$image['label']);
+foreach($labels as $l){
+	echo '<a href="list.php?label='.rawurlencode($l).'">'.$l.'</a>, ';
+}
+?></p>
+<br />
+
+<form method="post" accept="<?php echo $_SERVER['PHP_SELF']?>" enctype="multipart/form-data">
+<hr style="border:1px #ccc dashed" />
+<h3 id="regist">登録情報・変更</h3>
+<p>ファイル名 (英数半角のみ、拡張子は変更しないでください)<br />
+<input type="text" name="name" value="<?php echo $image['name']?>" size="30" />
+</p>
+<p>説明(タイトル)<br />
+<input type="text" name="description" value="<?php echo $btn_dscr?>" size="30" />
+</p>
+<p>ページ名<br />
+<input type="text" name="page_name" value="<?php echo $image['page_name']?>" size="30" />
+</p>
+<p>ラベル（半角コンマ(,)区切りで入力してください)<br />
+<input type="text" name="label" value="<?php echo $image['label']?>" size="30" />
+</p>
+<p>
+<input type="hidden" name="id" value="<?php echo $image['id']?>" />
+<input type="submit" name="confirm" value="確認" style="width:100px" />
+</p>
+<br />
+
+<hr style="border:1px #ccc dashed" />
+<h3 id="regist">ファイルの上書き</h3>
+<form method="post" accept="<?php echo $_SERVER['PHP_SELF']?>">
+<input type="hidden" name="id" value="<?php echo $image['id']?>" />
+<?php if (isset($up_errmsg) && $up_errmsg != "") : ?>
+<p><?php echo $up_errmsg;?></p>
+<?php endif; ?>
+<p>上書きするファイル：<input type="file" name="newfile" value="" />&nbsp;
+<input type="submit" name="replace" value="上書き" style="width:100px" onclick="return showConfirm();" /></p>
+</form>

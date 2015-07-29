@@ -1,0 +1,121 @@
+.qform-on-default .qform_table {
+	width:85%;
+	margin:1.5em auto;
+	border-collapse: collapse;
+}
+.qform-on-default.qform-style-horizontal .qform_table tr th {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	white-space: nowrap;
+}
+.qform-on-default.qform-style-horizontal .qform_table tr td {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+.qform-on-default.qform-style-horizontal .qform_table tr td.qform_value {
+	padding: 10px;
+	font-weight:normal;
+	border-bottom: 1px solid #ccc;
+}
+.qform-on-default.qform-style-vertical .qform_table {
+  border-collapse: collapse;
+}
+.qform-on-default textarea,
+.qform-on-default input[type=text] {
+	padding:3px 5px;
+	width:97%;
+	border:1px solid #ccc;
+}
+.qform-on-default .qform_value {
+	border:0;
+}
+.qform-on-default .qform_table tr td.qform_value {
+	padding: 10px 10px 20px 10px;
+	font-weight:normal;
+	border-bottom: none;
+}
+.qform_form .qform-action-panel {
+  text-align: center;
+}
+.qform-style-horizontal.qform-on-bootstrap .qform-action-panel {
+  text-align: left;
+}
+
+.qform-on-bootstrap .qform-address-container .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.qform-on-default .qform-address-container {
+  line-height: 2em;
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .qform-style-horizontal.qform-on-bootstrap .qform-action-panel {
+    text-align: center;
+  }
+  .qform-on-bootstrap .form-control {
+    font-size: 16px;
+  }
+}
+
+.qform-inline-controls input[type="text"]{
+  display: inline-block;
+  width: 150px;
+}
+
+.qform-vertical-form-group {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+
+.qform-on-bootstrap .qform-address-zip-input {
+  width: auto;
+}
+
+.qform-on-default .qform-address-container .qform-address-zip-input {
+  width: 7em;
+}
+.qform-on-default .qform-address-container .qform-address-city-input,
+.qform-on-default .qform-address-container .qform-address-street-input {
+  width: 70%;
+}
+
+.qform-danger {
+  color: red;
+}
+
+.qform-contract {
+  width: 100%;
+  max-height: 150px;
+  overflow-y: scroll;
+  margin: 5px auto;
+  padding: 0 15px;
+  border: 1px solid #ccc;
+}
+
+.qform-contract-action-panel {
+  margin: 5px 0 auto;
+  text-align: center;
+}
+
+.qform-help-block {
+  display: block;
+  font-size: small;
+  color: #666;
+}
+
+.qform-item-label {
+  text-align: left;
+}
+
+.qform-horizontal .form-group:before,
+.qform-horizontal .form-group:after {
+  content: " ";
+  display: table;
+}
+.qform-horizontal .form-group:after{
+  clear: both;
+}

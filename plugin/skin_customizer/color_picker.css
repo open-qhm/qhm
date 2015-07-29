@@ -1,0 +1,72 @@
+.colorPicker-palette {
+  position: fixed;
+  background-color: rgba(255,255,255, 1);
+  z-index: 1050;
+  padding: 5px;
+  width: auto;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+.colorPicker-palette:before{
+  content: ' ';
+  height: 0;
+  position: absolute;
+  width: 0;
+  border: 10px solid transparent;
+  border-right-color: rgba(0,0,0, .8);
+  left: -20px;
+  top: 57px;
+}
+
+.colorPicker-swatch {
+  width: 20px;
+  height: 20px;
+  float: left;
+  box-sizing: border-box;
+  margin: 4px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.colorPicker-hover {
+  border-width: 2px;
+}
+
+.colorPicker-hex-label {
+  position: fixed;
+  color: #fff;
+  background-color: rgba(0,0,0,.9);
+  z-index: 1051;
+  border-radius: 3px;
+  top: 0;
+  left:0;
+  padding: 0 3px;
+  display: block;
+  width: auto;
+}
+
+
+.themeColorPicker-palette {
+  position: relative;
+  z-index: 1050;
+  padding: 5px;
+  width: auto;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.themeColorPicker-wrap-swatch.active {
+  border: 2px solid #fff;
+  border-radius: 3px;
+}
+.themeColorPicker-wrap-swatch {
+  float: left;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+}
+
+.themeColorPicker-wrap-swatch .colorPicker-swatch {
+  border-color: rgba(0,0,0,.8);
+}

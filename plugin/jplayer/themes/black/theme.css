@@ -1,0 +1,402 @@
+/*
+ * Skin for jPlayer Plugin (jQuery JavaScript Library)
+ * http://www.happyworm.com/jquery/jplayer
+ *
+ * Skin Name: Blue Monday
+ *
+ * Copyright (c) 2010 Happyworm Ltd
+ * Dual licensed under the MIT and GPL licenses.
+ *  - http://www.opensource.org/licenses/mit-license.php
+ *  - http://www.gnu.org/copyleft/gpl.html
+ *
+ * Author: Silvia Benvenuti
+ * Skin Version: 2.0
+ * Date: 29th April 2010
+ */
+
+div.jp-type-single,
+div.jp-type-playlist{
+	/* Edit the font-size to counteract inherited font sizing.
+	 * Eg. 1.25em = 1 / 0.8em
+	 */
+
+	/* No parent CSS that can effect the size in these demos */
+/*
+	font-size:1em;
+	font-family:Verdana, Arial, sans-serif;
+	line-height:1.6;
+	color: #666;
+*/
+}
+div.jp-audio {
+position: relative;
+width:550px;
+height:380px;
+background:black;
+background: -moz-linear-gradient(top, #333,#000);
+background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#000));
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+-moz-box-shadow: 1px 1px 8px #000;
+-webkit-box-shadow: 1px 1px 8px #000;
+box-shadow: 1px 1px 8px #000;
+margin: 0 auto;
+}
+div.jp-type-single {
+	height: 110px;
+	background: -moz-linear-gradient(top, #333,#111);
+	background: -webkit-gradient(linear, left top, left bottom, from(#333), to(#111));
+}
+div.jp-audio a{
+	color:white;
+}
+div.jp-interface {
+	position: relative;
+	background: black;
+	width:520px;
+	height:80px;
+	font-size:1em;
+	font-family:Verdana, Arial, sans-serif;
+	color: white;
+	display: block;
+	top: 15px;
+	left: 15px;
+}
+div.jp-type-single div.jp-interface {
+}
+div.jp-type-playlist div.jp-interface {
+}
+
+div.jp-interface ul.jp-controls {
+	list-style-type:none;
+	padding:0;
+	margin: 0;
+}
+div.jp-interface ul.jp-controls li {
+	position: absolute;
+}
+div.jp-interface ul.jp-controls a {
+	display: block;
+	position: absolute;
+	overflow:hidden;
+	text-indent:-9999px;
+}
+a.jp-play,
+a.jp-pause {
+	top:15px;
+	width:41px;
+	height:50px;
+}
+div.jp-type-single a.jp-play,
+div.jp-type-single a.jp-pause {
+	left:35px;
+}
+div.jp-type-playlist a.jp-play,
+div.jp-type-playlist a.jp-pause {
+	left:56px;
+}
+a.jp-play {
+	background: url("jp-interface.png") 0 -50px no-repeat;
+}
+a.jp-play:hover {
+	background-position: 0 0;
+}
+a.jp-pause {
+	background: url("jp-interface.png") -41px -50px no-repeat;
+}
+a.jp-pause:hover {
+	background-position: -41px 0;
+}
+a.jp-stop {
+	top:32px;
+	width:16px;
+	height:16px;
+	background: #838383;
+}
+div.jp-type-single a.jp-stop {
+	left:95px;
+}
+div.jp-type-playlist a.jp-stop {
+	left:145px;
+}
+a.jp-stop:hover {
+	background-color: white;
+}
+a.jp-previous {
+	left:20px;
+	top:15px;
+	background: url("jp-interface.png") -82px -50px no-repeat;
+	width:21px;
+	height:50px;
+}
+a.jp-previous:hover {
+	background-position: -82px 0;
+}
+a.jp-next {
+	left:108px;
+	top:15px;
+	background: url("jp-interface.png") -103px -50px no-repeat;
+	width:21px;
+	height:50px;
+}
+a.jp-next:hover {
+	background-position: -103px 0px;
+}
+div.jp-progress {
+	position: absolute;
+	overflow:hidden;
+	top:46px;
+	background-color: #ddd;
+	width:220px;
+	height:7px;
+	left:290px;
+}
+div.jp-type-single div.jp-progress {
+//	left:100px;
+}
+div.jp-type-playlist div.jp-progress {
+//	left:120px;
+}
+div.jp-load-bar {
+	background: url("jp-interface.png") 0 0 repeat-y;
+	width:0px;
+	height:15px;
+	cursor: pointer;
+}
+div.jp-play-bar {
+	background-color: #89AE2E;
+	width:0px;
+	height:15px;
+}
+a.jp-mute {
+	top:48px;
+	background: url("jp-interface.png") -126px -46px no-repeat;
+	width:16px;
+	height:18px;
+	left: 190px;
+}
+div.jp-type-single a.jp-mute {
+	left:164px;
+}
+div.jp-type-playlist a.jp-mute {
+//	left:260px;
+}
+a.jp-mute:hover {
+	background-position-y: -28px;
+}
+a.jp-volume-max {
+	top:10px;
+	background: url("jp-interface.png") -126px -14px no-repeat;
+	width:16px;
+	height:14px;
+	left:190px;
+}
+div.jp-type-single a.jp-volume-max {
+	left:164px;
+}
+div.jp-type-playlist a.jp-volume-max {
+//	left:320px;
+}
+a.jp-volume-max:hover {
+	background-position-y: 0;
+}
+
+div.jp-volume-bar {
+	position: relative;
+	overflow:hidden;
+	top:16px;
+	background-color: white;
+	width:7px;
+	height:46px;
+	cursor: pointer;
+	left:178px;
+}
+div.jp-type-single div.jp-volume-bar {
+	left:150px;
+}
+div.jp-type-playlist div.jp-volume-bar {
+//	left:270px;
+}
+div.jp-volume-bar-value {
+	background-color: #89AE2E;
+	width:7px;
+	height:5px;
+	position: absolute;
+	bottom: 0;
+}
+div.jp-current-time,
+div.jp-duration {
+	position: absolute;
+	top:50px;
+	width:220px;
+	font-size:.64em;
+	font-style:oblique;
+	left: 290px;
+}
+div.jp-duration {
+	text-align: right;
+}
+div.jp-type-single div.jp-current-time,
+div.jp-type-single div.jp-duration {
+//	left:100px;
+}
+div.jp-type-playlist div.jp-current-time,
+div.jp-type-playlist div.jp-duration {
+//	left:120px;
+}
+div.jp-playlist {
+	position: relative;
+	top: 50px;
+	left: 265px;
+	width:270px;
+	line-height: 20px;
+	color: white;
+}
+div.jp-playlist-title {
+	position: absolute;
+	top: -25px;
+	left: 5px;
+	width:270px;
+	font-size: 16px;
+	line-height: 20px;
+	font-weight: bold;
+	color: white;
+}
+div.jp-playlist ul{
+	margin:0;
+	padding:0;
+	width:270px;
+	height: 224px;
+	font-size:.9em;
+	background-color: rgba(255,255,255,0.13);
+	padding: 3px 0;
+	overflow-y: scroll;
+}
+div.jp-type-single div.jp-playlist li {
+	line-height:1.5em;
+	font-weight:bold;
+}
+div.jp-type-playlist div.jp-playlist li {
+	line-height:1.8em;
+	list-style-type:decimal;
+	list-style-position: inside;
+	margin: 2px 5px;
+	padding-left: 20px;
+	padding-top: 2px;
+}
+div.jp-type-playlist div.jp-playlist li.jplayer_playlist_item_last {
+	border-bottom:none;
+}
+div.jp-type-playlist div.jp-playlist li.jp-playlist-current {
+	padding-left:20px;
+	background-color: #838383;
+	background-image:url(jp-playlist-current.png);
+	background-position: 6px 7px;
+	background-repeat: no-repeat;
+	color:white;
+	font-weight: bold;
+}
+div.jp-type-playlist div.jp-playlist li:hover {
+	background: #838383;
+	color: white;
+	background-image: url(jp-playlist-current.png);
+	background-position: 6px 7px;
+	background-repeat: no-repeat;
+}
+div.jp-type-playlist div.jp-playlist li:hover a {
+	color: white;
+}
+div.jp-type-playlist div.jp-playlist a,
+div.jp-type-single div.jp-playlist a{
+	background:none;
+	text-decoration: none;
+}
+div.jp-type-playlist div.jp-playlist a:visited,
+div.jp-type-single div.jp-playlist a:visited{
+	background:none;
+	text-decoration: none;
+}
+div.jp-type-playlist div.jp-playlist a:hover {
+	color: white;
+	background:none!important;
+	text-decoration: none!important;
+}
+div.jp-type-playlist div.jp-playlist a.jp-playlist-current {
+	color: white;
+	display: block;
+}
+
+div.jp-play-title {
+	position: absolute;
+	overflow:hidden;
+	top:14px;
+	width:220px;
+	height:22px;
+	font-size:14px;
+	left:290px;
+}
+div.jp-type-single div.jp-play-title {
+//	left:100px;
+}
+div.jp-type-playlist div.jp-play-title {
+//	left:120px;
+}
+
+div.jp-show-list {
+	position: absolute;
+	overflow:hidden;
+//	background: transparent url("jplayer.show.playlist.png") 0 0 no-repeat;
+	top:20px;
+	width:9px;
+	height:6px;
+	left:340px;
+	cursor: pointer;
+	display: none;
+}
+div.jp-show-list:hover {
+	background: transparent url("jplayer.show.playlist.png") -9px 0 no-repeat;
+}
+div.jp-list-close {
+	position: absolute;
+	overflow:hidden;
+//	background: transparent url("jplayer.show.playlist.png") 0 -6px no-repeat;
+	top:2px;
+	width:12px;
+	height:12px;
+	left:327px;
+	cursor: pointer;
+	display: none;
+}
+div.jp-list-close:hover {
+	background: transparent url("jplayer.show.playlist.png") -12px -6px no-repeat;
+}
+div.jp-playlist div.jp-poster {
+	width: 230px;
+	height: 230px;
+	position: absolute;
+	top:0px;
+	left:-245px;
+}
+div.jp-poster img {
+	max-width: 230px;
+	max-height: 230px;
+}
+div.jp-poster-mini img {
+	max-width: 100px;
+	max-height: 100px;
+}
+div.jp-interface div.jp-poster {
+width: 50px;
+height: 50px;
+position: absolute;
+top: 16px;
+left: 226px;
+}
+div.jp-type-single div.jp-interface div.jp-poster {
+left: 220px;
+}
+div.jp-interface div.jp-poster img {
+width:50px;
+height:50px;
+}

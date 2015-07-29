@@ -1,0 +1,39 @@
+<?php
+
+if($update_error==''){
+	$readonly = 'readonly="readonly"';
+	$button = '<input type="submit" name="update" value="更新" style="width:100px" />';
+	$msg = '以下の情報で更新する場合、「更新」ボタンを押して下さい。';
+}
+else {
+	$readonly = '';
+	$button = '<input type="submit" name="confirm" value="確認" style="width:100px" />';
+	$msg = 'エラーがありますので、修正して下さい。';
+}
+?>
+<h2>登録情報の更新</h2>
+<p><?php echo $msg?></p>
+<p style="color:red"><?php echo $update_error?></p>
+
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<input type="hidden" name="id" value="<?php echo h($id)?>"/>
+
+<p>名前<br />
+<input type="text" name="name" value="<?php echo h($name)?>" <?php echo $readonly?> size="30" /><?php echo $notice_name?>
+</p>
+
+<p>説明<br />
+<input type="text" name="description" value="<?php echo h($description)?>" <?php echo $readonly?>  size="30" />
+</p>
+
+<p>ページ名<br />
+<input type="text" name="page_name" value="<?php echo h($page_name)?>" <?php echo $readonly?> size="30" />
+</p>
+
+<p>ラベル<br />
+<input type="text" name="label" value="<?php echo h($label)?>" <?php echo $readonly?> size="30" />
+</p>
+
+<?php echo $button?>
+<input type="submit" name="cancel" value="キャンセル" />
+</form>

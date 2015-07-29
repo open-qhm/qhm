@@ -1,0 +1,82 @@
+[
+{
+  "note": "白黒",
+  "color": [
+    "FFFFFF",
+    "E3E3E3",
+    "AAAAAA",
+    "393939",
+    "000000"
+  ]
+},
+{
+  "note": "青",
+  "color": [
+    "DBF0F6",
+    "B8E1EC",
+    "5CB7D0",
+    "1492B4",
+    "0086AB"
+  ]
+},
+{
+  "note": "緑",
+  "color": [
+    "D8F3E7",
+    "B4E7CF",
+    "57C292",
+    "119E5F",
+    "009250"
+  ]
+},
+{
+  "note": "黄緑",
+  "color": [
+    "F4F9E2",
+    "EAF2C5",
+    "CADF77",
+    "ADCB34",
+    "A4C520"
+  ]
+},
+{
+  "note": "黄",
+  "color": [
+    "FAFCE2",
+    "FFF9C6",
+    "FFF171",
+    "FFE81C",
+    "FFE600"
+  ]
+},
+{
+  "note": "オレンジ",
+  "color": [
+    "FDF5E2",
+    "FBECC6",
+    "F5D174",
+    "EFB625",
+    "EDAD0B"
+  ]
+},
+{
+  "note": "赤",
+  "color": [
+    "F9E2E5",
+    "F3C7CD",
+    "E07987",
+    "CD384B",
+    "C7243A"
+  ]
+},
+{
+  "note": "紫",
+  "color": [
+    "EAEAF4",
+    "D4D6E9",
+    "9B9FC9",
+    "6B71A9",
+    "5D639E"
+  ]
+}
+]

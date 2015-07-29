@@ -1,0 +1,63 @@
+<?php
+?>
+<script type="text/javascript">
+<!--
+function showConfirm(){
+	var ans = window.confirm('登録してよろしいですか？');
+	if (ans) {
+	}
+	else {
+		return false;
+	}
+}
+//-->
+</script>
+<h2>SWFUの設定</h2>
+<form action="admin_settings.php" method="post" enctype="multipart/form-data">
+<?php
+	if ($errmsg != "") {
+		echo $errmsg;
+	}
+?>
+<table>
+<?php
+foreach ($settings as $item) {
+	$item_name = $item['name'];
+	echo '<tr>';
+	echo '<th style="width:25%;padding:4px;text-align:right;">'. $item['jname'].'：</th>';
+	echo ' <td style="line-height:1.5em;">';
+	
+	$value = isset($admin[$item_name]) ? $s->input_filter($admin[$item_name]) : '';
+
+	switch ($item_name) {
+		case 'overwrite':
+			for ($i = 0; $i < 2; $i++) {
+				$checked[$i] =  ((int)$value == $i) ? ' checked="checked"' : '';
+			}
+			echo '<input type="radio" name="admin/'.$item_name.'" value="1"'.$checked[1].' />上書きする&nbsp;&nbsp;<input type="radio" name="admin/'.$item_name.'" value="0"'.$checked[0].' />上書きしない';
+			break;
+		case 'recent_page':
+		case 'recent_file':
+			echo '<input type="text" name="admin/'.$item_name.'" value="'.$value.'" style="ime-mode:inactive;" size="5" />&nbsp;件';
+			break;
+		case 'list_num':
+			echo '<input type="text" name="admin/'.$item_name.'" value="'.$value.'" style="ime-mode:inactive;" size="5" />&nbsp;行';
+			break;
+		case 'list_cols':
+			echo '<input type="text" name="admin/'.$item_name.'" value="'.$value.'" style="ime-mode:inactive;" size="5" />&nbsp;列';
+			break;
+	}
+	echo '</td></tr>';
+}
+?>
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+ <input type="submit" name="set" value="設　定" onclick="return showConfirm();" />
+</td>
+</tr>
+</table>
+</form>
+<p><a href="admin_settings.php">管理者情報リストへ</a></p>

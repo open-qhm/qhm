@@ -1,0 +1,3 @@
+- [[トップ>FrontPage]]
+- [[Google>http://www.google.com/]]
+- [[Yahoo!>http://www.yahoo.co.jp/]]

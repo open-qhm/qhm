@@ -1,0 +1,76 @@
+#close
+
+* listbox setting [#v69f5c78]
+
+listboxプラグインのための設定です。
+ &listbox(デフォルト値,リスト名);
+
+このページで用意したリスト名のみ指定できます。
+
+書き方は以下の通り。
+
+ * リスト名
+ |候補1|
+ |候補2|
+ |候補3|
+
+あるいは、数字の範囲を指定する場合は以下の通りです。
+
+ * リスト名
+ |スタート|ストップ|
+
+もともと用意してあるものは、消さないようにしてください。
+
+
+* member [#j18e38d8]
+| -- |
+|Taro|
+|Hanako|
+|Ken|
+|Michael|
+
+* year [#cad00f59]
+|1960|2015|
+
+* mon [#c1ae4bb0]
+|1|12|
+
+* Mon [#l3a31683]
+|Jan.|
+|Feb.|
+|Mar.|
+|Apr.|
+|May |
+|Jun.|
+|Jul.|
+|Aug.|
+|Sep.|
+|Oct.|
+|Nov.|
+|Dec.|
+
+* Month [#za127b82]
+|January|
+|February|
+|March|
+|April|
+|May|
+|June|
+|July|
+|August|
+|September|
+|October|
+|November|
+|December|
+
+* day [#ub609568]
+|1|31|
+
+* hour [#l156dc58]
+|1|24|
+
+* min [#h6c0ab82]
+|1|60|
+
+* sec [#lfb1a875]
+|1|60|

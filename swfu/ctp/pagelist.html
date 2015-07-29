@@ -1,0 +1,48 @@
+<?php
+
+function disp($v){
+	if($v=='__nolabel__')
+		$disp = '未分類';
+	else if($v=='__sysbol__')
+		$disp = '記号';
+	else if($v=='__other__')
+		$disp = '日本語';
+	else
+		$disp = $v;
+		
+	return $disp;
+}
+
+$keys = array_keys($pages);
+$index = array();
+foreach($keys as $v){
+	$index[] = '<a href="#'.$v.'">'.disp($v).'</a>';
+}
+?>
+<h2>ページ名一覧</h2>
+<?php echo implode(' | ', $index); ?>
+
+<?php foreach($pages as $index=>$page): ?>
+<h3 id="<?php echo $index?>" style="border-bottom:1px solid rgb(153, 153, 51);margin-top:1.5em;clear:both;"><?php echo disp($index)?></h3>
+<ul style="margin:1em;line-height:1.5em;clear:both">
+<?php 
+foreach($page as $pname=>$v)
+{
+	$rp = rawurlencode($pname);
+	$disp = $pname=='' ? '未分類' : $pname;
+	$cnt = count($v);
+	echo "<li style=\"margin-bottom:0.5em;\"><b><a href=\"list.php?page={$rp}\" >{$disp}</a> -- ({$cnt}件)</b><br />";
+	foreach($v as $img){
+		$class = '';	
+		if(preg_match('/.*(jpeg|png|gif|jpg)$/i',$img['name']))
+			$class = 'class="screenshot"';
+		else
+			$class = 'class="tooltip"';
+		echo "<a href=\"view.php?id={$img['id']}\" {$class} title=\"{$img['description']}\" rel=\"d/{$img['name']}\" style=\"font-size:90%;color:navy\">{$img['name']}</a>, ";
+	}
+	echo '</li>';
+}
+?>
+</ul>
+
+<?php endforeach; ?>

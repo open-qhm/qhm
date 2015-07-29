@@ -1,0 +1,2694 @@
+;   QHM Message File for Japanese
+;   Copyright (c) 2010 hokuken
+;   http://hokuken.com/
+;
+;   created  : 2010-09-16
+;
+;   WARNING
+;     Use &quot; instead of double quotes (")
+;     Use ##LF## instead of \n
+;
+;   NOTICE
+;     err: error
+;     ntc: notice
+;     wng: warning
+;     btn: button
+;     hdr: header
+;     iln: inline
+;     cvt: convert
+;     act: action
+;     lbl: label
+;
+
+
+
+;////////////////////////////////////////////////////
+;   !Language Settings
+;////////////////////////////////////////////////////
+mb_language = "Japanese"       ;php が使う   ;default: uni
+
+;   2 letter code of ISO 3166-1
+;   @see http://ja.wikipedia.org/wiki/ISO_3166-1
+lang_code   = "ja"             ;$default_lang -> LANG
+
+;   display value of Japanese in Japanese
+lang_label  = "日本語"          ;qhmsetting.inc.php
+
+encode_hint = ""               ;alt: $_LANG[encode_hint]
+
+zone_name = "JST"              ;default: GMT
+zone_time = "9"                  ;GMT: 0
+
+
+;///////////////////////////////////////////////////////////////////////////////
+;   Messages from ja.lng.php 
+;
+
+
+;////////////////////////////////////////////////////
+;   !Proper Names
+;////////////////////////////////////////////////////
+frontpage   = "QHMトップ"
+preferences = "設定一覧"
+here        = "here"
+adminpass   = "管理者パス"
+download    = "ダウンロード"
+username    = "ユーザー名"
+password    = "パスワード"
+mailaddress = "メールアドレス"
+
+
+
+;////////////////////////////////////////////////////
+;   !Page titles
+;////////////////////////////////////////////////////
+fmt_title_cannotedit = "$1 は編集できません"
+fmt_title_edit       = "$1 の編集"
+fmt_title_preview    = "$1 のプレビュー"
+fmt_title_collided   = "$1 で【更新の衝突】が起きました"
+fmt_title_updated    = "$1 を更新しました"
+fmt_title_deleted    = "$1 を削除しました"
+fmt_title_help       = "ヘルプ"
+fmt_title_invalidwn  = "有効なWikiNameではありません"
+fmt_title_invalidiwn = "有効なInterWikiNameではありません"
+fmt_title_backuplist = "バックアップ一覧"
+
+
+
+
+;////////////////////////////////////////////////////
+;   !Messages
+;////////////////////////////////////////////////////
+fmt_msg_unfreeze       = "凍結解除";
+fmt_msg_preview        = "プレビューを確認して、よければページ下部のボタンで更新してください。"
+fmt_msg_preview_delete = "（ページの内容は空です。更新するとこのページは削除されます。）"
+fmt_msg_collided       = "あなたがこのページを編集している間に、他の人が同じページを更新してしまったようです。<br />今回追加した行は +で始まっています。<br />!で始まる行が変更された可能性があります。<br />!や+で始まる行を修正して再度ページの更新を行ってください。<br />"
+fmt_msg_collided_auto  = "あなたがこのページを編集している間に、他の人が同じページを更新したか、<br />あるいは、ブラウザの「戻る」ボタンで戻って編集をし直した可能性があります。<br />確認後、[ページの更新]を押してください。<br /><br />※ ブラウザの「戻る」で編集をし直さないようにしてください。"
+fmt_msg_addline        = "追加された行は<span class=&quot;diff_added&quot;>この色</span>です。"
+fmt_msg_delline        = "削除された行は<span class=&quot;diff_removed&quot;>この色</span>です。"
+fmt_msg_goto           = "$1 へ行く。"
+fmt_msg_andresult      = "$1 のすべてを含むページは <strong>$3</strong> ページ中、 <strong>$2</strong> ページ見つかりました。"
+fmt_msg_orresult       = "$1 のいずれかを含むページは <strong>$3</strong> ページ中、 <strong>$2</strong> ページ見つかりました。"
+fmt_msg_symbol         = "記号"
+fmt_msg_other          = "日本語"
+fmt_msg_help           = "テキスト整形のルールを表示する"
+fmt_msg_content_back_to_top = ""
+fmt_msg_word           = "これらのキーワードがハイライトされています："
+
+;////////////////////////////////////////////////////
+;   !Error Messages
+;////////////////////////////////////////////////////
+
+fmt_err_pkwk_readonly = "PKWK_READONLY prohibits editing" ;see: fmt_msg_pkwk_readonly
+fmt_err_not_editable = "<p>$1(): Current page, $2, must be edit_authed or frozen or whole system must be PKWK_READONLY.</p>" ;see: fmt_msg_not_editable
+fmt_err_already_called = "<p>$1(): You already called</p>"
+fmt_err_open_cachedir = "Cannot open CACHE_DIR/$1"
+fmt_err_open_counterdir = "Cannot open COUNTER_DIR/$1"
+fmt_err_page_only_for_admin = "<p>このページは、管理者のみ利用できます</p>"
+fmt_err_no_args = "<p>$1(): No arguments</p>"
+fmt_err_deny_uri_img = "$1(): PKWK_DISABLE_INLINE_IMAGE_FROM_URI prohibits this<br />"
+fmt_err_iw_not_found = "InterWikiName &quot;$1&quot; not found"
+fmt_err_notfoundpage_title = "指定されたページは存在しません"
+fmt_err_notfoundpage = "<p>現在、指定されたページは存在しません。<br />お手数ですが、<a href=&quot;$1&quot;>ここ</a>をクリックしてトップにお戻り下さい。</p>"
+fmt_err_invalidiwn     = "$1 は有効な $2 ではありません。"
+fmt_err_iln = "&amp;$1(): $2;"        ;inline plugin error
+fmt_err_cvt = "<p>#$1(): $2</p>##LF##" ;convert plugin error
+;fmt_err_act = ""
+fmt_err_nopage = "No Such Page"
+fmt_err_invalidpass    = "パスワードが間違っています。"
+fmt_err_prohibited = "This feature is prohibited"
+fmt_err_notfound       = "指定されたページは見つかりませんでした。"
+fmt_err_noplgname = "No plugin name contained: $1"
+fmt_err_pkwk_safemode = "PKWK_SAFE_MODE prohibits this"
+fmt_err_pkwk_safe_and_readonly = "PKWK_SAFE_MODE or PKWK_READONLY prohibits this"
+fmt_err_not_found_or_readable = "$1 is not found or not readable."
+fmt_err_zone_name = "zone_name is not found: $1"
+fmt_err_zone_time = "zone_time is not found: $1"
+fmt_err_lang_label = "lang_label is not found: $1"
+fmt_err_notfoundresult = "$1 を含むページは見つかりませんでした。"
+fmt_err_deleted = "$1 は削除されています。"
+
+
+;////////////////////////////////////////////////////
+;   !Symbols
+;////////////////////////////////////////////////////
+fmt_symbol_anchor   = "&dagger;"
+fmt_symbol_noexists = "?"
+
+
+;////////////////////////////////////////////////////
+;   !Form buttons
+;////////////////////////////////////////////////////
+fmt_btn_preview   = "プレビュー"
+fmt_btn_repreview = "再プレビュー"
+fmt_btn_update    = "ページの更新"
+fmt_btn_cancel    = "キャンセル"
+fmt_btn_notchangetimestamp = "タイムスタンプを変更しない"
+fmt_btn_addtop    = "ページの上に追加"
+fmt_btn_template  = "雛形とするページ"
+fmt_btn_load      = "読込"
+fmt_btn_edit      = "編集"
+fmt_btn_delete    = "削除"
+
+
+;////////////////////////////////////////////////////
+;   !Authentication
+;////////////////////////////////////////////////////
+
+fmt_title_cannotread = "$1 は閲覧できません"
+fmt_msg_auth         = "PukiWikiAuth"
+
+
+;////////////////////////////////////////////////////
+;   !Page name
+;////////////////////////////////////////////////////
+fmt_rule_page = "FormattingRules"
+fmt_help_page = "Help"
+
+
+;////////////////////////////////////////////////////
+;   !TrackBack (REMOVED)
+;////////////////////////////////////////////////////
+
+fmt_tb_date  = "Y年n月j日 H:i:s"
+
+
+;////////////////////////////////////////////////////
+;   !題名が未記入の場合の表記 (article)
+;////////////////////////////////////////////////////
+
+fmt_no_subject = "無題"
+
+
+;////////////////////////////////////////////////////
+;   !名前が未記入の場合の表記 (article, comment, pcomment)
+;////////////////////////////////////////////////////
+
+fmt_no_name = ""
+
+
+;///////////////////////////////////////
+;//   add.inc.php
+;///////////////////////////////////////
+[plg_add]
+title = "$1 への追加"
+note  = "ページへの追加は、現在のページ内容に改行が二つと入力内容が追加されます。"
+
+
+
+;///////////////////////////////////////
+;//   attach.inc.php
+;////////////////////////////////////////////////////
+
+[plg_attach]
+
+uploaded = "$1 にアップロードしました"
+deleted  = "$1 からファイルを削除しました"
+freezed  = "添付ファイルを凍結しました。"
+unfreezed= "添付ファイルを凍結解除しました。"
+renamed  = "添付ファイルの名前を変更しました。"
+upload   = "$1 への添付"
+info     = "添付ファイルの情報"
+confirm  = "<p>%s を削除します。</p>"
+list     = "添付ファイル一覧"
+listpage = "$1 の添付ファイル一覧"
+listall  = "全ページの添付ファイル一覧"
+file     = "添付ファイル"
+maxsize  = "アップロード可能最大ファイルサイズは $1 です。"
+count    = " <span class=&quot;small&quot;>$1件</span>"
+password = "パスワード"
+adminpass= "管理者パスワード"
+delete   = "このファイルを削除します。"
+freeze   = "このファイルを凍結します。"
+unfreeze = "このファイルを凍結解除します。"
+isfreeze = "このファイルは凍結されています。"
+rename   = "名前を変更します。"
+newname  = "新しい名前"
+require  = "(管理者パスワードが必要です)"
+filesize = "サイズ"
+date     = "登録日時"
+dlcount  = "アクセス数"
+md5hash  = "MD5ハッシュ値"
+page     = "ページ"
+filename = "格納ファイル名"
+
+;   Button Labels
+btn_upload   = "アップロード"
+btn_info     = "詳細"
+btn_submit   = "実行"
+
+;   Error Messages
+err_noperm   = "$1 へはアップロード・削除はできません"
+err_exceed   = "$1 へのファイルサイズが大きすぎます"
+err_exists   = "$1 に同じファイル名が存在します"
+err_notfound = "$1 にそのファイルは見つかりません"
+err_noexist  = "添付ファイルがありません。"
+err_delete   = "$1 からファイルを削除できませんでした"
+err_rename   = "ファイル名を変更できませんでした"
+err_password = "パスワードが一致しません。"
+err_adminpass= "管理者パスワードが一致しません。"
+err_cannot_write = "cannot write $1"
+
+
+;///////////////////////////////////////
+;//   back.inc.php
+;///////////////////////////////////////
+[plg_back]
+back_word = "戻る"
+err_usage = "#back([text],[center|left|right][,0(no hr)[,Page-or-URI-to-back]])"
+usage_hint = "Set a page name or an URI"
+
+
+;///////////////////////////////////////
+;//   backup.inc.php
+;///////////////////////////////////////
+
+[plg_backup]
+
+;   Title
+title_backup_delete  = "$1 のバックアップを削除"
+title_backupdiff     = "$1 のバックアップ差分(No.$2)"
+title_backupnowdiff  = "$1 のバックアップの現在との差分(No.$2)"
+title_backupsource   = "$1 のバックアップソース(No.$2)"
+title_backup         = "$1 のバックアップ(No.$2)"
+title_pagebackuplist = "$1 のバックアップ一覧"
+title_backuplist     = "バックアップ一覧"
+
+;   Messages
+backup_deleted   = "$1 のバックアップを削除しました。"
+backup_adminpass = "削除用のパスワードを入力してください。"
+backuplist       = "バックアップ一覧"
+nobackup         = "$1 のバックアップはありません。"
+diff             = "差分"
+nowdiff          = "現在との差分"
+source           = "ソース"
+backup           = "バックアップ"
+view             = "$1 を表示"
+deleted          = "$1 は削除されています。"
+
+
+;///////////////////////////////////////
+;//   calendar_viewer.inc.php
+;///////////////////////////////////////
+
+[plg_calendar_viewer]
+right  = "次の%d件&gt;&gt;"
+left   = "&lt;&lt;前の%d件"
+
+ntc_restrict = "$1 は閲覧制限がかかっているためcalendar_viewerによる参照はできません"
+
+err_param2 = "第2引数が変だよ"
+err_usage = "#calendar_viewer(pagename,this|yyyy-mm|n|x*y[,mode[,separater]])"
+
+
+
+;///////////////////////////////////////
+;//   calendar2.inc.php
+;///////////////////////////////////////
+[plg_calendar2]
+edit  = "[この日記を編集]"
+empty = "$1は空です。"
+
+
+;///////////////////////////////////////
+;//   checkagree.inc.php
+;///////////////////////////////////////
+[plg_checkagree]
+err_usage  = "#checkagree(label,left|center|right)"
+label = "同意する"
+align = "center"
+
+
+;///////////////////////////////////////
+;//   comment.inc.php
+;///////////////////////////////////////
+[plg_comment]
+btn_comment    = "コメントの挿入"
+label          = "コメント: "
+label_name     = "お名前: "
+
+title_collided = "$1 で【更新の衝突】が起きました"
+wng_collided   = "あなたがこのページを編集している間に、他の人が同じページを更新してしまったようです。<br />コメントを追加しましたが、違う位置に挿入されているかもしれません。<br />"
+no_name        = ""
+
+
+;///////////////////////////////////////
+;//   deleted.inc.php
+;///////////////////////////////////////
+[plg_deleted]
+title              = "削除ページの一覧"
+title_withfilename = "削除ページファイルの一覧"
+title_err          = "Deleted plugin"
+err_no_setting     = "No such setting: Choose backup or diff"
+
+
+;///////////////////////////////////////
+;//   diff.inc.php
+;///////////////////////////////////////
+[plg_diff]
+title         = "$1 の変更点"
+title_delete  = "$1 の差分を削除"
+deleted       = "$1 の差分を削除しました。"
+err_adminpass = "削除用のパスワードを入力してください。"
+
+
+;///////////////////////////////////////
+;//   fb_likegate.inc.php
+;///////////////////////////////////////
+[plg_fb_likegate]
+ntc_admin = "''【お知らせ】管理者モード以外のアクセスは、表示されません。''##LF##Facebook ページに埋め込まれている場合、訪問者が「いいね！」していれば表示されます。##LF##「いいね！」前のページは[[こちら>$1]]です。##LF##このページをFacebookページに埋め込むには、[[アプリ登録>$2]]が必要です"
+ntc_admin_fb = "#style(class=box_blue_ssm){{##LF##''【管理者モードです】''##LF##このページを編集するには、[[ここをクリック>$1]]してください。##LF##「いいね！」前のページは[[こちら>$2]]です。##LF##このページの登録情報を変更するには、[[アプリ登録画面>$3]]をご覧下さい。##LF##}}"
+ntc_msg = "このページへの直接アクセスはできません。"
+ntc_title = "アクセスできません"
+err_usage = "必ず代替ページを指定してください。"
+
+;///////////////////////////////////////
+;//   fb_page.inc.php
+;///////////////////////////////////////
+[plg_fb_page]
+ntc_admin = "''【お知らせ】管理者モード以外のアクセスは、表示されません。''##LF##Facebook ページからアプリとして読み込まれている場合のみ表示されます。"
+ntc_admin_fb = "#style(class=box_blue_ssm){{##LF##''【管理者モードです】''##LF##このページを編集するには、[[ここをクリック>$1]]してください。##LF##このページの登録情報を変更するには、[[アプリ登録画面>$2]]をご覧下さい。##LF##}}"
+
+
+;///////////////////////////////////////
+;//   freeze.inc.php
+;//   memo: freeze ややこしいので後回し
+;///////////////////////////////////////
+[plg_freeze]
+title_isfreezed = "$1 はすでに凍結されています"
+title_freezed   = "$1 を凍結しました"
+title_freeze    = "$1 の凍結"
+freezing        = "凍結用のパスワードを入力してください。"
+btn_freeze      = "凍結"
+
+;///////////////////////////////////////
+;//   insert.inc.php
+;///////////////////////////////////////
+[plg_insert]
+btn_label = "追加"
+
+;///////////////////////////////////////
+;//   include.inc.php
+;///////////////////////////////////////
+[plg_include]
+goto_include_page    = "読込ページ「$1」へ移動"
+err_usage            = "#include(): Usage: (a-page-name-you-want-to-include[,title|,notitle])<br />"
+err_restrict         = "$1 は閲覧制限がかかっているためincludeできません"
+err_already_included = "#include(): Included already: $1<br />"
+err_no_page          = "#include(): No such page: $1<br />"
+err_limit            = "#include(): Limit exceeded: $1<br />"
+
+
+;///////////////////////////////////////
+;//   list.inc.php
+;///////////////////////////////////////
+[plg_list]
+title = "ページの一覧"
+title_filelist = "ページファイルの一覧"   ;via filelist plugin
+
+;///////////////////////////////////////
+;//   listbox.inc.php
+;///////////////////////////////////////
+[plg_listbox]
+cfg_desc = "listboxプラグインのための設定です。##LF## &listbox(デフォルト値,リスト名);##LF####LF##このページで用意したリスト名のみ指定できます。"
+cfg_ex1 = "書き方は以下の通り。##LF####LF## * リスト名##LF## |候補1|##LF## |候補2|##LF## |候補3|"
+cfg_ex2 = "あるいは、数字の範囲を指定する場合は以下の通りです。##LF####LF## * リスト名##LF## |スタート|ストップ|"
+cfg_ntc = "もともと用意してあるものは、消さないようにしてください。"
+err_cfg_notfound = "config file not found: $1"
+
+;///////////////////////////////////////
+;//   ls2.inc.php
+;///////////////////////////////////////
+[plg_ls2]
+err_nopages = "<p>$1 には、下位層のページがありません。</p>"
+title       = "$1 で始まるページの一覧"
+
+;///////////////////////////////////////
+;//   memo.inc.php
+;///////////////////////////////////////
+[plg_memo]
+btn_update = "メモ更新"
+
+;///////////////////////////////////////
+;//   navi.inc.php
+;///////////////////////////////////////
+[plg_navi]
+prev = "Prev"
+next = "Next"
+up   = "Up"
+home = "Home"
+err_not_page     = "#navi(contents-page-name): No such page: $1<br />"
+err_not_child    = "#navi($1): Not a child page like: $1/$2<br />"
+err_already_view = "#navi(contents-page-name): You already view the result<br />"
+err_no_child     = "#navi($1): No child page like: $1/Foo"
+
+
+;///////////////////////////////////////
+;//   newpage.inc.php
+;///////////////////////////////////////
+[plg_newpage]
+label    = "新規ページ名"
+btn_create = "作成"
+
+;///////////////////////////////////////
+;//   paint.inc.php
+;///////////////////////////////////////
+[plg_paint]
+field_name     = "お名前"
+field_filename = "ファイル名"
+field_comment  = "コメント"
+btn_submit     = "paint"
+max            = "(最大 %d x %d)"
+title          = "Paint and Attach to $1"
+ntc_collided   = "あなたが画像を編集している間に、他の人が同じページを更新してしまったようです。<br />画像とコメントを追加しましたが、違う位置に挿入されているかもしれません。<br />"
+err_plg_attach = "attach.inc.php not found or not correct version."
+
+
+
+;///////////////////////////////////////
+;//   pcomment.inc.php
+;///////////////////////////////////////
+[plg_pcomment]
+btn_name       = "お名前: "
+btn_comment    = "コメントの挿入"
+page           = "[[コメント/$1]]"
+comment        = "コメント: "
+recent         = "最新の%d件を表示しています。"
+all            = "コメントページを参照"
+nothing        = "コメントはありません。"
+collided       = "あなたがこのページを編集している間に、他の人が同じページを更新してしまったようです。<br />コメントを追加しましたが、違う位置に挿入されているかもしれません。<br />"
+err_pagename   = "ページ名 [[$1]] は使用できません。 正しいページ名を指定してください。"
+err_restrict   = "閲覧制限がかかっているため、$1からはコメントを読みこむことができません。"
+
+;///////////////////////////////////////
+;//   popular.inc.php
+;///////////////////////////////////////
+[plg_popular]
+frame       = "<h5>人気の%d件</h5><div>%s</div>"
+today_frame = "<h5>今日の%d件</h5><div>%s</div>"
+
+;///////////////////////////////////////
+;//   recent.inc.php
+;///////////////////////////////////////
+[plg_recent]
+frame = "<h5>最新の%d件</h5><div>%s</div>"
+err_usage           = "#recent(number-to-show)"
+err_limit           = "#recent(): You called me too much"
+err_file_notfound   = "#recent(): Cache file of RecentChanges not found"
+err_file_cannotopen = "#recent(): File can not open"
+
+;///////////////////////////////////////
+;//   referer.inc.php
+;///////////////////////////////////////
+[plg_referer]
+
+title       = "リンク元の表示"
+title_list  = "referer list"
+lastupdate  = "最終更新日時"
+firstdate   = "初回登録日時"
+counter     = "カウンター"
+referer     = "Referer"
+date_format = "Y年n月j日 H:i"
+up          = "↑"
+down        = "↓"
+err_nodata  = "no data."
+
+
+;///////////////////////////////////////
+;//   rename.inc.php
+;///////////////////////////////////////
+[plg_rename]
+title           = "ページ名の変更"
+page            = "変更元ページを指定"
+regex           = "正規表現で置換"
+related         = "関連ページ"
+do_related      = "関連ページもリネームする"
+rename          = "%sの名前を変更します。"
+oldname         = "現在の名前"
+newname         = "新しい名前"
+adminpass       = "管理者パスワード"
+arrow           = "→"
+exist_none      = "そのページを処理しない"
+exist_overwrite = "そのファイルを上書きする"
+confirm         = "以下のファイルをリネームします。"
+result          = "以下のファイルを上書きしました。"
+btn_submit      = "実行"
+btn_next        = "次へ"
+
+;   Error Messages
+err               = "<p>エラー: $1</p>"
+err_nomatch       = "マッチするページがありません。"
+err_notvalid      = "リネーム後のページ名が正しくありません。"
+err_adminpass     = "管理者パスワードが正しくありません。"
+err_notpage       = "$1はページ名ではありません。"
+err_norename      = "$1をリネームすることはできません。"
+err_already       = "ページがすでに存在します。: $1"
+err_already_below = "以下のファイルがすでに存在します。"
+
+
+;///////////////////////////////////////
+;//   search.inc.php
+;///////////////////////////////////////
+[plg_search]
+title_search  = "単語検索"
+title_result  = "$1 の検索結果"
+note          = "全てのページから単語を検索します。大文字小文字の区別はありません。"
+btn           = "検索"
+lbl_and       = "AND検索"
+lbl_or        = "OR検索"
+search_pages  = "$1 から始まるページを検索"
+search_all    = "全てのページを検索"
+err_toolong   = "Search words too long"
+
+
+;///////////////////////////////////////
+;//   source.inc.php
+;///////////////////////////////////////
+[plg_source]
+
+title          = "$1のソース"
+title_notfound = "$1が見つかりません"
+err_notfound   = "ページのソースを表示できません。"
+
+
+;///////////////////////////////////////
+;//   template.inc.php
+;///////////////////////////////////////
+[plg_template]
+start       = "開始行:<br />"
+end         = "終了行:<br />"
+page        = "$1/複製"
+refer       = "ページ名:"
+force       = "既存のページ名で編集する"
+title       = "$1 をテンプレートにして作成"
+btn_create  = "作成"
+err_already = "$1 はすでに存在します。"
+err_invalid = "$1 は有効なページ名ではありません。"
+
+;///////////////////////////////////////
+;//   tracker.inc.php
+;///////////////////////////////////////
+[plg_tracker]
+list       = "$1 の項目一覧"
+back       = "<p>$1</p>"
+limit      = "全$1件中、上位$2件を表示しています。"
+btn_page   = "ページ名"
+btn_name   = "ページ名"
+btn_real   = "ページ名"
+btn_submit = "追加"
+btn_date   = "日付"
+btn_refer  = "参照"
+btn_base   = "基底"
+btn_update = "更新日時"
+btn_past   = "経過"
+
+;///////////////////////////////////////
+;//   unfreeze.inc.php
+;//   memo: よくわからないので後回し
+;///////////////////////////////////////
+[plg_unfreeze]
+title_isunfreezed = "$1 は凍結されていません"
+title_unfreezed   = "$1 の凍結を解除しました"
+title_unfreeze    = "$1 の凍結解除"
+unfreezing        = "凍結解除用のパスワードを入力してください。"
+btn_unfreeze      = "凍結解除"
+
+;///////////////////////////////////////
+;// versionlist.inc.php
+;///////////////////////////////////////
+[plg_versionlist]
+title_versionlist = "構成ファイルのバージョン一覧"
+
+;///////////////////////////////////////
+;// vote.inc.php
+;///////////////////////////////////////
+[plg_vote]
+choice = "選択肢"
+label  = "投票"
+
+
+;///////////////////////////////////////
+;// yetlist.inc.php
+;///////////////////////////////////////
+[plg_yetlist]
+title        = "未作成のページ一覧"
+err_notexist = "未作成のページはありません。"
+err_no_args  = "No arguments"
+
+
+;///////////////////////////////////////
+;   ja.lng.php END 
+;/////////////////////////////////////////////////////////////////////////////////////
+
+
+
+;///////////////////////////////////////
+;//   absplit.inc.php
+;///////////////////////////////////////
+[plg_absplit]
+ntc_admin = "<p><strong>【お知らせ】</strong><br />管理者モード以外のアクセスは、absplitプラグインによって、</p><ul><li><a href=&quot;$1&quot; target=&quot;_blank&quot;>$1</a></li><li><a href=&quot;$2&quot; target=&quot;_blank&quot;>$2</a></li></ul><p>に転送されます。 at $3</p>"
+err_param_count = "引数の数が不正です。正しく設定して下さい"
+err_invalid_url = "$1 は、不正なURLです。正しく設定して下さい"
+
+
+;///////////////////////////////////////
+;//   absplit2.inc.php
+;///////////////////////////////////////
+[plg_absplit2]
+ntc_admin = "<p style=&quot;border:1px #ccc solid;background-color:#eee;padding:1em&quot;><strong>【お知らせ】</strong><br />管理者モード以外のアクセスは、absplit2 プラグインによって、<br />$1<br />のいずれかが、読み込まれます。 at $2</p>"
+err_page_count = "A/Bスプリットテストを行うページは、複数用意して下さい。"
+err_not_exists = "$1は、存在しません。正しく設定して下さい (from absplit2プラグイン)"
+
+;///////////////////////////////////////
+;//   accordion.inc.php
+;///////////////////////////////////////
+;[plg_accordion]
+
+;///////////////////////////////////////
+;//   addacc.inc.php
+;///////////////////////////////////////
+[plg_addacc]
+err_usage = "Error ::: 使い方が間違っています。 #ganatracker(トラッキング名)"
+ntc_admin = "<div style=&quot;border:2px dashed #f00;background-color:#fee;margin:1em&quot;><p><strong>【お知らせ】このメッセージは管理者モードでのみ、表示されます</strong><br />以下のスクリプトが、addaccプラグインによって、アクセス解析タグとして挿入されます。</p><center><textarea rows=&quot;5&quot; cols=&quot;50&quot; disabled>$1</textarea></center></div>"
+
+;///////////////////////////////////////
+;//   addfavorite.inc.php
+;///////////////////////////////////////
+[plg_addfavorite]
+ie      = "お気に入りに登録"
+firefox = "ブックマークに追加"
+opera   = "ブックマークに追加"
+err_no_sitename = "Error::サイト名を指定してください。"
+
+;///////////////////////////////////////
+;//   addgoogle.inc.php
+;///////////////////////////////////////
+[plg_addgoogle]
+title = "Add to Google"
+
+;///////////////////////////////////////
+;//   addyahoo.inc.php
+;///////////////////////////////////////
+[plg_addyahoo]
+title = "My Yahoo!に追加"
+
+;///////////////////////////////////////
+;//   amazon.inc.php
+;///////////////////////////////////////
+[plg_amazon]
+review_author      = "作者: [[ここ編集のこと]]"
+review_reviewer    = "評者: お名前"
+review_date        = "日付: &date;"
+review_header_rec  = "お薦め対象"
+review_header_impr = "感想"
+review_edit_here   = "[[ここ編集のこと]]"
+btn_review         = "レビュー編集"
+notice             = "(ISBN 10 桁 or ASIN 12 桁)"
+review_title       = "ブックレビュー編集"
+
+img_deleted   = "Image of $1 deleted..."
+title_deleted = "Title of $1 deleted..."
+both_deleted  = "Title and Image of $1 deleted..."
+
+err_cannot_delete_img   = "Image of $1 NOT DELETED..."
+err_cannot_delete_title = "Title of $1 NOT DELETED..."
+err_cannot_delete       = "Title and Image of $1 NOT DELETED..."
+
+
+;///////////////////////////////////////
+;//   aname.inc.php
+;///////////////////////////////////////
+[plg_aname]
+
+err_notitle_noid = "Meaningless(No link-title with 'noid')"
+err_notitle_super = "Meaningless(No link-title with 'super')"
+err_notitle_full = "Meaningless(No link-title with 'full')"
+err_not_unique = "ID already used: $1"
+err_longid = "ID too long"
+err_invalidid = "Invalid ID string: $1"
+err_usage_cvt = "#aname(anchorID[[,super][,full][,noid],Link title])"
+err_usage_iln = "&amp;aname(anchorID[,super][,full][,noid]){[Link title]};"
+
+;///////////////////////////////////////
+;//   article.inc.php
+;///////////////////////////////////////
+[plg_article]
+btn_name       = "お名前"
+btn_article    = "記事の投稿"
+btn_subject    = "題名: "
+sender_format  = "投稿者: $1 ($2)"
+mail_page      = "投稿先: "
+post_format    = "- ''投稿者：''$1 ($2)"
+note_comment   = "//--------- 以下はコメント ----------"
+comment_header = "コメント"
+
+authcode_msg       = "<span id=&quot;article_auth_msg_no_$1&quot; style=&quot;font-size:11px;$2&quot;>$3($4)<input type=&quot;text&quot; name=&quot;authcode&quot; value=&quot;&quot; size=&quot;4&quot; /></span>"
+authcode_label     = "認証コード"
+authcode_err_label = "認証コードを入力してください"
+
+
+;///////////////////////////////////////
+;//   atom.inc.php
+;///////////////////////////////////////
+;[plg_atom]
+
+;///////////////////////////////////////
+;//   attachref.inc.php
+;///////////////////////////////////////
+[plg_attachref]
+btn_submit      = "[添付]"
+btn_submit_alt  = "[添付]のために移動"
+title           = "Attach and Ref to $1"
+collided        = "あなたがファイルを添付している間に、他の人が同じページを更新してしまったようです。<br />ファイルが違う位置に挿入されているかもしれません。<br />"
+title_ntc_admin = "お知らせ"
+ntc_admin       = "管理者モードでのみファイルを添付できます。"
+img_desc        = "画像の説明"
+err_notfound   = "attach.inc.php not found or not correct version."
+
+
+;///////////////////////////////////////
+;//   autoclose.inc.php
+;///////////////////////////////////////
+[plg_autoclose]
+title_auth    = "$1（認証）"
+title_closed  = "お知らせ"
+closed = "$1は、閉じられました。"
+format_ntc = "<p>このページは、$1に、閉じられます。<br />転送先は、<a href=&quot;$2&quot; target=&quot;_blank&quot;>こちら</a> です。</p>"
+ntc_admin     = "<p><strong>【お知らせ】管理者モード以外のアクセスは、autocloseプラグインによって、転送されます。</strong></p>"
+err_usage     = "#autoclose(日付,[URL OR ページ名])"
+
+
+;///////////////////////////////////////
+;//   beforescript.inc.php
+;///////////////////////////////////////
+;[plg_beforescript]
+
+;///////////////////////////////////////
+;//   blog_body.inc.php
+;///////////////////////////////////////
+;[plg_blog_body]
+
+;///////////////////////////////////////
+;//   blog_comment.inc.php
+;///////////////////////////////////////
+;[plg_blog_comment]
+
+;///////////////////////////////////////
+;//   blog_edit.inc.php
+;///////////////////////////////////////
+[plg_blog_edit]
+ntc_post_conf    = "ブログ記事の設定を書きます"
+ntc_post_tag     = "&tag(タグ名1,タグ名2,....); で，タグを付けられます"
+ntc_post_body    = "ここから下に，ブログを書く"
+post_body        = "*記事のタイトル##LF####LF##本文を書いてください。##LF####LF##ここまでの文章が記事リストに表示されます。"
+ntc_post_more    = "ここから下に，続きを書く"
+post_more        = "#blog_more(すべて見る,off)##LF####LF##この部分は、「続きを読む」をクリックすると、##LF##表示されます．##LF####LF##記事リストには、ここに書いた文章は表示されません。##LF##もし、記事が短く、続きを作る必要がなければ##LF##blog_moreを削除してください。"
+ntc_post_comment ="ここから下は，編集しないでください"
+post_comment     = "''コメント''"
+title_unfreeze   = "Unfreeze $1"
+title_edit       = "Edit $1"
+
+
+;///////////////////////////////////////
+;//   blog_more.inc.php
+;///////////////////////////////////////
+;[plg_blog_more]
+
+
+;///////////////////////////////////////
+;//   blog_viewer.inc.php
+;///////////////////////////////////////
+[plg_blog_viewer]
+more_label          = "続きを読む"
+post_footer         = "[[パーマリンク>$1]]"
+post_footer_comment = " | [[コメント$2>$1#blog_comment]]"
+err_already_view = "<p>#blog_viewer: You already view: $1</p>"
+err_cannotread   = "$1 は閲覧制限がかかっているためblog_viewerによる参照はできません"
+err_usage        = "#blog(pagename,this|yyyy-mm|n|x*y[,mode[,separater]])"
+
+;///////////////////////////////////////
+;//   blog.inc.php
+;///////////////////////////////////////
+;[plg_blog]
+
+;///////////////////////////////////////
+;//   box.inc.php
+;///////////////////////////////////////
+[plg_box]
+err_usage = "#box(線色,線幅(px),線種,背景,大きさ)"
+
+;///////////////////////////////////////
+;//   br.inc.php
+;///////////////////////////////////////
+;[plg_br]
+
+;///////////////////////////////////////
+;//   bugtrack_list.inc.php
+;///////////////////////////////////////
+;[plg_bugtrack_list]
+
+
+;///////////////////////////////////////
+;//   bugtrack.inc.php
+;///////////////////////////////////////
+[plg_bugtrack]
+pri1 = "緊急"
+pri2 = "重要"
+pri3 = "普通"
+pri4 = "低"
+stt1 = "提案"
+stt2 = "着手"
+stt3 = "CVS待ち"
+stt4 = "完了"
+stt5 = "保留"
+stt6 = "却下"
+
+base      = "ページ"
+summary   = "サマリ"
+nosummary = "ここにサマリを記入して下さい"
+priority  = "優先順位"
+state     = "状態"
+name      = "投稿者"
+noname    = "名無しさん"
+date      = "投稿日"
+body      = "メッセージ"
+category  = "カテゴリー"
+pagename  = "ページ名"
+version   = "バージョン"
+submit    = "追加"
+ntc_pagename = "空欄のままだと自動的にページ名が振られます。"
+ntc_version  = "空欄でも構いません"
+
+
+
+;///////////////////////////////////////
+;//   calendar_edit.inc.php
+;///////////////////////////////////////
+;[plg_calendar_edit]
+
+;///////////////////////////////////////
+;//   calendar_read.inc.php
+;///////////////////////////////////////
+;[plg_calendar_read]
+
+;///////////////////////////////////////
+;//   calendar.inc.php
+;///////////////////////////////////////
+;[plg_calendar]
+
+;///////////////////////////////////////
+;//   check_login.inc.php
+;///////////////////////////////////////
+[plg_check_login]
+logout  = "ログアウトしています。クリックして再度ログインしてください"
+logout2 = "ログアウトしています。再度ログインしてください。"
+title   = "ログイン"
+
+
+;///////////////////////////////////////
+;//   chpassword.inc.php
+;///////////////////////////////////////
+[plg_chpassword]
+label = "パスワード変更"
+
+;///////////////////////////////////////
+;//   clear.inc.php
+;///////////////////////////////////////
+;[plg_clear]
+
+;///////////////////////////////////////
+;//   close.inc.php
+;///////////////////////////////////////
+[plg_close]
+title     = "現在、このページは閉じられています"
+ntc       = "<h2>おしらせ</h2><p>現在、このページは閉じられています</p>"
+ntc_admin = "<p><strong>【お知らせ】管理者モード以外のアクセスは、closeプラグインによって、閉じられ、メッセージが表示されます</strong></p>"
+
+;///////////////////////////////////////
+;//   color.inc.php
+;///////////////////////////////////////
+[plg_color]
+err_usage         = ""
+err_invalid_color = "&color():Invalid color: $1"
+err_bgcolor       = "&color(): bgcolor (with CSS) not allowed;"
+
+;///////////////////////////////////////
+;//   comment2.inc.php
+;///////////////////////////////////////
+[plg_comment2]
+label_auth_code = "認証コード"
+err_auth_code   = "認証コードを入力してください"
+
+
+;///////////////////////////////////////
+;//   contents.inc.php
+;///////////////////////////////////////
+;[plg_contents]
+
+;///////////////////////////////////////
+;//   contentsx.inc.php
+;///////////////////////////////////////
+[plg_contentsx]
+err_cache_not_readable = "Cache file, $1 is not readable. "
+err_cache_not_writable = "Cache file, $1 is not writable. "
+err_cache_cannot_open  = "Can not open $1. "
+err_cache_cannot_write = "Can not write to $1. "
+err_no_page = "No such a page, $1"
+err_page_not_readable  = "Page, $1, is not readable."
+err_usage_boolean      = "$1=$2 is invalid.  The option, $1, accepts only a boolean value.  #contentsx($1) or #contentsx($1=on) or #contensx($1=true) for true.  #contentsx($1=off) or #contentsx($1=false) for false. "
+err_usage_number       = "$1=$2 is invalid.  The option, $1, accepts number values such as 1, 1:3, 1+3, 1,2,4.  Specify options as &quot;$1=1,2,4&quot; or $1=(1,2,3) when you want to use &quot;,&quot;.  In more details, a style like (1:3,5:7,9:) is also possible. 9: means from 9 to the last.  Furtermore, - means backward. -1:-3 means 1,2,3 from the tail. "
+err_usage_enum         = "$1=$2 is invalid.  The option, $1, accepts values from one of ($3).  By the way, #contentsx($1) equals to #contentsx($1=$4). "
+err_usage_enumarray    = "$1=$2 is invalid.  The option, $1, accepts sets of values from ($3).  By the way, #contentsx($1) equals to #contentsx($1=($3))."
+err_no_option          = "No such a option, $1"
+err_paren              = "The # of open and close parentheses of one of your arguments did not match. "
+
+
+;///////////////////////////////////////
+;//   conversion_r.inc.php
+;///////////////////////////////////////
+[plg_conversion_r]
+ntc_admin = "このリンクは、コンバージョン対象になっています"
+;err_params = "<p>ERROR: 使い方が、間違っています。<br />&conversion_r(step,グループ名,名前,URL,サイトURL){表示文字};<p>"
+err_url = "URLが不正です"
+err_usage = "&conversion_r(step,グループ名,名前,URL){表示文字}"
+
+
+;///////////////////////////////////////
+;//   conversion.inc.php
+;///////////////////////////////////////
+[plg_conversion]
+label_result        = "結果を表示する"
+title_delete_result = "計測結果を削除しました"
+delete_result       = "$1の計測結果を削除しました。"
+link_result         = "コンバージョン結果の一覧"
+result              = "* $1のコンバージョン結果##LF##目標達成プロセスの解析結果は、以下の通りです。##LF##$2##LF##-コンバージョン率は、一つ前のステップに対する割合を指します。##LF##-全体のコンバージョン率は、ステップ1に対する最終ステップの割合を指します##LF####LF####LF##"
+th_result           = "|SIZE(12):~ステップ |SIZE(12):~ページ名 |SIZE(11):~ユーザー数/&br;コンバージョン |SIZE(12):~グループ別|##LF##|SIZE(12):|SIZE(12):|RIGHT:SIZE(12):|RIGHT:SIZE(12):|c##LF##"
+tf_result           = "|>|全体のコンバージョン|$1%|$2|##LF####LF##※ コンバージョンの計測は、COOKIEを使いユーザーを識別しています。##LF####LF##"
+title_result        = "$1のコンバージョン結果"
+list_result         = "* コンバージョン計測結果の一覧##LF##初期化をクリックすると、コンバージョン結果を初期状態(0)に戻します。クリックで即座に削除されるので、ご注意下さい。##LF##$1##LF##"
+link_init           = "初期化する"
+force_init          = "##LF##※初期ページの閲覧を強制しています##LF##"
+ntc_admin           = "このページは、コンバージョン計測の対象です"
+err_usage           = "引数の数が不正です。正しく設定して下さい。#conversion(step,group[,pattern,pagename])"
+err_usage_iln       = "引数の数が不正です。正しく設定して下さい。&conversion(step,group[,pattern,pagename])"
+err_url             = "URLが不正です"
+
+;///////////////////////////////////////
+;//   counter.inc.php
+;///////////////////////////////////////
+[plg_counter]
+counter = "Counter: $1, today: $2, yesterday: $3"
+
+;///////////////////////////////////////
+;//   deco.inc.php
+;///////////////////////////////////////
+;[plg_deco]
+
+;///////////////////////////////////////
+;//   description.inc.php
+;///////////////////////////////////////
+;[plg_description]
+
+;///////////////////////////////////////
+;//   dlbutton.inc.php
+;///////////////////////////////////////
+[plg_dlbutton]
+title_file_notfound = "ファイルが存在しません"
+
+label     = "ダウンロード"
+subject   = "【ダウンロード通知】$1"
+mail_body = "QHM dlbutton pluginからのお知らせです。##LF####LF##あなたの $1 がダウンロードされました。##LF##"
+
+err_usage          = "引数が間違っています。 &dlbutton(ファイルパス,[ボタンラベル],[メールアドレス],[メールタイトル])"
+err_file_notfound = "<p>指定されたファイルは存在しません。</p>$1"
+err_invalid_email  = "<p>メールアドレスが無効です。 $1</p>"
+
+;///////////////////////////////////////
+;//   dllink.inc.php
+;///////////////////////////////////////
+[plg_dllink]
+label     = "ダウンロードは、ここをクリック"
+mail_body = "QHM dllink pluginからのお知らせです。##LF####LF##あなたの $1 がダウンロードされました。##LF##"
+err_usage = "引数が間違っています。 &dllink(ファイルパス,[ボタンラベル],[メールアドレス],[メールタイトル])"
+
+;///////////////////////////////////////
+;//   dump.inc.php
+;///////////////////////////////////////
+[plg_dump]
+title           = "バックアップ"
+restore_header  = "復元したファイル一覧"
+restore_success = "アップロードが完了しました"
+restore_failed  = "アップロードに失敗しました"
+title_bk_rstr   = "バックアップ・リストア"
+title_bk        = "バックアップ"
+
+err_no_files         = "ファイルがみつかりませんでした。"
+err_invalid_memory   = "エラー：不正なメモリの値が設定されました"
+err_prohibit_restore = "Restoring function is not allowed"
+err_invalid_filetype = "Invalid file type"
+err_size_over        = "Max file size exceeded: $1KB"
+err_upload_failed    = "ファイルがみつかりませんでした。"
+err_open_archive     = "$1 is cannot opened!"
+err_upload_empty     = "<p>展開できるファイルがありませんでした。</p>"
+
+frm_header = "バックアップ・リストア"
+frm_ntc    = "<p><b>注意事項</b><br />##LF##<ul style=&quot;margin-left:8px&quot;><li>ファイル数が多い場合、ダウンロード開始まで時間がかかることがあります</li><li>ファイル数が多い場合、途中でエラーするときがあります（FTPソフトをお使い下さい)</li><li>設置されているサーバーによっては、エラーを表示し、動かない場合があります</li></ul>##LF##</p>"
+frm_fullbk_header           = "フルバックアップ"
+frm_fullbk_ntc              = "<p>QHMシステムをすべて圧縮し、バックアップファイルをダウンロードします。<br />※フルバックアップしたファイルは、FTPソフトでリストアしてください</p>"
+label_adminpass             = "管理者パスワード"
+btn_download                = "ダウンロード"
+label_memory_limit          = "メモリ使用量の制限を変更する"
+frm_fullbk_ntc_memory_limit = "※エラーがでて、動かないときに利用して下さい（一部サーバーでは使えません）"
+frm_bk_header    = "データのダウンロード"
+frm_bk_ntc       = "指定したフォルダやファイルをZip形式で圧縮します。"
+frm_bk_dirlist   = "バックアップディレクトリ"
+frm_bk_filelist  = "設定ファイル・ロゴ画像"
+frm_bk_option    = "オプション"
+desc_wiki        = "ページデータ"
+desc_attach      = "添付ファイル"
+desc_backup      = "編集履歴"
+desc_swfud       = "SWFU添付ファイル"
+desc_swfudata    = "SWFUデータ"
+desc_fwd3data    = "FWD3データ"
+desc_qhmini      = "QHM設定"
+desc_qhmaccess   = "アクセス制限"
+desc_qhmusers    = "ユーザー設定"
+desc_qhmlogo     = "ロゴ画像"
+label_namedecode = "エンコードされているページ名をディレクトリ階層つきのファイルにデコード  (※リストアに使うことはできなくなります。また、一部の文字は '_' に置換されます)"
+frm_rstr_header      = "データのリストア"
+frm_rstr_ntc         = "※ バックアップファイルが古い拡張子（*.tgz, *.tar.gz) の人は<a href=&quot;$1?cmd=dump2&quot;>こちら</a>から"
+frm_rstr_ntc2        = "[重要] 同じ名前のデータファイルは上書きされますので、十分ご注意ください。<br />※フルバックアップしたファイルでは、リストアできません"
+frm_rstr_ntc_maxsize = "アップロード可能な最大ファイルサイズは、$1 KByte までです。"
+label_file           = "ファイル"
+btn_restore          = "リストア"
+
+;///////////////////////////////////////
+;//   dump2.inc.php
+;///////////////////////////////////////
+[plg_dump2]
+err_mktmp_failed      = "テンポラリファイルの生成に失敗しました。"
+err_invalid_file_suf  = "Invalid file suffix"
+err_invalid_file_suf2 = "Invalid file suffix: $1"
+err_tar_not_found     = "$1 is not found or not readable."
+
+;///////////////////////////////////////
+;//   dwrite.inc.php
+;///////////////////////////////////////
+[plg_dwrite]
+title         = "ダイレクト書き換え・設定画面"
+title_confirm = "ダイレクト書き換え・確認"
+title_result  = "$1 の書き換え"
+note          = "書き換えたい文字を入力して下さい"
+note2         = "以下に書き換えたい文字を入力して、確認ボタンを押して下さい。"
+ntc_confirm   = "$1 を 「$2」 に、書き換えますか？"
+result        = "<p>書き換えました</p><p>確認するには、こちらを<a href=&quot;$1&quot;>クリック</a>してください</p>"
+url           = "書き換え用URL"
+edit_url      = "書き換え編集用URL"
+space         = "（空白）"
+title_err     = "Error"
+btn_confirm   = "確認"
+btn_exec      = " 実行する "
+err_invalid_url  = "URLが不正です"
+err_cannot_found = "書き換える対象が見つかりません"
+
+;///////////////////////////////////////
+;//   edit_this.inc.php
+;///////////////////////////////////////
+[plg_edit_this]
+label = "edit"
+
+;///////////////////////////////////////
+;//   edit.inc.php
+;///////////////////////////////////////
+[plg_edit]
+title_short    = "Edit"
+title          = "Edit $1"
+title_unfreeze = "Unfreeze $1"
+label_preview  = "プレビュー中"
+err_usage      = "&edit(pagename#anchor[[,noicon],nolabel])[{label}];"
+
+;///////////////////////////////////////
+;//   editacc.inc.php
+;///////////////////////////////////////
+[plg_editacc]
+err_usage = "Error ::: 使い方が間違っています。 #ganatracker(トラッキング名)"
+ntc_admin = "<p><strong>【お知らせ】このメッセージは管理者モードでのみ、表示されます</strong><br />以下のスクリプトが、editaccプラグインによって、アクセス解析タグを「書き換えて」挿入されます。</p>"
+comment = "edited follow code by editacc plugin"
+
+
+;///////////////////////////////////////
+;//   enable_cache.inc.php
+;///////////////////////////////////////
+[plg_enable_cache]
+ntc_admin = "<p><strong>【お知らせ】</strong><br />このページは、ユーザーモードの際、キャッシュ表示して高速化されます。<br />ただし、動的なページ表示が必要なものは、期待したとおりに動作しない可能性があります。</p>"
+ntc_admin2 = "<p><strong>【お知らせ】</strong><br />このページは、常にキャッシュされません。</p>"
+
+
+;///////////////////////////////////////
+;//   eucjp.inc.php
+;///////////////////////////////////////
+[plg_eucjp]
+ntc_admin = "<p><strong>【お知らせ】</strong><br />このページは、ユーザーモードの際、EUC-JP化されています<br /></p>"
+
+;///////////////////////////////////////
+;//   filelist.inc.php
+;///////////////////////////////////////
+;[plg_filelist]
+
+;///////////////////////////////////////
+;//   flash.inc.php
+;///////////////////////////////////////
+;[plg_flash]
+
+;///////////////////////////////////////
+;//   formzu.inc.php
+;///////////////////////////////////////
+[plg_formzu]
+ntc             = "<p>現在のブラウザは、フレームに対応しておりません。お手数ですが、<a href=&quot;$1&quot;>こちらをクリック</a>してください。</p>"
+err_invalid_arg = "Invalid argument"
+err_usage       = "#formzu(formurl,hight,width,align)"
+
+;///////////////////////////////////////
+;//   formzup.inc.php
+;///////////////////////////////////////
+[plg_formzup]
+err_usage = "#formzup(formurl,hight,width,align)"
+
+;///////////////////////////////////////
+;//   ga_link.inc.php
+;///////////////////////////////////////
+[plg_ga_link]
+err_usage = "&ga_link(url){リンク名}"
+
+;///////////////////////////////////////
+;//   ganatracker.inc.php
+;///////////////////////////////////////
+[plg_ganatracker]
+new = "新"
+old = "旧"
+ntc_admin     = "<p>【お知らせ（管理者モードのみ表示されます）】<br />このリンクのクリックには、GoogleAnalytics($1版)の<strong>新機能のトラッキングコード</strong>によって <strong>$2</strong> ページとして記録されます。</p>"
+ntc_admin_cvt = "<p><strong>【お知らせ】このメッセージは管理者モードでのみ、表示されます</strong><br />このページは、#ganatrackerプラグインによって、GoogleAnalytics($1版)上で<strong> $2</strong>として、記録されます。</p>"
+err_usage_iln = "&ganatracker(リンク先,トラックページ名){リンク名}"
+err_usage_cvt = "#ganatracker(トラッキング名)"
+
+;///////////////////////////////////////
+;//   ganatracker2.inc.php
+;///////////////////////////////////////
+[plg_ganatracker2]
+ntc_admin     = "<p>【お知らせ（管理者モードのみ表示されます）】<br />このリンクのクリックには、GoogleAnalyticsの<strong>新機能のトラッキングコード</strong>によって <strong>$1</strong> ページとして記録されます。</p>"
+ntc_admin_cvt = "<p><strong>【お知らせ】このメッセージは管理者モードでのみ、表示されます</strong><br />このページは、#ganatracker2プラグインによって、GoogleAnalytics上で<strong> $1</strong>として、記録されます。</p>"
+err_usage_iln = "&ganatracker2(リンク先,トラックページ名){リンク名}"
+err_usage_cvt = "#ganatracker2(トラッキング名)"
+
+;///////////////////////////////////////
+;//   googlemaps2_draw.inc.php
+;///////////////////////////////////////
+[plg_googlemaps2_draw]
+err_usage           = "error: wrong args"
+err_not_def_mapname = "googlemaps error: mapname \&quot;$1\&quot; is not defined"
+
+;///////////////////////////////////////
+;//   googlemaps2_icon.inc.php
+;///////////////////////////////////////
+;[plg_googlemaps2_icon]
+
+;///////////////////////////////////////
+;//   googlemaps2_insertmarker.inc.php
+;///////////////////////////////////////
+[plg_googlemaps2_insertmarker]
+label_latitude  = "LAT"
+label_longitude = "LNG"
+label_title     = "タイトル"
+label_icon      = "アイコン"
+option_default  = "Default"
+label_img       = "画像"
+label_maxurl    = "MAXURL"
+label_minzoom   = "表示最小ズーム"
+label_maxzoom   = "表示最大ズーム"
+label_detail    = "詳細"
+btn_mark        = "Mark"
+
+err_not_impl_inline = "インライン型は未実装です。ブロック型の#googlemaps2_insertmarkerを使ってください。"
+err_map_not_found   = "$1 という名前のマップが見つかりませんでした。"
+err_invalid_coor    = "&quot;座標データが不正です。 LAT : &quot; + lat.value + &quot;  LNG : &quot; + lng.value"
+
+
+;///////////////////////////////////////
+;//   googlemaps2_mark.inc.php
+;///////////////////////////////////////
+[plg_googlemaps2_mark]
+label_def_name = "名称未設定"
+link           = "[説明]"
+err_usage      = "error: wrong args"
+
+
+;///////////////////////////////////////
+;//   googlemaps2.inc.php
+;///////////////////////////////////////
+[plg_googlemaps2]
+empty_page_name   = "Empty Page Name"
+err_unknown_page  = "Unknown page name"
+err_not_called    = "$1: error googlemapsを先に呼び出してください。<br/>"
+err_unsupport_dev = "googlemaps2:unsupported device"
+err_mark_failed   = "&quot;googlemaps2: '&quot; + option.title + &quot;' のマーカーの登録に失敗しました。'&quot; + &quot;ページ：&quot; + page + &quot; に&quot; + mapname + &quot;' というマップが見つかりません。&quot;"
+
+
+;///////////////////////////////////////
+;//   greybox.inc.php
+;///////////////////////////////////////
+[plg_greybox]
+err_usage = "&greybox(場所,タイトル,[グループ名]){リンクラベル}"
+
+;///////////////////////////////////////
+;//   gsearch.inc.php
+;///////////////////////////////////////
+[plg_gsearch]
+btn_gsearch   = "Google 検索"
+label_wsearch = "WWW を検索"
+label_ssearch = "$1 内を検索"
+
+
+;///////////////////////////////////////
+;//   hr.inc.php
+;///////////////////////////////////////
+;[plg_hr]
+
+;///////////////////////////////////////
+;//   html.inc.php
+;///////////////////////////////////////
+;[plg_html]
+
+;///////////////////////////////////////
+;//   html2.inc.php
+;///////////////////////////////////////
+;[plg_html2]
+
+;///////////////////////////////////////
+;//   iframe.inc.php
+;//   memo: formzu と一緒
+;///////////////////////////////////////
+[plg_iframe]
+err_usage = "#iframe(formurl,hight,width,align)"
+ntc       = "<p>現在のブラウザは、フレームに対応しておりません。お手数ですが、<a href=&quot;$1&quot;>こちらをクリック</a>してください。</p>"
+
+
+;///////////////////////////////////////
+;//   img.inc.php
+;///////////////////////////////////////
+[plg_img]
+err_usage = "#img(URI-to-image[,right[,clear]])"
+
+;///////////////////////////////////////
+;//   include_skin.inc.php
+;///////////////////////////////////////
+[plg_include_skin]
+err_usage = "デザイン名を指定して下さい"
+err_not_found = "指定されたデザインフォルダは、見つかりません: $1"
+
+;///////////////////////////////////////
+;//   include_template.inc.php
+;///////////////////////////////////////
+[plg_include_template]
+title_err      = "INCLUDE TEMPLATE ERROR!"
+title_err_read = "TEMPLATE READ ERROR!"
+
+err_usage            = "#include_template(): (a-page-name-you-want-to-include[,title|,notitle])[{{key=value ...}}]<br />"
+err_usage_cmd        = "include_template command Usage: http://your-wiki-site/?cmd=include_template&template=a-page-name-you-want-to-include&id=data-identifier<br />"
+err_not_editable     = "<p>Template page, $1, must be edit_authed or frozen or whole system must be PKWK_READONLY.</p>"
+err_no_page          = "include_template: No such page: $1<br />"
+err_already_included = "include_template(): Included already: $1<br />"
+err_cannot_include   = "include_template(): Can't include protected page: $1<br />"
+err_limit            = "include_template(): Limit exceeded: $1<br />"
+
+;///////////////////////////////////////
+;//   includesubmenu.inc.php
+;///////////////////////////////////////
+;[plg_includesubmenu]
+
+;///////////////////////////////////////
+;//   interwiki.inc.php
+;///////////////////////////////////////
+[plg_interwiki]
+err_not_allowed = "InterWiki plugin is not allowed"
+
+;///////////////////////////////////////
+;//   jplayer.inc.php
+;///////////////////////////////////////
+[plg_jplayer]
+next    = "next"
+prev    = "previous"
+play    = "play"
+pause   = "pause"
+stop    = "stop"
+vol_min = "min volume"
+vol_max = "max volume"
+
+;///////////////////////////////////////
+;//   keywords.inc.php
+;///////////////////////////////////////
+;[plg_keywords]
+
+;///////////////////////////////////////
+;//   lastmod.inc.php
+;///////////////////////////////////////
+;[plg_lastmod]
+
+;///////////////////////////////////////
+;//   lastscript.inc.php
+;///////////////////////////////////////
+;[plg_lastscript]
+
+;///////////////////////////////////////
+;//   lightbox2.inc.php
+;///////////////////////////////////////
+[plg_lightbox2]
+err_usage = "&lightbox2(画像の場所,タイトル,[グループ名]){リンクラベル}"
+
+
+;///////////////////////////////////////
+;//   links.inc.php
+;///////////////////////////////////////
+[plg_links]
+title_update = "キャッシュ更新"
+btn_submit   = "実行"
+done         = "キャッシュの更新を完了しました"
+usage        = "##LF##* 処理内容##LF####LF##:キャッシュを更新|##LF##全てのページをスキャンし、あるページがどのページからリンクされているかを調査して、キャッシュに記録します。##LF####LF##* 注意##LF##実行には数分かかる場合もあります。実行ボタンを押したあと、しばらくお待ちください。##LF####LF##* 実行##LF##管理者パスワードを入力して、[実行]ボタンをクリックしてください。"
+err_invalid  = "不正なパラメータです。キャッシュの更新ができませんでした"
+
+;///////////////////////////////////////
+;//   logo_image.inc.php
+;///////////////////////////////////////
+;[plg_logo_image]
+
+;///////////////////////////////////////
+;//   lookup.inc.php
+;///////////////////////////////////////
+[plg_lookup]
+err_usage = "#lookup(interwikiname[,button_name[,default]])"
+btn_submit = "lookup"
+err_invalid_access = "Invalid access"
+title_not_found = "Not found"
+
+;///////////////////////////////////////
+;//   ls.inc.php
+;///////////////////////////////////////
+;[plg_ls]
+
+;///////////////////////////////////////
+;//   lsx.inc.php
+;///////////////////////////////////////
+[plg_lsx]
+err_no_result          = "<p>no result.</p>"
+err_plg                = "The option, $1, requires $2 plugin, but it does not exist. "
+prev                   = "Prev"
+next                   = "Next"
+err_invalid_tag        = "The tag token, $1, is invalid.  Perhaps, the tag does not exist. "
+err_usage_boolean      = "$1=$2 is invalid.  The option, $1, accepts only a boolean value.  #$3($1) or #$3($1=on) or #$3($1=true) for true.  #$3($1=off) or #$3($1=false) for false. "
+err_usage_number       = "$1=$2 is invalid.  The option, $1, accepts number values such as 1, 1:3, 1+3, 1,2,4.  Specify options as &quot;$1=1,2,4&quot; or $1=(1,2,3) when you want to use &quot;,&quot;.  In more details, a style like (1:3,5:7,9:) is also possible. 9: means from 9 to the last.  Furtermore, - means backward. -1:-3 means 1,2,3 from the tail. "
+err_usage_enum         = "$1=$2 is invalid.  The option, $1, accepts values from one of ($3).  By the way, #$4($1) equals to #$4($1=$5). "
+err_usage_enumarray    = "$1=$2 is invalid.  The option, $1, accepts sets of values from ($3).  By the way, #$4($1) equals to #$4($1=($3)). "
+err_no_option          = "No such a option, $1"
+err_paren              = "The # of open and close parentheses of one of your arguments did not match. "
+
+
+;///////////////////////////////////////
+;//   mag2.inc.php
+;///////////////////////////////////////
+[plg_mag2]
+btn_reg   = "登録"
+btn_unsub = "解除"
+err_usage_param = "不正な第一引数です。"
+err_usage_pnum  = "引数の個数が足りません。"
+
+
+;///////////////////////////////////////
+;//   main_visual.inc.php
+;///////////////////////////////////////
+;[plg_main_visual]
+
+;///////////////////////////////////////
+;//   map.inc.php
+;///////////////////////////////////////
+[plg_map]
+title_rel     = "Relation map (link from)"
+title_relpage = "Relation map, from $1"
+link_rel      = "被リンクページは、こちら"
+no_pages      = "No pages."
+rel_pages     = "「$1」は、合計 $2 ページに対して、リンクしています。"
+no_ref        = "No link from anywhere in this site."
+no_rel        = "「$1」と、関連のないページ"
+
+;///////////////////////////////////////
+;//   md5.inc.php
+;///////////////////////////////////////
+[plg_md5]
+title           = "Compute userPassword"
+err_length      = "Limit: malicious message length"
+ntc_use         = "NOTICE: Don't use this feature via untrustful or unsure network"
+ntc_nophrase    = "NO PHRASE"
+label_phrase    = "Phrase"
+label_addscheme = "Add scheme prefix"
+label_salt      = "Salt, '{scheme}', '{scheme}salt', or userPassword itself to specify"
+btn_submit      = "Compute"
+footnote        = "* = Salt enabled"
+
+;///////////////////////////////////////
+;//   menu.inc.php
+;///////////////////////////////////////
+[plg_menu]
+err_usage        = "#menu(): Zero or One argument needed"
+err_already_set  = "#menu(): Already set: $1"
+err_no_page      = "#menu(): No such page: $1"
+ntc_already_view = "#menu(): You already view $1"
+
+
+;///////////////////////////////////////
+;//   mobaccess.inc.php
+;///////////////////////////////////////
+;[plg_mobaccess]
+
+;///////////////////////////////////////
+;//   modoru.inc.php
+;///////////////////////////////////////
+[plg_modoru]
+label = "戻る"
+
+;///////////////////////////////////////
+;//   mp3play.inc.php
+;///////////////////////////////////////
+[plg_mp3play]
+err_usage         = "引数が間違っています。 &mp3play(ファイルパス);"
+err_file_notfound = "指定されたファイルが存在しません。"
+
+;///////////////////////////////////////
+;//   new.inc.php
+;///////////////////////////////////////
+[plg_new]
+label_1d = " <span class=&quot;new1&quot; title=&quot;%s&quot;>New!</span>"
+label_5d = " <span class=&quot;new5&quot; title=&quot;%s&quot;>New</span>"
+err_usage        = "&new([nodate]){date};"
+err_invalid_date = "&new([nodate]){date}: Invalid date string;"
+err_usage_page   = "&new(pagename[,nolink]);"
+err_no_page      = "&new(pagename/[,nolink]): No such pages;"
+
+;///////////////////////////////////////
+;//   nofollow.inc.php
+;///////////////////////////////////////
+;[plg_nofollow]
+
+;///////////////////////////////////////
+;//   norelated.inc.php
+;///////////////////////////////////////
+;[plg_norelated]
+
+;///////////////////////////////////////
+;//   noskin.inc.php
+;///////////////////////////////////////
+;[plg_noskin]
+
+;///////////////////////////////////////
+;//   nowindow.inc.php
+;///////////////////////////////////////
+;[plg_nowindow]
+
+;///////////////////////////////////////
+;//   online.inc.php
+;///////////////////////////////////////
+[plg_online]
+err_not_writable = "&quot;COUNTER_DIR/$1&quot; not writable"
+err_convert      = "#online: $1<br />"
+err_inline       = "&online: $1;"
+
+;///////////////////////////////////////
+;//   otherwin.inc.php
+;///////////////////////////////////////
+;[plg_otherwin]
+
+;///////////////////////////////////////
+;//   permalink.inc.php
+;///////////////////////////////////////
+[plg_permalink]
+label_surl = "Short URL"
+
+;///////////////////////////////////////
+;//   pkwkmail_en.inc.php
+;///////////////////////////////////////
+
+
+;///////////////////////////////////////
+;//   pkwkmail.inc.php
+;///////////////////////////////////////
+[plg_pkwkmail]
+contact_title_to_admin	= "お問合せがありました"
+contact_title_to_client = "自動返信：お問合せをいただきました"
+reply_message           = "このメールはシステムによる自動返信です。##LF##以下、お問い合わせいただいた内容です。"
+reply_message_foot      = "ありがとうございました。"
+default_message         = "default_messageを設定してください。"
+default_explanation     = "*フォーム##LF##以下フォームに必要事項をご記入願います。##LF##''入力必須項目''について、ご記入漏れのないようにお願いいたします。"
+confirm_message         ="'''必要項目はすべて入力されています。'''もう一度、内容を修正したい場合は、以下に続くフォームを編集してください。"
+confirm_message_reply   = "送信内容のご確認用メールが不要の場合は、以下のチェックを外して「送信する」を押してください。"
+confirm_message_yet     = "以下の項目をすべて入力の上、送信しなおしてください。"
+confirm_message_title   = "送信確認"
+confirm_message_fromtitle = "*編集・内容確認用フォーム"
+confirm_message_yet_title = "入力必須項目をご確認ください"
+finish_message_title    = "メールを送信しました"
+attr_err_title          = "設定エラー"
+attr_err_mes            = "フォームを正しく生成できませんでした。"
+attr_err_ary            = "配列の形式を確認してください：%s"
+must                    = "(必須)"
+button                  = "内容確認"
+button_send             = "送信する"
+invalid_madrs           = "「%s」の形式が不正です。"
+invalid_mdmain          = "「%s」のドメインを確認してください。"
+invalid_nosel           = "「%s」が未選択です。"
+invalid_noval           = "「%s」が未入力です。"
+sendme                  = "送信内容のコピーを、メールで送る<br /><span style=&quot;font-size:11px&quot;>※不要な場合は、チェックを外して下さい。よく分からない方は、そのままで構いません</span>"
+send_err_admin          = "なんらかのエラーが発生したため、メールを送信できませんでした。"
+send_err                = "なんらかのエラーが発生したため、自動返信できませんでした。"
+finish_message          = "以下の通りメールを送信しました。~##LF##しかるべき反応がない場合は、システム不具合など理由でメールが届いていない可能性があります。お手数ですが、別の手段でお問い合わせください。"
+finish_message_return   = "トップページへもどる"
+freeze_notification     = "ページ凍結されていません。危険なので、ページを凍結してください。"
+not_use                 = "このプラグインを使用するためには、ページを凍結して下さい。"
+err_msg_notify_to       = "管理者宛メールアドレス($notify_to)を正しく設定して下さい。"
+fmt_date                = "Y/m/d"
+fmt_time                = ""
+btn_revise              = "修正する"
+link_revise             = "再編集"
+btn_back                = "戻　る"
+
+
+;///////////////////////////////////////
+;//   playlist.inc.php
+;///////////////////////////////////////
+;[plg_playlist]
+
+;///////////////////////////////////////
+;//   playvideo.inc.php
+;///////////////////////////////////////
+[plg_playvideo]
+img = "<p style=&quot;text-align:center&quot;><span onclick=&quot;javascript:startvideo_$1('$2',this, $3, $4); return false;&quot;><img src=&quot;$5&quot; title=&quot;クリックして下さい&quot; width=&quot;$3&quot; height=&quot;$4&quot; style=&quot;cursor:pointer&quot; /></span></p>"
+err_player      = "flv形式の再生には、player.swfファイルが必要です。詳しくは、マニュアルをご覧下さい。"
+err_usage       = "引数が間違っています。#playvideo(url,width,height[,start_image])"
+err_unsupported = "指定された $1 は、サポートされない形式です。"
+err_novideofile = "指定された $1 は、存在しません。"
+
+;///////////////////////////////////////
+;//   pp_button.inc.php
+;///////////////////////////////////////
+[plg_pp_button]
+title_paypal = "PayPal - オンラインで安全・簡単にお支払い"
+err_usage    = "&pp_button(アカウント,商品名,価格[,商品コード]);"
+
+;///////////////////////////////////////
+;//   pp_cart.inc.php
+;///////////////////////////////////////
+[plg_pp_cart]
+err_usage = "&pp_cart(): PayPalアカウントを設定して下さい"
+
+;///////////////////////////////////////
+;//   prevnext.inc.php
+;///////////////////////////////////////
+;[plg_prevnext]
+
+;///////////////////////////////////////
+;//   qcart.inc.php
+;//   states: comma separated string
+;///////////////////////////////////////
+[plg_qcart]
+err_usage    = "&qcart(商品名,値段[,設置フォルダ名]);"
+
+
+;///////////////////////////////////////
+;//   qform_view.inc.php
+;///////////////////////////////////////
+;[plg_qform_view]
+
+;///////////////////////////////////////
+;//   qform.inc.php
+;///////////////////////////////////////
+[plg_qform]
+title_confirm = "$1 の確認"
+title_confirm2 = "確認画面"
+title_none = "No Title"
+title_finished = "送信完了"
+title_form_log = "[[$1]]のフォーム"
+
+msg_email2 = "※確認のためもう一度入力してください"
+
+datetime  = "送信日時"
+
+zipcode   = "郵便番号"
+state     = "都道府県"
+city      = "市区町村"
+street    = "番地建物"
+def_state = "東京都"
+lname     = "姓"
+fname     = "名"
+fmt_paren = "($1)"
+finished  = "投稿しました"
+states    = "北海道,青森県,岩手県,宮城県,秋田県,山形県,福島県,茨城県,栃木県,群馬県,埼玉県,千葉県,東京都,神奈川県,新潟県,富山県,石川県,福井県,山梨県,長野県,岐阜県,静岡県,愛知県,三重県,滋賀県,京都府,大阪府,兵庫県,奈良県,和歌山県,鳥取県,島根県,岡山県,広島県,山口県,徳島県,香川県,愛媛県,高知県,福岡県,佐賀県,長崎県,熊本県,大分県,宮崎県,鹿児島県,沖縄県"
+lbl_agree = "同意される場合、チェックを入れてください"
+agree = "同意する"
+
+btn_confirm = "　確　認　"
+btn_back    = " 戻る "
+btn_submit  = " 送信 "
+reconfirm   = "[確認]"
+
+link_log_chk = "投稿ログをチェックする"
+
+err_invalid_ptn = "$1 を正しく入力してください"
+err_no_check = "$1 にチェックされていません"
+err_invalid_email2 = "確認用メールアドレスには同じメールアドレスを記述してください"
+err_no_email = "email項目がないため、返信が機能しません"
+err_nm_conf  = "[notice_mail]通知設定ができていません。"
+err_nm_email = "[notice_mail設定]宛先の設定がないか、メールアドレスが不正です"
+err_nm_body  = "[notice_mail設定]本文がありません"
+err_fm_conf  = "[finish_mail]自動返信設定ができていません。"
+err_fm_email = "[finish_mail]自動返信の差出人の設定がありません"
+err_fm_body  = "[finish_mail]自動返信の本文がありません"
+err_enable_session = "ブラウザで cookie が無効になっているようです。フォーム を利用するには、cookie を有効にする必要があります。"
+err_looppage = "現在のページは読み込めません"
+err_oversize = "$1 のファイルサイズが制限以上です"
+err_upload   = "$1 でファイルアップロードエラーが起こりました"
+err_invalid_ptn_file = "$1 はアップロードできません(ファイル名が不正)"
+
+;///////////////////////////////////////
+;//   qhmauth.inc.php
+;///////////////////////////////////////
+[plg_qhmauth]
+title        = "ユーザー認証"
+err_pkwk_ini = "pukiwiki.ini.phpの設定が間違っています。"
+err_has_auth = "$1で、認証済みです（<a href=&quot;$2&quot;>トップに戻る</a>）<br /><a href=&quot;$2?cmd=qhmlogout&quot;>ログアウトはここをクリック</a>"
+err_deny     = "<div class=&quot;box&quot;><h2>認証を拒否しました</h2><p>ユーザー名、パスワードが間違っています。</p></div>"
+
+;///////////////////////////////////////
+;//   qhmlogout.inc.php
+;///////////////////////////////////////
+[plg_qhmlogout]
+title = "QHM管理認証ログアウト"
+done  = "<h2>ログアウト</h2><p>ログアウトを完了しました。<br />トップページにもどるには、<a href=&quot;$1&quot; style=&quot;background-color:yellow&quot;>ここをクリック</a>してください</p>"
+
+
+;///////////////////////////////////////
+;//   qhmsetting.inc.php
+;///////////////////////////////////////
+[plg_qhmsetting]
+; !qhmsetting: 一般設定
+title_helplink = "ヘルプ"
+hdr = "Quick Homepage Maker v$1 設定"
+title = "QHMサイト情報設定"
+ntc = "<p>Quick Homepage Maker の設定を行います。<br />##LF##以下の項目から、変更したいものをクリックしてください。</p>"
+php4_warn = "CENTER:&deco(bold,red,,){このQHMはPHP4で動作しています};##LF####LF##QHMではPHP4をサポートしておりません。##LF##正常動作させるには、PHP5へバージョン変更するか、##LF##QHM v4.53 へダウングレードをして下さい。##LF##[[方法はこちら>$1]]##LF##"
+toc = "項目"
+btn_confirm = "設定を確認する"
+confirm = "以下の内容でよければ、ページ下部の「設定する」をクリックしてください"
+btn_back = "戻る"
+btn_update = "設定する"
+goto_frontpage = "変更を反映させるには、<a href=&quot;$1&quot; style=&quot;font-weight:bold;background-color:#ff6;&quot;>ここをクリック</a>して下さい"
+
+
+title_err_auth = "アクセスできません"
+title_err_cannot_write_inifile = "設定ファイルエラー"
+err_auth = "<h2>アクセス制限</h2><p>このページは、管理者のみアクセスできます</p>"
+err_cannot_write_inifile = "<h2>エラー</h2><p>設定ファイル qhm.ini.php に書き込めません。qhm.ini.phpに書き込み権限(666)を設定して下さい。"
+err_direct_access = "このページへの直接アクセスは、無効です。"
+
+
+
+title_design    = "デザインの変更"
+title_info      = "サイト情報の設定"
+title_admin     = "ユーザー名、パスワードの変更"
+title_useradmin = "アクセス権限設定"
+title_clear     = "高速化設定、キャッシュの初期化"
+title_backup    = "バックアップ"
+title_counter   = "アクセスカウンター"
+title_chmod     = "ファイル権限設定"
+title_mail      = "メール送信設定"
+title_close     = "サイトの閉鎖"
+title_mobile    = "携帯アクセス転送"
+title_gmap      = "Googleマップキー"
+
+sub_title_design    = "ロゴ画像の設定、ロゴ部分の文字、テンプレートの設定を行います。"
+sub_title_info      = "キーワード、サイト説明、ヘッダー、フッター、アクセス解析タグなどの設定を行います。"
+sub_title_admin     = "編集用のユーザー名、パスワードの設定を行います。"
+sub_title_useradmin = "特定のページにアクセス権限を設定し、アクセスできるユーザーを追加設定できます。"
+sub_title_clear     = "表示を高速化するためのキャッシュ機能を設定、キャッシュの初期化、テンプレートを初期化を行います。"
+sub_title_backup    = "QHMのバックアップをダウンロードできます。フルバックアップ、重要ファイルのみのバックアップなど可能です。"
+sub_title_counter   = "アクセスカウンターをリセットします。"
+sub_title_chmod     = "削除できない、FTPエラーが起こる原因である「ファイル権限」を設定、チェックします。"
+sub_title_mail      = "送信メールサーバーを設定できます（SMTP送信、GoogleAppsなどの場合）"
+sub_title_close     = "QHMで作成された全ページを閉鎖します。閉鎖後は、管理者権限でログインすることで編集、閲覧が可能です。"
+sub_title_mobile    = "携帯端末からのアクセスを携帯専用サイトなどに転送します。"
+sub_title_gmap      = "QHMでGoogleマップを使うためのキーを設定します。"
+
+; !qhmsetting: デザイン設定
+wp_design = "WordPressテーマ"
+qhm_design = "QHM専用"
+ntc_design_preview = "$1の「$2」デザインのプレビュー状態です。"
+ntc_design_view = "$1の「$2」デザインを利用中です"
+hdr_wp_design = "WordPressテーマの設定"
+ntc_design = "QHM専用デザインを使う、もしくは、WordPressテンプレートを使うことができます。利用したいデザインは、事前に skin/hokukenstyle、もしくは、skin/wordpress にフォルダに分けて、アップロードしてください。"
+hdr_qhm_design = "QHM専用デザインの設定"
+hdr_preview_design = "プレビュー"
+logotype_text = "テキストを使う設定"
+logotype_img = "画像を使う設定"
+no_logoimg = "ロゴ画像なし"
+hdr_logo = "（１）ロゴ部分のデザインの設定"
+lbl_nochange = "変更なし（現在: $1）"
+lbl_useimg = "画像を使う（500KB以下推奨）"
+lbl_cur_logo = "現在の設定"
+lbl_usetext = "テキストを使う"
+hdr_select_design = "（２）デザインテンプレートの選択"
+select_design = "以下から、デザインテンプレートを選択して下さい。"
+cur_design = "（現在の設定）"
+title_thumb = "$1サムネール"
+wrn_safe_mode = "<span style=&quot;color:#f66&quot;>このサーバーではQHM上でのデザイン取得ができません。php.ini のsafe_mode をOff にしてください。<br /><a href=&quot;$1?GetDesign#safe_mode&quot; target=&quot;new&quot;>>>>Off にする方法はこちら</a></span><br /><br />または、インストールシステムからデザインを取得してください。<br /><a href=&quot;$1sys/&quot; target=&quot;new&quot;>>>>インストールシステムからデザインテンプレートを取得する</a>"
+get_design = "デザインテンプレートを取得"
+wrn_cannot_get_design = "<a href=&quot;$1sys/&quot; target=&quot;new&quot;>>>>インストールシステムでデザインテンプレートを取得する</a><br /><span style=&quot;color:#f66&quot;>※このサーバーではQHMからデザインテンプレートを取得できません</span>"
+title_club_auth = "北研クラブ認証"
+lbl_floral = "花柄"
+lbl_business = "ビジネス"
+lbl_clearmodern = "透明モダン"
+lbl_note = "ノート型"
+lbl_art = "アート系"
+lbl_modernpop = "モダン・ポップ"
+lbl_luxury = "高級感"
+lbl_simplejapanese = "シンプル・和"
+lbl_note2 = "ノート型2"
+lbl_normal = "標準デザイン"
+hdr_remove_design = "デザインの削除"
+btn_remove = "削除する"
+title_ftp = "FTP接続"
+ntc_ftp = "PHPがセーフモードで稼働しているため、FTP接続が必要です。このサーバーのFTPアカウントとパスワードを入力してください。"
+ftp_user = "FTPアカウント"
+ftp_dir = "設置先フォルダ"
+hdr_wp_setting = "WordPressテーマを利用する"
+select_wp = "以下から、WordPressのテーマを選択して下さい。"
+ntc_wp_logo = "※ロゴ画像は、選べません"
+hdr_wp_css = "追加スタイル"
+ntc_wp = "<p><strong>ご確認下さい : </strong></p>##LF##<ul style=&quot;margin-left:3%;&quot;>##LF##<li>WordPressのテーマは、ブログのためのデザインです。ご自身で多少のカスタマイズが必要です</li>##LF##<li>テンプレートに埋め込まれている文字や、サイドバーに読み込むリンクなど、適切に再編集して下さい</li>##LF##<li>標準的な作り方に沿わないテーマを使うと、一部のプラグインが動作しないことがあります</li>##LF##<li>WPテーマとの完全な互換性はありません。ご自身でのカスタマイズが必要となります</li>##LF##</ul>"
+hdr_preview = "デザインのプレビュー"
+ntc_preview = "以下から、デザインテンプレートを選択し、プレビューを押して下さい"
+lbl_preview_qhm = "QHM専用 : "
+btn_preview = "プレビュー"
+lbl_preview_wp = "WordPressテーマ : "
+ntc_wp_usage = "WordPressのテーマを利用するには、skin/wordpress/ に、設置します。"
+
+; !qhmsetting: サイト設定
+
+ntc_info = "サイト情報の設定では、titleタグ、ヘッドコピー、フッターの情報、アクセス解析タグなどの設定を行います。"
+title_info_cmp = "サイト情報の変更完了"
+info_cmp = "サイト情報を変更しました。"
+
+
+title_sitename = "タイトル文字"
+ntc_sitename = "ページタイトルを設定します"
+title_address = "所在地"
+ntc_address = "会社の住所を書いてください。個人の場合、アバウトな住所を書きます"
+title_contact = "連絡先"
+ntc_contact = "会社などは電話番号、個人なら適当（contact me by emailなど）に"
+title_headcopy = "ヘッドコピー"
+ntc_headcopy = "ページの一番上の１行メッセージ（SEOに重要）"
+title_keywords = "キーワード"
+ntc_keywords = "検索エンジンに必要なキーワードです。　例）ホームページ,作成,北研"
+title_description = "説明"
+ntc_description = "検索エンジンに必要なホームページの説明です"
+title_metatag = "その他のタグ"
+ntc_metatag = "&lt;head&gt;タグ内に、入れたいタグを自由に書いて下さい"
+title_accesstag = "アクセス解析タグ"
+ntc_accesstag = "アクセス解析用のタグを入力します。管理者モードでは、解析されないようになります"
+title_modifier = "サイト管理者"
+ntc_modifier = "サイトの管理者名を入力します（会社名、組織名など）"
+title_modifierlink = "管理者ページ"
+ntc_modifierlink = "管理者が別のサイトを持っている場合、そちらのURLを書きます"
+title_externlink = "外部リンクの<br />開き方"
+ntc_externlink = "外部リンクを別ウィンドウで開くかどうかの設定<br />（おすすめは、「別ウインドウ」です）"
+opt_externlink_1 = "別ウィンドウ"
+opt_externlink_2 = "別ウィンドウで開かない"
+opt_externlink_3 = "特定のウィンドウ"
+title_exclusion_list = "別ウィンドウで<br />開かない設定"
+ntc_exclusion_list = "別ウインドウで開かないホスト名を | で区切って入力してください"
+title_show_login = "管理者認証への<br />リンク表示"
+ntc_show_login = "管理者ページへのアクセス方法を指定します<br />（おすすめは、「右下のQHMリンクから」です）"
+opt_show_login_1 = "常にedit thisを表示"
+opt_show_login_2 = "右下のQHMリンクから"
+opt_show_login_3 = "なし（QHMAdminページ）"
+title_show_licence = "ライセンス表記"
+ntc_show_licence = "ページ右のQHMライセンス表記を表示、非表示を設定します<br />（<a href=&quot;http://www.open-qhm.net/index.php?QHMLicence#n8d1069b&quot; target=&quot;new&quot;>非表示にすると認証ページアクセスが難しくなります</a>）"
+opt_show_licence_1 = "表示する"
+opt_show_licence_2 = "非表示（非推奨・QHMAdminページからログイン）"
+title_toggle_autolink = "自動リンク"
+ntc_toggle_autolink = "ページ名が長く、「\'」や「&quot;」を利用し、QHMが正常に動かない場合、<br />「利用しない」にして下さい"
+opt_toggle_autolink_1 = "利用する"
+opt_toggle_autolink_2 = "利用しない"
+title_select_lang = "言語"
+ntc_select_lang = "QHMのインターフェースで用いる言語を変更することができます。デフォルトは日本語です。"
+
+
+; !編集用ID、パスワードの設定
+
+ntc_admin = "ここで設定したユーザー名とパスワードは、忘れないようにして下さい。ここで設定したユーザー名とパスワードは、忘れないようにして下さい。<br />##LF##※半角英数と一部の記号のみ"
+cur_password = "現在のパスワード"
+new_password = "新パスワード"
+ntc_confirm_password = "確認のため、２度入力してください"
+title_admin_cmp = "ユーザーの変更完了"
+admin_cmp = "<p>編集ユーザーの変更を完了しました。</p>##LF##<p>新しいユーザー名は、<span style=&quot;font-size:24px;&quot;>$1</span>、パスワードは「******」です。</p>##LF##<p>再度、ログインが必要となります。<a href=&quot;$2?plugin=qhmauth&quot; style=&quot;font-weight:bold;background-color:#ff6;&quot;>ここをクリック</a>して下さい</p>"
+
+err_not_unique_username = "他のユーザーと名前が重複しています<br />"
+err_empty_new_password = "新パスワードが入力されていません<br />"
+err_not_match_cur_password = "現在のパスワードと、一致しません<br />"
+err_invalid_format_username = "ユーザー名は、半角英数のみで入力してください<br />"
+err_not_match_new_password = "新パスワードが一致しません<br />"
+err_invalid_format_password = "パスワードは、英数半角と一部の記号のみ(スペース不可)で入力してください<br />"
+err_very_short_password = "パスワードは、6文字以上を設定してください<br />"
+
+; !メール送信設定
+
+hdr_notify_update = "更新通知設定"
+ntc_notify_update = "ページが更新される度に、メールで知らせる機能です。"
+notify_update = "更新通知"
+opt_notify_update_1 = "通知する"
+opt_notify_update_2 = "通知しない"
+send_diff = "差分のみ送信"
+opt_send_diff_1 = "差分のみ"
+opt_send_diff_2 = "全文"
+sender_mailaddress = "送信者メールアドレス"
+notify_to = "更新通知先"
+tips_notify_update = "<ul class=&quot;list1&quot;>##LF##	<li><b>個人で使っている場合</b><br />##LF##	毎回メールで通知されると面倒なので、「通知しない」がお勧めです##LF##	</li>##LF##	<li><b>社内情報共有の場合</b><br />##LF##	通知機能をオンにして、通知先をメーリングリストに設定すると便利です##LF##	</li>##LF##</ul>"
+hdr_mail_server = "メール送信設定"
+ntc_mail_server = "更新通知を送信する際のメールサーバーの設定を行います。<br />##LF##以下に必要項目を入力して下さい。<br />##LF##なお、ほぼすべてのユーザーが、以下の設定を変更する必要はありません。"
+smtp_server = "SMTPサーバー"
+smtp_auth = "SMTP AUTH"
+opt_smtp_auth_1 = "利用する"
+opt_smtp_auth_2 = "利用しない"
+pop_server = "POPサーバー"
+pop_username = "POPアカウント"
+pop_password = "POPパスワード"
+hdr_gapps = "Google Apps利用者"
+ntc_gapps = "GoogleAppsを導入している方で、自動返信メールの投稿内容、ダウンロード通知など、<a href=&quot;http://www.google.com/support/a/bin/answer.py?answer=55299&topic=14868&quot; target=&quot;new&quot;>「自分のアカウントにメールを送ると届かない」（参照：GoogleAppsヘルプ）</a>場合、以下を設定して下さい。"
+sendto_gapps = "GoogleApps宛にメールを送る"
+opt_sendto_gapps_1 = "利用する"
+opt_sendto_gapps_2 = "利用しない"
+gapps_domain = "メールのドメイン"
+
+err_invalid_sender_mailaddress = "送信者のメールアドレスを正しく、入力してください<br />"
+err_invalid_notify_to = "更新通知先を正しく、設定して下さい。<br />"
+err_invalid_smtp_server = "SMTPサーバーを設定して下さい<br />"
+err_invalid_pop_server = "POPサーバーを正しく、設定して下さい。<br />"
+err_invalid_pop_username = "POPアカウントを入力してください。<br />"
+err_invalid_pop_password = "POPパスワードを入力してください。<br />"
+err_invalid_gapps_domain = "ドメインを正しく設定して下さい。<br />"
+
+confirm_notify_update = "利用する<br />（送り先:$1、内容：$2）"
+title_mail_cmp = "メール送信設定の完了"
+admin_cmp = "<p>メール送信設定を完了しました。</p>##LF##<p>自動返信メールフォームなどを利用して、テストを行って下さい。<br /><a href=&quot;$1&quot; style=&quot;font-weight:bold;background-color:#ff6;&quot;>トップに戻る</a></p>"
+
+; !ユーザー権限設定
+user_config = "ユーザーの設定"
+user_password_confirm = "再入力"
+btn_user_add = "追　加 -&gt;"
+user_list = "ユーザーリスト"
+btn_user_password = "パスワード変更"
+btn_user_delete = "削除"
+ntc_user = "※ パスワードの変更、ユーザの削除は、リストからユーザーを選択してください"
+permission_config = "アクセス権限の設定"
+permission_add = "アクセス権限の追加"
+permission_rule = "ページ名のパターン"
+permission = "アクセス権限"
+btn_permission_add = "追　加"
+opt_permission_all = "完全"
+opt_permission_front = "前方"
+opt_permission_back = "後方"
+opt_permission_part = "部分"
+opt_permission_other = "その他"
+permission_read = "閲覧許可"
+permission_write = "編集許可"
+permission_list = "アクセス権限のリスト"
+permission_action = "操 作"
+permission_delete = "削　除"
+title_err_user = "エラー"
+err_cannot_write_user = "qhm_users.ini.txt の書き込み権限がありません。"
+err_cannot_write_permission = "qhm_access.ini.txt の書き込み権限がありません。"
+user_add_cmp = "ユーザーを追加しました。"
+user_delete_cmp = "ユーザーを削除しました。"
+user_password_cmp = "ユーザーパスワードを設定しました。"
+err_empty_user_password = "パスワードなしは、設定できません。"
+err_invalid_user_password = "パスワードは、半角英数を入力してください。"
+permission_add_cmp = "アクセス権限を追加しました。"
+permission_delete_cmp = "アクセス権限を削除しました。"
+err_not_login = "<a href=&quot;$1?cmd=qhmauth&quot;>ログイン</a>してください。"
+btn_ch_passwd = "変更"
+user_passwd_cmp = "変更しました"
+
+; !ファイル権限設定
+btn_chmod = "権限変更を実行する"
+chmod_no_err = "書き込み権限に問題はありませんでした"
+err_cannot_writable = "以下のファイルは、QHMによって利用するにも関わらず、書き込みができません。<br />FTPソフトなどを使って、書き込みを権限を設定して下さい"
+
+
+
+
+;///////////////////////////////////////
+;//   qp_button.inc.php
+;///////////////////////////////////////
+[plg_qp_button]
+btn_cart_add = "カートに入れる"
+err_usage    = "&qp_button(商品名,価格[,カートのURL,表示文字,ウインドウ設定]);"
+
+
+;///////////////////////////////////////
+;//   qp_cart.inc.php
+;///////////////////////////////////////
+[plg_qp_cart]
+link_cart = "カートを見る"
+
+
+;///////////////////////////////////////
+;//   qms_cart.inc.php
+;///////////////////////////////////////
+[plg_qms_cart]
+err_usage    = "&qms_cart(商品ID|商品名|カートのURL,[ウインドウ設定,数量表示,表示文字]);"
+btn_cart_add    = "カートに追加"
+btn_cart_view   = "カートを見る"
+cart_amount_def = "数量"
+
+
+;///////////////////////////////////////
+;//   qp_here.inc.php
+;///////////////////////////////////////
+;[plg_qp_here]
+
+;///////////////////////////////////////
+;//   qr.inc.php
+;///////////////////////////////////////
+;[plg_qr]
+
+;///////////////////////////////////////
+;//   random.inc.php
+;///////////////////////////////////////
+;[plg_random]
+
+;///////////////////////////////////////
+;//   read_url.inc.php
+;///////////////////////////////////////
+[plg_read_url]
+err_invalid_url = "指定されたURLは、不正です : $1"
+
+;///////////////////////////////////////
+;//   read.inc.php
+;///////////////////////////////////////
+[plg_read]
+searched = "関連ページを検索しました"
+
+;///////////////////////////////////////
+;//   redirect_iframe.inc.php
+;///////////////////////////////////////
+[plg_redirect_iframe]
+link      = "自動的に転送されない場合、こちらをクリックしてください。"
+ntc_admin = "<p><strong>【お知らせ】管理者モード以外のアクセスは、redirect_iframeプラグインによって、「親フレーム」を<a href=&quot;$1&quot; target=&quot;new&quot;>$1</a> に転送します。</strong></p>"
+
+;///////////////////////////////////////
+;//   redirect.inc.php
+;///////////////////////////////////////
+[plg_redirect]
+ntc_admin    = "<p><strong>【お知らせ】管理者モード以外のアクセスは、redirectプラグインによって、<a href=&quot;$1&quot; target=&quot;_blank&quot;>$1</a> に転送されます。</strong></p>"
+err_self_ref = "<p><strong style=&quot;background-color:yellow&quot;>【警告】redirectプラグインによる転送先が、このページ自身になっています。別のページを指定して下さい。</strong></p>"
+
+
+;///////////////////////////////////////
+;//   ref.inc.php
+;///////////////////////////////////////
+[plg_ref]
+err_usage          = "#ref(): ([pagename/]attached-file-name[,parameters, ... ][,title])"
+err_no_dir         = "No UPLOAD_DIR"
+err_dup_fname      = "The same file name $1 at both page: $2 and $3. Try ref(pagename/filename) to specify one of them"
+err_ambiguous      = "The style ref(filename,pagename) is ambiguous and become obsolete.  Please try ref(pagename/filename)"
+err_notfound       = "File not found: &quot;$1&quot; at page &quot;$2&quot;"
+err_usage_action   = "Usage: plugin=ref&amp;page=page_name&amp;src=attached_image_name"
+title_invalid_args = "Invalid argument"
+title_notfound     = "Attach file not found"
+title_notimage     = "Seems not an image"
+
+
+
+;///////////////////////////////////////
+;//   ref2.inc.php
+;///////////////////////////////////////
+[plg_ref2]
+err_usage        = "#ref(): ([pagename/]attached-file-name[,parameters, ... ][,title])"
+err_notfound     = "File not found: &quot;$1&quot;"
+err_usage_action = "Usage: plugin=ref2&amp;page=page_name&amp;src=attached_image_name"
+
+
+;///////////////////////////////////////
+;//   related.inc.php
+;///////////////////////////////////////
+[plg_related]
+title     = "Backlinks for: $1"
+link_back = "Return to $1"
+notfound  = "No related pages found."
+
+
+;///////////////////////////////////////
+;//   rss.inc.php
+;///////////////////////////////////////
+[plg_rss]
+err_version = "Invalid RSS version!!"
+err_nodata  = "recent.dat is not found"
+description = "QHM RecentChanges"
+
+;///////////////////////////////////////
+;//   rss10.inc.php
+;///////////////////////////////////////
+;[plg_rss10]
+
+;///////////////////////////////////////
+;//   ruby.inc.php
+;///////////////////////////////////////
+[plg_ruby]
+err_usage = "&ruby(pronunciation){words};"
+
+;///////////////////////////////////////
+;//   scrollbox.inc.php
+;///////////////////////////////////////
+;[plg_scrollbox]
+
+;///////////////////////////////////////
+;//   search_menu.inc.php
+;///////////////////////////////////////
+[plg_search_menu]
+hdr = "検索"
+
+
+;///////////////////////////////////////
+;//   secedit.inc.php
+;///////////////////////////////////////
+[plg_secedit]
+err_nopage     = "No such page"
+err_invalid_id = "Invalid id"
+err_noorg      = "No original"
+err_nodigest   = "No digest"
+
+
+;///////////////////////////////////////
+;//   secret.inc.php
+;///////////////////////////////////////
+[plg_secret]
+hdr        = "会員認証"
+ntc        = "以下に、ユーザー名、パスワードを入力し「Enter」ボタンを押して下さい。"
+btn        = "Enter"
+title      = "$1（認証）"
+ntc_admin  = "【お知らせ】管理者モード以外のアクセスは、secretプラグインによって、パスワード認証を必要とします。"
+err_passwd = "パスワードが間違っています"
+
+
+;///////////////////////////////////////
+;//   select_fsize.inc.php
+;///////////////////////////////////////
+[plg_select_fsize]
+lbl = "文字サイズ"
+s   = "小"
+m   = "中"
+l   = "大"
+
+;///////////////////////////////////////
+;//   server.inc.php
+;///////////////////////////////////////
+[plg_server]
+name     = "Server Name"
+software = "Server Software"
+admin    = "Server Admin"
+
+;///////////////////////////////////////
+;//   setlinebreak.inc.php
+;///////////////////////////////////////
+[plg_setlinebreak]
+err_usage = "Invalid argument: $1"
+
+;///////////////////////////////////////
+;//   shiftjis.inc.php
+;///////////////////////////////////////
+[plg_shiftjis]
+ntc_admin = "<p><strong>【お知らせ】</strong><br />このページは、ユーザーモードの際、Shift-JIS化されています<br /></p>"
+
+;///////////////////////////////////////
+;//   show.inc.php
+;///////////////////////////////////////
+[plg_show]
+err_usage    = "<p>#show(): (attached-file-path[,parameters, ... ][,title])</p>##LF##"
+err_noimg    = "No Image File: &quot;$1&quot;"
+err_notfound = "File not found: &quot;$1&quot;"
+
+
+;///////////////////////////////////////
+;//   showrss.inc.php
+;///////////////////////////////////////
+[plg_showrss]
+ex_xml_loaded = "xml extension is loaded"
+ex_mbs_loaded = "mbstring extension is loaded"
+err_ex_xml_load = "xml extension is not loaded"
+err_ex_mbs_load = "mbstring extension is not loaded"
+err_noparams    = "no parameter(s)."
+err_syntax      = "syntax error: $1"
+err_cannot_get  = "cannot get rss from server."
+err_xml         = "XML error: $1 at line $2 in $3"
+
+;///////////////////////////////////////
+;//   sitemap.inc.php
+;///////////////////////////////////////
+;[plg_sitemap]
+
+;///////////////////////////////////////
+;//   size.inc.php
+;///////////////////////////////////////
+[plg_size]
+err_usage = "&size(px){Text you want to change};"
+
+;///////////////////////////////////////
+;//   slideshow.inc.php
+;///////////////////////////////////////
+[plg_slideshow]
+err_noheight = "Error : 高さは、必ず指定して下さい"
+
+;///////////////////////////////////////
+;//   stationary.inc.php
+;//
+;//   ※重要でないため、無視
+;///////////////////////////////////////
+;[plg_stationary]
+
+;///////////////////////////////////////
+;//   style.inc.php
+;///////////////////////////////////////
+;[plg_style]
+
+;///////////////////////////////////////
+;//   style2.inc.php
+;///////////////////////////////////////
+;[plg_style2]
+
+;///////////////////////////////////////
+;//   tag.inc.php
+;///////////////////////////////////////
+[plg_tag]
+clean_cache     = "Clean Tag Caches"
+clean_cache_hdr = "Following pages were executed to assure:"
+ntc_passwd      = "ページを開いただけでは、作業は行われません。<br />以下にパスワードを入力し、実行をクリックしてください。"
+lbl_passwd      = "管理者パスワード"
+btn_exec        = "実行する"
+err_noargs      = "tag(): no argument(s)."
+
+
+;///////////////////////////////////////
+;//   tagcloud.inc.php
+;///////////////////////////////////////
+[plg_tagcloud]
+err_tag_notfound = "tag.inc.php does not exist."
+
+
+;///////////////////////////////////////
+;//   taglist.inc.php
+;///////////////////////////////////////
+;[plg_taglist]
+
+;///////////////////////////////////////
+;//   tb.inc.php
+;///////////////////////////////////////
+[plg_tb]
+sorry = "This function had been removed now. It will be created soon.<br />Sorry for your inconvenience."
+
+err_tb_disabled  = "TrackBack feature disabled. "
+err_no_url       = "URL parameter is not set. "
+err_no_tbid      = "TrackBack Ping ID is not set. "
+err_cannot_read  = "No such directory: TRACKBACK_DIR"
+err_cannot_write = "Permission denied: TRACKBACK_DIR"
+err_invalid_tbid = "TrackBack ID is invalid."
+err_url_notfound = "URL is fictitious."
+
+;///////////////////////////////////////
+;//   topicpath.inc.php
+;///////////////////////////////////////
+;[plg_topicpath]
+
+;///////////////////////////////////////
+;//   touchgraph.inc.php
+;///////////////////////////////////////
+;[plg_touchgraph]
+
+;///////////////////////////////////////
+;//   tracker_list.inc.php
+;///////////////////////////////////////
+;[plg_tracker_list]
+
+;///////////////////////////////////////
+;//   tracker.inc.php
+;///////////////////////////////////////
+[plg_tracker]
+title_cannot_write = "cannot write"
+err_cfg_notfound     = "config file $1 not found."
+err_invalid_pagename = "page name ($1) is not valid."
+err_no_template      = "page template ($1) is not exist."
+
+;///////////////////////////////////////
+;//   tweet.inc.php
+;///////////////////////////////////////
+[plg_tweet]
+lbl_default = "このページをRTする"
+
+;///////////////////////////////////////
+;//   u2b.inc.php
+;///////////////////////////////////////
+[plg_u2b]
+err_no_id = "ID parameter must be set."
+
+;///////////////////////////////////////
+;//   uname.inc.php
+;///////////////////////////////////////
+[plg_uname]
+you = "あなた"
+def_title = "さん"
+fmt_title = "$1$2";○○さん
+
+;///////////////////////////////////////
+;//   underline.inc.php
+;///////////////////////////////////////
+;[plg_underline]
+
+;///////////////////////////////////////
+;//   update_entities.inc.php
+;///////////////////////////////////////
+[plg_update_entities]
+title_update  = "キャッシュ更新"
+btn_submit    = "実行"
+adminpass     = "管理者パスワード"
+done          = "キャッシュの更新が完了しました。"
+ntc_usage     = "##LF##&size(16){&color(red){【お知らせ】};};##LF##　&size(16){&color(red){ページを開いただけでは、作業は行われていません};};##LF##　&size(16){&color(red){ページ末尾で、管理者パスワードを入力し、「実行ボタン」を押して下さい};};##LF####LF##* 処理内容##LF####LF##:文字実体参照にマッチする正規表現パターンのキャッシュを更新|##LF##PHPの持つテーブルおよびW3CのDTDをスキャンして、キャッシュに記録します。##LF####LF##* 処理対象##LF##「COLOR(red){not found.}」と表示されたファイルは処理されません。##LF##-$1##LF####LF##* 実行##LF##管理者パスワードを入力して、[実行]ボタンをクリックしてください。##LF##"
+
+err_w3c_notfound       = "w3c:$1 COLOR(red):not found."
+err_cannot_write_cache = "cannot write file $1entities.dat<br />##LF##maybe permission is not writable or filename is too long"
+
+
+;///////////////////////////////////////
+;//   update_tinycode.inc.php
+;///////////////////////////////////////
+[plg_update_tinycode]
+
+title          = "短縮URL管理"
+title_err_auth = "アクセスできません"
+
+hdr_update      = "短縮URLの変更" ;QHM
+ntc_update      = "ページの短縮URLを変更または削除することができます。##LF##変更すると、既存の短縮URLでは、ページを開けなくなります。" ;QHM
+update_pagename = "変更するページ: %update_page%" ;QHM
+hdr_list        = "一覧と変更" ;QHM
+ntc_list        = "ページ毎に短縮URLの変更（削除）をすることができます。##LF##ページの名前をクリックし変更します。##LF####LF##※ &color(red){赤字のページ};は、存在しないページです。" ;QHM
+hdr_clean       = "短縮URLのクリーニング" ;QHM
+ntc_clean       = "存在しないページの短縮URLを削除し、クリーニングを実行します。" ;QHM
+hdr_reset       = "短縮URLのリセット" ;QHM
+ntc_reset       = "すべてのページの短縮URLを新しく作り直します。##LF##既存の短縮URLでは、ページを開けなくなります。" ;QHM
+hdr_init        = "短縮URLの初期化" ;QHM
+ntc_init        = "短縮URLの初期化を行います。##LF##管理者パスワードを入力して、実行してください。" ;QHM
+
+btn_update = "変更する"
+btn_delete = "短縮URLを削除する"
+btn_reset  = "リセット"
+btn_clean  = "クリーニング"
+btn_init   = "実行する"
+
+updated = "短縮URLを更新しました。"
+
+err_invalid_action = "エラーが発生しました。再度、実行してください。"
+err_auth           = "<h2>アクセス制限</h2><p>このページは、管理者のみアクセスできます</p>"
+
+
+;///////////////////////////////////////
+;//   qhmpw.inc.php
+;///////////////////////////////////////
+[plg_qhmpw]
+title = "パスワードを忘れた場合"
+attention = "<p>パスワードをリセットするには、管理者メールアドレスに登録した<br />メールアドレスを入力してください。</p><p>「送信する」ボタンをクリックすると管理者メールアドレスにメールを送信します。</p>"
+label_email = "メールアドレス"
+btn_send = "送信する"
+
+;   Error Messages
+err_notwritable = "<h2>エラー</h2><p>設定ファイル qhm.ini.php に書き込めません。qhm.ini.phpに書き込み権限(666)を設定して下さい。</p>"
+err_admin_email    = "<h2>エラー</h2><p>管理者メールアドレスが設定されていません。<br />インストールシステムよりユーザー名とパスワードを初期化してください。</p>"
+
+
+;///////////////////////////////////////
+;//   use_smart.inc.php
+;///////////////////////////////////////
+[plg_use_smart]
+switch_pc = "PCサイトに切り換え"
+switch_mob = "モバイルサイトに切り換え"
+
+
+;///////////////////////////////////////
+;//   utf8.inc.php
+;///////////////////////////////////////
+[plg_utf8]
+ntc_admin = "<p><strong>【お知らせ】</strong><br />このページは、ユーザーモードの際、UTF8化されています<br />##LF##QHM v4からは、UTF-8が標準になったので、このプラグインは不要です</p>"
+
+
+;///////////////////////////////////////
+;//   version.inc.php
+;///////////////////////////////////////
+;[plg_version]
+
+;///////////////////////////////////////
+;//   vman.inc.php
+;///////////////////////////////////////
+;[plg_vman]
+
+;///////////////////////////////////////
+;//   votex.inc.php
+;///////////////////////////////////////
+[plg_votex]
+title_collided = "On updating $1, a collision has occurred."
+title_updated  = "$1 was updated"
+lbl_choice     = "Selection"
+lbl_vote       = "Vote"
+btn_vote       = "Vote"
+btn_add        = "Vote"
+collided       = "It seems that someone has already updated this page while you were editing it.<br />##LF## + is placed at the beginning of a line that was newly added.<br />##LF## ! is placed at the beginning of a line that has possibly been updated.<br />##LF## Edit those lines, and submit again."
+title_err        = "Error in vote"
+err_continuation = "Continuation vote cannot be performed."
+err_no_match     = "There was no matching vote. "
+
+
+;///////////////////////////////////////
+;//   yahoobookmark.inc.php
+;///////////////////////////////////////
+[plg_yahoobookmark]
+lbl = "Yahoo!ブックマークに登録"
+err_no_args = "ブックマークのタイトルを入力してください。"
+
+
+
+; !ここからlib/ 以下のファイル -----------------
+
+;///////////////////////////////////////
+;   auth.php
+;///////////////////////////////////////
+[auth]
+ss_chkusr = "ユーザー認証"
+
+;///////////////////////////////////////
+;   backup.php
+;///////////////////////////////////////
+[backup]
+err_cannot_open = "Cannot open $1<br />##LF##Maybe permission is not writable or filename is too long"
+
+;///////////////////////////////////////
+;   config.php
+;///////////////////////////////////////
+;[config]
+
+;///////////////////////////////////////
+;   convert_html.php
+;///////////////////////////////////////
+;[convert_html]
+
+;///////////////////////////////////////
+;   diff.php
+;///////////////////////////////////////
+[diff]
+right_col = "r"
+left_col  = "l"
+text      = "text"
+ntc_conflict = "<p>l : between backup data and stored page data.<br />##LF## r : between backup data and your post data.</p>"
+
+;///////////////////////////////////////
+;   file.php
+;///////////////////////////////////////
+[file]
+lbl_editor = "edit by $1"
+err_invalid_dir  = "file_write(): Invalid directory"
+err_not_writable = "fopen() failed: $1/$2.txt<br />##LF##Maybe permission is not writable or filename is too long"
+err_mail_failed  = "pkwk_mail_notify(): Failed"
+err_cannot_open  = "Cannot open $1"
+err_chasen_notfound = "ChaSen not found: $1"
+err_chasen_failed   = "ChaSen execution failed: $1"
+err_cannot_write_tmpfile  = "Cannot write temporary file &quot;$1&quot;."
+err_cannot_remove_tmpfile = "Temporary file can not be removed: $1"
+err_kakasi_failed = "KAKASI execution failed: $1"
+err_unknown_kk_converter   = "Unknown kanji-kana converter: $1."
+err_pkwk_chown_cannot_open = "pkwk_chown(): fopen() failed for: CACHEDIR/$1"
+err_pkwk_chown_lock_failed   = "pkwk_chown(): flock() failed for lock"
+err_pkwk_chown_fclose_failed = "pkwk_chown(): fclose() failed"
+err_pkwk_chown_stat_failed   = "pkwk_chown(): stat() failed for: $1"
+err_pkwk_touch_invalid_uid   = "pkwk_touch_file(): Invalid UID and (not writable for the directory or not a flie): $1"
+
+;///////////////////////////////////////
+;   func.php
+;///////////////////////////////////////
+[func]
+close_title   = "閉鎖中"
+close_message = "このページは、現在閉鎖中です。<br />お手数ですが、公開されるまで、今しばらくお待ち下さい"
+list_symbol   = "記号"
+list_other    = "日本語"
+
+
+;///////////////////////////////////////
+;   html.php
+;///////////////////////////////////////
+[html]
+insert_title      = "$1を挿入"
+ar_insert_title   = "$1を回り込み貼り付け"
+img_title         = "挿入"
+img_title2        = "挿入2"
+attach_message    = "添付"
+view_help_message = "オンラインヘルプを見る"
+err_headers_already_sent = "Headers already sent at $1 line $2."
+err_dtd_already_called   = "pkwk_output_dtd() already called. Why?"
+err_invalid_dtd          = "DTD not specified or invalid DTD"
+err_skin_notfound        = "SKIN_FILE is not found"
+
+;///////////////////////////////////////
+;   init.php
+;///////////////////////////////////////
+[init]
+sun = "日"
+mon = "月"
+tue = "火"
+wed = "水"
+thu = "木"
+fri = "金"
+sat = "土"
+err_dir_not_found_or_writable = "Directory is not found or not writable ($1)'"
+err_vars_notfound             = "Variable(s) not found: (Maybe the old *.ini.php?)##LF##$1"
+err_defs_notfound             = "Define(s) not found: (Maybe the old *.ini.php?)##LF##$1"
+err_query_already_reserved    = "Sorry, already reserved: $1="
+err_query_too_long            = "Query string too long"
+err_exclusive_query           = "Using both cmd= and plugin= is not allowed"
+
+
+;///////////////////////////////////////
+;   link.php
+;///////////////////////////////////////
+[link]
+err_cannot_write = "cannot write $1"
+
+;///////////////////////////////////////
+;   mail.php
+;///////////////////////////////////////
+[mail]
+err_invalid_notifyto     = "pkwk_mail_notify(): Invalid $notify_to"
+err_invalid_notifyfrom   = "pkwk_mail_notify(): Invalid $notify_from"
+err_invalid_notifyhdr    = "pkwk_mail_notify(): Invalid $notify_header"
+err_redundant_notifyhdr  = "pkwk_mail_notify(): Redundant 'From:' in $notify_header"
+err_pop_novars           = "pop_before_smtp(): $$1  seems blank"
+err_pop_access           = "pop_before_smtp(): $1 ($2)"
+err_pop_invalid_greeting = "pop_before_smtp(): Greeting message seems invalid"
+err_pop_invalid_user     = "pop_before_smtp(): USER seems invalid"
+err_pop_auth             = "pop_before_smtp(): $1 authentication failed"
+
+
+;///////////////////////////////////////
+;   make_link.php
+;///////////////////////////////////////
+[make_link]
+err_iwurl_toolong = "InterWiki URL too long: $1 characters"
+
+
+;///////////////////////////////////////
+;   mbstring.php
+;///////////////////////////////////////
+;[mbstring]
+
+
+;///////////////////////////////////////
+;   plugin.php
+;///////////////////////////////////////
+[plugin]
+err_plugin_call_limit = "Alert: plugin &quot;$1&quot; was called over $2 times. SPAM or something?<br />##LF##<a href=&quot;$3&quot;>Try to edit this page</a><br />##LF##<a href=&quot;$4&quot;>Return to frontpage</a>"
+err_plugin_init       = "[Plugin init failed: $1]"
+
+
+;///////////////////////////////////////
+;   proxy.php
+;///////////////////////////////////////
+;[proxy]
+
+
+;///////////////////////////////////////
+;   pukiwiki.php
+;///////////////////////////////////////
+[pukiwiki]
+err_plg_not_implement = "plugin=$1 is not implemented."
+
+
+;///////////////////////////////////////
+;   qhm_init_killer.php
+;///////////////////////////////////////
+;[qhm_init_killer]
+
+;///////////////////////////////////////
+;   qhm_init_main.php
+;///////////////////////////////////////
+;[qhm_init_main]
+
+
+
+;///////////////////////////////////////
+;   qhm_init.php
+;///////////////////////////////////////
+[qhm_init]
+
+toplink_name      = "トップへ"
+editboxlink_name  = "編集ボックスへ"
+editlink_name     = "編集"
+reflink_name      = "添付"
+pagelink_name     = "このページの"
+difflink_name     = "差分"
+backuplink_name   = "バックアップ"
+renamelink_name   = "名前変更"
+maplink_name      = "マップ"
+copylink_name     = "複製"
+tinyurllink_name  = "URL"
+sitelink_name     = "サイトの"
+navilink_name     = "ナビ編集"
+menulink_name     = "メニュー編集"
+menu2link_name    = "メニュー2編集"
+navi2link_name    = "ナビ2編集"
+newlinklink_name  = "新規ページ作成"
+whatnewlink_name  = "更新履歴"
+pagelistlink_name = "ページ一覧"
+yetlistlink_name  = "リンク切れ"
+toollink_name     = "ツール"
+swfulink_name     = "SWFU"
+fwd3link_name     = "FWD3"
+qdsgnlink_name    = "QDesigner"
+searchlink_name   = "単語検索"
+configlink_name   = "設定"
+helplink_name     = "ヘルプ"
+passwordlink_name = "パスワード変更"
+logoutlink_name   = "[x]ログアウト"
+updatelink_name   = "システムの更新"
+prevlink_name     = "デザインプレビュー"
+unload_confirm    = "このページから移動すると、変更した内容は保存されません。"
+
+;   Short Cut Cheat Sheat
+sc_close         = "[x]閉じる"
+sc_col_edit      = "編集"
+sc_col_move      = "ジャンプ"
+sc_blur          = "テキストエリアのフォーカスを外す"
+sc_scroll_top    = "トップへスクロール"
+sc_jump_edit     =  "編集画面へ移動"
+sc_jump_home     = "ホームへ移動"
+sc_preview       = "ページのプレビュー"
+sc_search        = "単語検索"
+sc_save          = "ページの更新"
+sc_newpage       = "新規ページ作成"
+sc_attach        = "添付（SWFU）"
+sc_map           = "マップ"
+sc_image         = "イメージ（SWFU）"
+sc_filelist      = "ファイル一覧"
+sc_open_tools    = "その他のツールを開く"
+sc_jump_settings = "システム設定"
+sc_focus         = "テキストエリアにフォーカスする"
+sc_urlshorter    = "FWD3"
+sc_view_url      = "URL"
+sc_open_help     = "会員サイトを開く"
+sc_open_google   = "Google を開く"
+
+;   Shorten URL
+su_shorten = "短縮URL"
+su_url     = "URL"
+su_close   = "[x]閉じる"
+su_update  = "変更"
+
+;   Other Plugins
+ot_label = "その他のツール"
+
+;   RSS
+rss_label = "最新の更新 RSS"
+
+;   Trackback
+tb_label = "TrackBack($1)"
+
+;   Referer
+ref_label = "外部リンク元"
+
+;   Error Messages
+err_encoding      = "このサーバーは、設定を変更しないと、文字化けして編集ができません<br />お手数ですが、<a href=&quot;http://www.open-qhm.net/index.php?ServerSettingError&quot;>ここをクリック</a>して、サーバー設定、もしくは、レンタルサーバー業者にお問い合わせ下さい。"
+err_cannot_edit   = "このページは編集できません"
+err_ui_lang       = "UI_LANG is not set"
+err_lang          = "$_LANG is not set"
+err_pkwk_readonly = "PKWK_READONLY is not set"
+
+
+
+;///////////////////////////////////////
+;   qhm_template.php
+;///////////////////////////////////////
+[qhm_template]
+err_no_cacheinfo = "<b>Fatal Error</b><br />No Cache Info: $1"
+
+
+;///////////////////////////////////////
+;   simplemail.php
+;   日本語用メールコンポーネントのためスルー
+;///////////////////////////////////////
+;[simplemail]
+
+
+;///////////////////////////////////////
+;   ss_authform.php
+;///////////////////////////////////////
+[ss_authform]
+page_title    = "ユーザー認証"
+retry_label   = "やり直す"
+btn_login = "ログイン"
+btn_cancel = "キャンセル"
+jump_home     = "トップに戻る"
+licence       = "Quick Homepage Maker $1 (rev.$2)<br />based on PukiWiki $3. licence is GPL"
+
+;   Notice Messages
+ntc_session_save_path = "セッションの保存先を設定しています。<a href=&quot;$1&quot;>&gt;&gt; 変更はこちら</a>"
+ntc_set_script        = "リンクが正常に動作しないサーバーの設定をしています。　<a href=&quot;$1&quot;>&gt;&gt; 変更はこちら</a> <a href=&quot;http://hokuken.com/qhmpro/index.php?ServerSettingPath&quot; target=&quot;help&quot;>(詳細)</a>"
+
+;   Error Messages
+err_session_writable = "セッション保存先の書き込み権限を確認できません。<a href=&quot;$1&quot;>&gt;&gt; 設定はこちら</a> <a href=&quot;http://hokuken.com/qhmpro/index.php?ServerSettingSession&quot; target=&quot;help&quot;>(詳細)</a>"
+err_auth             = "ユーザー名あるいは、パスワードが間違っています。"
+err_set_script       = "リンクが正常に動作しないサーバーの可能性があります。<br />URLを設定してください。　<a href=&quot;$1&quot;>&gt;&gt; 設定はこちら</a> <a href=&quot;http://hokuken.com/qhmpro/index.php?ServerSettingPath&quot; target=&quot;help&quot;>(詳細)</a>"
+err_login = "<a href=&quot;$1&quot; style=&quot;font-size:12px;color:#666&quot;>ログインできない場合</a>";
+
+
+;///////////////////////////////////////
+;   trackback.php
+;///////////////////////////////////////
+[trackback]
+err_no_dir         = "No such directory: TRACKBACK_DIR"
+err_tbdir_writable = "Permission denied to write: TRACKBACK_DIR"
+
+
+;///////////////////////////////////////
+;   wp_adapter.php
+;///////////////////////////////////////
+[wp_adapter]
+err_no_wp_design   = "Error : NO WordPress Design Template file"
+err_page_notexists = "$1 does not exist."
+
+
+

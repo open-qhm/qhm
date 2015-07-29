@@ -1,0 +1,11 @@
+<input type="text" name="qform[<?php echo h($el['id']) ?>]"
+  value="<?php echo h($str) ?>"
+  <?php if (is_bootstrap_skin()): ?>
+    class="form-control"
+  <?php else: ?>
+    <?php if ($el['size']): ?>
+      size="<?php echo h($el['size']) ?>" style="width:<?php echo h($el['size']) ?>em"
+    <?php endif ?>
+  <?php endif ?>
+  <?php echo $valid ? 'required' : ''?>
+>

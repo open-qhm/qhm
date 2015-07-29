@@ -1,0 +1,175 @@
+.qhm-section[data-horizontal-align],
+.qhm-section[data-vertical-align] {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.qhm-section[data-horizontal-align] > div,
+.qhm-section[data-vertical-align] > div {
+  display: table-cell;
+}
+.qhm-section[data-background-image] {
+  background-position: center center;
+  -webkit-background-size: cover;
+          background-size: cover;
+  background-repeat: no-repeat;
+}
+.qhm-section[data-background-image][data-background-type=repeat] {
+  background-position: 0 0;
+  -webkit-background-size: auto;
+          background-size: auto;
+  background-repeat: repeat;
+}
+.qhm-section[data-horizontal-align=left] > div {
+  text-align: left;
+}
+.qhm-section[data-horizontal-align=center] > div {
+  text-align: center;
+}
+.qhm-section[data-horizontal-align=right] > div {
+  text-align: right;
+}
+.qhm-section[data-vertical-align=top] > div {
+  vertical-align: top;
+}
+.qhm-section[data-vertical-align=bottom] > div {
+  vertical-align: bottom;
+}
+.qhm-section[data-vertical-align=middle] > div {
+  height: 100%;
+  vertical-align: middle;
+}
+.qhm-section[data-height=page] {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.qhm-section[data-height=page] > div {
+  display: table-cell;
+}
+.qhm-section.qhm-section-info {
+  background-color: #5BC0DE;
+  color: #fff;
+}
+.qhm-section.qhm-section-primary {
+  background-color: #428BCA;
+  color: #fff;
+}
+.qhm-section.qhm-section-success {
+  background-color: #5CB85C;
+  color: #fff;
+}
+.qhm-section.qhm-section-warning {
+  background-color: #F0AD4E;
+  color: #fff;
+}
+.qhm-section.qhm-section-danger {
+  background-color: #D9534F;
+  color: #fff;
+}
+.qhm-section.qhm-section-info h1,
+.qhm-section.qhm-section-primary h1,
+.qhm-section.qhm-section-success h1,
+.qhm-section.qhm-section-warning h1,
+.qhm-section.qhm-section-danger h1 {
+  color: #fff;
+}
+
+.qhm-section[data-video] {
+  overflow: hidden;
+  position: relative;
+  background-color: transparent;
+  z-index: 1;
+}
+.qhm-section .background-video {
+  position: absolute;
+  -webkit-background-size: cover;
+          background-size: 100% auto;
+          background-size: cover;
+  top: 0;
+  z-index: -1000;
+  width: 100%;
+  background-position: center;
+  background-position: center right !important;
+  overflow: hidden;
+  height: auto;
+}
+.qhm-section[data-filter=dark] .background-video .background-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom:0;
+  left: 0;
+  background-color: #000;
+  opacity: .4;
+}
+.qhm-section .background-video .qhm-section-video {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1000;
+  overflow: hidden;
+}
+.qhm-section[data-filter=blur] {
+  position: relative;
+}
+.qhm-section[data-filter=blur] > div {
+  background: inherit;
+  position: relative;
+  border: 10px solid rgba(255,255,255,.15);
+  box-shadow: 1px 1px 4px rgba(0,0,0,.15);
+  z-index: 3;
+  box-sizing: border-box;
+  background-origin: border-box;
+}
+.qhm-section[data-filter=blur] > div:before {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: inherit;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(6px);
+  -moz-filter: blur(6px);
+  -o-filter: blur(6px);
+  -ms-filter: blur(6px);
+  filter: url(#blur);
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='6');
+}
+.qhm-section[data-background-attachment=fixed] > div {
+  background-attachment: fixed;
+}
+.qhm-section[data-filter=dark],
+.qhm-section[data-filter=light] {
+  position: relative;
+  z-index: 1;
+}
+.qhm-section[data-filter=dark] .dark-overlay-wrapper,
+.qhm-section[data-filter=light] .dark-overlay-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -900;
+}
+.qhm-section[data-filter=dark] .dark-overlay-wrapper .dark-overlay,
+.qhm-section[data-filter=light] .dark-overlay-wrapper .dark-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom:0;
+  left: 0;
+}
+svg {
+  width: 0;
+  height: 0;
+  position: absolute;
+}

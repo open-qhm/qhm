@@ -1,0 +1,191 @@
+<?php
+/**
+ *   QBlog Comment Area Template
+ *   -------------------------------------------
+ *   ./plugin/qblog/comment_template.html
+ *   
+ *   Copyright (c) 2012 hokuken
+ *   http://hokuken.com/
+ *   
+ *   created  : 12/08/06
+ *   modified :
+ */
+?>
+<?php if ($editable):?>
+<script type="text/javascript">
+$(function(){
+	$("#qblog_comment_list")
+	.on('click', 'input:button[name=accept]', function(){
+		var $$ = $(this), $li = $(this).closest("li");
+		var id = $li.attr("id").split("_").pop();
+		var action = "<?php echo h($script)?>";
+		var data = {
+			mode : "accept",
+			refer : "<?php echo h($page)?>",
+			plugin : "qblog_comment",
+			id : id,
+			accept : 1
+		};
+		$.post(action, data, function(res){
+			if (res == 1) {
+				$li.removeClass("do_accept");
+				$('div.alert',$li).remove();
+				$$.remove();
+			}
+		});
+	})
+	.on('click', 'input:button[name=hide]', function(){
+	
+		if ( ! confirm('コメントを削除しますか？')) return false;
+	
+		var $$ = $(this), $li = $(this).closest("li");
+		var id = $li.attr("id").split("_").pop();
+		var action = "<?php echo h($script)?>";
+		var data = {
+			mode : "hide",
+			refer : "<?php echo h($page)?>",
+			plugin : "qblog_comment",
+			id : id,
+			hide : 1
+		};
+		$.post(action, data, function(res){
+			if (res == 1) {
+				$li.remove();
+			}
+		});
+	});
+});
+</script>
+<?php endif;?>
+<script type="text/javascript">
+$(function(){
+	$("#qblog_comment_form").on('submit', function(){
+		if ($("#qblog_comment_auth_code").length > 0 && $("#qblog_comment_auth_code").val() != $("input:hidden[name=authcode_master]", this).val()) {
+			alert("認証コードが間違っています。");
+			$("#qblog_comment_auth_code").focus().select();
+			return false;
+		}
+	});
+	$("#qblog_comment_list").on('click', 'a.qblog_comment_reply', function(){
+		var id = $(this).closest("li").attr("id").split("_").pop();
+		var title = "Re: " + $(this).closest("li").find("span.qblog_comment_title").text();
+		var anchor = '>>' + id;
+		$("#qblog_comment_title").val(title);
+		$("#qblog_comment_msg").val(anchor + "\n" + $("#qblog_comment_msg").val()).focus().select();
+		return false;
+	});
+	//when error, scroll to comment area
+	if ($("p.qblog_error").text().replace(/^\s+|\s+$/, '').length > 0) {
+		var top = $("p.qblog_error").offset().top;
+		$("html, body").animate({scrollTop: top}, 1000);
+	}
+});	
+</script>
+<h2>コメント</h2>
+
+<?php if (count($comments) > 0):?>
+
+<ul id="qblog_comment_list" class="list-unstyled">
+<?php foreach ($comments as $comment):?>
+
+	<?php if ($editable):?>
+	<li id="qbcomment_<?php echo h($comment['id'])?>" class="<?php echo $comment['accepted'] ? '': 'do_accept'?><?php echo $comment['admin'] ? ' qblog_admin_comment' : ''?>">
+	
+		<?php if ( ! $comment['accepted']) :?>
+		<div class="alert alert-danger">
+			<button class="close" data-dismiss="alert">×</button>
+			このコメントは、未承認です。<br />「コメントを承認」ボタンをクリックして公開してください。
+		</div>	
+		<?php endif; ?>
+
+		<span class="qblog_comment_title"><?php echo h($comment['title'])?></span>
+		<p class="qblog_comment_body"><?php echo $comment['msg']?></p>
+		<p class="qblog_comment_footer"><span class="badge qblog_comment_reply">コメント <?php echo h($comment['id'])?></span>
+		<?php echo h($comment['datetime'])?>｜<?php echo h($comment['name'])?><br />
+		<a href="#" class="qblog_comment_reply">&gt;&gt;このコメントに返信</a>
+		</p>
+		
+		<p class="qblog_comment_control">
+		<?php if ( ! $comment['accepted']):?>
+		<input type="button" value="コメントを承認" name="accept" class="btn btn-default btn-primary"/>
+		<?php endif;?>
+		<input type="button" value="削除" name="hide" class="btn btn-danger"/>
+		</p>
+		<hr />
+
+		
+	<?php else:?>
+	
+	<li id="qbcomment_<?php echo h($comment['id'])?>" class="<?php echo $comment['admin'] ? 'qblog_admin_comment' : ''?>">
+
+		<?php if ($comment['accepted']):?>
+
+			<span class="qblog_comment_title"><?php echo h($comment['title'])?></span>
+			<p class="qblog_comment_body"><?php echo $comment['msg']?></p>
+			<p class="qblog_comment_footer"><span class="badge qblog_comment_reply">コメント <?php echo h($comment['id'])?></span>
+			<?php echo h($comment['datetime'])?>｜<?php echo h($comment['name'])?><br />
+			<a href="#" class="qblog_comment_reply">&gt;&gt;このコメントに返信</a>
+			</p>
+			<hr />
+
+		<?php else:?>
+		
+		<p class="qblog_comment_body">
+		このコメントは管理者による承認待ちです。
+		</p>
+		<p class="qblog_comment_footer">
+		<?php echo h($comment['datetime'])?>
+		</p>
+		<hr />
+		
+		<?php endif;?>
+
+	
+	<?php endif;?>
+	
+	</li>
+<?php endforeach;?>
+</ul>
+
+<?php endif;?>
+
+<br />
+<form id="qblog_comment_form" action="<?php echo h($action)?>" method="post" autocomplete="off">
+ <div>
+  <?php if ($auth_err OR $title_err OR $name_err):?>
+  <p class="qblog_error">
+	  <?php echo $auth_err?>
+	  <?php echo $title_err?>
+	  <?php echo $name_err?>
+  </p>
+  <?php endif;?>
+  <input type="hidden" name="plugin" value="qblog_comment" />
+  <input type="hidden" name="refer"  value="<?php echo h($page)?>" />
+  <input type="hidden" name="digest" value="<?php echo h($digest)?>" />
+  <input type="hidden" name="authcode_master" value="<?php echo h($authcode)?>" />
+  <div class="form-group">
+    <label for="qblog_comment_title" class="control-label">タイトル：</label>
+    <input type="text" name="title" id="qblog_comment_title" value="<?php echo h($title)?>" maxlength="<?php echo h(PLUGIN_QBLOG_MAX_COMMENT_TITLE_LENGTH)?>" class="form-control input-sm" />
+  </div>
+  <div class="form-group">
+    <label for="qblog_comment_name" class="control-label">お名前：</label>
+    <input type="text" name="name" id="qblog_comment_name" size="<?php echo PLUGIN_QBLOG_COMMENT_INPUT_SIZE?>" value="<?php echo h($name)?>" maxlength="<?php echo h(PLUGIN_QBLOG_MAX_COMMENT_NAME_LENGTH)?>" class="form-control input-sm" />
+  </div>
+<?php if ( ! $editable):?>
+  <div class="form-group">
+    <span id="qblog_comment_auth_msg">
+      認証コード<span class="qblog_comment_auth_code"><?php echo h($authcode)?></span>
+      <input type="text" name="authcode" value="" id="qblog_comment_auth_code" size="4" class="form-control" style="width: 4.5em; display:inline-block" />
+    </span>
+  </div>
+<?php endif;?>
+  <div class="form-group">
+    <label for="qblog_comment_msg">コメント：</label>
+    <textarea name="msg" id="qblog_comment_msg" rows="6" style="width:100%;" cols="<?php echo h(PLUGIN_QBLOG_COMMENT_SIZE_MSG)?>" class="form-control"><?php echo h($msg)?></textarea>
+  </div>
+<?php if ( ! $editable && $qblog_comment_check):?>
+  <p>コメントは管理者の承認後に表示されます。</p>
+<?php endif;?>
+  <input type="submit" name="qblog_comment" value="コメントする" class="btn btn-default" />
+ </div>
+</form>

@@ -1,0 +1,38 @@
+<div id="qhm_skin_customizer_<?php echo h($key) ?>_modal" class="modal fade qhm-skin-customizer-modal qhm-skin-customizer-select-texture-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <span class="modal-title"><?php echo h($conf['title']) ?></span>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="qhm-skin-customizer-image-list row">
+          <?php foreach($haik_bg_images as $bgimage): ?>
+            <div class="col-xs-3">
+              <a href="#" class="thumbnail <?php echo (basename($bgimage) == $bg_basename) ? 'active' : '' ?>" data-image-select>
+                <img src="<?php echo h($bgimage) ?>">
+              </a>
+            </div>
+          <?php endforeach; ?>
+            <div class="col-xs-3 <?php echo ($is_custom_image ? '' : 'hidden') ?>" data-custom>
+              <a class="thumbnail <?php echo ($is_custom_image ? 'active' : '') ?>" data-image-select>
+                <img src="<?php echo ($is_custom_image ? h($conf['value']) : '') ?>">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="qhm-btn-info fileinput-button pull-left">
+          <i class="text-lg glyphicon glyphicon-plus"></i>カスタム画像のアップロード
+          <input type="file" name="<?php echo h($key) ?>_FILE" data-file-upload="image" data-form-data="<?php echo h(json_encode($param))?>" data-param-name="<?php echo h($key) ?>" data-sync="<?php echo h($key) ?>" data-parent-type="modal" data-parent="#qhm_skin_customizer_<?php echo h($key) ?>_modal">
+          <input type="hidden" name="<?php echo h($key) ?>" value="<?php echo h($conf['value']) ?>">
+        </button>
+
+        <button type="button" class="qhm-btn-default" data-dismiss="modal">閉じる</button>
+        <button type="button" class="qhm-btn-primary" data-update data-sync="<?php echo h($key) ?>">変更する</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

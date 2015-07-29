@@ -1,0 +1,21 @@
+<form action="<?php echo h($script . '?' . rawurlencode($page)) ?>" method="post" class="<?php echo h($form_class) ?>" <?php echo $enctype ?> role="form">
+  <input type="hidden" name="cmd" value="read">
+  <input type="hidden" name="page" value="<?php echo h($page) ?>">
+  <input type="hidden" name="qform_condition" value="confirm">
+  <?php if (UA_PROFILE=='keitai'): ?>
+    <input type="hidden" name="mobssid" value="yes">
+    <input type="hidden" name="<?php echo h(session_name()) ?>" value="<?php echo h(session_id()) ?>">
+  <?php endif ?>
+
+  <?php echo $form_content ?>
+
+  <div class="form-group qform-action-panel">
+    <?php if (is_bootstrap_skin() && $style === 'horizontal'): ?>
+      <div class="col-sm-9 col-sm-offset-3">
+        <input type="submit" name="submit" value="<?php echo h($qm->m['plg_qform']['btn_confirm']) ?>" class="<?php echo h($button_options) ?>">
+      </div>
+    <?php else: ?>
+      <input type="submit" name="submit" value="<?php echo h($qm->m['plg_qform']['btn_confirm']) ?>" class="<?php echo h($button_options) ?>">
+    <?php endif ?>
+  </div>
+</form>

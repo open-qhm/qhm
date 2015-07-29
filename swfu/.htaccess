@@ -1,0 +1,5 @@
+# Prohibit direct access
+<FilesMatch "\.(ini\.php|lng\.php|txt|gz|tgz)$">
+	Order allow,deny
+	Allow from all
+</FilesMatch>

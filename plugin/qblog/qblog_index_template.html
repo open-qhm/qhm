@@ -1,0 +1,685 @@
+<?php
+/**
+ *	 Template for QBlog settings toppage
+ *	 -------------------------------------------
+ *	 ./plugin/qblog/qblog_index_template.html
+ *
+ *	 Copyright (c) 2012 hokuken
+ *	 http://hokuken.com/
+ *
+ *	 created	: 12/08/09
+ *	 modified :
+ *
+ */
+?>
+<script type="text/javascript">
+$(function(){
+	// !コメント
+	$("#qblog_comment_list").on("click", "input:button[name=accept]", function(){
+		var $$ = $(this), $tr = $(this).closest("tr");
+		var id = $tr.attr("id").split("_").pop();
+		var pagename = $("input:hidden[name=page]", $tr).val();
+		var action = "<?php echo h($script) ?>";
+		var data = {
+			mode : "accept",
+			refer : pagename,
+			plugin : "qblog_comment",
+			id : id,
+			accept : 1
+		};
+
+		$.post(action, data, function(res){
+			var $alert = $('<div></div>');
+			$alert.addClass("alert");
+
+			if (res == 1) {
+				$tr.remove();
+				$alert
+				.addClass("alert-success")
+				.html('コメントを承認しました。<br /><a>コメントを投稿したページに移動する。</a>')
+					.find("a").attr("href", action + '?' + encodeURIComponent(pagename));
+
+				//コメントが0件ならコメント管理を非表示に
+				if ($("#qblog_pending_comments tr.qblog-comment-item").length === 0) {
+					$("#qblog_pending_comments").remove();
+				}
+			}
+			else {
+				$alert
+				.addClass("alert-error")
+				.html('コメントを承認できませんでした。');
+			}
+
+			$alert.prepend('<button class="close" data-dismiss="alert">×</button>');
+
+			$("div.notifier").prepend($alert);
+		});
+	})
+	.on("click", "input:button[name=hide]", function(){
+		if ( !confirm("削除しますか？")) return false;
+		var $$ = $(this), $tr = $(this).closest("tr");
+		var id = $tr.attr("id").split("_").pop();
+		var pagename = $("input:hidden[name=page]", $tr).val();
+		var action = "<?php echo h($script) ?>";
+		var data = {
+			mode : "hide",
+			refer : pagename,
+			plugin : "qblog_comment",
+			id : id,
+			hide : 1
+		};
+		$.post(action, data, function(res){
+			var $alert = $('<div></div>');
+			$alert.addClass("alert");
+
+			if (res == 1) {
+				$tr.remove();
+				$alert
+				.addClass("alert-success")
+				.html('コメントを削除しました。<br /><a href="">コメントのページに移動する。</a>')
+					.find("a").attr("href", action + '?' + encodeURIComponent(pagename));
+
+				//コメントが0件ならコメント管理を非表示に
+				if ($("#qblog_pending_comments tr.qblog-comment-item").length === 0) {
+					$("#qblog_pending_comments").remove();
+				}
+			}
+			else {
+				$alert
+				.addClass("alert-error")
+				.html('コメントを削除できません。');
+			}
+
+			$alert.prepend('<button class="close" data-dismiss="alert">×</button>');
+			$("div.notifier").prepend($alert);
+		});
+	})
+	.on("click", "a.qblog_get_comment", function(){
+		var $$ = $(this), $tr = $(this).closest("tr");
+		var id = $tr.attr("id").split("_").pop();
+		var pagename = $("input:hidden[name=page]", $tr).val();
+		var action = "<?php echo h($script) ?>";
+		var data = {
+			mode : "get_comment",
+			refer : pagename,
+			plugin : "qblog_comment",
+			id : id
+		};
+
+			$.post(action, data, function(res){
+				$$.tooltip("hide")
+					.attr("data-original-title", res)
+					.tooltip("fixTitle")
+					.tooltip("show");
+			});
+
+		return false;
+	});
+
+
+	$("#qblog_social_widget")
+	.on("click", "input:radio", function(){
+		var $$ = $(this);
+		if ($$.val() == "html") {
+			$("#qblog_social_html").show();
+		}
+		else if ($$.val() == "wiki") {
+			$("#qblog_social_wiki").show();
+		} else {
+			$("#qblog_social_html").hide();
+		}
+	});
+
+	$("#qblog_ping")
+	.on("click", "input:radio", function(){
+		var $$ = $(this);
+		if ($$.val() == "1") {
+			$("#qblog_ping_str").show();
+		}
+		else {
+			$("#qblog_ping_str").hide();
+		}
+	});
+
+	//radio:default
+	$("#qblog_social_widget input:radio[value='<?php echo h($qblog_social_widget)?>']").click();
+
+	$("#qblog_ping input:radio[value='<?php echo h($qblog_enable_ping)?>']").click();
+
+	$("#qblog_enable_comment input:radio[value='<?php echo h($qblog_enable_comment)?>']").click();
+
+	$("#qblog_comment_notice input:radio[value='<?php echo h($qblog_comment_notice)?>']").click();
+
+	$("#qblog_close input:radio[value='<?php echo h($qblog_close)?>']").click();
+
+	$("div.qblog_info a[data-tab]").click(function(){
+		var tab = $(this).attr("data-tab");
+		$("a[href=#"+tab+"]").tab('show');
+	});
+
+	$("#qblog_rss_url").click(function(){
+		$(this).focus().select();
+	});
+	$("#go_qblog_title").click(function(){
+		$("#qblog_title input:text[name=title]").focus().select();
+	});
+
+	// !カテゴリ名の変更
+	$('input[name="rename_category"]').on('click', function(){
+		var catname = $(this).closest('tr').find('td:first-child').text();
+
+		$('#qblog_rename_category').find('input:text[name="cat_name"]').val(catname).end()
+		.find('input:hidden[name="org_cat_name"]').val(catname).end()
+		.modal();
+	});
+	$("#qblog_rename_category").on('keydown', 'input:text[name="cat_name"]', function(e){
+		//Enterキーで確定
+		if (e.which == 13 || e.keyCode == 13) {
+			$('#qblog_rename_category form').submit();
+			return false;
+		}
+	});
+
+	if (/^general|category|external|misc$/.test(location.hash))
+	{
+		$("a[href="+location.hash+"]").tab('show');
+	}
+	else if (/^general|category|external|misc$/.test("<?php echo h($hash)?>"))
+	{
+		$("a[href=#<?php echo h($hash)?>]").tab('show');
+	}
+});
+</script>
+
+
+<p>
+	<a href="<?php echo h($script)?>">QHMトップ</a> <span class="devider"> &gt; </span>
+	<a href="<?php echo h($script)?>?cmd=qhmsetting">設定一覧</a> <span class="devider"> &gt; </span>
+	here
+	<a href="<?php echo $script?>?QBlog" style="display:block;float:right;"><i class="icon icon-home"></i>ブログトップ</a>
+</p>
+
+
+<h2>ブログ設定</h2>
+
+
+<div class="notifier"></div>
+
+<?php if (isset($qblog_info) && $qblog_info != '') : ?>
+	<div class="MT10 MB10">
+		<?php echo $qblog_info?>
+	</div>
+<?php endif; ?>
+
+<?php if (isset($qblog_error) && $qblog_error != '') : ?>
+	<div class="qblog_error alert alert-error">
+		<button class="close" data-dismiss="alert">×</button>
+		<?php echo $qblog_error ?>
+	</div>
+<?php endif; ?>
+
+<?php if (count($pending_comments) > 0) :?>
+
+	<div id="qblog_pending_comments" class="alert alert-warning">
+
+		<h5>未承認コメントがあります。</h5>
+
+		<table id="qblog_comment_list" class="table" style="color: #666;">
+			<thead>
+				<th>記事</th>
+				<th>コメント</th>
+				<th>投稿者</th>
+				<th>投稿日</th>
+				<th></th>
+			</thead>
+			<tbody>
+			<?php foreach ($pending_comments as $comment) :
+					$comment_url = $script . '?'. rawurlencode($comment['page']).'#qbcomment_'.h($comment['id']);
+					$comment_date = date($qblog_date_format, $comment['time']);
+			?>
+			<tr class="qblog-comment-item" id="qbcomment_<?php echo h($comment['id']) ?>">
+				<td>
+					<a href="<?php echo $comment_url ?>" class="qblog_post_title"><?php echo h($comment['post_title'])?></a>
+				</td>
+				<td>
+					<a href="#" class="qblog_get_comment" rel="tooltip" data-original-title="" data-placement="top"><?php echo h($comment['title']) ?></a>
+				</td>
+				<td><?php echo h($comment['name'])?></td>
+				<td><?php echo h($comment_date)?></td>
+				<td style="text-align:right;">
+					<input type="button" name="accept" value="承認" class="btn btn-success" />&nbsp;
+					<input type="button" value="削除" name="hide" class="btn btn-danger" />
+					<input type="hidden" name="page" value="<?php echo h($comment['page'])?>" />
+				</td>
+			</tr>
+			<?php endforeach; ?>
+			</tbody>
+		</table>
+
+	</div>
+<?php endif; ?>
+
+
+
+<div class="qblog-set">
+
+
+
+<?php if ( ! is_page($qblog_defaultpage)) : ?>
+<!-- QBlog ページがなければ、「開始」ボタンを表示 -->
+	<div class="well well-small">
+		<h2>ブログをはじめよう！</h2>
+		<p>QHMプロでブログを書くことができます。</p>
+		<div class="form-actions">
+			<form action="<?php echo h($script) ?>" method="post">
+				<input type="hidden" name="cmd" value="qblog" />
+				<input type="hidden" name="mode" value="start" />
+				<input type="submit" class="btn btn-primary" value="ブログの開始" />
+			</form>
+		</div>
+	</div>
+<?php return;?>
+<?php endif; ?>
+
+
+
+	<div class="tabbable">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#general" data-toggle="tab">全般</a></li>
+			<li><a href="#category" data-toggle="tab">カテゴリ</a></li>
+			<li><a href="#external" data-toggle="tab">外部連携</a></li>
+			<li><a href="#misc" data-toggle="tab">その他</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="general" class="tab-pane active">
+				<br />
+
+				<div id="qblog_title" class="well well-small">
+					<h2>ブログタイトル</h2>
+					<p>ブログの名前を設定できます。</p>
+					<div>
+						<form action="<?php echo h($script)?>" method="post">
+							<input type="hidden" name="cmd" value="qblog" />
+							<input type="hidden" name="mode" value="edit_title" />
+							<input type="text" name="title" value="<?php echo h($qblog_title)?>" />
+							<input type="submit" value="保存" class="btn btn-primary" />
+						</form>
+					</div>
+
+					<ul class="nav nav-pills" style="margin-left: 0;">
+						<li><a href="<?php echo h($script.'?'.$qblog_defaultpage)?>">&gt;&gt; 表示を確認する</a></li>
+
+					</ul>
+
+
+				</div>
+
+				<div id="qblog_enable_comment" class="well well-small">
+					<h2>コメントの表示・非表示</h2>
+
+					<form action="<?php echo h($script)?>" method="post">
+
+						<table class="table table_condensed">
+							<thead>
+								<tr>
+									<td>ブログ記事のコメント欄の表示、非表示を設定します。</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_enable_comment" id="" value="1" />
+										<b>表示する</b>
+									</label></td>
+								</tr>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_enable_comment" id="" value="0" />
+											<b>表示しない</b>
+										</label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="form-actions">
+							<input type="submit" value="保存" class="btn btn-primary" />
+							<span class="message" style="margin-left:15px;color:#666;"></span>
+						</div>
+
+						<input type="hidden" name="cmd" value="qblog" />
+						<input type="hidden" name="mode" value="enable_comment" />
+					</form>
+				</div>
+
+				<div id="qblog_comment_notice" class="well well-small">
+					<h2>コメントの通知</h2>
+
+<?php if ( ! isset($admin_email) OR trim($admin_email) === ''):?>
+
+					<div class="alert">
+						管理者メールアドレスが設定されていません。<br />
+						設定は<a href="<?php echo h($script)?>?cmd=qhmsetting&mode=form&phase=admin">こちら</a>。
+					</div>
+
+<?php else:?>
+
+					<form action="<?php echo h($script)?>" method="post">
+
+						<table class="table table_condensed">
+							<thead>
+								<tr>
+									<td>ブログ記事にコメントがあった場合、メールで通知します。</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_comment_notice" id="" value="1" />
+										<b>通知する</b>
+									</label></td>
+								</tr>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_comment_notice" id="" value="0" />
+											<b>通知しない</b>
+										</label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="form-actions">
+							<input type="submit" value="保存" class="btn btn-primary" />
+							<span class="message" style="margin-left:15px;color:#666;"></span>
+						</div>
+
+						<input type="hidden" name="cmd" value="qblog" />
+						<input type="hidden" name="mode" value="comment_notice" />
+					</form>
+
+<?php endif;?>
+
+				</div>
+
+
+				<div id="qblog_social_widget" class="well well-small">
+					<h2>ソーシャルプラグイン表示設定</h2>
+
+					<form action="<?php echo h($script)?>" method="post">
+
+						<table class="table table_condensed">
+							<thead>
+								<tr>
+									<td>ブログ記事のコメント欄の上にソーシャルプラグインを表示できます。<br />
+										Wiki書式の記述や外部サービスのHTMLコードも挿入可能です。
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_social_widget" id="" value="default" />
+										<b>標準</b>：Twitter, Facebook, Google+ のボタンを表示する。
+									</label></td>
+								</tr>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_social_widget" id="" value="wiki" />
+											<b>カスタム</b>：任意のWiki書式を使う
+										</label>
+										<textarea name="qblog_social_wiki" id="qblog_social_wiki" cols="60" rows="4" class="input-xxlarge" style="display:none;"><?php echo h($qblog_social_wiki)?></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_social_widget" id="" value="html" />
+											<b>カスタム</b>：任意のHTMLを使う
+										</label>
+										<textarea name="qblog_social_html" id="qblog_social_html" cols="60" rows="4" class="input-xxlarge" style="display:none;"><?php echo h($qblog_social_html)?></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="radio"><input type="radio" name="qblog_social_widget" id="" value="none" />
+										<b>なし</b>
+									</label></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="form-actions">
+							<input type="submit" value="保存" class="btn btn-primary" />
+							<span class="message" style="margin-left:15px;color:#666;"></span>
+						</div>
+
+						<input type="hidden" name="cmd" value="qblog" />
+						<input type="hidden" name="mode" value="social_widget" />
+					</form>
+				</div>
+
+
+
+			</div>
+
+
+			<div id="category" class="tab-pane">
+				<br />
+
+				<div class="well well-small">
+					<h2>カテゴリ管理</h2>
+					<table class="table table-striped">
+						<thead>
+							<th>カテゴリ名</th>
+							<th>登録数</th>
+							<th></th>
+						</thead>
+						<tbody>
+						<?php foreach ($categories as $category => $row) :?>
+							<?php
+								if ($category === $qblog_default_cat) :
+									continue;
+								endif;
+							?>
+							<tr>
+								<td class="qblog-category-item"><?php echo h($category)?></td>
+								<td style="text-align:right"><?php echo number_format($row['num'])?></td>
+								<td style="text-align:right">
+									<input type="button" name="rename_category" value="名前変更" class="btn btn-primary" />&nbsp;
+									<form action="<?php echo h($script) ?>" method="post" style="display:inline;">
+										<input type="hidden" name="cmd" value="qblog" />
+										<input type="hidden" name="mode" value="delete" />
+										<input type="hidden" name="category" value="<?php echo h($category)?>" />
+										<input type="submit" name="remake" value="削除" onclick="return confirm('削除しますか？');" class="btn btn-danger" />
+									</form>
+								</td>
+							</tr>
+						<?php endforeach; ?>
+							<tr>
+								<td class="qblog-category-item"><?php echo h($qblog_default_cat)?></td>
+								<td style="text-align:right"><?php echo number_format($categories[$qblog_default_cat]['num'])?></td>
+								<td style="text-align:right">
+									<input type="button" name="rename_category" value="名前変更" class="btn btn-primary" />&nbsp;
+									<span class="dummyspan" style="width:58px;display:inline-block;"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+
+			<div id="external" class="tab-pane">
+				<br />
+
+				<div id="qblog_ping" class="well well-small">
+					<h2>Ping送信</h2>
+					<form action="<?php echo h($script)?>" method="post">
+
+						<table class="table table_condensed">
+							<thead>
+								<tr>
+									<td>
+										<p>
+										ブログの更新情報をブログポータルサービスなどへ送信します。<br />
+										任意の送信先を指定可能です。
+										</p>
+										<div class="alert alert-info">
+											<i class="icon icon-info-sign"></i>
+											<b>送信する</b>を選んで保存すると、直ちにPing送信を行います。<br />
+											<i class="icon icon-info-sign"></i>
+											Ping 送信には時間がかかりますので、送信先は20個くらいまでを推奨します。
+										</div>
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_enable_ping" id="" value="1" />
+											<b>送信する</b>：Ping 送信先は1行ずつ指定してください。
+										</label>
+										<textarea name="ping" id="qblog_ping_str" cols="60" rows="10" class="input-xxlarge" style="display:none;"><?php echo h($qblog_ping)?></textarea>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label class="radio"><input type="radio" name="qblog_enable_ping" id="" value="0" />
+										<b>送信しない</b>
+									</label></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="form-actions">
+							<input type="submit" value="保存" class="btn btn-primary" />
+							<span class="message" style="margin-left:15px;color:#666;"></span>
+						</div>
+
+						<input type="hidden" name="cmd" value="qblog" />
+						<input type="hidden" name="mode" value="update_ping" />
+					</form>
+				</div>
+
+				<?php if ($rss_url != ''):?>
+				<div class="well well-small">
+					<h2>RSS配信URL</h2>
+					<p>コピーしてご利用ください。</p>
+					<input type="text" value="<?php echo h($rss_url)?>" id="qblog_rss_url" size="80" class="span6" readonly="readonly" />
+
+				</div>
+				<?php endif;?>
+			</div>
+
+			<div id="misc" class="tab-pane">
+				<br />
+
+				<div class="well well-small">
+					<h2>ブログの修復</h2>
+					<p>一覧表示に不具合がある場合、修復を行って下さい。</p>
+					<div class="form-actions">
+						<form action="<?php echo h($script) ?>" method="post" style="display:inline;">
+							<input type="hidden" name="cmd" value="qblog" />
+							<input type="hidden" name="mode" value="rebuild" />
+							<input type="submit" name="rebuild" value="修復" onclick="return confirm('修復しますか？');" class="btn btn-primary" />
+						</form>
+					</div>
+				</div>
+
+				<div id="qblog_close" class="well well-small">
+					<h2>ブログの閉鎖</h2>
+
+					<form action="<?php echo h($script)?>" method="post">
+
+						<table class="table table_condensed">
+							<thead>
+								<tr>
+									<td>ブログを閉鎖し、全てのアクセスをトップページへ転送します。</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_close" id="" value="0" />
+											<b>公開する</b>
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<td><label class="radio"><input type="radio" name="qblog_close" id="" value="1" />
+											<b>閉鎖する</b>
+									</label></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="form-actions">
+							<input type="submit" value="保存" class="btn btn-primary" />
+							<span class="message" style="margin-left:15px;color:#666;"></span>
+						</div>
+
+						<input type="hidden" name="cmd" value="qblog" />
+						<input type="hidden" name="mode" value="close" />
+					</form>
+				</div>
+
+				<div id="qblog_move_eblog" class="well well-small">
+					<h2>簡易ブログからの引越し</h2>
+					<p>簡易ブログからQBlogへ引越します</p>
+					<form action="<?php echo h($script) ?>" method="post">
+						<div><label>簡易ブログページ：<input type="text" name="eblog_page" value="" /></label></div>
+						<div class="form-actions">
+							<input type="submit" value="次へ" class="btn btn-primary" />
+						</div>
+						<input type="hidden" name="mode" value="move_from_eblog_confirm" />
+						<input type="hidden" name="cmd" value="qblog" />
+					</form>
+				</div>
+
+			<?php if ($move_amebro) : ?>
+				<div id="qblog_move_ameba"	class="well well-small">
+					<h2>アメブロからの引越し</h2>
+					<p>アメブロからブログを引越します</p>
+					<p style="font-size:90%;color:#666;">※ アメンバー限定記事は引っ越せません</p>
+
+					<form action="<?php echo h($script) ?>" method="post">
+						<div>
+							<label>アメブロのID：
+							<input type="text" name="ameba_id" value="" />
+							</label>
+						</div>
+						<div>
+							<label>アメブロのパスワード：
+							<input type="password" name="ameba_password" value="" />
+							</label>
+						</div>
+						<div class="form-actions">
+							<input type="submit" value="次へ" class="btn btn-primary" />
+						</div>
+						<input type="hidden" name="mode" value="move_confirm" />
+						<input type="hidden" name="cmd" value="qblog" />
+					</form>
+				</div>
+			<?php endif; ?>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="qblog_rename_category" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button class="close" data-dismiss="modal">×</button>
+				<h4 class="modal-title">カテゴリ名の変更</h4>
+			</div>
+			<form action="<?php echo h($script) ?>" method="post" style="display:inline;">
+				<div class="modal-body">
+					<input type="text" name="cat_name" value="" class="form-control" />
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">キャンセル</button>
+					<input type="submit" name="rename" class="btn btn-primary" value="変更" />
+					<input type="hidden" name="org_cat_name" value="" />
+					<input type="hidden" name="cmd" value="qblog" />
+					<input type="hidden" name="mode" value="rename_category" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

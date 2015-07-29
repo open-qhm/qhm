@@ -1,0 +1,58 @@
+<?php
+if(isset($_SESSION['swfu']['page_name']))
+{
+	$navi = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;==['.$_SESSION['swfu']['page_name'].'で作業中]==';
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo  isset($_page_title) ? $_page_title.' - 簡単アップローダー' : '簡単アップローダー';?></title>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/base/jquery-ui.css" id="theme">
+<link rel="stylesheet" href="js/jquery.fileupload-ui.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+<script src="js/jquery.fileupload-ui.js"></script>
+<script type="text/javascript" src="js/screenshot.js"></script>
+<script type="text/javascript" src="js/func.js"></script>
+<link rel="stylesheet" type="text/css" href="css/default.css" />
+<style type="text/css">
+#tooltip { position:absolute; border:1px solid #333; background:#f7f5d1; padding:2px 5px; color:#333; display:none; width:20em; }
+#preview { position:absolute; border:1px solid #ccc; background:#333; padding:5px; display:none; color:#fff; }
+#screenshot { position:absolute; border:1px solid #ccc; background:#333; padding:5px; display:none; color:#fff; }
+</style>
+<?php echo $_additional_head?>
+</head>
+<body>
+<div id="container">
+	<div id="header">
+			<h1 style="float:left;">簡単アップローダー SWFUpload Front <?php echo $navi?></h1>
+			<div class="editmode" style="float:right"><a href="" id="window_lock" onclick="toggle_lock();return false"><img src="images/unlock.png" width="22" height="20" title="ロック" /></a></div>
+			<div style="clear:both;"></div>
+	</div>
+	<div id="content">
+		<!-- == メニュー ================= -->
+		<div id="menubar">
+<?php echo_menu($recent_file, $recent_page) ?>
+		</div>
+		<div id="main_contents">
+<?php print $this->content(); ?>
+		</div>
+		<div style="clear:both"></div>
+	</div>
+	<div id="footer">
+		<p style="font-size:70%">SWFU System powerd by hokuken inc.</p>
+	</div>
+</div>
+<script type="text/javascript">
+<!--
+
+lastscript();
+
+-->
+</script>
+</body>
+</html>

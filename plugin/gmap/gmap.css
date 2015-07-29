@@ -1,0 +1,15 @@
+.qhm-plugin-gmap {
+	padding-left:0;
+	padding-right:0;	
+}
+
+.qhm-plugin-gmap dl {
+  margin-top: 15px;
+	cursor: pointer;	
+}
+
+@media(max-width: 767px) {
+  .qhm-plugin-gmap-map {
+    max-height: 300px !important;
+  }
+}

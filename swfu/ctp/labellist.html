@@ -1,0 +1,10 @@
+<h2>ラベル一覧</h2>
+
+<ul style="margin:1em;line-height:1.5em;">
+<?php foreach($labels as $name=>$cnt){
+$dispname = ($name == '') ? 'ラベルなし' : $name;
+$rn = rawurlencode($name);
+?>
+<li><a href="list.php?label=<?php echo $rn?>"><?php echo $dispname?></a> (<?php echo $cnt?>件)</li>
+<?php } ?>
+</ul>

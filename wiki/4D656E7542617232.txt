@@ -1,0 +1,11 @@
+#search_menu
+
+#popular(10)
+
+#recent(5)
+
+&yahoobookmark(登録するタイトル);
+
+&addgoogle;
+
+[[ホームページの作成なら>http://hokuken.com/]]
