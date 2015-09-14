@@ -151,15 +151,6 @@ EOD;
 		}
 
 		$helpstr = $qm->m['html']['view_help_message'];
-		if (get_qhm_option('support'))
-		{
-			$help = 'http://ensmall.net/p/qhmpro/?AboutToolbox';
-		}
-		else
-		{
-			$help = 'http://www.open-qhm.net/?QHMHelp';
-		}
-		$help = '<ul style="margin-top:2em" class="online_help"><li><a href="'.$help.'" target="help">'. $helpstr. '</a></li></ul>';
 
 		$body = <<< EOD
 <div class="edit_form">

@@ -10,7 +10,7 @@ class CAdmin extends CModel
 							"name" => "正しく情報を入力して下さい<br />",
 							"value" => "正しく情報を入力して下さい<br />"
 							);
-							
+
 	function getConfig() {
 		$config = array();
 		$array = $this->find("", "name ASC");
@@ -19,13 +19,13 @@ class CAdmin extends CModel
 		}
 		return $config;
 	}
-	
+
 	/*list.phpで表示するページの個数を返す*/
 	function getListNum(){
 		$res = $this->findone('$name==="list_num"');
 		return $res['value'];
 	}
-	
+
 	function getListCols(){
 		if($res = $this->findone('$name=="list_cols"'))
 		{
@@ -40,11 +40,11 @@ class CAdmin extends CModel
 				"value"=>'3'
 			);
 			$this->insert($res);
-			
+
 			return $res['value'];
 		}
 	}
-	
+
 	/**
 	 * APIキーを生成して保存する。
 	 * APIキーは {key}.{timestamp} からなる
@@ -62,11 +62,11 @@ class CAdmin extends CModel
 		{
 			$apikey .= $seed{rand(0, $seedlen-1)};
 		}
-		
+
 		$timestamp = ($timestamp === FALSE) ? time() : $timestamp;
-		
+
 		$apikey = "{$apikey}.{$timestamp}";
-		
+
 		//save
 		$conf = $this->findoneby('name', 'apikey');
 		if ($conf)
@@ -83,29 +83,15 @@ class CAdmin extends CModel
 			);
 			$this->insert($data);
 		}
-		
+
 		return $apikey;
 	}
-	
+
 	function apiKeyIsCorrect($apikey = '')
 	{
-		if ($apikey === '')
-		{
-			return FALSE;
-		}
-		
-		//有効期間のチェック
-		list($key, $timestamp) = explode('.', $apikey, 2);
-		
-		$limit = time() - API_KEY_EXP;
-		if ($timestamp < $limit)
-		{
-			return FALSE;
-		}
-		
-		return TRUE;
+		return FALSE;
 	}
-	
+
 	/**
 	 * ラベル一覧を返す
 	 */
@@ -121,7 +107,7 @@ class CAdmin extends CModel
 			return array();
 		}
 	}
-	
+
 	function saveLabels($mode = 'insert', $labels = array())
 	{
 		$conf = $this->findoneby('name', 'labels');
@@ -139,7 +125,7 @@ class CAdmin extends CModel
 			);
 			$action = 'insert';
 		}
-		
+
 		//全て置き換える
 		if ($mode === 'replace')
 		{
@@ -157,17 +143,17 @@ class CAdmin extends CModel
 		{
 			return FALSE;
 		}
-		
+
 		//変更がなければ保存しない
 		if ($conf['value'] === $labels)
 		{
 			return FALSE;
 		}
 		$conf['value'] = $labels;
-		
+
 		$result = $this->$action($conf);
 		return $result;
-	
+
 	}
 }
 

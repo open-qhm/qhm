@@ -11,11 +11,10 @@
 // PukiWiki version / Copyright / Licence
 
 define('S_VERSION', '1.4.7');
-define('QHM_VERSION', '5.2');  //絶対に編集しないで下さい
-define('QHM_REVISION', '2083');
-define('QHM_OPTIONS', 'update=vendor; support=true; banner=false');
+define('QHM_VERSION', '6.0.0');  //絶対に編集しないで下さい
+define('QHM_OPTIONS', 'update=download; support=false; banner=true');
 define('S_COPYRIGHT',
-	'powered by <strong><a href="http://www.open-qhm.net/">Quick Homepage Maker</a> ' . QHM_VERSION . '</strong> <br />' .
+	'powered by <strong><a href="http://www.open-qhm.net/">QHM</a> ' . QHM_VERSION . '</strong> haik<br />' .
 	' based on <a href="http://pukiwiki.sourceforge.jp/">PukiWiki</a> ' . S_VERSION . ' ' .
 	' License is <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>.'
 );
@@ -27,7 +26,7 @@ define('SWFU_IMAGEDB_PATH', SWFU_DIR.'data/image.txt');
 define('SWFU_IMAGE_DIR', SWFU_DIR.'d/');
 
 // URLs
-define('QHMPRO_MEMBER_SITE', 'https://ensmall.net/p/qhmpro/');
+define('QHM_HOME', 'http://www.open-qhm.net/');
 
 /////////////////////////////////////////////////
 // Init server variables
@@ -344,7 +343,10 @@ if (isset($vars['cmd']) && isset($vars['plugin']))
 
 // 入力チェック: cmd, plugin の文字列は英数字以外ありえない
 foreach(array('cmd', 'plugin') as $var) {
-	if (isset($vars[$var]) && ! preg_match('/^[a-zA-Z][a-zA-Z0-9_]*$/', $vars[$var]))
+	$regex = version_compare(PHP_VERSION, 5.3 , '<')
+		? '/^\w+$/'
+		: '/^\w+(?:\/\w+)?$/';
+	if (isset($vars[$var]) && ! preg_match($regex, $vars[$var]))
 		unset($get[$var], $post[$var], $vars[$var]);
 }
 

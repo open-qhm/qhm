@@ -1,0 +1,54 @@
+<div class="admin qhm-theme-uploader">
+
+  <div class="navigator">
+    <a href="<?php echo h($script)?>">トップ</a> &gt;
+    <a href="<?php echo h($script)?>?cmd=qhmsetting">設定</a> &gt;
+    <a href="<?php echo h($script)?>?plugin=qhmsetting&amp;mode=form&amp;phase=design">デザインの設定</a> &gt;
+    here
+  </div>
+
+  <div class="layoutbox">
+
+    <h2>QHM テーマアップロード</h2>
+
+    <div class="execute">
+
+      <?php if (isset($errmsg) && $errmsg !== ''): ?>
+        <div class="alert alert-danger"><?php echo $errmsg ?></div>
+      <?php endif; ?>
+
+      <?php if (isset($success)): ?>
+        <div class="alert alert-success">
+          テーマファイル<strong><?php echo h($name)?></strong>をアップロードしました。<br>
+          引き続きアップロードするには下のフォームをご利用ください。
+        </div>
+      <?php endif ?>
+
+      <div class="description">
+        <p>
+          Zip 形式のテーマファイルをアップロードできます。<br>
+          <code><?php echo h($limit)?></code> までのテーマファイルをアップロード可能です。
+        </p>
+      </div>
+
+      <div class="upload-action">
+
+        <form method="post" action="<?php echo h($script)?>" enctype="multipart/form-data">
+          <input type="hidden" name="cmd" value="theme_uploader">
+          <input type="hidden" name="mode" value="confirm">
+
+          <div class="well">
+            <input type="file" name="theme">
+            <br>
+            <button type="submit" class="btn btn-primary">アップロードする</button>
+            <a href="<?php echo h($script)?>?plugin=qhmsetting&amp;mode=form&amp;phase=design" class="btn btn-link">戻る</a>
+          </div>
+        </form>
+
+      </div>
+
+    </div><!-- execute -->
+<!--install end-->
+
+  </div><!-- layoutbox -->
+</div>

@@ -95,10 +95,9 @@ function plugin_bs_carousel_convert()
 			}
 		}
 		if ($to) array_splice($options, $i, 1);
-
-		list($filename, $title, $caption) = $options;
+		$options = join(',', $options);
+		list($filename, $title, $caption) = explode(',', $options, 3);
 		$filepath = get_file_path($filename);
-
 		$image = '';
 		if (file_exists($filepath))
 		{

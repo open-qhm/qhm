@@ -345,7 +345,7 @@ google.maps.event.addDomListener(window,"load",gmap_initialize);
 if ($("div.gmap_box_right").length){
 	var padding = parseInt($("div.gmap_box_right").css("padding-left").split("px")[0])
 		+ parseInt($("div.gmap_box_right").css("padding-right").split("px")[0]);
-	var w = $("body").width() - ($("div.gmap_box_right").width() + padding);
+	var w = $("#body").width() - ($("div.gmap_box_right").width() + padding);
 	$("div.gmap_info_left").width(w);
 }
 

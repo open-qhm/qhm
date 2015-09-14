@@ -69,7 +69,7 @@ function plugin_fb_recommends_convert()
 
 	if (edit_auth($page, FALSE, FALSE))
 	{
-		$fb_pagebox_help = h(QHMPRO_MEMBER_SITE . '?PageName');
+		$fb_pagebox_help = h(QHM_HOME . '?PageName');
 		$warning = <<< EOM
 			<div class="alert alert-warning">
 				Facebook Recommends は Graph API v2.3 より廃止されました。<br>

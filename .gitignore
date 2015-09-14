@@ -1,13 +1,13 @@
 # OS
 .DS_Store
 
-# IDE
-.idea
-
 # Project
 qhm.ini.php
+attach/*
 cache/*
 cacheqblog/*
+cacheqhm/*
+counter/*
 wiki/*
 diff/*
 backup/*
@@ -15,13 +15,6 @@ count/*
 swfu/d/*
 swfu/data/*
 skin/hokukenstyle/*
-dist
-diff.txt
 
 # Development
 node_modules
-.rspec
-
-# Test
-spec/images/*
-spec/config/*.yaml

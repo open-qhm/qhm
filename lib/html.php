@@ -329,7 +329,7 @@ function catbody($title, $page, $body)
 	require(LIB_DIR.'qhm_init_main.php');
 
 	// meta:GENERATOR
-	$generator_tag = '<meta name="GENERATOR" content="Quick Homepage Maker; version='. QHM_VERSION. '; rev='. QHM_REVISION. '; haik='.(is_bootstrap_skin() ? 'true' : 'false').'" />' . "\n";
+	$generator_tag = '<meta name="GENERATOR" content="Quick Homepage Maker; version='. QHM_VERSION. '; haik='.(is_bootstrap_skin() ? 'true' : 'false').'" />' . "\n";
 	$qt->prependv_once('generator_tag', 'beforescript', $generator_tag);
 
 	//-------------------------------------------------
@@ -944,17 +944,6 @@ EOD;
 
 		}
 	}
-
-	if (get_qhm_option('support'))
-	{
-		$helplink = 'http://ensmall.net/p/qhmpro/?AboutToolbox';
-	}
-	else
-	{
-		$helplink = 'http://www.open-qhm.net/?QHMHelp';
-	}
-
-	$body .= '<ul style="margin-top:2em" class="online_help"><li><a href="'.$helplink.'" target="help">'. $helpstr. '</a></li></ul>';
 
 	return $body;
 }

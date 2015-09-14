@@ -14,7 +14,17 @@ function make_link($string, $page = '')
 	global $vars;
 	static $converter;
 
-	if (! isset($converter)) $converter = new InlineConverter();
+	if (! isset($converter)) $converter = new InlineConverter(array(
+		'plugin',
+		'note',
+		'url',
+		'url_interwiki',
+		'interwikiname',
+		'autolink',
+		'bracketname',
+		'wikiname',
+		'autolink_a',
+	));
 
 	$clone = $converter->get_clone($converter);
 
@@ -216,7 +226,8 @@ class Link_plugin extends Link
 
 	function get_pattern()
 	{
-		$this->pattern = <<<EOD
+		if (version_compare(PHP_VERSION, 5.3, '<')) {
+			$this->pattern = <<<EOD
 &
 (      # (1) plain
  (\w+) # (2) plugin name
@@ -227,6 +238,20 @@ class Link_plugin extends Link
  )?
 )
 EOD;
+		} else {
+			$this->pattern = <<<EOD
+&
+(      # (1) plain
+ (\w+(?:\/\w+)?) # (2) plugin name with namespace
+ (?:
+  \(
+   ((?:(?!\)[;{]).)*) # (3) parameter
+  \)
+ )?
+)
+EOD;
+		}
+
 		return <<<EOD
 {$this->pattern}
 (?:
@@ -250,7 +275,7 @@ EOD;
 		// Re-get true plugin name and patameters (for PHP 4.1.2)
 		$matches = array();
 		if (preg_match('/^' . $this->pattern . '/x', $all, $matches)
-			&& $matches[1] != $this->plain) 
+			&& $matches[1] != $this->plain)
 			list(, $this->plain, $name, $this->param) = $matches;
 
 		return parent::setParam($page, $name, $body, 'plugin');
@@ -460,7 +485,7 @@ EOD;
 		list(, $alias, $name) = $this->splice($arr);
 		return parent::setParam($page, $name, '', 'mailto', $alias == '' ? $name : $alias);
 	}
-	
+
 	function toString()
 	{
 		return '<a href="mailto:' . $this->name . '" rel="nofollow">' . $this->alias . '</a>';

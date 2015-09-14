@@ -1,0 +1,32 @@
+[
+{
+  "name": "cyan",
+  "color": "#00BCD4",
+  "note": "水色"
+},
+{
+  "name": "blue",
+  "color": "#03A9F4",
+  "note": "青"
+},
+{
+  "name": "red",
+  "color": "#F44336",
+  "note": "赤"
+},
+{
+  "name": "orange",
+  "color": "#FF9800",
+  "note": "オレンジ"
+},
+{
+  "name": "brown",
+  "color": "#795548",
+  "note": "茶色"
+},
+{
+  "name": "green",
+  "color": "#4CAF50",
+  "note": "緑"
+}
+]

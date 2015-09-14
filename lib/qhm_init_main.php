@@ -408,9 +408,16 @@ if (typeof window.onload === "undefined") {
 // Fit videos to screen
 if ($enable_fitvids)
 {
+    $ignore_list = $qt->getv('fitvids_ignore_list');
+    if (is_array($ignore_list))
+    {
+        $ignore_list = array_unique($ignore_list);
+        $ignore_list = join(" ", $ignore_list);
+    }
+    $ignore_list = h($ignore_list);
     $fitvids_js = <<< EOS
 <script>
-$("#body, [role=main]").fitVids();
+$("#body, [role=main]").fitVids({ignore:"{$ignore_list}"});
 </script>
 EOS;
     $qt->appendv_once('fitvids_js', 'lastscript', $fitvids_js);

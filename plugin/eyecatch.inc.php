@@ -11,31 +11,40 @@
  *   modified : 14/01/09
  *
  *   Description
- *   
+ *
  *   Usage :
- *   
+ *
  */
 
 function plugin_eyecatch_convert()
 {
 	// アイキャッチのslideプラグインで判別するため
 	// true: タイトルがh1に、false: タイトルがh3に
-	global $is_eyecatch; 
+	global $is_eyecatch;
+	static $exclusive = FALSE;
 
 	$args = func_get_args();
 
-
-	$html = '';
-	$is_eyecatch = TRUE;
-	if (exist_plugin('section'))
+	if ( ! $exclusive)
 	{
-		array_unshift($args, 'eyecatch');
-		$html = call_user_func_array('plugin_section_convert', $args);
+		if (($idx = array_search('force', $args)) !== FALSE)
+		{
+			$exclusive = TRUE;
+			array_splice($args, $idx, 1);
+		}
+
+		$html = '';
+		$is_eyecatch = TRUE;
+		if (exist_plugin('section'))
+		{
+			array_unshift($args, 'eyecatch');
+			$html = call_user_func_array('plugin_section_convert', $args);
+		}
+		$is_eyecatch = FALSE;
+
+		$qt = get_qt();
+		$qt->setv('main_visual', '<div id="qhm_eyecatch" class="qhm-eyecatch">'.$html.'</div>');
 	}
-	$is_eyecatch = FALSE;
-	
-	$qt = get_qt();
-	$qt->setv('main_visual', '<div id="qhm_eyecatch" class="qhm-eyecatch">'.$html.'</div>');
-	
+
 	return '';
 }
