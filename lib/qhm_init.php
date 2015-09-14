@@ -10,8 +10,6 @@
 global $layout_pages;
 global $qblog_defaultpage, $qblog_menubar, $qblog_title;
 
-$qhmpro_site = 'https://ensmall.net/p/qhmpro/';
-$openqhm_help = 'http://www.open-qhm.net/?QHMHelp';
 $is_setting = ( (isset($vars['cmd']) && $vars['cmd']=='qhmsetting') || (isset($vars['plugin']) && $vars['plugin'] =='qhmsetting') );
 //$no_toolmenu = ($is_setting OR array_key_exists($_page, $layout_pages));
 $no_toolmenu = array_key_exists($_page, $layout_pages);
@@ -127,18 +125,10 @@ $qt->setv('toolkit_bottom', '');
 if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
 	$qt->setv('jquery_include', true);
 
-	$link_haik = "https://ensmall.net/p/qhmhaik/";
-	$link_haik_parts = $link_haik.'components/';
+	$link_haik_parts = 'http://open-qhm.github.io/haik-parts/';
 
 	$unload_confirm = isset($unload_confirm)? $unload_confirm: 1;
 	$enable_unload_confirm = 'window.qhm_enable_unload_confirm = '. ($unload_confirm? 'true': 'false'). ';'. "\n";
-
-	$get_version_script = '';
-	if (get_qhm_option('update') === 'vendor')
-	{
-		$get_version_url = 'lib/get_version.php';
-		$get_version_script = '$.post("'.$get_version_url.'", {script:"'.$script.'"}, function(res){});';
-	}
 
     $btnset_name = is_qblog() ? 'qblog' : 'qhm';
     if (is_bootstrap_skin())
@@ -146,7 +136,7 @@ if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
         $btnset_name = is_qblog() ? 'qhmHaikQBlog' : 'qhmHaik';
     }
 
-    $refleshjs = '?'.QHM_REVISION;
+    $refleshjs = '?'.QHM_VERSION;
 
 
     $clickpad_js = <<<EOD
@@ -170,7 +160,7 @@ $(function(){
     showHaikParts = function(){
       var \$a = $("#haikpartslink");
       if (\$a.length === 0) return;
-      tb_show('', '{$link_haik_parts}?theme={$style_name}&KeepThis=true&TB_iframe=true');
+      tb_show('', '{$link_haik_parts}#{$style_name}?KeepThis=true&TB_iframe=true');
     }
 		var ck = document.cookie.split(";");
 		for (var i = 0; i < ck.length; i++) {
@@ -210,8 +200,6 @@ $(function(){
         });
     }
 
-	{$get_version_script}
-
 });
 
 if (window.qhm_enable_unload_confirm) {
@@ -229,7 +217,7 @@ if (window.qhm_enable_unload_confirm) {
 EOD;
 	$qt->setv('clickpad_js', $clickpad_js);
 
-	$link_help = get_qhm_option('support') ? $qhmpro_site : $openqhm_help;
+	$link_help = QHM_HOME;
 	$link_map = $script.'?cmd=map&amp;refer='.rawurlencode($_page);
 	$link_password = $script.'?plugin=qhmsetting&amp;phase=user2&mode=form';
 	$link_qhm_update = $script.'?plugin=qhmupdate';
@@ -284,20 +272,18 @@ EOD;
 		)
 	),
 	'haiklink' => array(
-		'name'    => 'haikテーマ',
+		'name'    => 'テーマ',
 		'link'    => '',
 		'style'   => 'margin-top:1.1em;',
 		'class'   => '',
 		'visible' => true,
 		'sub'     => array(
-			'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
-			'haiklessonlink' => array('name'=>'講座', 'target'=>'help', 'link'=> $link_haik.'lessons/', 'style'=>'', 'class'=>'', 'visible'=>TRUE),
-			'haikpartslink' => array('name'=>'プラグイン一覧', 'target'=>'help', 'link'=> $link_haik.'plugins/', 'style'=>'', 'class'=>'', 'visible'=>TRUE),
+			'haikskincustomizer' => array('name'=>'編集', 'link'=>$link_haik_skin_customizer, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
 			'haikpreviewlink' => array('name'=>'<span class="hidden-xs hidden-sm"><i class="glyphicon glyphicon-phone"></i> <span class="sr-only">モバイル</span>プレビュー</span>', 'link'=>'#', 'style'=>'', 'class' => '', 'visible'=>TRUE),
 		),
 	),
 	'configlink' => array('name'=>$qm->m['qhm_init']['configlink_name'], 'link'=>$link_qhm_setting, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
-	'helplink'   => array('name'=>$qm->m['qhm_init']['helplink_name'], 'link'=>$link_help, 'style'=>'', 'visible'=>true, 'sub'=>array()),
+	'helplink'   => array('name'=>'open-qhm.net', 'link'=>$link_help, 'style'=>'', 'visible'=>true, 'sub'=>array()),
 	'passwordlink'   => array('name'=>$qm->m['qhm_init']['passwordlink_name'], 'link'=>$link_password, 'style'=>'', 'visible'=>true, 'sub'=>array()),
 	'logoutlink' => array('name'=>$qm->m['qhm_init']['logoutlink_name'], 'link'=>$link_qhm_logout, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
 	'updatelink' => array('name'=>$qm->m['qhm_init']['updatelink_name'], 'link'=>$link_qhm_update, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
@@ -355,15 +341,6 @@ EOD;
 </form>
 </div>
 ';
-
-		if ( ! preg_match('/^(?:org|qd)_\w+$/', $_SESSION['temp_design']))
-		{
-			$addscript = '
-<script type="text/javascript" src="js/get_qhm_designs.js"></script>
-';
-			$qt->appendv('beforescript', $addscript);
-		}
-
 	}
 
 	//unset menu2 for 2-column style

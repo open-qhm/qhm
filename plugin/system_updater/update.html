@@ -1,0 +1,44 @@
+<div class="admin qhm-system-updater">
+
+  <div class="navigator">
+    <a href="<?php echo h($script)?>">トップ</a> &gt;
+    <a href="<?php echo h($script)?>?cmd=qhmsetting">設定</a> &gt;
+    here
+  </div>
+
+  <div class="layoutbox">
+
+    <h2>QHM アップデーター</h2>
+
+    <div class="execute">
+
+      <?php if (isset($errmsg) && $errmsg !== ''): ?>
+        <div class="alert alert-danger"><?php echo $errmsg ?></div>
+      <?php endif; ?>
+
+      <div class="description">
+        <p>
+          QHMを最新版へアップデートします。<br>
+          「次へ」をクリックして最新版のバージョンを確認してください。
+        </p>
+      </div>
+
+      <div class="update-action">
+
+        <form method="post" action="<?php echo h($script)?>">
+          <input type="hidden" name="cmd" value="system_updater">
+          <input type="hidden" name="mode" value="confirm">
+
+          <div class="well">
+            <button type="submit" class="btn btn-primary">次へ</button>
+            <a href="<?php echo h($script)?>?plugin=qhmsetting" class="btn btn-link">戻る</a>
+          </div>
+        </form>
+
+      </div>
+
+    </div><!-- execute -->
+<!--install end-->
+
+  </div><!-- layoutbox -->
+</div>

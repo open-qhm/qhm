@@ -10,13 +10,15 @@
  *   created  : 14/06/10
  *   modified :
  *
- *   Usage : 
- *   
+ *   Usage :
+ *
  */
+
+define('PLUGIN_SKIN_CUSTOMIZER_CDN', 'http://open-qhm.github.io/haik-parts');
 function plugin_skin_customizer_action()
 {
-    global $vars, $script; 
-    
+    global $vars, $script;
+
     if ( ! ss_admin_check())
     {
         redirect($script, '管理者のみアクセスできます。');
@@ -29,9 +31,9 @@ function plugin_skin_customizer_action()
     if (isset($vars['phase']) && $vars['phase'] == 'file_upload')
     {
         require(PLUGIN_DIR.'skin_customizer/SkinCustomizer_UploadHandler.php');
-        
+
         $param_name = isset($vars['param_name']) ? $vars['param_name'] : 'files';
-        
+
         $options = array(
             'upload_dir' => CACHE_DIR,
             'upload_url' => CACHE_DIR,
@@ -58,11 +60,11 @@ function plugin_skin_customizer_action()
                 $data[$key] = $vars[$key];
             }
         }
-  	
+
         // data write
         $data = serialize($data);
         file_put_contents($custom_file, $data, LOCK_EX);
-    
+
     }
     else if (isset($vars['reset']))
     {
@@ -86,7 +88,7 @@ function plugin_skin_customizer_set_form()
     {
         return '';
     }
-    
+
     $custom_file = CACHE_DIR.'custom_skin.'.$skin_name.'.dat';
     if (file_exists($custom_file))
     {
@@ -226,7 +228,7 @@ function plugin_skin_customizer_set_form()
                     $formhtml .= '</select>';
                     $html[] = sprintf($tmpl, $group_attr, h($conf['title']), $formhtml);
                 }
-                
+
                 break;
 
             case 'if':
@@ -264,10 +266,15 @@ function plugin_skin_customizer_set_form()
                     $html[] = sprintf($tmpl, $group_attr, h($conf['title']), $formhtml);
                 }
                 break;
-            
+
             case 'select_img':
-                $haik_bg_images = file_get_contents("http://hokuken.sakura.ne.jp/qhmhaik/get_images.php");
-                $haik_bg_images = unserialize($haik_bg_images);
+                $host = PLUGIN_SKIN_CUSTOMIZER_CDN;
+                $haik_bg_images = file_get_contents("{$host}/data/images.json");
+                $haik_bg_images = json_decode($haik_bg_images, true);
+                foreach ($haik_bg_images as $i => $bg_image)
+                {
+                    $haik_bg_images[$i] = $host . $bg_image;
+                }
 
                 $is_custom_image = (is_url($conf['value'], TRUE, TRUE) || $conf['value'] == '') ? FALSE : TRUE;
                 $bg_basename = basename($conf['value']);
@@ -294,8 +301,13 @@ function plugin_skin_customizer_set_form()
                 break;
 
             case 'select_texture':
-                $haik_bg_images = file_get_contents("http://hokuken.sakura.ne.jp/qhmhaik/get_textures.php");
-                $haik_bg_images = unserialize($haik_bg_images);
+                $host = PLUGIN_SKIN_CUSTOMIZER_CDN;
+                $haik_bg_images = file_get_contents("{$host}/data/textures.json");
+                $haik_bg_images = json_decode($haik_bg_images, true);
+                foreach ($haik_bg_images as $i => $bg_image)
+                {
+                    $haik_bg_images[$i] = $host . $bg_image;
+                }
 
                 $is_custom_image = (is_url($conf['value'], TRUE, TRUE) || $conf['value'] == '') ? FALSE : TRUE;
                 $bg_basename = basename($conf['value']);

@@ -41,7 +41,7 @@ zone_time = "9"                  ;GMT: 0
 
 
 ;///////////////////////////////////////////////////////////////////////////////
-;   Messages from ja.lng.php 
+;   Messages from ja.lng.php
 ;
 
 
@@ -637,7 +637,7 @@ err_no_args  = "No arguments"
 
 
 ;///////////////////////////////////////
-;   ja.lng.php END 
+;   ja.lng.php END
 ;/////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1627,7 +1627,7 @@ err_usage    = "&qcart(商品名,値段[,設置フォルダ名]);"
 ;//   qform.inc.php
 ;///////////////////////////////////////
 [plg_qform]
-title_confirm = "$1 の確認"
+title_confirm = "$1の確認"
 title_confirm2 = "確認画面"
 title_none = "No Title"
 title_finished = "送信完了"
@@ -1696,9 +1696,9 @@ done  = "<h2>ログアウト</h2><p>ログアウトを完了しました。<br /
 [plg_qhmsetting]
 ; !qhmsetting: 一般設定
 title_helplink = "ヘルプ"
-hdr = "Quick Homepage Maker v$1 設定"
+hdr = "QHM v$1 haik 設定"
 title = "QHMサイト情報設定"
-ntc = "<p>Quick Homepage Maker の設定を行います。<br />##LF##以下の項目から、変更したいものをクリックしてください。</p>"
+ntc = "<p>QHMの設定を行います。<br />##LF##以下の項目から、変更したいものをクリックしてください。</p>"
 php4_warn = "CENTER:&deco(bold,red,,){このQHMはPHP4で動作しています};##LF####LF##QHMではPHP4をサポートしておりません。##LF##正常動作させるには、PHP5へバージョン変更するか、##LF##QHM v4.53 へダウングレードをして下さい。##LF##[[方法はこちら>$1]]##LF##"
 toc = "項目"
 btn_confirm = "設定を確認する"
@@ -2662,7 +2662,7 @@ retry_label   = "やり直す"
 btn_login = "ログイン"
 btn_cancel = "キャンセル"
 jump_home     = "トップに戻る"
-licence       = "Quick Homepage Maker $1 (rev.$2)<br />based on PukiWiki $3. licence is GPL"
+licence       = "QHM $1 haik<br />based on PukiWiki $2. licence is GPL"
 
 ;   Notice Messages
 ntc_session_save_path = "セッションの保存先を設定しています。<a href=&quot;$1&quot;>&gt;&gt; 変更はこちら</a>"
@@ -2689,6 +2689,3 @@ err_tbdir_writable = "Permission denied to write: TRACKBACK_DIR"
 [wp_adapter]
 err_no_wp_design   = "Error : NO WordPress Design Template file"
 err_page_notexists = "$1 does not exist."
-
-
-

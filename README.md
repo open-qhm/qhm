@@ -1,11 +1,11 @@
-QHM - Quick Homepage Maker
+QHM v6 haik
 ====
 
-QHMは、[PukiWiki][pukiwiki] をベースにしたウェブサイト作成システムです。
+QHM v6 haik は、[PukiWiki][pukiwiki] をベースにしたウェブサイト作成システムです。
 
 ## Description
 
-QHMはPHPの動作する環境へ設置するだけですぐに使えるウェブサイト作成システムです。
+QHM v6 haik はPHPの動作する環境へ設置するだけですぐに使えるウェブサイト作成システムです。
 初期設定がほとんど必要ないため、素早いサイト作成が可能です。
 
 
@@ -34,6 +34,11 @@ attach/, attach/*, backup/, backup/*, cache/, cache/*,
 cacheqblog/, cacheqblog/*, cacheqhm/, cacheqhm/*,
 counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 ```
+
+### QHM Installer
+
+1 ファイルインストーラーを提供しています。
+[Open QHM](openqhm)からダウンロードしてください。
 
 
 ## Document

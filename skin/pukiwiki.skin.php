@@ -14,6 +14,7 @@
  #{$beforescript}
 </head>
 <body>
+#{$fb_init}
 #{$toolkit_upper}
 <div id="wrapper"><!-- ■BEGIN id:wrapper -->
 <!-- ◆ Content ◆ ========================================================= -->
@@ -33,7 +34,7 @@
 <!-- ◆ Footer ◆ ========================================================== -->
 <div id="footer"><!-- ■BEGIN id:footer -->
 <div id="copyright"><!-- ■BEGIN id:copyright -->
-<p>powered by Quick Homepage Maker </p>
+<p>powered by QHM v#{$version} haik </p>
 </div><!-- □END id:copyright -->
 </div><!-- □END id:footer -->
 <!-- ◆ END ◆ ============================================================= -->

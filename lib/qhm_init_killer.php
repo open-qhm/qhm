@@ -166,5 +166,5 @@ if ($code = $qt->getv('ga_universal_analytics'))
 
 $qt->setv('body', $body);
 
-$generator_tag = '<meta name="GENERATOR" content="Quick Homepage Maker; version='. QHM_VERSION. '; rev='. QHM_REVISION. '; haik=false" />' . "\n";
+$generator_tag = '<meta name="GENERATOR" content="Quick Homepage Maker; version='. QHM_VERSION. '; haik=false" />' . "\n";
 $qt->prependv_once('generator_tag', 'beforescript', $generator_tag);

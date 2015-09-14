@@ -18,9 +18,6 @@ define('BASE','swfu/');
 
 define('PREVIEW_SIZE', 80);
 
-define('EDIT_IMG_API_URL', 'https://ensmall.net/form/edit_img/api.php');
-define('API_KEY_EXP', 30 * 60);//apikey の使用帰還
-
 function config_database( &$db )
 {
 	$db->add( "", "", "", "", "", DBKIND_TEXTSQL );

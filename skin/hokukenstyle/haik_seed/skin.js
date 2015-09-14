@@ -1,0 +1,1 @@
+$('.haik-fullpage-content .qhm-section:not(.qhm-eyecatch), .haik-fullpage-content .qhm-plugin-gmap, .haik-fullpage-content .qhm-section:not(.qhm-eyecatch)').wrap("<div class='row'></div>");

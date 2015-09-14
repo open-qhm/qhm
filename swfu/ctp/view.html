@@ -81,12 +81,7 @@ if ($page_name !== '')
 {
 	$api_params[] = 'page='. rawurlencode($page_name);
 }
-$api_url = EDIT_IMG_API_URL . '?' . join('&', $api_params);
 ?>
-<?php if (get_qhm_option('support')): ?>
-<a href="<?php echo h($api_url)?>">画像縮小ツールで縮小する</a>
-<?php endif ?>
-
 <table>
   <tr>
     <td style="padding-left: 0;">
