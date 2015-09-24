@@ -158,8 +158,6 @@ $(function(){
 {$op_func}
 		};
     showHaikParts = function(){
-      var \$a = $("#haikpartslink");
-      if (\$a.length === 0) return;
       tb_show('', '{$link_haik_parts}#{$style_name}?KeepThis=true&TB_iframe=true');
     }
 		var ck = document.cookie.split(";");
