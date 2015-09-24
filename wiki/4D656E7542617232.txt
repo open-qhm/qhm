@@ -7,5 +7,3 @@
 &yahoobookmark(登録するタイトル);
 
 &addgoogle;
-
-[[ホームページの作成なら>http://hokuken.com/]]
