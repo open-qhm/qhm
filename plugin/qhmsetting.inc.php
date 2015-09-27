@@ -6,35 +6,8 @@ define('PLUGIN_QHMSETTING_USER_INI_FILE', 'qhm_users.ini.txt');
 define('PLUGIN_QHMSETTING_ACCESS_INI_FILE', 'qhm_access.ini.txt');
 define('PLUGIN_QHMSETTING_ALLOW_PASSWD_PATTERN', "/^[!-~]+$/");
 
-global $http_scheme;
-if ( ! isset($http_scheme) || strlen($http_scheme) === 0 )
-{
-	if (function_exists('stream_get_wrappers') && in_array('https', stream_get_wrappers())) {
-		if ($fp = fopen('https://google.com/', 'r')) {
-			fclose($fp);
-			define('PLUGIN_QHMSETTING_HTTP_SCHEME', 'https');
-		} else {
-			define('PLUGIN_QHMSETTING_HTTP_SCHEME', 'http');
-		}
-	} else {
-		define('PLUGIN_QHMSETTING_HTTP_SCHEME', 'http');
-	}
-}
-else
-{
-	define('PLUGIN_QHMSETTING_HTTP_SCHEME', $http_scheme);
-}
-define('PLUGIN_QHMSETTING_CLUB_URL', PLUGIN_QHMSETTING_HTTP_SCHEME. '://ensmall.net/club/');//debug
-define('PLUGIN_QHMSETTING_UPDATER_URL', PLUGIN_QHMSETTING_HTTP_SCHEME. '://ensmall.net/hkn_p/qhmpro/');
-define('PLUGIN_QHMSETTING_HELP_LINK','<a href="'.QHMPRO_MEMBER_SITE.'?%PAGE%"><img src="'.IMAGE_DIR.'settings_help.png" alt="ヘルプ" style="vertical-align:top" /></a>');
-
-define('PLUGIN_QHMSETTING_CODENAME', 'qhmpro');
-
-
 /**
 * qhmsettingが動作するメインの関数
-*
-*
 */
 function plugin_qhmsetting_action()
 {
@@ -78,9 +51,8 @@ body {background-color: #E7E7E7;}
 
 		$title = '
 <p><a href="'.$script.'">QHMトップ</a> &gt; here</p>'
-.plugin_qhmsetting_qhmupdate_block()
 .plugin_qhmsetting_phpversion_block()
-.'<h2>Quick Homepage Maker v'. QHM_VERSION. '設定</h2>';
+.'<h2>QHM v'. QHM_VERSION. ' haik設定</h2>';
 		$ret = $title.plugin_qhmsetting_default();
 	}
 
@@ -111,6 +83,7 @@ function plugin_qhmsetting_default()
 {
 
 	global $script, $other_plugins;
+	$qt = get_qt();
 
 	$scrt = $script . '?plugin=qhmsetting&amp;mode=form&amp;phase=';
 
@@ -231,19 +204,17 @@ function plugin_qhmsetting_default()
 		),
 		'update'       => array(
 			'help' => 'HowToUseUpdatePlugin',
-			'url'  => $script. '?cmd=qhmupdate',
+			'url'  => $script. '?cmd=system_updater',
 			'img'  => IMAGE_DIR. 'settings_update.png',
 			'title' => 'アップデート',
-			'subtitle' => 'QHMシステムのアップデートを行います。<br /><a href="'.QHMPRO_MEMBER_SITE.'sys/">インストールシステムはこちら</a>',
+			'subtitle' => 'QHMのアップデートを行います。',
 			'limited' => true,
 		),
 
 	);
 
 	foreach ($setlist as $setname => $set) {
-		$setlist[$setname]['help'] = get_qhm_option('support')
-			? str_replace('%PAGE%', $set['help'], PLUGIN_QHMSETTING_HELP_LINK)
-			: '';
+		$setlist[$setname]['help'] = '';
 //--<LimitedSetting>--
 		if ($set['limited']) {
 			$setlist[$setname]['limited'] = false;
@@ -267,7 +238,8 @@ function plugin_qhmsetting_default()
 		{
 			$html .= <<<EOD
 <p class="warning" style="background:#fff6bf;color:#514721;border-color:#ffd324;">
-	SWFUなどが正常に動作しない場合は、ご利用中の<strong>Quick Commu</strong>を最新版にバージョンアップすることで問題が解決されます。バージョンアップは<a href="http://ensmall.net/p/qcommu/sys/" target="_blank">こちら</a>から。
+	SWFUなどが正常に動作しない場合は、
+	ご利用中の<strong>Quick Commu</strong>を最新版にバージョンアップすることで問題が解決されます。
 </p>
 EOD;
 		}
@@ -281,23 +253,30 @@ EOD;
 			<style>
 			.qhmsetting-update-showcase {
 				width: 100%;
-				margin-bottom: 50px;
-			}
-			.qhmsetting-update-showcase iframe {
-				width: 100%;
-				height: 130px;
-				border-style: none;
+				margin: 10px auto 50px;
+				padding: 0 40px;
 			}
 			</style>
 			<h3>お知らせ</h3>
 			<div class="qhmsetting-update-showcase">
-				<iframe src="{$update_list_url}"></iframe>
+				<div class="fb-page" data-href="https://www.facebook.com/open.qhm" data-width="500" data-height="300" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/open.qhm"><a href="https://www.facebook.com/open.qhm">Open QHM</a></blockquote></div></div>
 			</div>
 EOD;
+		$fb_init = <<< EOD
+			<div id="fb-root"></div>
+			<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.4&appId=182764055138172";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+EOD;
+		$qt->setv('fb_init', $fb_init);
 	}
 // HTML生成
 	$html .= <<<EOD
-<p>Quick Homepage Maker の設定を行います。<br />
+<p>QHMの設定を行います。<br />
 以下の項目から、変更したいものをクリックしてください。</p>
 
 {$update_showcase}
@@ -356,44 +335,13 @@ function plugin_qhmsetting_phpversion_block() {
 CENTER:&deco(bold,red,,){このQHMはPHP4で動作しています};
 
 QHMではPHP4をサポートしておりません。
-正常動作させるには、PHP5へバージョン変更するか、
-QHM v4.53 へダウングレードをして下さい。
-[[方法はこちら>https://ensmall.net/p/misc/index.php?QHM46onPHP4#PHP4]]
+正常動作させるには、ご利用のサーバーのPHPをバージョンアップ（PHP5.3 以上推奨）してください。
 }}
 ';
 		$msg = convert_html($wkstr);
 	}
 	return $msg;
 
-}
-
-/**
- *   バージョンアップを促す
- */
-function plugin_qhmsetting_qhmupdate_block()
-{
-	global $script;
-
-	if ( ! get_qhm_option('support'))
-	{
-		return '';
-	}
-
-	$msg = '';
-//--<UpdateMessage>--
-	if ( isset($_COOKIE['QHM_VERSION']) && $_COOKIE['QHM_VERSION'] > QHM_VERSION)
-	{
-		$link = $script . '?plugin=qhmupdate';
-		$wkstr = '
-#style(class=box_yellow_dsm){{
-&deco(bold,#333,){最新バージョンがリリースされています。};
-[[システムの更新はこちら>'.$link.']]
-}}
-';
-		$msg = convert_html($wkstr);
-	}
-//--</UpdateMessage>--
-	return $msg;
 }
 
 /**
@@ -424,9 +372,7 @@ input[name="qhmsetting[style_name]"], input[name="qhmsetting[smart_name]"],
 	$qt->appendv('beforescript', $addcsv);
 
 	// ヘルプリンク作成
-	$hlp_design    = get_qhm_option('support')
-		? str_replace('%PAGE%','ChangeDesign',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_design    = '';
 
 	$params = plugin_qhmsetting_getparams();
 
@@ -591,7 +537,7 @@ EOD;
 </form>
 </div>
 
-<h2 id="qhmdesign">デザインテンプレートの設定</h2>
+<h2 id="qhmdesign">デザインテンプレート（テーマ）の設定</h2>
 <div class="well">
 
 <form method="post" action="{$script}">
@@ -650,7 +596,7 @@ EOD;
 //--</RemoveQHMDesign>--
 
 	$body .= '<div id="qhmdesignStatus"></div>'. "\n";
-	$body .= '<p>デザインをクリックするとプレビューできます。</p>';
+	$body .= '<p>サムネイルをクリックするとプレビューできます。</p>';
 	$body .= '
 <script type="text/javascript">
 $(function(){
@@ -721,38 +667,11 @@ $(function(){
 	//  !デザイン取得
 	//======================================================
 	if (is_writable(SKIN_DIR)) {
-		//jQuery と jQuery UI を読み込む
-		$addscript = '
-<script type="text/javascript" src="js/get_qhm_designs.js"></script>';
-		$qt->appendv_once('plugin_qhmsetting_design_form', 'beforescript', $addscript);
-
-		if ( ! get_qhm_option('support'))
-		{
-			$about_template_url = 'http://www.open-qhm.net/index.php?QHMTemplateMarket';
-			$body .= <<< EOS
-				<p>
-					<a href="{$about_template_url}"
-						target="openqhm"
-					>&gt;&gt;&gt; デザインテンプレートを取得</a>
-				</p>
-EOS;
-		}
-		else if (ini_get('safe_mode')) {
-			$body .= '
-	<p><span style="color:#f66">このサーバーではQHM上でのデザイン取得ができません。php.ini のsafe_mode をOff にしてください。<br /><a href="'.QHMPRO_MEMBER_SITE.'?GetDesign#safe_mode" target="new">&gt;&gt;&gt;Off にする方法はこちら</a></span><br /><br />または、インストールシステムからデザインを取得してください。<br /><a href="'.QHMPRO_MEMBER_SITE.'sys/" target="new">&gt;&gt;&gt;インストールシステムからデザインテンプレートを取得する</a></p>';
-		}
-		else if ($fp = fopen(PLUGIN_QHMSETTING_CLUB_URL, 'rb')) {
-			fclose($fp);
-			$body .= '
-	<p><button type="button" data-target="#authModal" class="btn btn-link" data-toggle="modal">&gt;&gt;&gt; デザインテンプレートを取得</button></p>
-';
-		}
-		else {
-			$body .= '
-	<p><a href="'.QHMPRO_MEMBER_SITE.'sys/" target="new">&gt;&gt;&gt;インストールシステムでデザインテンプレートを取得する</a><br /><span style="color:#f66">※このサーバーではQHMからデザインテンプレートを取得できません</span></p>';
-		}
-
 		$body .= '
+<p>
+  <a href="'.h($script).'?cmd=theme_uploader" class="btn btn-link">
+    <i class="glyphicon glyphicon-upload"></i> テーマファイルをアップロードする</a>
+</p>
 <!-- Modal -->
 <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -1446,162 +1365,6 @@ EOD;
 
 }
 
-/**
- *   デザイン取得をテストする
- */
-function plugin_qhmsetting_design_test() {
-	global $vars, $script;
-
-	$tests = array('https', 'fopen', 'settings');
-	$results = isset($_SESSION['plugin_qhmsetting_design_test'])? $_SESSION['plugin_qhmsetting_design_test']: array_flip($tests);
-	$mode = isset($vars['testmode'])? $vars['testmode']: 'default';
-
-	$body = '
-<h2>Test Design Get</h2>
-';
-	if ($mode == 'default') {
-		$body .= '<ul id="designTests">';
-
-		foreach ($tests as $test) {
-			$body .= '<li><input type="checkbox"'.($results[$test]['result']? ' checked="checked"': '').' /> <a href="'.$script.'?cmd=qhmsetting&phase=design&mode=test&testmode='. $test.'">'. $test. ' Test</a></li>';
-		}
-		$body .= '</ul>';
-
-		$body .= '<p><a href="'.$script.'?cmd=qhmsetting&phase=design&mode=test&testmode=reset">Reset Test Results</a></p>';
-	}
-	//fopen のテスト
-	else if ($mode == 'fopen') {
-
-		//GET test
-		$get_enable = false;
-		if ($fp = fopen(PLUGIN_QHMSETTING_CLUB_URL, 'r')) {
-			fclose($fp);
-			$get_enable = true;
-		}
-
-
-		//POST test
-		//auth request
-		$temail = isset($vars['email'])? $vars['email']: 'test';
-		$tpasswd = sha1(md5(isset($vars['password'])? $vars['password']: 'test'));
-		$vars = array('email' => $temail, 'password' => $tpasswd, 'product_id' => 1);
-		$data = http_build_query($vars, '', '&');
-		$res = trim(plugin_qhmsetting_post(PLUGIN_QHMSETTING_CLUB_URL . 'users/remote_has_product/'.QHM_REVISION.'/' , $data));
-
-		$wkstr = '
-* GET test
-GET '. PLUGIN_QHMSETTING_CLUB_URL.'
-→ '. ($get_enable? 'Success': 'Failed') .'
-
-* POST test
-** auth request
-POST {email: '. $temail.', password: '. $tpasswd.', product_id: 1} to
-'. PLUGIN_QHMSETTING_CLUB_URL. 'users/remote_has_product/'.QHM_REVISION.'/
-↓
-
-#html{{
-<p>'. nl2br(h($res)). '</p>
-}}
-----
-';
-
-		//get design list
-		$data = http_build_query($vars, '', '&');
-		$res = trim(plugin_qhmsetting_post(PLUGIN_QHMSETTING_CLUB_URL . 'users/get_qhm_designs/'.QHM_REVISION.'/', $data));
-
-		$wkstr .= '
-** design list request
-POST {email: '. $temail.', password: '. $tpasswd.', product_id: 1} to
-'. PLUGIN_QHMSETTING_CLUB_URL. 'users/get_qhm_designs/'.QHM_REVISION.'/
-↓
-
-#html{{
-<p>'. nl2br(h($res)).'</p>
-}}
-----
-';
-
-		$wkstr .= '
-#html{{
-Change Params
-<form action="'. $script.'" method="get">
-<input type="hidden" name="cmd" value="qhmsetting" />
-<input type="hidden" name="phase" value="design" />
-<input type="hidden" name="mode" value="test" />
-<input type="hidden" name="testmode" value="fopen" />
-Email: <input type="text" name="email" /><br />
-Passwd: <input type="password" name="password" /><br />
-<input type="submit" value="Change" />
-</form>
-}}
-';
-
-		$wkstr .= '
-[[戻る>'. $script.'?cmd=qhmsetting&phase=design&mode=test]]
-';
-		$body = convert_html($wkstr);
-		$results[$mode] = array('result' => $get_enable, 'msg' => $get_enable? 'Success': 'Failed');
-	}
-	//SSL接続のテスト
-	else if ($mode == 'https') {
-
-		$phpver = phpversion();
-		$sgw_exists = function_exists('stream_get_wrappers');
-		$sgw_has_https = $sgw_exists? in_array('https', stream_get_wrappers()): false;
-		$ssl_access = false;
-
-		if (intval($phpver) > 4 && $sgw_has_https ) {
-			$ssl_access = fopen('https://ensmall.net/', 'r');
-			if ($ssl_access) {
-				fclose($ssl_access);
-				$ssl_access = true;
-			}
-		}
-
-		$wkstr = '
-* SSL Access Test
-|~PHP Version|'. $phpver.'|
-|~stream_get_wrappers()|'. ($sgw_exists? 'exists': 'not exists'). '|
-|~SSL Access|'. ($ssl_access? 'Success': 'Failed').'|
-※この結果はデザイン取得の成否には影響しません。
-
-[[戻る>'. $script.'?cmd=qhmsetting&phase=design&mode=test]]
-';
-		$body = convert_html($wkstr);
-		$results[$mode] = array('result' => 1, 'msg' => 'Success');
-	}
-	else if ($mode == 'settings') {
-
-		$safe_mode = ini_get('safe_mode')? 'On': 'Off';
-		$auf = ini_get('allow_url_fopen')? 'On': 'Off';
-
-		$wkstr = '
-* Server Settings
-|~safe_mode|'. $safe_mode.'|
-|~allow_url_fopen|'. $auf .'|
-|~arg_separator.output|'. h(ini_get('arg_separator.output')).'|
-
-[[戻る>'. $script.'?cmd=qhmsetting&phase=design&mode=test]]
-';
-		$body = convert_html($wkstr);
-		$results[$mode] = array('result' => 1, 'msg' => 'Success');
-	}
-	//結果リセット
-	else if ($mode == 'reset') {
-
-		$results = array_flip($tests);
-		$_SESSION['plugin_qhmsetting_design_test'] = $results;
-		header('Location: '. $script. '?cmd=qhmsetting&phase=design&mode=test');
-		exit;
-	}
-
-	$_SESSION['plugin_qhmsetting_design_test'] = $results;
-
-	return $body;
-
-}
-
-
 //--</RemoveQHMDesign>--
 
 function plugin_qhmsetting_remove_dir($dir, $remain_dir = false) {
@@ -1804,16 +1567,14 @@ function plugin_qhmsetting_info_form($error = '')
 {
 	global $script;
 	global $other_plugins;
-	$hlp_info = get_qhm_option('support')
-		? str_replace('%PAGE%','SettingOnQHM#u51b4166',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_info = '';
 
 	$error_msg = ($error!='') ? '<p style="color:red">'.$error.'</p>' : '';
 
 	$params = plugin_qhmsetting_getparams();
 	$values = plugin_qhmsetting_info_getVals($params);
 
-	$body = '<h2>Quick Homepage Maker v'. QHM_VERSION. ' 設定'.$hlp_info.'</h2>';
+	$body = '<h2>QHM v'. QHM_VERSION. ' haik 設定'.$hlp_info.'</h2>';
 	$body .= $error_msg;
 	$body .= <<<EOD
 <p>サイト情報の設定では、titleタグ、ヘッドコピー、フッターの情報、アクセス解析タグなどの設定を行います。</p>
@@ -1910,7 +1671,7 @@ function plugin_qhmsetting_info_confirm()
 	$params = plugin_qhmsetting_getparams();
 	$values = plugin_qhmsetting_info_getVals($params);
 
-	$body = '<h2>Quick Homepage Maker v'. QHM_VERSION. ' 設定</h2>';
+	$body = '<h2>QHM v'. QHM_VERSION. ' haik 設定</h2>';
 	$body .= '
 <p>以下の内容でよければ、ページ下部の「設定する」をクリックしてください</p>
 <table class="table table-bordered">
@@ -1994,9 +1755,7 @@ function plugin_qhmsetting_admin_form($error = '')
 	global $script, $vars;
 	global $other_plugins;
 
-	$hlp_admin = get_qhm_option('support')
-		? str_replace('%PAGE%','SetPassword',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_admin = '';
 
 	$params = plugin_qhmsetting_getparams();
 
@@ -2201,9 +1960,7 @@ function plugin_qhmsetting_mail_form($error='')
 {
 	global $script;
 	global $other_plugins;
-	$hlp_mail = get_qhm_option('support')
-		? str_replace('%PAGE%','MailSetting',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_mail = '';
 
 	$params = plugin_qhmsetting_getparams();
 	$error_msg = ($error!='') ? '<p style="color:red">'.$error.'</p>' : '';
@@ -2654,9 +2411,7 @@ function plugin_qhmsetting_user_form($error = '')
 {
 	global $custom_meta, $script;
 	global $other_plugins;
-	$hlp_useradmin = get_qhm_option('support')
-		? str_replace('%PAGE%','UserAuthSetting',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_useradmin = '';
 
 	$custom_meta .= '<script type="text/javascript" src="./js/jquery.js"></script>
 <script type="text/javascript" src="./js/jquery.tablesorter.min.js"></script>
@@ -3136,9 +2891,7 @@ function plugin_qhmsetting_chmod_form($error = '')
 {
 	global $custom_meta, $script;
 	global $other_plugins;
-	$hlp_chmod = get_qhm_option('support')
-		? str_replace('%PAGE%','UserAuthSetting',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_chmod = '';
 
 	$back_url = '';
 
@@ -3310,9 +3063,7 @@ function plugin_qhmsetting_counter_form($error='')
 {
 	global $script, $vars;
 	global $other_plugins;
-	$hlp_counter  = get_qhm_option('support')
-		? str_replace('%PAGE%','Counter',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_counter  = '';
 
 	//reset
 	$message = '';
@@ -3372,9 +3123,7 @@ function plugin_qhmsetting_clear_form($error = '')
 	global $other_plugins;
 	$qt = get_qt();
 
-	$hlp_clear = get_qhm_option('support')
-		? str_replace('%PAGE%','SettingCache',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_clear = '';
 
     $files = array();
     $search_files = array();
@@ -3719,9 +3468,7 @@ function plugin_qhmsetting_close_form($error = '')
 {
 	global $script, $site_close_all;
 	global $other_plugins;
-	$hlp_close = get_qhm_option('support')
-		? str_replace('%PAGE%','SettingCloseSite',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_close = '';
 
 	$reverse = '公開';
 	$current = '閉鎖';
@@ -3796,9 +3543,7 @@ function plugin_qhmsetting_mobile_form($error = '')
 {
 	global $script, $vars;
 	global $other_plugins;
-	$hlp_mobile = get_qhm_option('support')
-		? str_replace('%PAGE%','RedirectMobile',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_mobile = '';
 
 	$params = plugin_qhmsetting_getparams();
 
@@ -3868,9 +3613,7 @@ function plugin_qhmsetting_gmap_form($error = '')
 {
 	global $script, $vars;
 	global $other_plugins;
-	$hlp_gmap = get_qhm_option('support')
-		? str_replace('%PAGE%','GoogleMapsKey',PLUGIN_QHMSETTING_HELP_LINK)
-		: '';
+	$hlp_gmap = '';
 
 	$params = plugin_qhmsetting_getparams();
 
@@ -4239,10 +3982,6 @@ function plugin_qhmsetting_sns_msg()
 function plugin_qhmsetting_script_form($error = '')
 {
 	global $script, $script_ssl, $other_plugins;
-
-	$help_link = get_qhm_option('support')
-		? '<a href="https://ensmall.net/p/qhmpro/index.php?ScriptSetting">より詳しい説明は、こちら</a>'
-		: '';
 
 	$body = <<<EOD
 <script type="text/javascript">
@@ -4824,58 +4563,6 @@ function _get_pregdata($data, $mark) {
 	return $data;
 }
 
-
-function plugin_qhmsetting_club_auth() {
-	global $vars, $other_plugins;
-	$email = $vars['email'];
-	$vars['password'] = $passwd = sha1(md5($vars['password']));
-	$vars['product_id'] = 1;//QHM Product ID
-
-	//QHM ライセンスを確認
-	$data = http_build_query($vars, '', '&');
-	$res = trim(plugin_qhmsetting_post(PLUGIN_QHMSETTING_CLUB_URL . 'users/remote_has_product/'.QHM_REVISION.'/' , $data));
-	$rawres = $res;
-	$pid = preg_match('/<product_id>(\d+)<\/product_id>/', $res, $mts)? intval($mts[1]): 0;
-	$res = preg_match('/<result>(.+)<\/result>/', $res, $mts)? $mts[1]: $res;
-
-	$club_id = 0;
-	$errmsg = '';
-	//QHM 購入してない
-	if($res == 'invalid') {
-		$club_id = 0;
-		$errmsg = $pid == 1? 'QHMプロのライセンス未購入です': ($pid == 10? '体験版QHMプロの有効期限が過ぎています': ($other_plugins? 'QHMプロのライセンス未購入です': 'Open QHMではデザインの取得はできません'));
-	}
-	//認証エラー
-	else if($res == 'auth_error') {
-		$club_id = 0;
-		$errmsg = 'メールアドレス、あるいはパスワードが間違っています';
-	}
-	//club_id
-	else if (preg_match('/^\d+$/', $res)) {
-		$club_id = $res;
-	} else {
-		$club_id = 0;
-		$errmsg = '予期せぬメッセージです。<a href="'.PLUGIN_QHMSETTING_CLUB_URL.'users/contact/" target="new">こちら</a>から問い合わせてください<!--'. strip_tags($rawres) .'-->';
-	}
-
-
-	if ($errmsg == '') {
-		//セッションに格納
-		$_SESSION['remote_club'] = array(
-			'club_id'  => $club_id,
-			'email'    => $email,
-			'password' => $passwd,
-			'product_id' => $pid,
-		);
-		$out =  'valid';
-	} else {
-		$out = $errmsg;
-	}
-	header("Content-Type: application/text; charset=UTF-8");
-	echo '<result>', $out, '</result>';
-	exit;
-}
-
 //--<FTPAccess>--
 /**
  *   localhost にFTP接続し、フォルダを作る
@@ -4953,94 +4640,6 @@ function plugin_qhmsetting_club_has_qhm()
 	exit;
 }
 
-//--<GetQHMDesign>--
-function plugin_qhmsetting_club_get_designs()
-{
-	global $vars;
-	$club_data = isset($_SESSION['remote_club'])? $_SESSION['remote_club']: array();
-
-	if ($club_data) {
-		$vars['email'] = $club_data['email'];
-		$vars['password'] = $club_data['password'];
-		$data = http_build_query($vars, '', '&');
-		$res = trim(plugin_qhmsetting_post(PLUGIN_QHMSETTING_CLUB_URL . 'users/get_qhm_designs/'.QHM_REVISION.'/', $data));
-		$res = preg_match('/<json>(.*)<\/json>/', $res, $mts)? $mts[1]: '{}';
-		header("Content-Type: application/json; charset=UTF-8");
-		echo '<json>', $res, '</json>';
-	} else {
-		header("Content-Type: application/json; charset=UTF-8");
-		echo '<json>{}</json>';
-	}
-
-	exit;
-}
-
-function plugin_qhmsetting_club_download_design()
-{
-	global $vars;
-	$out = '';
-
-	$club_data = isset($_SESSION['remote_club'])? $_SESSION['remote_club']: array();
-
-	//ローカルのプレビュー
-	if ($_SESSION['temp_design'] && (! isset($_SESSION['temp_skin']) OR strlen($_SESSION['temp_skin']) === 0))
-	{
-		header("Content-Type: application/text; charset=UTF-8");
-		echo '<result>OK</result>';
-		exit;
-	}
-
-	if ($club_data) {
-		$vars['email'] = $club_data['email'];
-		$vars['password'] = $club_data['password'];
-		$data = http_build_query($vars, '', '&');
-		$res = trim(plugin_qhmsetting_post(PLUGIN_QHMSETTING_CLUB_URL . 'users/download_qhm_design/'.QHM_REVISION.'/', $data));
-		$len = strlen($res);
-		//zip を保存
-		if ($len > 0) {
-			$d = $vars['design'];
-			chdir('skin/hokukenstyle');
-			$zipfile = '../../cacheqhm/'. $d. '.zip';
-			$fp = fopen($zipfile, 'wb');
-			fwrite($fp, $res, $len);
-			fclose($fp);
-
-			//zip を解凍する
-			require_once("../../lib/unzip.lib.php");
-			$unzip = new SimpleUnzip($zipfile);
-
-			//mkdir
-			mkdir($d);
-			chmod($d, 0777);
-			$len = $unzip->Count();
-			for ($i = 0; $i < $len; $i++) {
-				$name = $unzip->GetName($i);
-				$data = $unzip->GetData($i);
-				$dlen = strlen($data);
-
-				$uzfile = $d . '/'. $name;
-				if ($fp = fopen($uzfile, "wb")) {
-					fwrite($fp, $data, $dlen);
-					fclose($fp);
-					chmod($uzfile, 0666);
-				} else {
-					echo '<error>', $name, ' is cannot opened!</error>';
-				}
-			}
-
-			//remove zipfile
-			unlink($zipfile);
-			$out = 'OK';
-		} else {
-			$out = 'failed';
-		}
-	} else {
-		$out = 'authenticate error';
-	}
-	header("Content-Type: application/text; charset=UTF-8");
-	echo '<result>', $out, '</result>';
-	exit;
-}
 //--</GetQHMDesign>--
 
 function plugin_qhmsetting_post($url, $data, $optional_headers = null) {

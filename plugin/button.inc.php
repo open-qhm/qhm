@@ -56,6 +56,7 @@ function plugin_button_body($args, $text)
             $href = $script . '?cmd=edit&page=' . rawurlencode($href);
         }
 
+        $target = FALSE;
         foreach($args as $arg)
         {
             $arg = trim($arg);
@@ -94,7 +95,14 @@ function plugin_button_body($args, $text)
                 $class .= ' btn-'. $arg;
                 break;
             default:
-                $class .= ' '.$arg;
+              if (preg_match('/\Awindow=(.+)\z/', $arg, $mts))
+              {
+                  $target = $mts[1];
+              }
+              else
+              {
+                  $class .= ' '.$arg;
+              }
             }
         }
     }
@@ -103,7 +111,8 @@ function plugin_button_body($args, $text)
         $href = "#";
     }
 
-    $html = '<a class="btn'.$type.$block.$size.$class.'" href="'.h($href).'">'.$text.'</a>';
+    $target = ($target !== FALSE) ? ' target="'. h($target) .'"' : '';
+    $html = '<a class="btn'.$type.$block.$size.$class.'" href="'.h($href).'"'.$target.'>'.$text.'</a>';
 
     return $html;
 }

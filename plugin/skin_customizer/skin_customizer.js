@@ -121,7 +121,7 @@ $(function(){
     });
 
     /* file upload */
-    $("[data-file-upload]", ".qhm-skin-customizer-modal").fileupload({
+    $(".qhm-skin-customizer-modal [data-file-upload], .qhm-skin-customizer-body [data-file-upload]").fileupload({
       url: skin_customizer.script,
       dataType: 'json',
       acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
@@ -173,7 +173,7 @@ $(function(){
       $(this).addClass("active");
     })
     .on("click", "[data-update]", function(){
-        var imagesrc = $("[data-image-select].active").find("img").attr("src");
+        var imagesrc = $("[data-image-select].active", $(this).closest(".modal")).find("img").attr("src");
         var param = $(this).data("sync");
         var $input = $('input:hidden[name='+param+']');
 

@@ -1,0 +1,57 @@
+<div class="admin qhm-system-updater">
+
+  <div class="layoutbox">
+
+    <h2>QHM アップデートの確認</h2>
+
+    <div class="execute">
+
+      <div class="description">
+        <?php if ($enable_new_version): ?>
+          <p>
+            最新版<code>v<?php echo h($version)?></code>が見つかりました。<br>
+            よろしければ、<strong>アップデートする</strong>を押してアップデートを開始してください。
+          </p>
+        <?php else: ?>
+          <p>
+            ご利用のQHMは最新版<code>v<?php echo h(QHM_VERSION)?></code>です。<br>
+            <strong>アップデートする</strong>を押すと「システムの修復」を行います。
+          </p>
+        <?php endif ?>
+      </div>
+
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th style="width: 10em">バージョン</th>
+            <td>
+              <code>v<?php echo h($version)?></code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <i class="glyphicon glyphicon-info-sign"></i> 全てのファイルを最新版にします。
+        独自にファイルを書き換えている場合、必ず事前にバックアップを取ってください。
+      </div>
+
+      <div class="confirm-action">
+
+        <form method="post" action="<?php echo h($script)?>">
+          <input type="hidden" name="cmd" value="system_updater">
+          <input type="hidden" name="mode" value="complete">
+
+          <div class="alert alert-primary">
+            <button type="submit" class="btn btn-primary">アップデートする</button>
+            <a href="<?php echo h($script)?>?cmd=system_updater" class="btn btn-link">キャンセル</a>
+          </div>
+        </form>
+
+      </div>
+
+    </div><!-- execute -->
+<!--install end-->
+
+  </div><!-- layoutbox -->
+</div>

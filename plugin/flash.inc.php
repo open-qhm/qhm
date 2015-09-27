@@ -8,11 +8,11 @@
 
  //----------------------------------------------------------------------
  Usage:
- 書式 
+ 書式
  #flash(flashムービーファイル,幅x高さ[,オプション=["]値["]]...)
       引数,オプション	        : 意味      : デフォルト
 	ファイル名		:必須
-        幅x高さ			:必須  
+        幅x高さ			:必須
 	quality = 		:品質        :  high
 	bgcolor =	        :背景色      :  なし
 	classid =		:クラスID    :D27CDB6E-AE6D-11cf-96B8-444553540000
@@ -53,6 +53,13 @@ function plugin_flash_inline()
 function plugin_flash_convert()
 {
 	$argc = func_num_args();
+	$qt = get_qt();
+
+	// add ignore class for fitvids
+	$ignore_list = $qt->getv('fitvids_ignore_list');
+	$ignore_list = $ignore_list ? $ignore_list : array();
+	$ignore_list[] = '.qhm-flash';
+	$qt->setv('fitvids_ignore_list', $ignore_list);
 
 	if ($argc < 1) {
 		return FALSE;
@@ -129,21 +136,20 @@ function plugin_flash_convert()
 		  $strStyle = "width:$numWidth;height:$numHeight;";
 	} else {  $strStyle = "width:$numWidth;height:$numHeight;";}
 	$align=strtolower($align);
-	// mozilla対策 	
+	// mozilla対策
 	if ($align=='center'){
-   	   $mozAlign="text-align:$align;margin-left:auto; margin-right:auto;";
-
+		$mozAlign="text-align:$align;margin-left:auto; margin-right:auto;";
 	}else if ($align=='right'){
-   	   $mozAlign="text-align:$align;margin-left:auto; margin-right:0;";
+		$mozAlign="text-align:$align;margin-left:auto; margin-right:0;";
 	} else {
-   	   $mozAlign="text-align:$align;margin-left:0; margin-right:auto;";
+		$mozAlign="text-align:$align;margin-left:0; margin-right:auto;";
 	}
-	// 
+	//
 	//  @ objectタグ IE  embed   mozilla embed用のflashvars
-        $embedflashvars = '';
+	$embedflashvars = '';
 	//  @ flashvarsが存在する場合
 	if($flashvars!='')
-	{       
+	{
 		// @ UTF-8に変換
 		//$flashvars=mb_convert_encoding($flashvars,"UTF-8","EUC-JP");//
 		// @ varname=val の形に分解
@@ -151,7 +157,7 @@ function plugin_flash_convert()
 		for($i=0;$i < count($aryVars); $i++)
 		{
 			// @ 名前と値に分解
-                 	$aryField = split('=',$aryVars[$i]);
+			$aryField = split('=',$aryVars[$i]);
 			if(count($aryField)==2)
 			{
 				// @ 値の部分だけurlエンコード
@@ -162,20 +168,20 @@ function plugin_flash_convert()
 		}
 		// @ 繋げて戻す
 		$flashvars = join('&',$aryVars);
-		// @ embed対策	
+		// @ embed対策
 		$embedflashvars= '?' . $flashvars;
 	}
 	$sBorder=0;
 	if($bStyle==1){	$sBorder = "border:$valueStyle solid black";}
 
-        //  @ 出力タグ  <div><table><<object>
+	//  @ 出力タグ  <div><table><<object>
 	$rt = <<<EOD
-  <div class="flash" id="$name" style="$mozAlign">
+  <div class="flash qhm-flash" id="$name" style="$mozAlign">
    <table style="background:inherit;$mozAlign">
    <tr><td class="flash" style="background:inherit;margin:0px;padding:0px;$sBorder">
      <object classid="clsid:$classid" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=$version" $width $height id="$id">
        <param name="movie" value="$swf" />
-       <param name="quality" value="$quality" /> 
+       <param name="quality" value="$quality" />
        <param name="bgcolor" value="$bgcolor" />
        <param name="FlashVars" value="$flashvars" />
        <embed src="$swf$embedflashvars" quality="$quality" bgcolor="$bgcolor" $width  $height name="$name" align="$align" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
@@ -188,17 +194,15 @@ EOD;
 
 	if ($binline==1)
 	{
- 	 // インライン出力
-	  return "$rt";
-
-	}else{
- 	 // : ブロック出力    配置用テーブルで括る
-	  return <<<EOD
+		// インライン出力
+		return "$rt";
+	} else {
+		// : ブロック出力    配置用テーブルで括る
+		return <<<EOD
  <table class="aligntable" style="background:inherit;width:100%;border:0px;" >
- <tr><td class="aligntd" style="text-align:$align;background:inherit;border:0px;" >$rt</td></tr></table> 
+ <tr><td class="aligntd" style="text-align:$align;background:inherit;border:0px;" >$rt</td></tr></table>
 EOD;
 
 	}
 
 }
-?>

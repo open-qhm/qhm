@@ -1,0 +1,56 @@
+<div class="admin qhm-theme-uploader">
+
+  <div class="layoutbox">
+
+    <h2>QHM テーマアップロードの確認</h2>
+
+    <div class="execute">
+
+      <div class="description">
+        <p>
+          下記のテーマファイルをアップロードします。<br>
+          よろしければ、<strong>OK</strong>を押してアップロードを完了してください。
+        </p>
+      </div>
+
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>テーマ名</th>
+            <td>
+              <code><?php echo h($name)?></code><br>
+              <?php if ($overwrite): ?>
+                <span class="help-block">※既に存在するテーマファイルを上書きします。</span>
+              <?php endif ?>
+            </td>
+          </tr>
+          <tr>
+            <th>ファイル</th>
+            <td>
+              <?php foreach ($files as $file_path): ?>
+                <?php echo h(basename($file_path))?><br>
+              <?php endforeach ?>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="confirm-action">
+
+        <form method="post" action="<?php echo h($script)?>">
+          <input type="hidden" name="cmd" value="theme_uploader">
+          <input type="hidden" name="mode" value="complete">
+
+          <div class="alert alert-primary">
+            <button type="submit" class="btn btn-primary">OK</button>
+            <a href="<?php echo h($script)?>?cmd=theme_uploader" class="btn btn-link">キャンセル</a>
+          </div>
+        </form>
+
+      </div>
+
+    </div><!-- execute -->
+<!--install end-->
+
+  </div><!-- layoutbox -->
+</div>

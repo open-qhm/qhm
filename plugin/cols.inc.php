@@ -11,10 +11,10 @@
  *   modified : 13/08/07
  *
  *   Description
- *   
- *   
+ *
+ *
  *   Usage :
- *   
+ *
  */
 
 function plugin_cols_convert()
@@ -24,36 +24,55 @@ function plugin_cols_convert()
 
 	$args   = func_get_args();
 	$body   = array_pop($args);
-	
+
 	$type = plugin_cols_type('get');
 
 	$msg = '';
 	$cols = array();
-	
+
 	$delim = "\r====\r";
 
 	$row_class = '';
 	$num = $args[0];
-	
+
 	$col_push_index = false;
 	$col_push_num = 0;
 
 	$col_pull_index = false;
 	$col_pull_num = 0;
 
+	// 段落オプションの正規表現パターン
+	$regex = <<< EOR
+		/
+			\A
+				(\d+)                    # 1: col-sm-N
+				(?:\+(\d+))?             # 2: col-sm-offset-N
+				(r|l)?                   # 3: col-sm-push col-sm-pull
+				(                        # 4: col-X-N col-X-offset-N
+					(?:
+						@(?:xs|md|lg)
+						\d+
+						(?:\+\d+)?
+					)*
+				)?
+				(                         # 5: custom class name
+					(?:\.[a-zA-Z0-9_-]+)+
+				)?
+			\z
+		/x
+EOR;
 
 	if (count($args) > 0)
 	{
 		$max = 12;
 		$total = 0;
-		
+
 		for ($i = 0; $i < count($args); $i++)
 		{
 		  $args[$i] = trim($args[$i]);
 			if ($args[$i] === '') continue;
 
-
-			if ( ! preg_match('/^(\d+)(?:\+(\d+))?(r|l)?((?:\.[a-zA-Z0-9_-]+)+)?$/', $args[$i], $mts))
+			if ( ! preg_match($regex, $args[$i], $mts))
 			{
 				if (preg_match('/^class=(.+)$/', $args[$i], $mts))
 				{
@@ -69,29 +88,48 @@ function plugin_cols_convert()
 				}
 				continue;
 			}
-			
+
 			$col_num = (int)$mts[1];
 			$col_offset = isset($mts[2]) ? (int)$mts[2] : 0;
 
 			$col_push = false;
 			if ($col_push_index === false && $col_pull_index === false && isset($mts[3]) && $mts[3] == 'r')
 			{
-  		    $col_push_index = count($cols);
-          $col_push = $col_push_num = $col_num;
+				$col_push_index = count($cols);
+				$col_push = $col_push_num = $col_num;
 			}
 
 			$col_pull = false;
 			if ($col_push_index === false && $col_pull_index === false && isset($mts[3]) && $mts[3] == 'l')
 			{
-  		    $col_pull_index = count($cols);
-          $col_pull = $col_pull_num = $col_num;
+				$col_pull_index = count($cols);
+				$col_pull = $col_pull_num = $col_num;
 			}
 
-			$col_class = isset($mts[4]) ? $mts[4] : '';
+			# スクリーンサイズによる段組幅の切り替え設定
+			# e.g. @xs6@md6+3@lg10
+			$custom_cols = array();
+			if (isset($mts[4]) && strlen($mts[4]) > 0) {
+				foreach (explode('@', trim($mts[4], '@')) as $custom_col)
+				{
+					$key = substr($custom_col, 0, 2);
+					list($span, $offset) = explode('+', substr($custom_col, 2));
+					$custom_cols[$key] = array(
+						'span'   => $span,
+						'offset' => $offset ? $offset : 0,
+					);
+				}
+			}
+
+			$col_class = isset($mts[5]) ? $mts[5] : '';
 			$total += $col_num + $col_offset;
-			$cols[] = array('span'=>$col_num, 'offset' => $col_offset, 'class'=>$col_class, 'push'=>$col_push, 'pull'=>$col_pull);
+			$cols[] = array(
+				'span'=>$col_num, 'offset' => $col_offset,
+				'push'=>$col_push, 'pull'=>$col_pull,
+				'custom' => $custom_cols, 'class'=>$col_class,
+			);
 		}
-		
+
 		if (ss_admin_check())
 		{
 			if ($max < $total)
@@ -106,7 +144,7 @@ EOD;
 			}
 		}
 	}
-	
+
 	if (count($cols) === 0)
 	{
 		$data = explode($delim, $body);
@@ -118,28 +156,24 @@ EOD;
 		}
 	}
 
-  if ($col_push_index !== false)
-  {
-      $push_sum = 0;
-    	for($i = count($cols)-1; $i > $col_push_index; $i--)
-    	{
-    	    $cols[$i]['pull'] = $col_push_num;
-    	    $push_sum += $cols[$i]['span'];
-      }
-      $cols[$col_push_index]['push'] = $push_sum;    
-  }
+	if ($col_push_index !== false) {
+		$push_sum = 0;
+		for($i = count($cols)-1; $i > $col_push_index; $i--) {
+			$cols[$i]['pull'] = $col_push_num;
+			$push_sum += $cols[$i]['span'];
+		}
+		$cols[$col_push_index]['push'] = $push_sum;
+	}
 
-  if ($col_pull_index !== false)
-  {
-      $pull_sum = 0;
-    	for($i = 0; $i < $col_pull_index; $i++)
-    	{
-    	    $cols[$i]['push'] = $col_pull_num;
-    	    $pull_sum += $cols[$i]['span'];
-      }
-      $cols[$col_pull_index]['pull'] = $pull_sum;    
-  }
 
+	if ($col_pull_index !== false) {
+		$pull_sum = 0;
+		for($i = 0; $i < $col_pull_index; $i++) {
+			$cols[$i]['push'] = $col_pull_num;
+			$pull_sum += $cols[$i]['span'];
+		}
+		$cols[$col_pull_index]['pull'] = $pull_sum;
+	}
 
 	$html = '<div class="row%s">';
 
@@ -165,26 +199,34 @@ EOD;
 		$col_push = $option['push'] ? (' col-sm-push-'.$option['push']) : '';
 		$col_pull = $option['pull'] ? (' col-sm-pull-'.$option['pull']) : '';
 
-		$open_tag = '<div class="col-sm-'.$option['span']. $offset . $col_push . $col_pull . $col_class . '%s" style="%s">';
+		$screen_class = '';
+		foreach ($option['custom'] as $screen_size => $config)
+		{
+			$screen_class .= " col-{$screen_size}-{$config['span']}";
+			if ($config['offset'])
+				$screen_class .= " col-{$screen_size}-offset-{$config['offset']}";
+		}
+
+		$open_tag = '<div class="col-sm-'.$option['span']. $offset . $col_push . $col_pull . $screen_class . $col_class . '%s" style="%s">';
 		$close_tag = '</div>';
 		if ($type === 'thumbnails')
 		{
 			$open_tag = '<div class="col-sm-'.$option['span']. $offset . ' %s" style="%s"><div class="thumbnail">%s<div class="caption">';
 			$close_tag = '</div></div></div>';
 		}
-		
+
 		$str = '';
 		if (isset($data[$i]))
 		{
-	        $str = str_replace("\r", "\n", str_replace("\r\n", "\n", $data[$i]));
-	        $lines = explode("\n", $str);
-	        $str = convert_html($lines);
+			$str = str_replace("\r", "\n", str_replace("\r\n", "\n", $data[$i]));
+			$lines = explode("\n", $str);
+			$str = convert_html($lines);
 		}
 		$html .= sprintf($open_tag, " " . h($block_class), h($block_style), $block_image);
 		$html .= $str . $close_tag;
 		$block_class = $block_style = $block_image = '';
 	}
-	
+
 	if ($type === 'thumbnails')
 	{
 		$html .= '</div>';
@@ -193,14 +235,14 @@ EOD;
 	{
 		$html .= '</div>';
 	}
-	
+
 	return $msg.$html;
 }
 
 function plugin_cols_type($action = 'get', $value = NULL)
 {
 	static $type = 'normal';
-	
+
 	if ($action === 'get')
 	{
 		return $type;

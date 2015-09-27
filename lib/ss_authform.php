@@ -220,7 +220,6 @@ function auth_catbody($title, $contents, $retry=false){
 
 	$qv = QHM_VERSION;
 	$pv = S_VERSION;
-	$rv = QHM_REVISION;
 
 	$server_port = SERVER_PORT;
 	$script_name = SCRIPT_NAME;
@@ -239,7 +238,7 @@ EOD;
 
 	$s_err_msg = $qm->replace('ss_authform.err_set_script', $script_url. '?plugin=qhmsetting&phase=script&mode=form');
 	$jumphome_label = $qm->m['ss_authform']['jump_home'];
-	$licence_msg = $qm->replace('ss_authform.licence', $qv, $rv, $pv);
+	$licence_msg = $qm->replace('ss_authform.licence', $qv, $pv);
 
 	$error_login = 	'';
 	if ($retry && $admin_email != '')

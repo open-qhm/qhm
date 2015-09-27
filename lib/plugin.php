@@ -9,6 +9,7 @@
 // Plugin related functions
 
 define('PKWK_PLUGIN_CALL_TIME_LIMIT', 768);
+define('PKWK_PLUGIN_NAMESPACE', 'QHM\\Plugin\\');
 
 // Set global variables for plugins
 function set_plugin_messages($messages)
@@ -18,6 +19,27 @@ function set_plugin_messages($messages)
 			$GLOBALS[$name] = $val;
 }
 
+// Get plugin prefix with namespace
+function get_plugin_prefix($name)
+{
+	static $prefixes = array();
+	if (isset($prefixes[$name])) {
+		return $prefixes[$name];
+	}
+	if (strpos($name, '/') > 0) {
+		list($ns, $name) = explode('/', $name);
+
+		// namespace が使えない場合のフォールバックを用意しているが、
+		// exist_plugin で真にならないため、実際に呼び出すことはない
+
+		$prefixes[$name] = version_compare(PHP_VERSION, 5.3, '<')
+			? "plugin_{$ns}___{$name}_"
+			: PKWK_PLUGIN_NAMESPACE . "{$ns}\\plugin_{$name}_";
+	} else {
+		$prefixes[$name] = "plugin_{$name}_";
+	}
+	return $prefixes[$name];
+}
 // Check plugin '$name' is here
 function exist_plugin($name)
 {
@@ -36,35 +58,43 @@ function exist_plugin($name)
 		return $exist[$name];
 	}
 
-	if (preg_match('/^\w{1,64}$/', $name) &&
-	    file_exists(PLUGIN_DIR . $name . '.inc.php')) {
-	    	$exist[$name] = TRUE;
-	    	$count[$name] = 1;
+	// namespace が使える場合のみ foo/bar を受け付ける
+	$regex = '/^\w{1,64}(?:\/\w{1,64})?$/';
+	if (version_compare(PHP_VERSION, 5.3, '<')) {
+		$regex = '/^\w{1,64}$/';
+	}
+	if (preg_match($regex, $name) &&
+		file_exists(PLUGIN_DIR . $name . '.inc.php')) {
+			$exist[$name] = TRUE;
+			$count[$name] = 1;
 		require_once(PLUGIN_DIR . $name . '.inc.php');
 		return TRUE;
 	} else {
-	    	$exist[$name] = FALSE;
-	    	$count[$name] = 1;
+		$exist[$name] = FALSE;
+		$count[$name] = 1;
 		return FALSE;
 	}
 }
 
 // Check if plugin API 'action' exists
 function exist_plugin_action($name) {
-	return	function_exists('plugin_' . $name . '_action') ? TRUE : exist_plugin($name) ?
-		function_exists('plugin_' . $name . '_action') : FALSE;
+	$func = get_plugin_prefix($name) . 'action';
+	return	function_exists($func) ? TRUE : exist_plugin($name) ?
+		function_exists($func) : FALSE;
 }
 
 // Check if plugin API 'convert' exists
 function exist_plugin_convert($name) {
-	return	function_exists('plugin_' . $name . '_convert') ? TRUE : exist_plugin($name) ?
-		function_exists('plugin_' . $name . '_convert') : FALSE;
+	$func = get_plugin_prefix($name) . 'convert';
+	return	function_exists($func) ? TRUE : exist_plugin($name) ?
+		function_exists($func) : FALSE;
 }
 
 // Check if plugin API 'inline' exists
 function exist_plugin_inline($name) {
-	return	function_exists('plugin_' . $name . '_inline') ? TRUE : exist_plugin($name) ?
-		function_exists('plugin_' . $name . '_inline') : FALSE;
+	$func = get_plugin_prefix($name) . 'inline';
+	return	function_exists($func) ? TRUE : exist_plugin($name) ?
+		function_exists($func) : FALSE;
 }
 
 // Do init the plugin
@@ -74,7 +104,7 @@ function do_plugin_init($name)
 
 	if (isset($checked[$name])) return $checked[$name];
 
-	$func = 'plugin_' . $name . '_init';
+	$func = get_plugin_prefix($name) . 'init';
 	if (function_exists($func)) {
 		// TRUE or FALSE or NULL (return nothing)
 		$checked[$name] = call_user_func($func);
@@ -93,7 +123,7 @@ function do_plugin_action($name)
 	if(do_plugin_init($name) === FALSE)
 		die_message('Plugin init failed: ' . $name);
 
-	$retvar = call_user_func('plugin_' . $name . '_action');
+	$retvar = call_user_func(get_plugin_prefix($name) . 'action');
 
 	// Insert a hidden field, supports idenrtifying text enconding
 	if (PKWK_ENCODING_HINT != '')
@@ -131,7 +161,7 @@ function do_plugin_convert($name, $args = '')
 	}
 
 	$_digest = $digest;
-	$retvar  = call_user_func_array('plugin_' . $name . '_convert', $aryargs);
+	$retvar  = call_user_func_array(get_plugin_prefix($name) . 'convert', $aryargs);
 	$digest  = $_digest; // Revert
 
 	if ($retvar === FALSE) {
@@ -165,7 +195,7 @@ function do_plugin_inline($name, $args, & $body)
 	$aryargs[] = & $body; // func_num_args() != 0
 
 	$_digest = $digest;
-	$retvar  = call_user_func_array('plugin_' . $name . '_inline', $aryargs);
+	$retvar  = call_user_func_array(get_plugin_prefix($name) . 'inline', $aryargs);
 	$digest  = $_digest; // Revert
 
 	if($retvar === FALSE) {
@@ -175,4 +205,3 @@ function do_plugin_inline($name, $args, & $body)
 		return $retvar;
 	}
 }
-?>

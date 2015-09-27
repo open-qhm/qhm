@@ -635,6 +635,9 @@ class Table extends Element
 					case 'class' :
 						if(isset($pp[1])) $style['class'] = $pp[1];
 						break;
+					case 'responsive':
+						$style['responsive'] = true;
+						break;
 				}
 			}
 
@@ -682,6 +685,23 @@ class Table extends Element
 $(document).ready(function(){ $("table.tablesorter").tablesorter(); });
 </script>');
 
+			}
+
+			# Responsive Table
+			# @see http://getbootstrap.com/css/#tables
+			if (isset($style['responsive']))
+			{
+				$this->css_class .= ' table qhm-table-responsive';
+				$qt = get_qt();
+				$qt->setv('jquery_include', true);
+				$addscript = <<< EOS
+					<script>
+					$(function(){
+						$("table.qhm-table-responsive").wrap('<div class="table-responsive qhm-table-responsive-wrapper"></div>');
+					});
+					</script>
+EOS;
+				$qt->appendv_once('lib_convert_html_table_responsive', 'lastscript', $addscript);
 			}
 
 			$this->css_enable = ($this->css_class != '') || ($this->css_style !='');

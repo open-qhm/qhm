@@ -66,7 +66,7 @@ function plugin_fb_likebox_convert()
 
 	if (edit_auth($page, FALSE, FALSE))
 	{
-		$fb_pagebox_help = h(QHMPRO_MEMBER_SITE . '?FacebookPlugins#pagebox');
+		$fb_pagebox_help = h(QHM_HOME . '?FacebookPlugins#pagebox');
 		$warning = <<< EOM
 			<div class="alert alert-warning">
 				Facebook Like Box は Graph API v2.3 より廃止されました。<br>

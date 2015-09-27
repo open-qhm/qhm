@@ -160,7 +160,7 @@ $(document).ready(function(){
 		"g+o": function(){if(typeof window.otherplugin != "undefined")otherplugin()},
 		"g+t": function(){$("html,body").animate({scrollTop:0}, "fast")},
 		"g+q": function(){location.href=$("#searchlink").attr("href")},
-		"g+Shift+/": function(){window.open("https://ensmall.net/p/qhmpro/")},
+		"g+Shift+/": function(){window.open("http://www.open-qhm.net/")},
 		"Shift+/": function(){$("#shortcut_list").fadeIn("fast")},
 		"g+n": function(){location.href=$("#newlink").attr("href")},
 		"g+m": function(){location.href=$("#maplink").attr("href")},
@@ -259,65 +259,23 @@ $(document).ready(function(){
 		);
 
 	var sublinks = $("ul.other_plugin_sub li");
-	$(document)
-		.bind("revertText", function(){
-			$('span.ophelp').remove();
-		})
-		.keydown(function(e){
-			//alt key down
-			if (e.altKey && e.which == 18) {
-				$(this).trigger("revertText");
-				sublinks.removeClass('menuHover');
-				sublinks.css("color","#EC8724");
-				sublinks.children('span.opname').append('<span class="ophelp"> ?</span>');
-			}
-		})
-		.keyup(function(e){
-			//alt key up
-			if (e.which == 18) {
-				sublinks.removeClass('subHelpHover');
-				sublinks.css("color","#333");
-				$(this).trigger("revertText");
-			}
-		});
 
 	sublinks
 		.hover(
 			function(e){
-				if (e.altKey) {
-					$(this).addClass('subHelpHover');
-					$(this).css({'color':'#FFFFFF'});
-				}
-				else {
-					$(this).addClass('menuHover');
-					$(this).css({'color':'#FFFFFF'});
-				}
+				$(this).addClass('menuHover');
+				$(this).css({'color':'#FFFFFF'});
 			},
 			function(e){
-				if (e.altKey) {
-					$(this).removeClass('subHelpHover');
-					$(this).css({'color':'#EC8724'});
-				}
-				else {
-					$(this).removeClass('menuHover');
-					$(this).css({'color':'#333333'});
-				}
+				$(this).removeClass('menuHover');
+				$(this).css({'color':'#333333'});
 			}
 		)
 		.click(function(e){
-				if (e.altKey) {
-					$(this).removeClass('subHelpHover');
-					sublinks.trigger("revertText");
-					sublinks.css("color","#333");
-					var help = $(this).attr('class');
-					window.open('https://ensmall.net/p/qhmpro/?'+help, "", "dependent=no, location=yes, menubar=yes, resizable=yes, scrollbars=yes, status=yes, titlebar=yes, toolbar=yes");
-				}
-				else {
-					var insert_cmd = $(this).children('span.insert_cmd').text();
-					insert_cmd = insert_cmd.replace(/##LF##/g, '\n');
-					$.clickpad.cpInsert(insert_cmd);
-					return false;
-				}
+				var insert_cmd = $(this).children('span.insert_cmd').text();
+				insert_cmd = insert_cmd.replace(/##LF##/g, '\n');
+				$.clickpad.cpInsert(insert_cmd);
+				return false;
 		});
 
 	// !File Upload
