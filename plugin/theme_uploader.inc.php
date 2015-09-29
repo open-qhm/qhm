@@ -112,7 +112,6 @@ function plugin_theme_uploader_action_confirm()
 	$file = $_FILES['theme'];
 
 	if ($file['error'] === 0
-		&& $file['type'] === 'application/zip'
 		&& preg_match('/\A(.+)\.zip\z/i', $file['name'], $mts))
 	{
 		$data['name'] = $mts[1];
