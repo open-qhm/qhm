@@ -252,7 +252,7 @@ function plugin_system_updater_move($source, $dist)
 					)|(?: # 前方一致
 						(?:
 							attach|diff|backup|counter|cache|cacheqhm|cacheqblog|
-							skin\/hokukenstyle|swfu\/d|trackback|wiki
+							skin\/hokukenstyle|swfu\/d|swfu\/data|trackback|wiki
 						)
 						\/
 					)
