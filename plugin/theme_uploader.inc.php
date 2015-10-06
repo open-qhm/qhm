@@ -154,6 +154,7 @@ function plugin_theme_uploader_action_confirm()
 				$data['count'] = count($data['files']);
 			} else {
 				$errmsg = 'Zip ファイルの構成が不正です';
+				plugin_theme_uploader_rmdir($unzip_to);
 			}
 		} else {
 			$errmsg = 'Zip ファイルの展開に失敗しました';
@@ -171,7 +172,6 @@ function plugin_theme_uploader_action_confirm()
 	if ($errmsg !== '') {
 		$title = 'アップロードエラー';
 		$html = plugin_theme_uploader_render('upload', $data);
-		plugin_theme_uploader_rmdir($unzip_to);
 	} else {
 		$_SESSION['theme_uploader'] = array(
 			'phase'      => 'complete',
