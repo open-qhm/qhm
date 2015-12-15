@@ -125,7 +125,7 @@ $qt->setv('toolkit_bottom', '');
 if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
 	$qt->setv('jquery_include', true);
 
-	$link_haik_parts = 'http://open-qhm.github.io/haik-parts/';
+	$link_haik_parts = '//open-qhm.github.io/haik-parts/';
 
 	$unload_confirm = isset($unload_confirm)? $unload_confirm: 1;
 	$enable_unload_confirm = 'window.qhm_enable_unload_confirm = '. ($unload_confirm? 'true': 'false'). ';'. "\n";
