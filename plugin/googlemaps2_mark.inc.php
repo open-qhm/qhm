@@ -79,7 +79,7 @@ function plugin_googlemaps2_mark_inline() {
 function plugin_googlemaps2_mark_output($lat, $lng, $params) {
 	global $vars;
 	$qm = get_qm();
-	
+
 	if (!defined('PLUGIN_GOOGLEMAPS2_DEF_KEY')) {
 		return $qm->replace('plg_googlemaps2.err_not_called', 'googlemaps2_mark');
 	}
@@ -88,7 +88,7 @@ function plugin_googlemaps2_mark_output($lat, $lng, $params) {
 
 	$inoptions = array();
 	foreach ($params as $param) {
-		list($index, $value) = split('=', $param);
+		list($index, $value) = preg_split('=', $param);
 		$index = trim($index);
 		$value = htmlspecialchars(trim($value));
 		$inoptions[$index] = $value;
@@ -99,7 +99,7 @@ function plugin_googlemaps2_mark_output($lat, $lng, $params) {
 		$vars['googlemaps2_mark'][$inoptions['define']] = $inoptions;
 		return "";
 	}
-	
+
 	$coptions = array();
 	if (array_key_exists('class', $inoptions)) {
 		$class = $inoptions['class'];
@@ -115,7 +115,7 @@ function plugin_googlemaps2_mark_output($lat, $lng, $params) {
     if (array_key_exists('maxurl', $inoptions) && !array_key_exists('maxcontent', $inoptions)) {
         $inoptions['maxcontent'] = $inoptions['maxurl'];
     }
-    
+
 	$options = array_merge($defoptions, $coptions, $inoptions);
 	$lat = trim($lat);
 	$lng = trim($lng);
@@ -138,11 +138,11 @@ function plugin_googlemaps2_mark_output($lat, $lng, $params) {
 	$alink        = $options['alink'];
 	$titleispagename = plugin_googlemaps2_getbool($options['titleispagename']);
 	$api = $vars['googlemaps2_info'][$map]['api'];
-	
+
 	if ($nolist) {
 		$alink = false;
 	}
-	
+
 	$maxcontentfull = $maxcontent;
 	if ($maxcontent != '') {
 		if (!preg_match('/^http:\/\/.*$/i', $maxcontent)) {
@@ -177,7 +177,7 @@ function plugin_googlemaps2_mark_output($lat, $lng, $params) {
 
 	if ($api < 2 && $isSetZoom) $zoom = 19 - $zoom;
 	if ($zoom == null) $zoom = 'null';
-	
+
 	if ($noicon == true) {
 		$noinfowindow = true;
 	}
@@ -201,7 +201,7 @@ function plugin_googlemaps2_mark_output($lat, $lng, $params) {
 	if ($nolist == false) {
 		$listhtml = plugin_googlemaps_mark_format_listhtml(
 			$page, $map, $formatlist, $alink,
-			$key, $infohtml, 
+			$key, $infohtml,
 			$title, $caption, $image,
 			$zoom, $maxcontentfull);
 	}
@@ -238,14 +238,14 @@ function plugin_googlemaps_mark_simple_format_listhtml($format, $title, $caption
 	return $html;
 }
 
-function plugin_googlemaps_mark_format_listhtml($page, $map, $format, $alink, 
+function plugin_googlemaps_mark_format_listhtml($page, $map, $format, $alink,
 	$key, $infohtml, $title, $caption, $image, $zoomstr, $maxcontentfull) {
 
 	if ($alink == true) {
 		$atag = "<a id=\"".$map."_%title%\"></a>";
 		$atag .= "<a href=\"#$map\"";
 	}
-	
+
 	$atag .= " onclick=\"googlemaps_markers['$page']['$map']['$key'].onclick();\">%title%</a>";
 
 	if ($maxcontentfull) {
@@ -265,7 +265,7 @@ function plugin_googlemaps_mark_format_listhtml($page, $map, $format, $alink,
 
 function plugin_googlemaps_mark_format_infohtml($map, $format, $alink, $title, $caption, $image) {
 	$qm = get_qm();
-	
+
 	$html = str_replace('\'', '\\\'', $format);
 	if ($alink == true) {
 		$atag = "%title% <a href=\\'#".$map."_%title%\\'>"

@@ -153,11 +153,11 @@ function plugin_flash_convert()
 		// @ UTF-8に変換
 		//$flashvars=mb_convert_encoding($flashvars,"UTF-8","EUC-JP");//
 		// @ varname=val の形に分解
-		$aryVars = split('&',$flashvars);
+		$aryVars = preg_split('&',$flashvars);
 		for($i=0;$i < count($aryVars); $i++)
 		{
 			// @ 名前と値に分解
-			$aryField = split('=',$aryVars[$i]);
+			$aryField = preg_split('=',$aryVars[$i]);
 			if(count($aryField)==2)
 			{
 				// @ 値の部分だけurlエンコード

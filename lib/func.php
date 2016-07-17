@@ -644,7 +644,7 @@ function get_autolink_pattern(& $pages)
 {
 	global $WikiName, $autolink, $nowikiname;
 
-	$config = &new Config('AutoLink');
+	$config = new Config('AutoLink');
 	$config->read();
 	$ignorepages      = $config->get('IgnoreList');
 	$forceignorepages = $config->get('ForceIgnoreList');
@@ -810,7 +810,7 @@ function csv_implode($glue, $pieces)
 	$_glue = ($glue != '') ? '\\' . $glue{0} : '';
 	$arr = array();
 	foreach ($pieces as $str) {
-		if (ereg('[' . $_glue . '"' . "\n\r" . ']', $str))
+		if (preg_match('/[' . '"' . "\n\r" . $_glue . ']/', $str))
 			$str = '"' . str_replace('"', '""', $str) . '"';
 		$arr[] = $str;
 	}
@@ -898,7 +898,7 @@ function strip_adcode($str)
 		foreach($adcode as $var){
 			$reg_str_2 = '^' . $var . '=';
 
-			if (ereg($reg_str_2, $str)){
+			if (preg_match($reg_str_2, $str)){
 				return $defaultpage;
 			}
 		}

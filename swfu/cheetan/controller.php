@@ -46,7 +46,7 @@ class CController extends CObject
 		else
 		{
 			require_once( $path );
-			$class = &new $cname();
+			$class = new $cname();
 //			if( !$class->table )	$class->table = $name;
 
 			//edited by hokuken 2008 10/20
@@ -83,7 +83,7 @@ class CController extends CObject
 		else
 		{
 			require_once( $path );
-			$class = &new $cname();
+			$class = new $cname();
 			$this->c[$name]	= $class;
 			if( empty( $this->{$name} ) )	$this->{$name} = &$this->c[$name];			
 		}

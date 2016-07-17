@@ -52,7 +52,7 @@ function plugin_popular_convert()
 
 	$counters = array();
 	foreach (get_existpages(COUNTER_DIR, '.count') as $file=>$page) {
-		if (($except != '' && ereg($except, $page)) ||
+		if (($except != '' && preg_match($except, $page)) ||
 		    $page == $whatsnew || check_non_list($page) ||
 		    ! is_page($page))
 			continue;

@@ -893,7 +893,7 @@ function show_insert_ref($filename)
 
 	$ret['msg'] = $qm->m['plg_attachref']['title'];
 
-	$args = split(",", $vars['show_opt']);
+	$args = preg_split(",", $vars['show_opt']);
 	if ( count($args) ){
 		$args[0] = $filename;//array_shift,unshiftって要するにこれね
 		$s_args = implode(",", $args);

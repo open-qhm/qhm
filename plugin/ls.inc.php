@@ -19,7 +19,7 @@ function plugin_ls_convert()
 		return $qt->get_dynamic_plugin_mark(__FUNCTION__, $args);
 	}
 	//------------------------------------
-     
+
 	$with_title = FALSE;
 
 	if (func_num_args())
@@ -50,7 +50,7 @@ function plugin_ls_convert()
 			// 見出しの固有ID部を削除
 			$comment = preg_replace('/^(\*{1,3}.*)\[#[A-Za-z][\w-]+\](.*)$/','$1$2',$comment);
 
-			$comment = '- ' . ereg_replace('^[-*]+','',$comment);
+			$comment = '- ' . preg_replace('/^[-*]+/','',$comment);
 		}
 		$ls[] = "-[[$page]] $comment";
 	}

@@ -45,7 +45,7 @@ function plugin_secedit_action()
 	}
 
 	$action = 'Plugin_Secedit_' . $action;
-	$obj    = &new $action();
+	$obj    = new $action();
 
 	return $obj->process();
 }
@@ -248,7 +248,7 @@ class Plugin_Secedit_Edit extends Plugin_Secedit
 
 		$source = get_source($this->page, true, true);
 
-		$this->sections = &new Plugin_Secedit_Sections($source);
+		$this->sections = new Plugin_Secedit_Sections($source);
 
 		if ($this->anchor) {
 			$id = $this->sections->anchor2id($this->anchor);
@@ -278,7 +278,7 @@ class Plugin_Secedit_Preview extends Plugin_Secedit
 	{
 		parent::init();
 
-		$this->sections   = &new Plugin_Secedit_Sections($this->original);
+		$this->sections   = new Plugin_Secedit_Sections($this->original);
 		$this->s_postdata = htmlspecialchars($this->postdata);
 		$this->s_original = htmlspecialchars($this->original);
 		$this->s_digest   = htmlspecialchars($this->digest);

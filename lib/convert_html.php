@@ -58,7 +58,8 @@ class Element
 		$obj->setParent($this);
 		$this->elements[] = & $obj;
 
-		return $this->last = & $obj->last;
+		$this->last = & $obj->last;
+		return $this->last;
 	}
 
 	function canContain($obj)
@@ -98,13 +99,9 @@ function & Factory_Inline($text)
 {
 	// Check the first letter of the line
 	if (substr($text, 0, 1) == '~') {
-		$ret = & new Paragraph(' ' . substr($text, 1));
-		return $ret;
-		//return new Paragraph(' ' . substr($text, 1));
+		return new Paragraph(' ' . substr($text, 1));
 	} else {
-		$ret = & new Inline($text);
-		return $ret;
-		//return new Inline($text);
+		return new Inline($text);
 	}
 }
 
@@ -114,9 +111,7 @@ function & Factory_DList(& $root, $text)
 	if (count($out) < 2) {
 		return Factory_Inline($text);
 	} else {
-		$ret = & new DList($out);
-		return $ret;
-		//return new DList($out);
+		return new DList($out);
 	}
 }
 
@@ -126,9 +121,7 @@ function & Factory_Table(& $root, $text)
 	if (! preg_match('/^\|(.+)\|([hHfFcC]?)$/', $text, $out)) {
 		return Factory_Inline($text);
 	} else {
-		$ret = & new Table($out);
-		return $ret;
-		//return new Table($out);
+		return new Table($out);
 	}
 }
 
@@ -136,13 +129,9 @@ function & Factory_Table(& $root, $text)
 function & Factory_YTable(& $root, $text)
 {
 	if ($text == ',') {
-		$ret = Factory_Inline($text);
-		return $ret;
-		//return Factory_Inline($text);
+		return Factory_Inline($text);
 	} else {
-		$ret = new YTable(csv_explode(',', substr($text, 1)));
-		return $ret;
-		//return new YTable(csv_explode(',', substr($text, 1)));
+		return new YTable(csv_explode(',', substr($text, 1)));
 	}
 }
 
@@ -155,9 +144,7 @@ function & Factory_Div(& $root, $text)
 		// Usual code
 		if (preg_match('/^\#([^\(]+)(?:\((.*)\))?/', $text, $matches) &&
 			exist_plugin_convert($matches[1])) {
-			$ret = & new Div($matches);
-			return $ret;
-			//return new Div($matches);
+			return new Div($matches);
 		}
 	} else {
 		// Hack code
@@ -166,21 +153,15 @@ function & Factory_Div(& $root, $text)
 			$len  = strlen($matches[3]);
 			$body = array();
 			if ($len == 0) {
-				$ret = & new Div($matches); // Seems legacy block plugin
-				return $ret;
-				//return new Div($matches); // Seems legacy block plugin
+				return new Div($matches); // Seems legacy block plugin
 			} else if (preg_match('/\{{' . $len . '}\s*\r(.*)\r\}{' . $len . '}/', $text, $body)) {
 				$matches[2] .= "\r" . $body[1] . "\r";
-				$ret = & new Div($matches);
-				return $ret;
-				//return new Div($matches); // Seems multiline-enabled block plugin
+				return new Div($matches); // Seems multiline-enabled block plugin
 			}
 		}
 	}
 
-	$ret = & new Paragraph($text);
-	return $ret;
-	//return new Paragraph($text);
+	return new Paragraph($text);
 }
 
 // Inline elements
@@ -212,7 +193,7 @@ class Inline extends Element
 
 	function & toPara($class = '')
 	{
-		$obj = & new Paragraph('', $class);
+		$obj = new Paragraph('', $class);
 		$obj->insert($this);
 		return $obj;
 	}
@@ -714,7 +695,7 @@ EOS;
 			$is_template = ($this->type == 'c');
 			$row = array();
 			foreach ($cells as $cell)
-				$row[] = & new TableCell($cell, $is_template);
+				$row[] = new TableCell($cell, $is_template);
 			$this->elements[] = $row;
 		}
 	}
@@ -971,7 +952,7 @@ class Body extends Element
 	function Body($id)
 	{
 		$this->id            = $id;
-		$this->contents      = & new Element();
+		$this->contents      = new Element();
 		$this->contents_last = & $this->contents;
 		parent::Element();
 	}
@@ -1099,7 +1080,7 @@ class Body extends Element
 				global $autolink, $killer_fg, $killer_bg;
 				$autolink = 0;
 				$tmpstr = htmlspecialchars($matches[2]);
-				list($killer_fg, $killer_bg) = split(",", $tmpstr);
+				list($killer_fg, $killer_bg) = preg_split(",", $tmpstr);
 				continue;
 			}
 
@@ -1110,7 +1091,7 @@ class Body extends Element
 				$killer_page2 = array();
 				$tmpstr = htmlspecialchars($matches[2]);
 				list($fg, $bg, $width, $padding, $bg_body, $fg_body)
-					= array_pad(split(",", $tmpstr),6,'');
+					= array_pad(preg_split(",", $tmpstr),6,'');
 				$width = ($width!='' && preg_match('/^[0-9]+$/',$width)) ? $width : 720;
 				$padding = ($padding!='' && preg_match('/^[0-9]+$/',$width))
 						? $padding : '60';
