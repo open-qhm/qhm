@@ -48,7 +48,7 @@ zone_time = "9"                  ;GMT: 0
 ;////////////////////////////////////////////////////
 ;   !Proper Names
 ;////////////////////////////////////////////////////
-frontpage   = "QHMトップ"
+frontpage   = "HAIKトップ"
 preferences = "設定一覧"
 here        = "here"
 adminpass   = "管理者パス"

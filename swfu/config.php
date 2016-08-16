@@ -302,7 +302,7 @@ function echo_menu($recent_file, $recent_page)
 <span style="background-color:#eee;border:1px solid #ccc;padding:5px;font-size:12px;font-weight:bold;"><a href="{$uploader}{$uplink_query}">アップロード</a></span></p>
 <br />
 <p id="swfutop"><a href="$top">*&nbsp;トップへ&nbsp;*</a></p>
-<p id="qhmtop"><a href="../">*&nbsp;QHMトップへ&nbsp;*</a></p>
+<p id="qhmtop"><a href="../">*&nbsp;HAIKトップへ&nbsp;*</a></p>
 
 <h4>最近のファイル</h4>
 <p style="margin-left:0.5em;">

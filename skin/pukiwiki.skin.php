@@ -34,7 +34,7 @@
 <!-- ◆ Footer ◆ ========================================================== -->
 <div id="footer"><!-- ■BEGIN id:footer -->
 <div id="copyright"><!-- ■BEGIN id:copyright -->
-<p>powered by QHM v#{$version} haik </p>
+<p>powered by HAIK v#{$version} </p>
 </div><!-- □END id:copyright -->
 </div><!-- □END id:footer -->
 <!-- ◆ END ◆ ============================================================= -->

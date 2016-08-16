@@ -34,7 +34,7 @@ $qt->getv('main_visual')? '': $qt->setv('main_visual', '');
 $qt->getv('lastscript')? '': $qt->setv('lastscript', '');
 $qt->setv('_page', $_page);
 $qt->setv('_script', $script);
-$qt->setv('auth_link', ($qhm_adminmenu <= 1) ? ('<a href="' . h($script . '?cmd=qhmauth') . '" class="qhm-auth-link">QHM</a>') : '');
+$qt->setv('auth_link', ($qhm_adminmenu <= 1) ? ('<a href="' . h($script . '?cmd=qhmauth') . '" class="qhm-auth-link">HAIK</a>') : '');
 //head
 $qt->setv('headcopy_is_empty', trim($headcopy) === '');
 if ( ! $qt->getv('headcopy_is_empty'))
@@ -772,7 +772,7 @@ EOD;
 }
 
 //license
-$qhm_admin_tag = ($qhm_adminmenu < 2) ? ' <a href="'. $link_qhm_adminmenu.'">QHM</a> ' : '';
+$qhm_admin_tag = ($qhm_adminmenu < 2) ? ' <a href="'. $link_qhm_adminmenu.'">HAIK</a> ' : '';
 $qt->setv('licence_tag', "<p>".S_COPYRIGHT. $qhm_admin_tag."</p>");
 if($no_qhm_licence){
 	$qt->setv('licence_tag', '');

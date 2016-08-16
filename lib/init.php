@@ -14,7 +14,7 @@ define('S_VERSION', '1.4.7');
 define('QHM_VERSION', '6.1.0.beta');  //絶対に編集しないで下さい
 define('QHM_OPTIONS', 'update=download; support=false; banner=true');
 define('S_COPYRIGHT',
-	'powered by <strong><a href="http://www.open-qhm.net/">QHM</a> ' . QHM_VERSION . '</strong> haik<br />' .
+	'powered by <strong><a href="http://www.open-qhm.net/">HAIK</a> ' . QHM_VERSION . '</strong><br />' .
 	' based on <a href="http://pukiwiki.sourceforge.jp/">PukiWiki</a> ' . S_VERSION . ' ' .
 	' License is <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>.'
 );
