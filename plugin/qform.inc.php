@@ -33,7 +33,7 @@ function plugin_qform_parse_csv($line, $delimiter=','){
     $expr="/$delimiter(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))/";
     $fields = preg_split($expr,trim($line)); // added
     $fields = preg_replace("/^\"(.*)\"$/s","$1",$fields); //added
-
+ 
     return $fields;
 }
 
@@ -227,7 +227,7 @@ function plugin_qform_parse($str)
 	global $vars, $script;
 	$qm = get_qm();
 
-	$lines = preg_split("\n|\r", $str);
+	$lines = preg_split("/\n|\r/", $str);
 
 	$ret = array('element'=>array(), 'conf'=>array());
 
@@ -1327,7 +1327,7 @@ function plugin_qform_do_finish($params, $url_sanitize = '0')
 			$smail->subject = $subject;
 			$smail->to = array('name'=>'', 'email'=>$udata['email']);
 
-			$smail->send($mailbody);
+            $smail->send($mailbody);
 		}
 	}
 
