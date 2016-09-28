@@ -360,7 +360,7 @@ class PluginContentsx
         $metalines = array();
         foreach ($this->metalines as $metaline) {
             $headline = $metaline['headline'];
-            if (preg_match($this->options['filter'][1], $headline)) {
+            if (preg_match('/'.$this->options['filter'][1].'/', $headline)) {
                 $metalines[] = $metaline;
             }
         }
@@ -375,7 +375,7 @@ class PluginContentsx
         $metalines = array();
         foreach ($this->metalines as $metaline) {
             $headline = $metaline['headline'];
-            if (!preg_match($this->options['except'][1], $headline)) {
+            if (!preg_match('/'.$this->options['except'][1].'/', $headline)) {
                 $metalines[] = $metaline;
             }
         }

@@ -271,7 +271,7 @@ function ref_save($page)
 	if (! is_writable(TRACKBACK_DIR)) die('Permission denied to write: TRACKBACK_DIR');
 
 	// Update referer data
-	if (preg_match("[,\"\n\r]", $url))
+	if (preg_match("/[,\"\n\r]/", $url))
 		$url = '"' . str_replace('"', '""', $url) . '"';
 
 	$filename = tb_get_filename($page, '.ref');

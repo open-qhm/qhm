@@ -896,7 +896,7 @@ function strip_adcode($str)
 
 	if($match != ''){
 		foreach($adcode as $var){
-			$reg_str_2 = '^' . $var . '=';
+			$reg_str_2 = '/^' . $var . '=/';
 
 			if (preg_match($reg_str_2, $str)){
 				return $defaultpage;
