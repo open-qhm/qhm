@@ -88,7 +88,7 @@ function plugin_googlemaps2_mark_output($lat, $lng, $params) {
 
 	$inoptions = array();
 	foreach ($params as $param) {
-		list($index, $value) = preg_split('=', $param);
+		list($index, $value) = preg_split('/=/', $param);
 		$index = trim($index);
 		$value = htmlspecialchars(trim($value));
 		$inoptions[$index] = $value;

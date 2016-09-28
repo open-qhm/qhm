@@ -255,7 +255,7 @@ function plugin_qform_parse($str)
 	global $vars;
 	$qm = get_qm();
 
-	$lines = preg_split("\n|\r", $str);
+	$lines = preg_split("/\n|\r/", $str);
 	
 	$ret = array('element'=>array(), 'conf'=>array());
 	

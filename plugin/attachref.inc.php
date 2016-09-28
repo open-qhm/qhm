@@ -268,7 +268,7 @@ function attachref_insert_ref($filename)
 
 	$ret['msg'] = $qm->m['plg_attachref']['title'];
 
-	$args = preg_split(",", $vars['attachref_opt']);
+	$args = preg_split("/,/", $vars['attachref_opt']);
 	if ( count($args) ){
 	    $args[0] = $filename;//array_shift,unshiftって要するにこれね
 	    $s_args = join(",", $args);

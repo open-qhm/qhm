@@ -18,7 +18,7 @@ function plugin_u2b_convert()
 	$argc = func_num_args();
 
 	foreach($argv as $arg) {
-		$val = preg_split('=', $arg);
+		$val = preg_split('/=/', $arg);
 		$val[1] = (empty($val[1])) ? htmlspecialchars($val[0]) : htmlspecialchars($val[1]);
 
 		switch ($val[0]) {
