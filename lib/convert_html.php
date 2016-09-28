@@ -1080,7 +1080,7 @@ class Body extends Element
 				global $autolink, $killer_fg, $killer_bg;
 				$autolink = 0;
 				$tmpstr = htmlspecialchars($matches[2]);
-				list($killer_fg, $killer_bg) = preg_split(",", $tmpstr);
+				list($killer_fg, $killer_bg) = preg_split('/,/', $tmpstr);
 				continue;
 			}
 
@@ -1091,7 +1091,7 @@ class Body extends Element
 				$killer_page2 = array();
 				$tmpstr = htmlspecialchars($matches[2]);
 				list($fg, $bg, $width, $padding, $bg_body, $fg_body)
-					= array_pad(preg_split(",", $tmpstr),6,'');
+					= array_pad(preg_split('/,/', $tmpstr),6,'');
 				$width = ($width!='' && preg_match('/^[0-9]+$/',$width)) ? $width : 720;
 				$padding = ($padding!='' && preg_match('/^[0-9]+$/',$width))
 						? $padding : '60';
