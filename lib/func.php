@@ -1040,7 +1040,7 @@ function wikiescape($string){
 	$ret = '';
 	$lines = explode("\n", $string);
 	foreach($lines as $line){
-		$ret .= preg_replace('/^#html/', "# html", $line) ."\n";
+		$ret .= preg_replace('/^(#)(html|beforescript|style|lastscript)/i', "$1 $2", $line) ."\n";
 	}
 
 	return $ret;
