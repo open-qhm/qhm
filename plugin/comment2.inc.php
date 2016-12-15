@@ -254,7 +254,7 @@ function plugin_comment2_convert()
         <div class="form-group">
           <div class="col-md-10 col-md-offset-2">
             <div class="row">
-              <div class="col-md-6 col-xs-12 col-sm-7 pull-right">
+              <div class="col-md-6 col-sm-7 col-sm-push-6">
                 <div class="form-inline">
                   <div class="col-sm-12">
 
@@ -266,7 +266,7 @@ function plugin_comment2_convert()
                   </div>
                 </div>
               </div>
-              <div class="col-md-6  col-sm-5">
+              <div class="col-md-6 col-sm-5 col-sm-pull-6">
                 <div class="form-group">
                   <div class="col-sm-12">
                     <input type="submit" name="comment2" class="btn btn-default btn-sm" value="'.$qm->m['plg_comment']['btn_comment'].'" style="margin-bottom:0;white-space:normal;">
