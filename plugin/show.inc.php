@@ -233,6 +233,8 @@ function plugin_show_body($args)
 		'normal'    => FALSE, //画像へのリンクを付ける
 		'linkurl'   => FALSE, //greybox, lightbox2, normal のリンク先
 		'label'     => FALSE, //labelを指定すると強制的に表示をlabelにする(greybox, lightbox2想定)。画像ファイルを指定するとそれを表示する。
+		'crop'      => TRUE,  // sizeを指定した場合、それに収まるようにトリミングされる (object-fit: cover)
+		'nocrop'    => FALSE, // crop の効果を無効にする
 		'noimg'     => FALSE, // 画像を展開しない
 		'zoom'      => FALSE, // 縦横比を保持する
 		'change'    => FALSE, // マウスオーバーで、画像を切り替える
@@ -408,6 +410,15 @@ function plugin_show_body($args)
 		} else {
 			$width  = $params['_w'] ? $params['_w'] : $width;
 			$height = $params['_h'] ? $params['_h'] : $height;
+		}
+
+		// 指定したサイズに合わせて切り取るかどうか
+		if ($params['nocrop']) {
+			$params['crop'] = FALSE;
+		}
+		if ($params['crop']) {
+			$params['class'] .= ' qhm-show-crop';
+			plugin_show_set_crop_style();
 		}
 	}
 	if ($params['_%']) {
@@ -1114,5 +1125,18 @@ $(document).on("ready", QHM.keepRatio);
 EOS;
 
 	$qt->appendv_once('plugin_show_set_keep_ratio', 'beforescript', $addjs);
+}
 
+function plugin_show_set_crop_style()
+{
+	$qt = get_qt();
+	$addstyle = <<< EOS
+<style>
+.qhm-show-crop {
+  object-fit: cover;
+}
+</style>
+EOS;
+
+	$qt->appendv_once('plugin_show_set_crop_style', 'beforescript', $addstyle);
 }
