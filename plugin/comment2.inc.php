@@ -78,11 +78,11 @@ function plugin_comment2_action()
 	else{
 		$vars['comment2_error'] = 'error!!!';
 	}
-	
+
 	$retvars['msg']  = $title;
 	$retvars['body'] = $body;
-	
-	
+
+
 	$vars['page'] = $vars['refer'];
 
 	return $retvars;
@@ -95,21 +95,21 @@ function plugin_comment2_convert()
     static $comment2_cols = PLUGIN_COMMENT2_SIZE_MSG;
     $qm = get_qm();
     $plugin_comment2_auth = true;
-    
+
     $s_msg = $s_name = "";
-    
+
     if (PKWK_READONLY) return ''; // Show nothing
-    
+
     if (! isset($numbers[$vars['page']])) $numbers[$vars['page']] = 0;
     $comment2_no = $numbers[$vars['page']]++;
-    
+
     $options = func_num_args() ? func_get_args() : array();
 
     $nodate = in_array('nodate', $options) ? '1' : '0';
     $noupdate = in_array('noupdate', $options) ? '1' : '0';
     $above  = in_array('above',  $options) ? '1' :
-    	(in_array('below', $options) ? '0' : PLUGIN_COMMENT2_DIRECTION_DEFAULT);
-    
+        (in_array('below', $options) ? '0' : PLUGIN_COMMENT2_DIRECTION_DEFAULT);
+
     $authcode = '' . rand(0,9) . rand(0,9) . rand(0,9) . rand(0,9);
     $auth_label = '認証コード';
     $auth_error_alert = '';
@@ -118,11 +118,11 @@ function plugin_comment2_convert()
 
     if (in_array('textarea', $options))
     {
-    	$area = isset($options[1]) && is_numeric($options[1]) ? $options[1] : 6;
+        $area = isset($options[1]) && is_numeric($options[1]) ? $options[1] : 6;
     }
     else
     {
-    	$area = 0;
+        $area = 0;
     }
 
     $nametags = '';
@@ -231,7 +231,7 @@ function plugin_comment2_convert()
         else
         {
             $input_area = $commenttags . '<input type="text" name="msg" class="form-control input-sm" id="_p_comment2_comment2_'
-    				.$comment2_no.'" size="'.$comment2_cols.'" value="'.$s_msg.'" />';
+                    .$comment2_no.'" size="'.$comment2_cols.'" value="'.$s_msg.'" />';
 
             $comment_form = '
       <div class="form-horizontal">
@@ -254,7 +254,7 @@ function plugin_comment2_convert()
         <div class="form-group">
           <div class="col-md-10 col-md-offset-2">
             <div class="row">
-              <div class="col-md-6 col-xs-12 col-sm-7 pull-right">
+              <div class="col-md-6 col-sm-7 col-sm-push-6">
                 <div class="form-inline">
                   <div class="col-sm-12">
 
@@ -266,7 +266,7 @@ function plugin_comment2_convert()
                   </div>
                 </div>
               </div>
-              <div class="col-md-6  col-sm-5">
+              <div class="col-md-6 col-sm-5 col-sm-pull-6">
                 <div class="form-group">
                   <div class="col-sm-12">
                     <input type="submit" name="comment2" class="btn btn-default btn-sm" value="'.$qm->m['plg_comment']['btn_comment'].'" style="margin-bottom:0;white-space:normal;">
@@ -284,10 +284,10 @@ function plugin_comment2_convert()
     else
     {
         $authcode_msg = '
-    	  <span id="coment2_auth_msg_no_'.$comment2_no.'" style="font-size:11px;'.$auth_error_style.'">
-    	    '.$auth_label.'('.$authcode.')
-    		  <input type="text" name="authcode" value="" size="4" />
-    		</span>
+          <span id="coment2_auth_msg_no_'.$comment2_no.'" style="font-size:11px;'.$auth_error_style.'">
+            '.$auth_label.'('.$authcode.')
+              <input type="text" name="authcode" value="" size="4" />
+            </span>
 ';
 
         if (in_array('noname', $options))
@@ -314,7 +314,7 @@ function plugin_comment2_convert()
         $input_button = '<input type="submit" name="comment2" value="'.$qm->m['plg_comment']['btn_comment'].'" />';
         $comment_form = $nametags . $authcode_msg . $input_area .$input_button;
     }
-	
+
     $script = get_script_uri();
     $s_page = htmlspecialchars($vars['page']);
     $string = <<<EOD
