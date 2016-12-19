@@ -161,7 +161,7 @@ $googlemaps_apikey = 'ABQIAAAAiGS5xMxFoCjNEIdoMGiCBRSh3wgB-evfR4k_uhb9NTlXTFSqGR
 // Fit videos to screen
 $enable_fitvids = true;
 // Downloadable path
-$downloadable_path = 'pub';
+$downloadable_path = 'swfu/d;pub';
 
 
 $mobile_redirect = '';	// Mobile Access Redirect
