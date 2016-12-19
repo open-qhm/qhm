@@ -53,6 +53,7 @@ download($key);
 
 function download($auth_key){
 
+	global $downloadable_path;
 	$qm = get_qm();
 
 	$filename = isset($_GET['filename']) ? $_GET['filename'] : '';
@@ -62,11 +63,19 @@ function download($auth_key){
 	$page     = isset($_GET['refer'])    ? $_GET['refer']    : '';
 
 	$filename = urldecode($filename);
+	$pathinfo  = pathinfo($filename);
+	$downloadable_path_array = explode(";", $downloadable_path);
 
 	//validate
 	$wikifile = 'wiki/'. encode($page) . '.txt';
 	$source = file_exists($wikifile) ? file_get_contents($wikifile) : '';
 
+	if(! in_array($pathinfo['dirname'], $downloadable_path_array, true))
+	{
+		header('HTTP/1.1 403 Forbidden');
+		error_msg('Error : Invalid access');
+		exit;
+	}
 	if ($page === '' OR ! preg_match('/&dl(?:button|link)\('. preg_quote($filename, '/').'(?:,|\))/', $source))
 	{
 		header('HTTP/1.1 403 Forbidden');

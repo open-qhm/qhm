@@ -160,6 +160,8 @@ $modifierlink = 'http://www.example.co.jp/'; // Site admin's Web page
 $googlemaps_apikey = 'ABQIAAAAiGS5xMxFoCjNEIdoMGiCBRSh3wgB-evfR4k_uhb9NTlXTFSqGRScvANPOtehBVz7qEVDLEwY4PlLng';
 // Fit videos to screen
 $enable_fitvids = true;
+// Downloadable path
+$downloadable_path = 'pub';
 
 
 $mobile_redirect = '';	// Mobile Access Redirect
