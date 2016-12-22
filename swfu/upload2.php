@@ -47,6 +47,13 @@ function action( &$c )
 			$mode = 'ajax';
 	}
 
+	// ファイルをチェックする。スクリプトを実行可能なファイルは許可しない
+	if ( ! is_valid_file_for_upload($upload_name)) {
+		header('HTTP/1.1 400 Bad Request');
+		echo 'Cannot upload script file';
+		exit(0);
+	}
+
 	//画像の説明
 	$text = '画像の説明';
 	$page = isset($_POST['page'])? $_POST['page']: '';
@@ -63,13 +70,6 @@ function action( &$c )
 	{
 		if( !preg_match('/([^.]+)\.(.*)$/', $upload_name, $matches) ){
 			echo 'invalid file name';
-			exit(0);
-		}
-
-		// ファイルをチェックする。スクリプトを実行可能なファイルは許可しない
-		if ( ! is_valid_file_for_upload($upload_name)) {
-			header('HTTP/1.1 400 Bad Request');
-			echo 'Cannot upload script file';
 			exit(0);
 		}
 
