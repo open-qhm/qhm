@@ -12,7 +12,15 @@ session_start();
 
 if ( ! isset($_SESSION['usr'])) {
 	header('HTTP/1.1 403 Forbidden');
-	exit(1);
+	exit(0);
+}
+
+$upload_name = $_FILES['Filedata']['name'];
+
+// 拡張子をチェックする .php は許可しない
+if (pathinfo($upload_name, PATHINFO_EXTENSION) === 'php') {
+	header('HTTP/1.1 400 Bad Request');
+	exit(0);
 }
 
 if (!isset($_FILES["Filedata"])
@@ -24,8 +32,6 @@ if (!isset($_FILES["Filedata"])
 }
 else
 { // ---------------------- upload success --------------------
-
-	$upload_name = $_FILES['Filedata']['name'];
 	if( preg_match('/^[-_.+a-zA-Z0-9]+$/', $upload_name ) ){
 
 		while(!$overwrite && file_exists(SWFU_DATA_DIR.$upload_name)){
