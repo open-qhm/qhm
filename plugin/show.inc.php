@@ -556,8 +556,19 @@ $(document).ready(function(){
 <link href="./plugin/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 $(function(){
-	$("a.colorbox").colorbox({opacity:0.5, current: "{current}/{total}"});
-	$("a.colorbox_slideshow").colorbox({opacity:0.8, current: "{current}/{total}", slideshow: true});
+	var options = {
+		opacity:0.5,
+		current: "{current}/{total}",
+		maxWidth: "100%",
+		maxHeight: "90%"
+	};
+	var slideshowOptions = $.extend({}, options, {
+		opacity: 0.8,
+		slideshow: true
+	});
+
+	$("a.colorbox").colorbox(options);
+	$("a.colorbox_slideshow").colorbox(slideshowOptions);
 });
 </script>
 ';

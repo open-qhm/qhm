@@ -547,6 +547,28 @@ if ( ! function_exists('get_qhm_option'))
 	}
 }
 
+if ( ! function_exists('get_extension_blacklist')) {
+	/*
+	 * PHP, CGI, Pearl スクリプトはアップロード許可しない
+	 */
+	function get_extension_blacklist()
+	{
+		return array(
+			'php', 'cgi', 'pl'
+		);
+	}
+}
+
+if ( ! function_exists('is_valid_file_for_upload')) {
+	/*
+	 * アップロードしても良いファイルかどうか判別する
+	 */
+	function is_valid_file_for_upload($filename)
+	{
+		return ! in_array(pathinfo($filename, PATHINFO_EXTENSION), get_extension_blacklist());
+	}
+}
+
 //--------------------------------
 //main
 if ( isset($script) && $script != '') {

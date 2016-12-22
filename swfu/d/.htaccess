@@ -1,0 +1,4 @@
+# Prohibit direct access
+<FilesMatch "\.(php[3457]?|pht|phtml|cgi|pl|exe|com)$">
+    Deny from all
+</FilesMatch>
