@@ -1,4 +1,4 @@
 # Prohibit php script access
-<FilesMatch "\.php$">
+<FilesMatch "\.(php|cgi|pl)$">
 	Deny from all
 </FilesMatch>

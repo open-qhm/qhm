@@ -66,10 +66,10 @@ function action( &$c )
 			exit(0);
 		}
 
-		// 拡張子をチェックする .php は許可しない
-		if (pathinfo($upload_name, PATHINFO_EXTENSION) === 'php') {
+		// ファイルをチェックする。スクリプトを実行可能なファイルは許可しない
+		if ( ! is_valid_file_for_upload($upload_name)) {
 			header('HTTP/1.1 400 Bad Request');
-			echo 'Cannot upload php script file';
+			echo 'Cannot upload script file';
 			exit(0);
 		}
 

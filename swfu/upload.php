@@ -17,10 +17,10 @@ if ( ! isset($_SESSION['usr'])) {
 
 $upload_name = $_FILES['Filedata']['name'];
 
-// 拡張子をチェックする .php は許可しない
-if (pathinfo($upload_name, PATHINFO_EXTENSION) === 'php') {
-	header('HTTP/1.1 400 Bad Request');
-	exit(0);
+// ファイルをチェックする。スクリプトを実行可能なファイルは許可しない
+if ( ! is_valid_file_for_upload($upload_name)) {
+    header('HTTP/1.1 400 Bad Request');
+    exit(0);
 }
 
 if (!isset($_FILES["Filedata"])
