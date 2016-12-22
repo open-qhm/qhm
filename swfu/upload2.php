@@ -65,6 +65,14 @@ function action( &$c )
 			echo 'invalid file name';
 			exit(0);
 		}
+
+		// 拡張子をチェックする .php は許可しない
+		if (pathinfo($upload_name, PATHINFO_EXTENSION) === 'php') {
+			header('HTTP/1.1 400 Bad Request');
+			echo 'Cannot upload php script file';
+			exit(0);
+		}
+
 		$text = $matches[1];
 		$ext = $matches[2];
 		$tmp_name = tempnam(SWFU_DATA_DIR, 'auto-');
