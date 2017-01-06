@@ -1221,16 +1221,13 @@ function plugin_qblog_rename_category()
 function plugin_qblog_get_default_ping()
 {
 	$ping = <<< EOP
-http://api.my.yahoo.co.jp/RPC2
 http://blog.goo.ne.jp/XMLRPC
 http://blogsearch.google.co.jp/ping/RPC2
 http://ping.bloggers.jp/rpc/
 http://ping.blogranking.net/
 http://ping.fc2.com/
 http://ping.namaan.net/rpc/
-http://ping.rss.drecom.jp/
 http://pingoo.jp/ping/
-http://rpc.reader.livedoor.com/ping
 EOP;
 	return trim($ping);
 }
