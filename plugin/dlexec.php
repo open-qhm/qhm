@@ -53,7 +53,6 @@ download($key);
 
 function download($auth_key){
 
-	global $downloadable_path;
 	$qm = get_qm();
 
 	$filename = isset($_GET['filename']) ? $_GET['filename'] : '';
@@ -63,14 +62,12 @@ function download($auth_key){
 	$page     = isset($_GET['refer'])    ? $_GET['refer']    : '';
 
 	$filename = urldecode($filename);
-	$pathinfo  = pathinfo($filename);
-	$downloadable_path_array = explode(";", $downloadable_path);
 
 	//validate
 	$wikifile = 'wiki/'. encode($page) . '.txt';
 	$source = file_exists($wikifile) ? file_get_contents($wikifile) : '';
 
-	if(! in_array($pathinfo['dirname'], $downloadable_path_array, true))
+	if(! is_downloadable_file($filename))
 	{
 		header('HTTP/1.1 403 Forbidden');
 		error_msg('Error : Invalid access');
@@ -128,6 +125,13 @@ function download($auth_key){
 
 	exit();
 
+}
+
+function is_downloadable_file($filename){
+	global $downloadable_path;
+	$pathinfo  = pathinfo($filename);
+	$paths = explode(";", $downloadable_path);
+	return in_array($pathinfo['dirname'], $paths, true);
 }
 
 function dl_sendmail($email, $filename, $title){
