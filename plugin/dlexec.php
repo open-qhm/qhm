@@ -139,7 +139,7 @@ function validate_downloadable_path() {
 	global $downloadable_path;
 	$cwd = getcwd();
 	$paths = array_filter(explode(';', $downloadable_path), 'strlen');
-	$result = true;
+	$result = TRUE;
 	
 	if (count($paths) === 0) {
 		$result = FALSE;
@@ -176,7 +176,6 @@ function canonicalize_path($path, $cwd=null){
   if (substr($path, 0, 1) === "/") {
     $filename = $path;
   }
-
   // prefix relative path with $root
   else {
     $root      = is_null($cwd) ? getcwd() : $cwd;
