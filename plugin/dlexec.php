@@ -43,6 +43,7 @@ if( file_exists('lib/qdsmtp.php') ){
 *********************************************/
 
 $key = md5( file_get_contents('qhm.ini.php') );
+validate_downloadable_path();
 download($key);
 
 
@@ -127,12 +128,77 @@ function download($auth_key){
 
 }
 
-function is_downloadable_file($filename){
+function is_downloadable_file($filename) {
 	global $downloadable_path;
 	$pathinfo  = pathinfo($filename);
-	$paths = explode(";", $downloadable_path);
+	$paths = array_filter(explode(";", $downloadable_path), 'strlen');
 	return in_array($pathinfo['dirname'], $paths, true);
 }
+
+function validate_downloadable_path() {
+	global $downloadable_path;
+	$cwd = getcwd();
+	$paths = array_filter(explode(';', $downloadable_path), 'strlen');
+	$result = true;
+	
+	if (count($paths) === 0) {
+		$result = FALSE;
+	}
+	
+	foreach ($paths as $path) {
+		$canonicalized_path = canonicalize_path($path, $cwd);
+		if ($canonicalized_path !== FALSE) {
+			if ($canonicalized_path === $cwd) {
+				// インストールディレクトリ直下なのでNG
+				$result = FALSE;
+			} else if (strpos($canonicalized_path, $cwd) === 0) {
+				// インストールディレクトリ以下なのでOK
+			} else {
+				// インストールディレクトリ以下ではない
+				$result = FALSE;
+			}
+		} else {
+			// 指定されたパスに権限がない、あるいは存在しない
+			$result = FALSE;
+		}
+	}
+
+	if ($result === FALSE) {
+		header('HTTP/1.1 500 Internal Server Error');
+		error_msg('Error : Invalid Configuration');
+		exit;
+	}
+}
+
+function canonicalize_path($path, $cwd=null){
+
+  // don't prefix absolute paths
+  if (substr($path, 0, 1) === "/") {
+    $filename = $path;
+  }
+
+  // prefix relative path with $root
+  else {
+    $root      = is_null($cwd) ? getcwd() : $cwd;
+    $filename  = sprintf("%s/%s", $root, $path);
+  }
+
+  // get realpath of dirname
+  $dirname   = dirname($filename);
+  $canonical = realpath($dirname);
+
+  // return FALSE if $dirname is nonexistent
+  if ($canonical === false) {
+    return FALSE;
+  }
+
+  // prevent double slash "//" below
+  if ($canonical === "/") $canonical = null;
+
+  // return canonicalized path
+  return sprintf("%s/%s", $canonical, basename($filename));
+}
+
 
 function dl_sendmail($email, $filename, $title){
 
