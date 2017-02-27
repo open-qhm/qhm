@@ -496,7 +496,7 @@ function socialbutton_facebook_like(target, options, defaults, index, max_index)
 		'height': height
 	});
 
-	var tag = '<iframe src="http://www.facebook.com/plugins/like.php?' + params + '" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' + width + 'px; height:' + height + 'px;" allowTransparency="true"></iframe>';
+	var tag = '<iframe src="//www.facebook.com/plugins/like.php?' + params + '" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:' + width + 'px; height:' + height + 'px;" allowTransparency="true"></iframe>';
 
 	$(target).html(tag);
 }
@@ -540,12 +540,12 @@ function socialbutton_twitter(target, options, defaults, index, max_index)
 		'data-related': related
 	});
 
-	var tag = '<a href="http://twitter.com/share" class="twitter-share-button"' + attr + '>Tweet</a>';
+	var tag = '<a href="//twitter.com/share" class="twitter-share-button"' + attr + '>Tweet</a>';
 
 	$(target).html(tag);
 
 	if (index == max_index) {
-		$('body').append('<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>');
+		$('body').append('<script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>');
 	}
 }
 
@@ -753,7 +753,7 @@ function socialbutton_google_plusone(target, options, defaults, index, max_index
 		}
 
 		if (typeof gapi === 'undefined' || typeof gapi.plusone === 'undefined') {
-			$('body').append('<script type="text/javascript" src="https://apis.google.com/js/plusone.js">' + script_params + '</script>');
+			$('body').append('<script type="text/javascript" src="//apis.google.com/js/plusone.js">' + script_params + '</script>');
 		} else {
 			gapi.plusone.go();
 		}

@@ -757,7 +757,13 @@ class UploadHandler
                     $image->setResourceLimit($type, $limit);
                 }
             }
-            $image->readImage($file_path);
+            try {
+                // QHM のインストールディレクトリのフルパスを取得する
+                $home_dir = dirname(dirname(__DIR__));
+                $image->readImage($home_dir . '/' . $file_path);
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
             $this->image_objects[$file_path] = $image;
         }
         return $this->image_objects[$file_path];
@@ -1090,7 +1096,7 @@ class UploadHandler
     protected function body($str) {
         echo $str;
     }
-    
+
     protected function header($str) {
         header($str);
     }
@@ -1299,6 +1305,7 @@ class UploadHandler
                 $content_range
             );
         }
+
         return $this->generate_response(
             array($this->options['param_name'] => $files),
             $print_response
