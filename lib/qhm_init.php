@@ -270,7 +270,16 @@ EOD;
 		)
 	),
 	'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE),
-	'haikpreviewlink' => array('name'=>'<span class="hidden-xs hidden-sm"><i class="glyphicon glyphicon-phone"></i> <span class="sr-only">モバイル</span>プレビュー</span>', 'link'=>'#', 'style'=>'', 'class' => '', 'visible'=>TRUE),
+  'haikpreviewlinks' => array('name'=>'プレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+      'mobilesm' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.0 inch',  'link'=>'#', 'visible'=>TRUE),
+      'mobilemd' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.7 inch',  'link'=>'#', 'visible'=>TRUE),
+      'mobilelg' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 5.5 inch',  'link'=>'#', 'visible'=>TRUE),
+      'tablet' => array('name'=>'<i class="fa fa-lg fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'#', 'visible'=>TRUE),
+      'laptop' => array('name'=>'<i class="fa fa-lg fa-laptop" aria-hidden="true"></i><span class="sr-only">デスクトップ</span> 1366×768',  'link'=>'#', 'visible'=>TRUE),
+      'desktop' => array('name'=>'<i class="fa fa-lg fa-desktop" aria-hidden="true"></i><span class="sr-only">モバイル</span> 1920×1080', 'link'=>'#', 'visible'=>TRUE),
+    )
+  ),
+
 	'configlink' => array('name'=>$qm->m['qhm_init']['configlink_name'], 'link'=>$link_qhm_setting, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
 // 	'helplink'   => array('name'=>'open-qhm.net', 'link'=>$link_help, 'style'=>'', 'visible'=>true, 'sub'=>array()),
 	'passwordlink'   => array('name'=>$qm->m['qhm_init']['passwordlink_name'], 'link'=>$link_password, 'style'=>'', 'visible'=>true, 'sub'=>array()),
