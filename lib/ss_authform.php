@@ -362,7 +362,7 @@ font-size:12px;color:#666
 </head>
 <body>
 <div class="wrapper">
-<h2 class="title">QHM {$title}</h2>
+<h2 class="title">HAIK {$title}</h2>
 {$contents}
 <div id="scripterror"></div>
 

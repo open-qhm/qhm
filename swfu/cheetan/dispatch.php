@@ -8,14 +8,14 @@ class CDispatch extends CObject
 {
 	function dispatch( &$data )
 	{
-		$db			= &new CDatabase();
+		$db			= new CDatabase();
 		if( function_exists( "config_database" ) )
 		{
 			config_database( $db );
 		}
 	
-		$sanitize	= &new CSanitize();
-		$validate	= &new CValidate();
+		$sanitize	= new CSanitize();
+		$validate	= new CValidate();
 		if( function_exists( 'config_controller_class' ) )
 		{
 			$controllername	= config_controller_class();

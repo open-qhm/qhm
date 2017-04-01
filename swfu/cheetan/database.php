@@ -50,7 +50,7 @@ class CDatabase extends CObject
 		if( empty( $this->config[$name] ) )	return null;
 		if( empty( $this->driver[$name] ) )
 		{
-			$this->driver[$name]		= &new $this->class[$this->config[$name]['kind']]();
+			$this->driver[$name]		= new $this->class[$this->config[$name]['kind']]();
 		}
 		if( empty( $this->connection[$name] ) )
 		{

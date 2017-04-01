@@ -48,7 +48,7 @@ zone_time = "9"                  ;GMT: 0
 ;////////////////////////////////////////////////////
 ;   !Proper Names
 ;////////////////////////////////////////////////////
-frontpage   = "QHMトップ"
+frontpage   = "HAIKトップ"
 preferences = "設定一覧"
 here        = "here"
 adminpass   = "管理者パス"
@@ -1017,7 +1017,7 @@ title_file_notfound = "ファイルが存在しません"
 
 label     = "ダウンロード"
 subject   = "【ダウンロード通知】$1"
-mail_body = "QHM dlbutton pluginからのお知らせです。##LF####LF##あなたの $1 がダウンロードされました。##LF##"
+mail_body = "HAIK dlbutton pluginからのお知らせです。##LF####LF##あなたの $1 がダウンロードされました。##LF##"
 
 err_usage          = "引数が間違っています。 &dlbutton(ファイルパス,[ボタンラベル],[メールアドレス],[メールタイトル])"
 err_file_notfound = "<p>指定されたファイルは存在しません。</p>$1"
@@ -1028,7 +1028,7 @@ err_invalid_email  = "<p>メールアドレスが無効です。 $1</p>"
 ;///////////////////////////////////////
 [plg_dllink]
 label     = "ダウンロードは、ここをクリック"
-mail_body = "QHM dllink pluginからのお知らせです。##LF####LF##あなたの $1 がダウンロードされました。##LF##"
+mail_body = "HAIK dllink pluginからのお知らせです。##LF####LF##あなたの $1 がダウンロードされました。##LF##"
 err_usage = "引数が間違っています。 &dllink(ファイルパス,[ボタンラベル],[メールアドレス],[メールタイトル])"
 
 ;///////////////////////////////////////
@@ -1054,7 +1054,7 @@ err_upload_empty     = "<p>展開できるファイルがありませんでし�
 frm_header = "バックアップ・リストア"
 frm_ntc    = "<p><b>注意事項</b><br />##LF##<ul style=&quot;margin-left:8px&quot;><li>ファイル数が多い場合、ダウンロード開始まで時間がかかることがあります</li><li>ファイル数が多い場合、途中でエラーするときがあります（FTPソフトをお使い下さい)</li><li>設置されているサーバーによっては、エラーを表示し、動かない場合があります</li></ul>##LF##</p>"
 frm_fullbk_header           = "フルバックアップ"
-frm_fullbk_ntc              = "<p>QHMシステムをすべて圧縮し、バックアップファイルをダウンロードします。<br />※フルバックアップしたファイルは、FTPソフトでリストアしてください</p>"
+frm_fullbk_ntc              = "<p>HAIKシステムをすべて圧縮し、バックアップファイルをダウンロードします。<br />※フルバックアップしたファイルは、FTPソフトでリストアしてください</p>"
 label_adminpass             = "管理者パスワード"
 btn_download                = "ダウンロード"
 label_memory_limit          = "メモリ使用量の制限を変更する"
@@ -1070,7 +1070,7 @@ desc_backup      = "編集履歴"
 desc_swfud       = "SWFU添付ファイル"
 desc_swfudata    = "SWFUデータ"
 desc_fwd3data    = "FWD3データ"
-desc_qhmini      = "QHM設定"
+desc_qhmini      = "HAIK設定"
 desc_qhmaccess   = "アクセス制限"
 desc_qhmusers    = "ユーザー設定"
 desc_qhmlogo     = "ロゴ画像"
@@ -1686,7 +1686,7 @@ err_deny     = "<div class=&quot;box&quot;><h2>認証を拒否しました</h2><
 ;//   qhmlogout.inc.php
 ;///////////////////////////////////////
 [plg_qhmlogout]
-title = "QHM管理認証ログアウト"
+title = "HAIK管理認証ログアウト"
 done  = "<h2>ログアウト</h2><p>ログアウトを完了しました。<br />トップページにもどるには、<a href=&quot;$1&quot; style=&quot;background-color:yellow&quot;>ここをクリック</a>してください</p>"
 
 
@@ -1696,10 +1696,10 @@ done  = "<h2>ログアウト</h2><p>ログアウトを完了しました。<br /
 [plg_qhmsetting]
 ; !qhmsetting: 一般設定
 title_helplink = "ヘルプ"
-hdr = "QHM v$1 haik 設定"
-title = "QHMサイト情報設定"
-ntc = "<p>QHMの設定を行います。<br />##LF##以下の項目から、変更したいものをクリックしてください。</p>"
-php4_warn = "CENTER:&deco(bold,red,,){このQHMはPHP4で動作しています};##LF####LF##QHMではPHP4をサポートしておりません。##LF##正常動作させるには、PHP5へバージョン変更するか、##LF##QHM v4.53 へダウングレードをして下さい。##LF##[[方法はこちら>$1]]##LF##"
+hdr = "HAIK v$1 設定"
+title = "HAIKサイト情報設定"
+ntc = "<p>HAIKの設定を行います。<br />##LF##以下の項目から、変更したいものをクリックしてください。</p>"
+php4_warn = "CENTER:&deco(bold,red,,){このHAIKはPHP4で動作しています};##LF####LF##HAIKではPHP4をサポートしておりません。##LF##正常動作させるには、PHP5へバージョン変更するか、##LF##QHM v4.53 へダウングレードをして下さい。##LF##[[方法はこちら>$1]]##LF##"
 toc = "項目"
 btn_confirm = "設定を確認する"
 confirm = "以下の内容でよければ、ページ下部の「設定する」をクリックしてください"
@@ -1734,22 +1734,22 @@ sub_title_info      = "キーワード、サイト説明、ヘッダー、フッ
 sub_title_admin     = "編集用のユーザー名、パスワードの設定を行います。"
 sub_title_useradmin = "特定のページにアクセス権限を設定し、アクセスできるユーザーを追加設定できます。"
 sub_title_clear     = "表示を高速化するためのキャッシュ機能を設定、キャッシュの初期化、テンプレートを初期化を行います。"
-sub_title_backup    = "QHMのバックアップをダウンロードできます。フルバックアップ、重要ファイルのみのバックアップなど可能です。"
+sub_title_backup    = "HAIKのバックアップをダウンロードできます。フルバックアップ、重要ファイルのみのバックアップなど可能です。"
 sub_title_counter   = "アクセスカウンターをリセットします。"
 sub_title_chmod     = "削除できない、FTPエラーが起こる原因である「ファイル権限」を設定、チェックします。"
 sub_title_mail      = "送信メールサーバーを設定できます（SMTP送信、GoogleAppsなどの場合）"
-sub_title_close     = "QHMで作成された全ページを閉鎖します。閉鎖後は、管理者権限でログインすることで編集、閲覧が可能です。"
+sub_title_close     = "HAIKで作成された全ページを閉鎖します。閉鎖後は、管理者権限でログインすることで編集、閲覧が可能です。"
 sub_title_mobile    = "携帯端末からのアクセスを携帯専用サイトなどに転送します。"
-sub_title_gmap      = "QHMでGoogleマップを使うためのキーを設定します。"
+sub_title_gmap      = "HAIKでGoogleマップを使うためのキーを設定します。"
 
 ; !qhmsetting: デザイン設定
 wp_design = "WordPressテーマ"
-qhm_design = "QHM専用"
+qhm_design = "HAIK専用"
 ntc_design_preview = "$1の「$2」デザインのプレビュー状態です。"
 ntc_design_view = "$1の「$2」デザインを利用中です"
 hdr_wp_design = "WordPressテーマの設定"
-ntc_design = "QHM専用デザインを使う、もしくは、WordPressテンプレートを使うことができます。利用したいデザインは、事前に skin/hokukenstyle、もしくは、skin/wordpress にフォルダに分けて、アップロードしてください。"
-hdr_qhm_design = "QHM専用デザインの設定"
+ntc_design = "HAIK専用デザインを使う、もしくは、WordPressテンプレートを使うことができます。利用したいデザインは、事前に skin/hokukenstyle、もしくは、skin/wordpress にフォルダに分けて、アップロードしてください。"
+hdr_qhm_design = "HAIK専用デザインの設定"
 hdr_preview_design = "プレビュー"
 logotype_text = "テキストを使う設定"
 logotype_img = "画像を使う設定"
@@ -1763,9 +1763,9 @@ hdr_select_design = "（２）デザインテンプレートの選択"
 select_design = "以下から、デザインテンプレートを選択して下さい。"
 cur_design = "（現在の設定）"
 title_thumb = "$1サムネール"
-wrn_safe_mode = "<span style=&quot;color:#f66&quot;>このサーバーではQHM上でのデザイン取得ができません。php.ini のsafe_mode をOff にしてください。<br /><a href=&quot;$1?GetDesign#safe_mode&quot; target=&quot;new&quot;>>>>Off にする方法はこちら</a></span><br /><br />または、インストールシステムからデザインを取得してください。<br /><a href=&quot;$1sys/&quot; target=&quot;new&quot;>>>>インストールシステムからデザインテンプレートを取得する</a>"
+wrn_safe_mode = "<span style=&quot;color:#f66&quot;>このサーバーではHAIK上でのデザイン取得ができません。php.ini のsafe_mode をOff にしてください。<br /><a href=&quot;$1?GetDesign#safe_mode&quot; target=&quot;new&quot;>>>>Off にする方法はこちら</a></span><br /><br />または、インストールシステムからデザインを取得してください。<br /><a href=&quot;$1sys/&quot; target=&quot;new&quot;>>>>インストールシステムからデザインテンプレートを取得する</a>"
 get_design = "デザインテンプレートを取得"
-wrn_cannot_get_design = "<a href=&quot;$1sys/&quot; target=&quot;new&quot;>>>>インストールシステムでデザインテンプレートを取得する</a><br /><span style=&quot;color:#f66&quot;>※このサーバーではQHMからデザインテンプレートを取得できません</span>"
+wrn_cannot_get_design = "<a href=&quot;$1sys/&quot; target=&quot;new&quot;>>>>インストールシステムでデザインテンプレートを取得する</a><br /><span style=&quot;color:#f66&quot;>※このサーバーではHAIKからデザインテンプレートを取得できません</span>"
 title_club_auth = "北研クラブ認証"
 lbl_floral = "花柄"
 lbl_business = "ビジネス"
@@ -1790,7 +1790,7 @@ hdr_wp_css = "追加スタイル"
 ntc_wp = "<p><strong>ご確認下さい : </strong></p>##LF##<ul style=&quot;margin-left:3%;&quot;>##LF##<li>WordPressのテーマは、ブログのためのデザインです。ご自身で多少のカスタマイズが必要です</li>##LF##<li>テンプレートに埋め込まれている文字や、サイドバーに読み込むリンクなど、適切に再編集して下さい</li>##LF##<li>標準的な作り方に沿わないテーマを使うと、一部のプラグインが動作しないことがあります</li>##LF##<li>WPテーマとの完全な互換性はありません。ご自身でのカスタマイズが必要となります</li>##LF##</ul>"
 hdr_preview = "デザインのプレビュー"
 ntc_preview = "以下から、デザインテンプレートを選択し、プレビューを押して下さい"
-lbl_preview_qhm = "QHM専用 : "
+lbl_preview_qhm = "HAIK専用 : "
 btn_preview = "プレビュー"
 lbl_preview_wp = "WordPressテーマ : "
 ntc_wp_usage = "WordPressのテーマを利用するには、skin/wordpress/ に、設置します。"
@@ -1830,20 +1830,20 @@ opt_externlink_3 = "特定のウィンドウ"
 title_exclusion_list = "別ウィンドウで<br />開かない設定"
 ntc_exclusion_list = "別ウインドウで開かないホスト名を | で区切って入力してください"
 title_show_login = "管理者認証への<br />リンク表示"
-ntc_show_login = "管理者ページへのアクセス方法を指定します<br />（おすすめは、「右下のQHMリンクから」です）"
+ntc_show_login = "管理者ページへのアクセス方法を指定します<br />（おすすめは、「右下のHAIKリンクから」です）"
 opt_show_login_1 = "常にedit thisを表示"
-opt_show_login_2 = "右下のQHMリンクから"
-opt_show_login_3 = "なし（QHMAdminページ）"
+opt_show_login_2 = "右下のHAIKリンクから"
+opt_show_login_3 = "なし（HAIKAdminページ）"
 title_show_licence = "ライセンス表記"
-ntc_show_licence = "ページ右のQHMライセンス表記を表示、非表示を設定します<br />（<a href=&quot;http://www.open-qhm.net/index.php?QHMLicence#n8d1069b&quot; target=&quot;new&quot;>非表示にすると認証ページアクセスが難しくなります</a>）"
+ntc_show_licence = "ページ右のHAIKライセンス表記を表示、非表示を設定します<br />（<a href=&quot;http://www.open-qhm.net/index.php?QHMLicence#n8d1069b&quot; target=&quot;new&quot;>非表示にすると認証ページアクセスが難しくなります</a>）"
 opt_show_licence_1 = "表示する"
 opt_show_licence_2 = "非表示（非推奨・QHMAdminページからログイン）"
 title_toggle_autolink = "自動リンク"
-ntc_toggle_autolink = "ページ名が長く、「\'」や「&quot;」を利用し、QHMが正常に動かない場合、<br />「利用しない」にして下さい"
+ntc_toggle_autolink = "ページ名が長く、「\'」や「&quot;」を利用し、HAIKが正常に動かない場合、<br />「利用しない」にして下さい"
 opt_toggle_autolink_1 = "利用する"
 opt_toggle_autolink_2 = "利用しない"
 title_select_lang = "言語"
-ntc_select_lang = "QHMのインターフェースで用いる言語を変更することができます。デフォルトは日本語です。"
+ntc_select_lang = "HAIKのインターフェースで用いる言語を変更することができます。デフォルトは日本語です。"
 
 
 ; !編集用ID、パスワードの設定
@@ -1944,7 +1944,7 @@ user_passwd_cmp = "変更しました"
 ; !ファイル権限設定
 btn_chmod = "権限変更を実行する"
 chmod_no_err = "書き込み権限に問題はありませんでした"
-err_cannot_writable = "以下のファイルは、QHMによって利用するにも関わらず、書き込みができません。<br />FTPソフトなどを使って、書き込みを権限を設定して下さい"
+err_cannot_writable = "以下のファイルは、HAIKによって利用するにも関わらず、書き込みができません。<br />FTPソフトなどを使って、書き込みを権限を設定して下さい"
 
 
 
@@ -2056,7 +2056,7 @@ notfound  = "No related pages found."
 [plg_rss]
 err_version = "Invalid RSS version!!"
 err_nodata  = "recent.dat is not found"
-description = "QHM RecentChanges"
+description = "HAIK RecentChanges"
 
 ;///////////////////////////////////////
 ;//   rss10.inc.php
@@ -2662,7 +2662,7 @@ retry_label   = "やり直す"
 btn_login = "ログイン"
 btn_cancel = "キャンセル"
 jump_home     = "トップに戻る"
-licence       = "QHM $1 haik<br />based on PukiWiki $2. licence is GPL"
+licence       = "HAIK $1<br />based on PukiWiki $2. licence is GPL"
 
 ;   Notice Messages
 ntc_session_save_path = "セッションの保存先を設定しています。<a href=&quot;$1&quot;>&gt;&gt; 変更はこちら</a>"

@@ -3,13 +3,13 @@
 $style_type = 'text';
 $style_name = 'haik_seed';
 $logo_image = 'cache/qhm_logo.png';
-$page_title = 'Welcome to QHM v6 haik';
+$page_title = 'Welcome to HAIK';
 $enable_wp_theme = 0;
 $enable_wp_theme_name = '';
 $wp_add_css = '';
 $owneraddr = 'Here is your address or something';
 $ownertel = 'contact me by email';
-$headcopy = 'QHM is easy, simple, pretty Website Building System';
+$headcopy = 'HAIK is easy, simple, pretty Website Building System';
 $keywords = 'keyword1,keyword2,keyword3';
 $description = 'here is description of your website.';
 $custom_meta = '';

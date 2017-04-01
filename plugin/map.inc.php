@@ -47,7 +47,7 @@ function plugin_map_action()
 	// Generate a tree
 	$nodes = array();
 	foreach ($pages as $page)
-		$nodes[$page] = & new MapNode($page, $reverse);
+		$nodes[$page] = new MapNode($page, $reverse);
 
 	// Node not found: Because of filtererd by $non_list
 	if (! isset($nodes[$refer])) $vars['refer'] = $refer = $defaultpage;
@@ -172,7 +172,7 @@ class MapNode
 		if ($this->parent_id == 0) $this->parent_id = -1;
 
 		foreach ($this->rels as $page) {
-			if (! isset($nodes[$page])) $nodes[$page] = & new MapNode($page);
+			if (! isset($nodes[$page])) $nodes[$page] = new MapNode($page);
 			if ($nodes[$page]->parent_id == 0)
 				$nodes[$page]->parent_id = $this->id;
 		}

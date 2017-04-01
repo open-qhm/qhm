@@ -87,19 +87,19 @@ Validation Check, セキュリティー面のチェックは各自で行うこ�
  *   PukiWiki Include Template Plugin
  *   -------------------------------------------
  *   include_template.inc.php
- *   
+ *
  *   Copyright (c) 2009 hokuken
  *   http://hokuken.com/
- *   
- *   created  : 
+ *
+ *   created  :
  *   modified : 2009-11-30 「戻る」リンクを非表示に
- *   
+ *
  */
 
 
 
 
-// 
+//
 define('PLUGIN_INCLUDE_TEMPLATE_IS_EDIT_AUTH' , TRUE);     // Default: TRUE
 
 // Default value of 'title|notitle' option
@@ -123,7 +123,7 @@ define('PLUGIN_INCLUDE_TEMPLATE_RAW_KW_DELIM' , '%');    // パラメータリ�
 
 
 // コマンド型で使用するとき、置換するデータを格納するページ
-define('PLUGIN_INCLUDE_TEMPLATE_DATA_PAGE' , ':config/plugin/include_template/data');   
+define('PLUGIN_INCLUDE_TEMPLATE_DATA_PAGE' , ':config/plugin/include_template/data');
 
 // 接頭辞がPHP(php)のページをphpコードとして実行を許可するかどうか
 // 追加 Time-stamp: <08/07/19(土) 14:51:41 kahata>
@@ -169,7 +169,7 @@ function plugin_include_template_action()
 	if (! is_page($page)) {
 		$err_msg = $ret . $qm->replace('plg_include_template.err_no_page', $page) . "\n";
 		return array('msg'=>  $qm->m['plg_include_template']['title_err_read'],'body'=> $err_msg);
-	} 
+	}
 	if ($include_template_is_edit_auth) {
 		if (! (PKWK_READONLY > 0 or is_freeze($page) or $include_template->is_edit_auth($page))) {
 			$err_msg = $ret . $qm->replace('plg_include_template.err_not_editable', $page) . "\n";
@@ -202,7 +202,7 @@ function plugin_include_template_action()
 	if (check_readable($page, false, false)) {
 		$output = join('', get_source($page));
 
-		$lines = get_source($data_page); 
+		$lines = get_source($data_page);
 		for($i= 0; $i < count($lines); $i++) {
         		$value = $include_template->get_values($lines[$i], $delim1 = "<>", $delim2 = '=');
     			if ($value['id'] == $id ) {
@@ -390,7 +390,7 @@ class include_template
 
 	// 連想配列（ハッシュ）を用いた置換処理
 	function param_replace($output, $value)
-	{	
+	{
 		reset($value);
 
 		for ($i=0;$i<count($value);$i++){
@@ -439,7 +439,7 @@ class include_template
 	//生置換する文字をパラメータリストから連想配列に取り込む
 	// Time-stamp: <07/06/16(土) 10:31:50 kahata>
 //			if(preg_match("'$delim(.+?)$delim's",$key,$matches)) {
-			if(ereg("$delim(.+)$delim",$key,$matches)) {
+			if(preg_match("$delim(.+)$delim",$key,$matches)) {
     				$this->array_push_associative($this->kw_replace, array($matches[1] => $v));
 			} else {
     				$value[$key] = $v;

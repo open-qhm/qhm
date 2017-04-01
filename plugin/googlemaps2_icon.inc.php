@@ -55,7 +55,7 @@ function plugin_googlemaps2_icon_inline() {
 function plugin_googlemaps2_icon_output($name, $params) {
 	global $vars;
 	$qm = get_qm();
-	
+
 	if (!defined('PLUGIN_GOOGLEMAPS2_DEF_KEY')) {
 		return $qm->replace('plg_googlemaps2.err_not_called', 'googlemaps2_icon');
 	}
@@ -64,20 +64,20 @@ function plugin_googlemaps2_icon_output($name, $params) {
 	}
 
 	$defoptions = plugin_googlemaps2_icon_get_default();
-	
+
 	$inoptions = array();
 	foreach ($params as $param) {
-		list($index, $value) = split('=', $param);
+		list($index, $value) = preg_split('/=/', $param);
 		$index = trim($index);
 		$value = htmlspecialchars(trim($value));
 		$inoptions[$index] = $value;
 	}
-	
+
 	if (array_key_exists('define', $inoptions)) {
 		$vars['googlemaps2_icon'][$inoptions['define']] = $inoptions;
 		return "";
 	}
-	
+
 	$coptions = array();
 	if (array_key_exists('class', $inoptions)) {
 		$class = $inoptions['class'];

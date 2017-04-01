@@ -72,7 +72,7 @@ class PluginContentsx
                 . '<span>' . $this->msg['toctitle'] . "</span>\n"
                 . "</td></tr>\n"
                 . '<tr><td class="toclist">' . "\n"
-                . $body 
+                . $body
                 . "</td></tr>\n"
                 . "</tbody></table>\n";
 */
@@ -80,12 +80,12 @@ class PluginContentsx
 				. $body
 				. '</div>'."\n";
         }
-        if ($this->error != "" ) { 
+        if ($this->error != "" ) {
             return "<p>#$this->plugin(): $this->error</p>";
         }
         return $body;
     }
-    
+
     function body($args)
     {
         $parser = new PluginContentsxOptionParser();
@@ -97,7 +97,7 @@ class PluginContentsx
 
         $this->init_metalines($this->options['page'][1]);
         if ($this->error !== "") { return; }
-        
+
         $this->narrow_metalines();
         if ($this->error !== "") { return; }
 
@@ -136,12 +136,12 @@ class PluginContentsx
         $this->include_metalines();
         $this->filter_metalines();
         $this->except_metalines();
-        
+
         $parser = new PluginContentsxOptionParser();
         $this->options['depth'][1] = $parser->parse_numoption($this->options['depth'][1], 0, $this->conf['max_depth']);
         if ($parser->error != "") { $this->error = $parser->error; return; }
         $this->depth_filter_metalines();
-        
+
         $num = sizeof($this->metalines);
         $this->options['num'][1] = $parser->parse_numoption($this->options['num'][1], 1, $num);
         if ($parser->error != "") { $this->error = $parser->error; return; }
@@ -153,7 +153,7 @@ class PluginContentsx
         $this->hierarchy_metalines();
         $this->compact_metalines();
         $this->makelink_metalines();
-        
+
         return $this->list_metalines();
     }
 
@@ -162,10 +162,10 @@ class PluginContentsx
         if (sizeof($this->metalines) == 0) {
             return;
         }
-        
-        /* HTML validate (without <ul><li style="list-type:none"><ul><li>, we have to do as 
+
+        /* HTML validate (without <ul><li style="list-type:none"><ul><li>, we have to do as
            <ul><li style="padding-left:16*2px;margin-left:16*2px"> as pukiwiki standard. I did not like it)
-           
+
         <ul>              <ul><li>1
         <li>1</li>        </li><li>1
         <li>1             <ul><li>2
@@ -181,7 +181,7 @@ class PluginContentsx
         </li>
         </ul>
         */
-        
+
         $ul = $pdepth = 0;
         $html = '';
         foreach ($this->metalines as $metaline) {
@@ -212,7 +212,7 @@ class PluginContentsx
         $html .= str_repeat('</li></ul>', $ul);
         return $html;
     }
-    
+
     function makelink_metalines()
     {
         $metalines = array();
@@ -225,7 +225,7 @@ class PluginContentsx
         }
         $this->metalines = $metalines;
     }
-    
+
     function make_pagelink($page, $alias, $anchor)
     {
         global $vars;
@@ -279,7 +279,7 @@ class PluginContentsx
             $listdepth = $metaline['listdepth'];
             $metaline['listdepth'] = $listdepthfill[$page][$listdepth];
             $metalines[] = $metaline;
-        } 
+        }
         $this->metalines = $metalines;
 
         // 2) fill in previous list space, seperately for each page
@@ -292,7 +292,7 @@ class PluginContentsx
         $metalines = array();
         $this->hoge = array();
         foreach ($this->metalines as $metaline) {
-            $page = $metaline['page']; 
+            $page = $metaline['page'];
             if ($metaline['depth'] > $pdepth[$page]) {
                 $metaline['listdepth'] = $plistdepth[$page] + 1;
             } elseif($metaline['depth'] == $pdepth[$page]) {
@@ -306,7 +306,7 @@ class PluginContentsx
         }
         $this->metalines = $metalines;
     }
-    
+
     function hierarchy_metalines()
     {
         $include = 0;
@@ -324,7 +324,7 @@ class PluginContentsx
         }
         $this->metalines = $metalines;
     }
-    
+
     function num_filter_metalines()
     {
         if ($this->options['num'][1] === '') {
@@ -351,7 +351,7 @@ class PluginContentsx
         }
         $this->metalines = $metalines;
     }
-    
+
     function filter_metalines()
     {
         if ($this->options['filter'][1] === "") {
@@ -360,7 +360,7 @@ class PluginContentsx
         $metalines = array();
         foreach ($this->metalines as $metaline) {
             $headline = $metaline['headline'];
-            if (ereg($this->options['filter'][1], $headline)) {
+            if (preg_match('/'.$this->options['filter'][1].'/', $headline)) {
                 $metalines[] = $metaline;
             }
         }
@@ -375,13 +375,13 @@ class PluginContentsx
         $metalines = array();
         foreach ($this->metalines as $metaline) {
             $headline = $metaline['headline'];
-            if (!ereg($this->options['except'][1], $headline)) {
+            if (!preg_match('/'.$this->options['except'][1].'/', $headline)) {
                 $metalines[] = $metaline;
             }
         }
         $this->metalines = $metalines;
     }
-    
+
     function include_metalines()
     {
         if ($this->options['include'][1]) {
@@ -453,7 +453,7 @@ class PluginContentsx
         foreach ($visited as $page => $title) {
             // get_filetime of pukiwiki and pukiwiki plus is different.
             // refer lib/file.php#get_filetime
-            
+
             $pagestamp  = is_page($page) ? filemtime(get_filename($page)) : 0;
             if ($pagestamp > $cachestamp) {
                 return false;
@@ -488,7 +488,7 @@ class PluginContentsx
         	$this->error = $qm->replace('plg_contentsx.err_cache_not_writable', $cache);
             return;
         }
-        
+
         $pages = array();
         foreach ($this->visited as $page => $title) {
             $pages[] = csv_implode('=', array($page, $title));
@@ -549,7 +549,7 @@ class PluginContentsx
                     continue;
                 }
             }
-            
+
             if (preg_match($this->conf['def_headline'], $line, $matches)) {
                 $depth    = strlen($matches[1]);
                 $anchor   = '#' . $this->make_heading($line); // *** [id] is removed from $line
@@ -606,13 +606,13 @@ class PluginContentsx
         } else {
             $str = preg_replace('/^\*{0,3}/', '', $str);
         }
-        
+
         // Cut footnotes and tags
         if ($strip === TRUE) {
             // $str = strip_htmltag(make_link(preg_replace($NotePattern, '', $str))); // sonots
             $str = preg_replace($NotePattern, '', $str); // sonots
         }
-        
+
         return $id;
     }
 
@@ -635,21 +635,21 @@ class PluginContentsx
         }
         return $page;
     }
-    
+
     // PukiWiki API
     function get_source($page)
     {
         return get_source($page);
     }
-    
+
     function is_page($page)
     {
         return is_page($page);
     }
 
-    function check_readable($page, $flag, $flag)
+    function check_readable($page, $auth_flag, $exit_flag)
     {
-        return check_readable($page, $flag, $flag);
+        return check_readable($page, $auth_flag, $exit_flag);
     }
 
     // PHP API
@@ -761,7 +761,7 @@ class PluginContentsxOptionParser
                     	$this->error = $qm->replace('plg_contentsx.err_usage_enumarray', h($key), h(join(",", $options[$key][1])), join(",", $options[$key][2]));
                         return;
                     }
-                } 
+                }
                 break;
             default:
             }
@@ -769,7 +769,7 @@ class PluginContentsxOptionParser
 
         return $options;
     }
-    
+
     /**
      * Handle associative type option arguments as
      * ["prefix=Hoge/", "contents=(hoge", "hoge", "hoge)"] => ["prefix"=>"hoge/", "contents"=>"(hoge,hoge,hoge)"]
@@ -790,7 +790,7 @@ class PluginContentsxOptionParser
                 return;
             }
             // paren support
-            if ($val[0] === '(' && ($options[$key][0] == 'number' || 
+            if ($val[0] === '(' && ($options[$key][0] == 'number' ||
                  $options[$key][0] == 'array' || $options[$key][0] == 'enumarray')) {
                 while(true) {
                     if ($val[strlen($val)-1] === ')' && substr_count($val, '(') == substr_count($val, ')')) {
@@ -867,7 +867,7 @@ class PluginContentsxOptionParser
     }
 
     // php extension
-    function is_associative_array($array) 
+    function is_associative_array($array)
     {
         if (!is_array($array) || empty($array))
             return false;

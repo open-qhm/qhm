@@ -100,7 +100,7 @@ function plugin_blog_viewer_convert()
 	{
 		$date_sep = $func_args[3];
 	}
-	
+
 	// $func_args[4]: Didplay Comment Link
 	if (isset($func_args[4]))
 	{
@@ -144,7 +144,7 @@ function plugin_blog_viewer_convert()
 			// Verify the $page_date pattern (Default: yyyy-mm-dd).
 			// Past-mode hates the future, and
 			// Future-mode hates the past.
-			if ((plugin_blog_viewer_isValidDate($page_date, $date_sep) == FALSE) || 
+			if ((plugin_blog_viewer_isValidDate($page_date, $date_sep) == FALSE) ||
 				($page_date > $_date && ($mode == 'past')) ||
 				($page_date < $_date && ($mode == 'future')))
 					continue;
@@ -179,7 +179,7 @@ function plugin_blog_viewer_convert()
 			$blog_body = false;
 			$blog_comment = false;
 			$com_cnt = 0;
-			
+
 			foreach ($blog_pkwksource as $blog_line) {
 				if (preg_match('/^#blog_body/', $blog_line) ) {
 					$blog_body = true;
@@ -191,9 +191,9 @@ function plugin_blog_viewer_convert()
 					$more_msg = $more_args[0]?$more_args[0]: $qm->m['plg_blog_viewer']['more_label'];
 					//default on
 					$anchor = $more_args[1]=='off'?'':'#blog_more';
-					
+
 					$blog_newsource[] = "[[{$more_msg}>$page{$anchor}]]";
-					
+
 					$blog_body = false;
 				}
 				else if (preg_match('/^#blog_comment/', $blog_line) ) {
@@ -376,7 +376,7 @@ function plugin_blog_viewer_action()
 	$vars['page'] = $vars['file'].'/'.$page_YM;
 	$topic = call_user_func('plugin_topicpath_convert');
 	$return_vars_array['body'] = $topic . $return_vars_array['body'];
-	
+
 	$vars['page'] = $page;
 	return $return_vars_array;
 }
@@ -387,7 +387,7 @@ function plugin_blog_viewer_isValidDate($aStr, $aSepList = '-/ .')
 	if ($aSepList == '') {
 		// yyymmddとしてチェック（手抜き(^^;）
 		return checkdate(substr($aStr, 4, 2), substr($aStr, 6, 2), substr($aStr, 0, 4));
-	} else if (ereg("^([0-9]{2,4})[$aSepList]([0-9]{1,2})[$aSepList]([0-9]{1,2})$", $aStr, $matches) ) {
+	} else if (preg_match("/^([0-9]{2,4})[$aSepList]([0-9]{1,2})[$aSepList]([0-9]{1,2})$/", $aStr, $matches) ) {
 		return checkdate($matches[2], $matches[3], $matches[1]);
 	} else {
 		return FALSE;

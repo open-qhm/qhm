@@ -1221,16 +1221,13 @@ function plugin_qblog_rename_category()
 function plugin_qblog_get_default_ping()
 {
 	$ping = <<< EOP
-http://api.my.yahoo.co.jp/RPC2
 http://blog.goo.ne.jp/XMLRPC
 http://blogsearch.google.co.jp/ping/RPC2
 http://ping.bloggers.jp/rpc/
 http://ping.blogranking.net/
 http://ping.fc2.com/
 http://ping.namaan.net/rpc/
-http://ping.rss.drecom.jp/
 http://pingoo.jp/ping/
-http://rpc.reader.livedoor.com/ping
 EOP;
 	return trim($ping);
 }
@@ -1244,20 +1241,20 @@ function plugin_qblog_update_ping()
 	$enable_ping = $vars['qblog_enable_ping'];
 	$pingstr = $vars['ping'];
 
-	//フラグ保存
-	if (exist_plugin("qhmsetting"))
-	{
-		$params = array();
-		$params['qblog_enable_ping'] = $enable_ping;
-		$_SESSION['qhmsetting'] = $params;
-		plugin_qhmsetting_update_ini();
-
-		$vars['phase'] = 'ping';
-		$qblog_enable_ping = $enable_ping;
-	}
+	$params = array();
+	$params['qblog_enable_ping'] = $enable_ping;
+	$vars['phase'] = 'ping';
+	$qblog_enable_ping = $enable_ping;
 
 	if ( ! $enable_ping)
 	{
+		if (exist_plugin("qhmsetting"))
+		{
+			$_SESSION['qhmsetting'] = $params;
+			plugin_qhmsetting_update_ini();
+
+			$vars['phase'] = 'ping';
+		}
 		return array('msg'=>'', 'body'=>'');
 	}
 
@@ -1270,7 +1267,6 @@ function plugin_qblog_update_ping()
 		//ping 保存
 		if (exist_plugin("qhmsetting"))
 		{
-			$params = array();
 			$params['qblog_ping'] = $pingstr;
 			$_SESSION['qhmsetting'] = $params;
 			plugin_qhmsetting_update_ini();
@@ -1280,9 +1276,7 @@ function plugin_qblog_update_ping()
 			//ping 送信
 			send_qblog_ping();
 		}
-
 	}
-
 
 	return array('msg'=>'', 'body'=>'');
 

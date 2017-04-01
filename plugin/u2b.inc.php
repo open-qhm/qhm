@@ -18,7 +18,7 @@ function plugin_u2b_convert()
 	$argc = func_num_args();
 
 	foreach($argv as $arg) {
-		$val = split('=', $arg);
+		$val = preg_split('/=/', $arg);
 		$val[1] = (empty($val[1])) ? htmlspecialchars($val[0]) : htmlspecialchars($val[1]);
 
 		switch ($val[0]) {
@@ -63,16 +63,16 @@ function plugin_u2b_convert()
 			break;
 		}
 	}
-	
+
 	if (empty($id)) return '#u2b: ID parameter must be set.';
 	if (empty($width) || empty($height)) {
 		$width = 425;
 		$height = 350;
 	}
-	
+
 	if (empty($align)) $align = 'center';
 	if ($align == "center") {
-		$align = "margin:0pt auto;text-align:center";		
+		$align = "margin:0pt auto;text-align:center";
 	}
 	else {
 		$align = "float:$align";
