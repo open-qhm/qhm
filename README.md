@@ -37,7 +37,7 @@ counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 
 ## Document
 
-[haik-cms-man]でドキュメントを公開しています。
+[こちらのサイト][haik-cms-man]でドキュメントを公開しています。
 
 
 ## Contribution
