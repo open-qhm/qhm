@@ -228,7 +228,7 @@ function plugin_tracker_get_fields($base,$refer,&$config)
 		) as $field=>$class)
 	{
 		$class = 'Tracker_field_'.$class;
-		$fields[$field] = &new $class(array($field,$qm->m['plg_tracker']["btn$field"],'','20',''),$base,$refer,$config);
+		$fields[$field] = new $class(array($field,$qm->m['plg_tracker']["btn$field"],'','20',''),$base,$refer,$config);
 	}
 
 	foreach ($config->get('fields') as $field)
@@ -241,7 +241,7 @@ function plugin_tracker_get_fields($base,$refer,&$config)
 			$field[2] = 'text';
 			$field[3] = '20';
 		}
-		$fields[$field[0]] = &new $class($field,$base,$refer,$config);
+		$fields[$field[0]] = new $class($field,$base,$refer,$config);
 	}
 	return $fields;
 }
@@ -638,7 +638,7 @@ function plugin_tracker_getlist($page,$refer,$config_name,$list,$order='',$limit
 		return "<p>config file '".make_pagelink($config->page.'/'.$list)."' not found.</p>";
 	}
 
-	$list = &new Tracker_list($page,$refer,$config,$list);
+	$list = new Tracker_list($page,$refer,$config,$list);
 	$list->sort($order);
 	return $list->toString($limit);
 }

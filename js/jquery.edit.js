@@ -14,18 +14,42 @@ $(document).ready(function(){
 	if ($('#msg').length <= 0) {
 		$(".go_editbox").hide();
 
-		// モバイルプレビュー
-		var mobileScreen;
-		$("#haikpreviewlink, #haikpreviewlink_min").on("click", function(){
-			mobileScreen = window.open(
-				location.href, "mobilepreview",
-				"menubar=no,location=no,resizable=yes,status=no,toolbar=no," +
-				"width=414,height=736,top=50,left=500");
+		// プレビュー
+		var previewScreen;
+		var $links = $("#mobilesm, #mobilemd, #mobilelg, #tablet, #laptop, #desktop");
+
+		$links.on("click", function(){
+			var features = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,";
+			switch ($(this).attr("id")) {
+				case "mobilesm":
+					features += "width=320,height=568,top=50,left=500";
+					break;
+				case "mobilemd":
+					features += "width=375,height=667,top=50,left=500";
+					break;
+				case "mobilelg":
+					features += "width=414,height=736,top=50,left=500";
+					break;
+				case "tablet":
+					features += "width=768,height=1024,top=50,left=300";
+					break;
+				case "laptop":
+					features += "width=1366,height=768,top=50,left=100";
+					break;
+				case "desktop":
+					features += "width=1920,height=1080,top=50,left=100";
+					break;
+			}
+			previewScreen = window.open(
+				location.href, "devicepreview",features
+			);
 		});
+
 		$(window).on("unload", function(){
-			mobileScreen && mobileScreen.close();
+			previewScreen && previewScreen.close();
 		});
-		if (window.name === "mobilepreview") {
+
+		if (window.name === "devicepreview") {
 			$(".toolbar_upper").hide();
 		}
 	}

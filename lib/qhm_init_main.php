@@ -99,6 +99,8 @@ if ($is_bootstrap_skin)
         $bootstrap_css .= '<link rel="stylesheet" href="'.SKIN_DIR.$style_name.'/base.css">';
     }
     $bootstrap_script = '<script type="text/javascript" src="skin/bootstrap/js/bootstrap.min.js"></script>';
+    //FontAwesome
+    $bootstrap_script .= '<script src="https://use.fontawesome.com/f8a094c6b4.js"></script>';
     $qt->setv('bootstrap_script', $bootstrap_script);
 }
 

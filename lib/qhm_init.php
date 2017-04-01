@@ -34,7 +34,7 @@ $qt->getv('main_visual')? '': $qt->setv('main_visual', '');
 $qt->getv('lastscript')? '': $qt->setv('lastscript', '');
 $qt->setv('_page', $_page);
 $qt->setv('_script', $script);
-$qt->setv('auth_link', ($qhm_adminmenu <= 1) ? ('<a href="' . h($script . '?cmd=qhmauth') . '" class="qhm-auth-link">QHM</a>') : '');
+$qt->setv('auth_link', ($qhm_adminmenu <= 1) ? ('<a href="' . h($script . '?cmd=qhmauth') . '" class="qhm-auth-link">HAIK</a>') : '');
 //head
 $qt->setv('headcopy_is_empty', trim($headcopy) === '');
 if ( ! $qt->getv('headcopy_is_empty'))
@@ -269,19 +269,19 @@ EOD;
 			'qblognewlink' => array('name'=>'記事の追加', 'link'=>$script.'?cmd=qblog&mode=addpost', 'style'=>'', 'class'=>'', 'visible'=>TRUE),
 		)
 	),
-	'haiklink' => array(
-		'name'    => 'テーマ',
-		'link'    => '',
-		'style'   => 'margin-top:1.1em;',
-		'class'   => '',
-		'visible' => true,
-		'sub'     => array(
-			'haikskincustomizer' => array('name'=>'編集', 'link'=>$link_haik_skin_customizer, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
-			'haikpreviewlink' => array('name'=>'<span class="hidden-xs hidden-sm"><i class="glyphicon glyphicon-phone"></i> <span class="sr-only">モバイル</span>プレビュー</span>', 'link'=>'#', 'style'=>'', 'class' => '', 'visible'=>TRUE),
-		),
-	),
+	'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE),
+  'haikpreviewlinks' => array('name'=>'プレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+      'mobilesm' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.0 inch',  'link'=>'#', 'visible'=>TRUE),
+      'mobilemd' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.7 inch',  'link'=>'#', 'visible'=>TRUE),
+      'mobilelg' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 5.5 inch',  'link'=>'#', 'visible'=>TRUE),
+      'tablet' => array('name'=>'<i class="fa fa-lg fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'#', 'visible'=>TRUE),
+      'laptop' => array('name'=>'<i class="fa fa-lg fa-laptop" aria-hidden="true"></i><span class="sr-only">デスクトップ</span> 1366×768',  'link'=>'#', 'visible'=>TRUE),
+      'desktop' => array('name'=>'<i class="fa fa-lg fa-desktop" aria-hidden="true"></i><span class="sr-only">モバイル</span> 1920×1080', 'link'=>'#', 'visible'=>TRUE),
+    )
+  ),
+
 	'configlink' => array('name'=>$qm->m['qhm_init']['configlink_name'], 'link'=>$link_qhm_setting, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
-	'helplink'   => array('name'=>'open-qhm.net', 'link'=>$link_help, 'style'=>'', 'visible'=>true, 'sub'=>array()),
+// 	'helplink'   => array('name'=>'open-qhm.net', 'link'=>$link_help, 'style'=>'', 'visible'=>true, 'sub'=>array()),
 	'passwordlink'   => array('name'=>$qm->m['qhm_init']['passwordlink_name'], 'link'=>$link_password, 'style'=>'', 'visible'=>true, 'sub'=>array()),
 	'logoutlink' => array('name'=>$qm->m['qhm_init']['logoutlink_name'], 'link'=>$link_qhm_logout, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
 	'updatelink' => array('name'=>$qm->m['qhm_init']['updatelink_name'], 'link'=>$link_qhm_update, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
@@ -377,7 +377,8 @@ EOD;
 	}
 	if (strpos($style_name, 'haik_') !== 0)
 	{
-		if (isset($tools['haiklink'])) unset($tools['haiklink']);
+		if (isset($tools['haikskincustomizer'])) unset($tools['haikskincustomizer']);
+		if (isset($tools['haikpreviewlink'])) unset($tools['haikpreviewlink']);
 	}
 	else
 	{
@@ -403,7 +404,8 @@ EOD;
         if (isset($tools['toollink'])) unset($tools['toollink']);
         if (isset($tools['configlink'])) unset($tools['configlink']);
         if (isset($tools['helplink'])) unset($tools['helplink']);
-        if (isset($tools['haiklink'])) unset($tools['haiklink']);
+				if (isset($tools['haikskincustomizer'])) unset($tools['haikskincustomizer']);
+				if (isset($tools['haikpreviewlink'])) unset($tools['haikpreviewlink']);
     }
 	else {
 		if (isset($tools['passwordlink'])) unset($tools['passwordlink']);
@@ -772,7 +774,7 @@ EOD;
 }
 
 //license
-$qhm_admin_tag = ($qhm_adminmenu < 2) ? ' <a href="'. $link_qhm_adminmenu.'">QHM</a> ' : '';
+$qhm_admin_tag = ($qhm_adminmenu < 2) ? ' <a href="'. $link_qhm_adminmenu.'">HAIK</a> ' : '';
 $qt->setv('licence_tag', "<p>".S_COPYRIGHT. $qhm_admin_tag."</p>");
 if($no_qhm_licence){
 	$qt->setv('licence_tag', '');

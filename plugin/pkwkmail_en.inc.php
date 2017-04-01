@@ -715,7 +715,7 @@ function PKWKMAIL_sent($attr)
 	//mail to admin
 	if($google_apps && preg_match('/.*@'.$google_apps_domain.'$/',$mail_content['admin_adrs']))
 	{
-		$mail = & new Qdmail();
+		$mail = new Qdmail();
 		$mail -> smtp(true);
 
 		$param = array(

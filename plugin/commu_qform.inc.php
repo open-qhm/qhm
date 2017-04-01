@@ -255,7 +255,7 @@ function plugin_qform_parse($str)
 	global $vars;
 	$qm = get_qm();
 
-	$lines = split("\n|\r", $str);
+	$lines = preg_split("/\n|\r/", $str);
 	
 	$ret = array('element'=>array(), 'conf'=>array());
 	
@@ -1316,7 +1316,7 @@ function plugin_qform_do_finish($params)
 		//Google Appsを使って、更に自分宛の場合
 		if( $google_apps && preg_match('/.*@'.$google_apps_domain.'$/', $udata['email']) ){
 			
-			$mail = & new Qdmail();
+			$mail = new Qdmail();
 			$mail-> smtp(true);
 	
 			$param = array(
@@ -1372,7 +1372,7 @@ function plugin_qform_do_finish($params)
 		//Google Appsを使って、更に自分宛の場合
 		if( $google_apps && preg_match('/.*@'.$google_apps_domain.'$/', $to_email) ){
 
-			$mail = & new Qdmail();
+			$mail = new Qdmail();
 			$mail-> smtp(true);
 	
 			$param = array(

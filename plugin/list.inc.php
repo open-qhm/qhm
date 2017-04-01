@@ -169,7 +169,7 @@ function plugin_list_create_html($pages_data, $withfilename = FALSE)
 	}
 	
 	$body = '
-<p><a href="'. $script. '">QHMトップ</a> &gt; here</p>
+<p><a href="'. $script. '">HAIKトップ</a> &gt; here</p>
 <div class="plugin_list">
 	<h2>ページの一覧</h2>
 	<div id="plugin_list_index">

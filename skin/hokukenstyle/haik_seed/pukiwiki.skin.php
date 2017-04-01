@@ -79,7 +79,7 @@
         </div>
         <?php if ($licence_tag !== ''): ?>
           <div>
-            <p>powered by <strong>Quick Homepage Maker</strong> #{$version} based on PukiWiki 1.4.7 License is GPL. #{$auth_link}</p>
+            <p>powered by <strong>HAIK</strong> #{$version} based on PukiWiki 1.4.7 License is GPL. #{$auth_link}</p>
           </div>
         <?php endif ?>
       </div>
