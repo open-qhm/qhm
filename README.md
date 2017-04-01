@@ -1,11 +1,11 @@
-QHM v6 haik
+HAIK
 ====
 
-QHM v6 haik は、[PukiWiki][pukiwiki] をベースにしたウェブサイト作成システムです。
+HAIK は、[PukiWiki][pukiwiki] をベースにしたウェブサイト作成システムです。
 
 ## Description
 
-QHM v6 haik はPHPの動作する環境へ設置するだけですぐに使えるウェブサイト作成システムです。
+HAIK はPHPの動作する環境へ設置するだけですぐに使えるウェブサイト作成システムです。
 初期設定がほとんど必要ないため、素早いサイト作成が可能です。
 
 
@@ -20,7 +20,7 @@ PHP の動作するサーバーへ設置後、ログイン画面より下記の�
 - 初期ユーザー名： `homepage`
 - パスワード： `makeit`
 
-ログイン画面は初期画面の右下にある **QHM** リンクをクリックすると行けます。
+ログイン画面は初期画面の右下にある **HAIK** リンクをクリックすると行けます。
 
 
 ## Install
@@ -35,15 +35,9 @@ cacheqblog/, cacheqblog/*, cacheqhm/, cacheqhm/*,
 counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 ```
 
-### QHM Installer
-
-1 ファイルインストーラーを提供しています。
-[Open QHM](openqhm)からダウンロードしてください。
-
-
 ## Document
 
-[Open QHM][openqhm]でドキュメントを公開しています。
+[haik-cms-man]でドキュメントを公開しています。
 
 
 ## Contribution
@@ -60,12 +54,10 @@ counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 [GPL v2][license]
 
 
-## Author
-
-QHMは[株式会社北摂情報学研究所][hokuken]が作成、管理しています。
-
-
 [pukiwiki]: http://pukiwiki.osdn.jp/
 [hokuken]: http://www.hokuken.com/
 [license]: https://github.com/open-qhm/qhm/blob/master/LICENSE
 [openqhm]: http://www.open-qhm.net/
+[haik-cms]: https://haik-cms.jp/
+[haik-cms-man]: http://manual.haik-cms.jp/
+[qhm-installer]: https://github.com/open-qhm/qhm-installer
