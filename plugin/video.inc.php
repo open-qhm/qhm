@@ -240,7 +240,7 @@ EOD;
         $params['data-popup'] = 'popup';
     }
 
-    $attrs = '';
+    $attrs = array();
     foreach ($params as $key => $val)
     {
         if ($val === FALSE)
