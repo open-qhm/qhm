@@ -18,3 +18,4 @@ skin/hokukenstyle/*
 
 # Development
 node_modules
+.php-version
