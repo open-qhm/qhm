@@ -49,7 +49,7 @@ function plugin_edit_action()
 
 			var \$form = \$(this).closest("form");
 			var \$parent = \$(window.parent.document).find("body");
-	
+
 			var params = \$form.serialize().split('&');
 			var \$fm = \$('<form></form>');
 			for (var i = 0; i < params.length; i++)
@@ -73,6 +73,7 @@ EOD;
 
 	check_editable($page, true, true);
 
+
 	if (isset($vars['preview']) || ($load_template_func && isset($vars['template']))) {
 		return plugin_edit_preview();
 	} else if (isset($vars['write'])) {
@@ -95,8 +96,10 @@ function plugin_edit_preview()
 	$qm = get_qm();
 	$qt = get_qt();
 
+	cancel_xss_protection();
+
 	$page = isset($vars['page']) ? $vars['page'] : '';
-	
+
 	$layout_name = '';
 	if (array_key_exists($page, $layout_pages))
 	{
@@ -164,11 +167,11 @@ function plugin_edit_preview()
 	}
 </style>
 ';
-		
+
 	}
 
 	$qt->appendv_once('plugin_edit_preview', 'beforescript', $msgstyle);
-	
+
 	$addscript = '
 <script type="text/javascript">
 	$(function(){
@@ -217,20 +220,20 @@ $(function(){
 		zIndex: 1000,
 		opacity: 0
 	});
-	
+
 	$("body").append($div2);
-	
+
 	$("html, body").animate({scrollTop: $div2.offset().top}, 400, function(){
 		$div.animate({opacity: 1}, 600);
 		$div2.animate({opacity: 1}, 600);
 	});
-	
+
 });
 </script>
 ';
 	}
 	$qt->appendv_once('plugin_edit_preview_js', 'beforescript', $addscript);
-	
+
 	$preview_notice = '<div id="preview_notice">'. $qm->m['fmt_msg_preview'] . '</div>' . "\n";
 	$qt->appendv_once('plugin_edit_preview_block', 'lastscript', $preview_notice);
 	$body = '<div id="preview_body">';
@@ -250,7 +253,7 @@ $(function(){
 	}
 	$body .= '</div>'. "\n";
 	$body .= edit_form($page, $vars['msg'], $vars['digest'], FALSE);
-	
+
 	return array('msg'=>$qm->m['fmt_title_preview'], 'body'=>$body);
 }
 
@@ -260,7 +263,7 @@ function plugin_edit_inline()
 	global $script, $vars, $fixed_heading_anchor_edit;
 	$qm = get_qm();
 
-	if (PKWK_READONLY) return ''; // Show nothing 
+	if (PKWK_READONLY) return ''; // Show nothing
 
 	// Arguments
 	$args = func_get_args();
@@ -361,7 +364,7 @@ function plugin_edit_write()
 
 	$vars['msg'] = preg_replace(PLUGIN_EDIT_FREEZE_REGEX, '', $vars['msg']);
 	$msg = & $vars['msg']; // Reference
-	
+
 
 	$retvars = array();
 
@@ -394,7 +397,7 @@ function plugin_edit_write()
 		// Edit or Remove
 		$postdata = & $msg; // Reference
 	}
-	
+
 	//ブログの時は、タイトルを足す
 	if ($page !== $qblog_defaultpage && is_qblog())
 	{
@@ -403,7 +406,7 @@ function plugin_edit_write()
 		$image = trim($vars['image']);
 		$cat   = trim($vars['category']);
 		$cat   = ($cat === '') ? $qblog_default_cat : $cat;
-		
+
 		if ($postdata !== '')
 		{
 			$postdata = 'TITLE:'. $title . "\n" . $postdata;
@@ -474,11 +477,11 @@ function plugin_edit_write()
 					}
 				}
 				file_put_contents($datafile, serialize($pending_comments), LOCK_EX);
-				
+
 				//最新コメントリスト内のページ名を変更
 				$datafile = CACHEQBLOG_DIR . 'qblog_recent_comments.dat';
 				file_put_contents($datafile, str_replace($page, $newpage, file_get_contents($datafile)), LOCK_EX);
-				
+
 				//変数を格納し直す
 				$page = $newpage;
 			}
@@ -487,7 +490,7 @@ function plugin_edit_write()
 		//ブログの時は、ポストキャッシュを書き換える
 		$option = array('category' => $cat, 'image' => $image);
 		qblog_update_post($force, $page, $option);
-		
+
 		//Ping送信を行う
 		if ( ! $notimestamp)
 		{
@@ -496,7 +499,7 @@ function plugin_edit_write()
 	}
 
 	pkwk_headers_sent();
-	
+
 	//ブログメニューの場合、ブログトップへ移動する
 	if ($page === $qblog_menubar)
 	{
@@ -539,5 +542,3 @@ function plugin_edit_cancel()
 	}
 	exit;
 }
-
-?>

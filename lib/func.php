@@ -2026,3 +2026,10 @@ function get_qhm_option($key = NULL)
 	}
 	return NULL;
 }
+
+/**
+ * XSS プロテクションを無効化するレスポンスヘッダーを出力する。
+ */
+function cancel_xss_protection() {
+    header('X-XSS-Protection: 0');
+}

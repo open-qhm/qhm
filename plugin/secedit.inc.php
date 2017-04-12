@@ -302,6 +302,8 @@ class Plugin_Secedit_Preview extends Plugin_Secedit
 		$this->init();
 		$this->check();
 
+		cancel_xss_protection();
+
 		$this->sections->set_section($this->id, $this->postdata, $this->level);
 
 		$msgstyle = '
