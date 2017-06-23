@@ -53,7 +53,7 @@ counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 
 改善要望や不具合報告はこのレポジトリではなく、 [HAIK-Team](https://haik-cms.jp/) のお問い合わせ窓口をご利用ください。
 
-- [HAIK-CLUB 会員の方]()
+- [HAIK-CLUB 会員の方](http://club.haik-cms.jp/index.php?report-form)
 - [一般の方](https://haik-cms.jp/index.php?contact)
 
 ## Licence
