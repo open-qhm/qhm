@@ -11,7 +11,7 @@ HAIK はPHPの動作する環境へ設置するだけですぐに使えるウェ
 
 ## Requirement
 
-PHP 5.1.6 以上
+PHP 5.3 以上
 
 ## Usage
 
@@ -37,7 +37,7 @@ counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 
 ## Document
 
-[こちらのサイト][haik-cms-man]でドキュメントを公開しています。
+[こちらのサイト][https://haik-cms.jp/]でドキュメントを公開しています。
 
 
 ## Contribution
@@ -48,6 +48,13 @@ counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 4. Push to the branch
 5. Create new Pull Request
 
+
+## Issues
+
+改善要望や不具合報告はこのレポジトリではなく、 [HAIK-Team](https://haik-cms.jp/) のお問い合わせ窓口をご利用ください。
+
+- [HAIK-CLUB 会員の方]()
+- [一般の方](https://haik-cms.jp/index.php?contact)
 
 ## Licence
 
