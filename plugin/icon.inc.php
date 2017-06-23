@@ -50,7 +50,7 @@ function plugin_icon_inline()
 
 	$icon_name = $icon_prefix.$icon_name;
 
-	$format = '<i class="%s %s%s"></i>';
+	$format = '<i class="%s %s%s" aria-hidden="true"></i>';
 	return sprintf($format, h($icon_base), h($icon_name), $icon_options);
 }
 
@@ -58,7 +58,7 @@ function plugin_icon_set_font_awesome()
 {
     $qt = get_qt();
     $addcss = '
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 ';
     $qt->appendv_once('plugin_icon_font_awesome', 'beforescript', $addcss);
 }
