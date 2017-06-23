@@ -11,7 +11,7 @@
 // PukiWiki version / Copyright / Licence
 
 define('S_VERSION', '1.4.7');
-define('QHM_VERSION', '7.0.2');  //絶対に編集しないで下さい
+define('QHM_VERSION', '7.0.3');  //絶対に編集しないで下さい
 define('QHM_OPTIONS', 'update=download; support=false; banner=true');
 define('S_COPYRIGHT',
 	'powered by <strong><a href="http://www.open-qhm.net/">HAIK</a> ' . QHM_VERSION . '</strong><br />' .
@@ -94,6 +94,7 @@ if( ini_get('mbstring.encoding_translation')
 define('MB_LANGUAGE', $qm->m['mb_language']);
 mb_language(MB_LANGUAGE);
 mb_internal_encoding(SOURCE_ENCODING);
+mb_regex_encoding(SOURCE_ENCODING);
 ini_set('mbstring.http_input', 'pass');
 mb_http_output('pass');
 mb_detect_order('auto');
