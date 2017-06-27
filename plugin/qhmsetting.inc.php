@@ -15,6 +15,9 @@ function plugin_qhmsetting_action()
 	$qt = get_qt();
 	$qt->setv('no_menus', TRUE);//メニューやナビ等をconvertしない
 
+	// XSS-Protection を無効化
+	cancel_xss_protection();
+
 	$include_bs = '
 <link rel="stylesheet" href="skin/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="skin/bootstrap/js/bootstrap.min.js"></script>';
