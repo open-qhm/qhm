@@ -215,7 +215,7 @@ if ( ! $qt->getv('no_menus'))
         global $menubar, $menubar2, $qblog_menubar;
         $vars['page_alt'] = $menubar;
 
-        if (is_qblog())
+        if (is_qblog() || $vars['page'] === $qblog_menubar)
         {
             do_plugin_convert('menu', $qblog_menubar);
         }
