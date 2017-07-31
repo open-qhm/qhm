@@ -207,10 +207,10 @@ $(function(){
 	$("body").append($div);
 
 	$div2.css({
-		width: 160,
+		width: 220,
 		height: 30,
 		position: "absolute",
-		left: $div.offset().left + $div.width() + 10 - 160,
+		left: $div.offset().left + $div.width() + 10 - 220,
 		top: $div.offset().top -22,
 		backgroundColor: "#FF6600",
 		color: "white",
