@@ -223,6 +223,16 @@ if ( ! $qt->getv('no_menus'))
         $ptn = '"'.$script.'?'.rawurlencode($vars['page']).'"';
         $ptn = '|<(h[2-4][^>]+)>(.+href="('.$scripturi.')".+)?</(h[2-4])>|';
         $_menubody = preg_replace($ptn, '<$1 class="focus">$2</$4>', do_plugin_convert('menu'));
+
+        //プレビューならクラスを付ける
+        if ($vars['preview'] && $vars['page'] === $qblog_menubar )
+        {
+            if (trim($_menubody) !== '')
+            {
+                $_menubody = '<div class="preview_highlight">'. $_menubody .'</div>';
+            }
+        }
+
         if ($is_bootstrap_skin)
         {
             $_menubody = preg_replace('/<ul class="list1"\s*>/', '<ul class="list1 list-group">', $_menubody);
