@@ -65,8 +65,9 @@ function plugin_qblog_archives_convert()
     if ($by_year) {
         $current_year = 0;
         $list .= '<div class="qblog_archives by-year">';
-        $list .= '<div class="">';
+        $list .= '<div class="list-group">';
         $year_heading = false;
+        $year_collapse = true;
         foreach (explode("\n", $archives_list) as $line) {
             if (rtrim($line) != '') {
                 list($year, $month, $num) = explode(",", rtrim($line));
@@ -77,10 +78,11 @@ function plugin_qblog_archives_convert()
                     } else {
                         $year_heading = true;
                     }
-                    $list .= '<div class=""><a data-toggle="collapse" href="#qblog_archives_by_year_'.$year.'">'. $current_year .'</a></div><div class="plugin-qblog-archives-year-container collapse" id="qblog_archives_by_year_'.$year.'"><div class="">';
+                    $year_collapse = $current_year !== date('Y');
+                    $list .= '<a data-toggle="collapse" href="#qblog_archives_by_year_'.$year.'" class="list-group-item plugin-qblog-archives-year '. ($year_collapse ? 'collapsed' : '') .'">'. $current_year .'</a><div class="plugin-qblog-archives-year-container collapse '. ($year_collapse ? '' : 'in') .'" id="qblog_archives_by_year_'.$year.'"><div class="list-group">';
                 }
                 $archives_url = $script.'?QBlog&amp;mode=archives&amp;date='.rawurlencode($year.$month);
-                $list .= '<div class=""><a href="'.$archives_url.'">'.$year.'年'.$month.'月 ('.$num.')'.'</a></div>';
+                $list .= '<a href="'.$archives_url.'" class="list-group-item" data-count="'. $num .'">'.$year.'年'.$month.'月 ('.$num.')'.'</a>';
             }
         }
         $list .= '</div></div></div></div>';
@@ -107,23 +109,16 @@ function plugin_qblog_archives_set_js_for_by_year() {
     $qt = get_qt();
 
     $js = '
-<style>
-.plugin-qblog-archives-year-container {
-    overflow: hidden;
-}
-</style>
 <script>
 $(function(){
     $(".plugin-qblog-archives-year").each(function(){
-        var year = $(this).data("year");
-        var $archives = $(".qblog_archives > li > a[data-year="+year+"]");
-        var $listItems = $archives.parent();
-        var count = $archives.length;
+        var year = $(this).text();
+        var $archives = $(this).next().find("a");
+        var count = 0;
+        $archives.each(function(){
+            count += parseInt($(this).data("count"), 10);
+        });
         $(this).text(year + "年（" + count + "）");
-        var $subList = $(this).parent().after("<li><ul></ul></li>").next().find("ul");
-
-        $listItems.appendTo($subList);
-        $subList.collapse("hide");
     });
 });
 </script>
