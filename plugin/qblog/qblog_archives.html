@@ -1,0 +1,7 @@
+<ul class="qblog_archives">
+  <?php foreach ($archives as $archive): ?>
+    <li>
+      <a href="<?php echo h($archive['url']) ?>"><?php echo h($archive['year']) ?>年<?php echo h($archive['month']) ?>月 (<?php echo h($archive['count']) ?>)</a>
+    </li>
+  <?php endforeach ?>
+</ul>

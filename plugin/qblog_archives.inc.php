@@ -35,6 +35,7 @@ function plugin_qblog_archives_convert()
     }
     //------------------------------------
 
+    // ---- オプション解析 ----
     $by_year = false; // 年数毎にまとめる
     $default_year_collapse = false;
 
@@ -55,71 +56,49 @@ function plugin_qblog_archives_convert()
     $archives_list = array();
     }
 
-    // 件数が by_year_threashold に満たなければ by_year を解除する
-    $archives = explode("\n", $archives_list);
-
-    $list = '';
+    $archives = array_map(function($line){
+        list($year, $month, $num) = explode(",", rtrim($line));
+        return array(
+            'year' => $year,
+            'month' => $month,
+            'count' => $num,
+            'url' => plugin_qblog_archives_get_archive_url($year, $month),
+        );
+    }, array_filter(explode("\n", $archives_list)));
 
     if ($by_year) {
-        $current_year = 0;
-        $list .= '<div class="qblog_archives by-year">';
-        $list .= '<div class="list-group">';
-        $year_heading = false;
-        $year_collapse = true;
-        foreach (explode("\n", $archives_list) as $line) {
-            if (rtrim($line) != '') {
-                list($year, $month, $num) = explode(",", rtrim($line));
-                if ($year != $current_year) {
-                    $current_year = $year;
-                    if ($year_heading) {
-                        $list .= '</div></div>';
-                    } else {
-                        $year_heading = true;
-                    }
-                    $year_collapse = $default_year_collapse ? true : ($current_year !== date('Y'));
-                    $list .= '<a data-toggle="collapse" href="#qblog_archives_by_year_'.$year.'" class="list-group-item plugin-qblog-archives-year '. ($year_collapse ? 'collapsed' : '') .'">'. $current_year .'</a><div class="plugin-qblog-archives-year-container collapse '. ($year_collapse ? '' : 'in') .'" id="qblog_archives_by_year_'.$year.'"><div class="list-group">';
-                }
-                $archives_url = $script.'?QBlog&amp;mode=archives&amp;date='.rawurlencode($year.$month);
-                $list .= '<a href="'.$archives_url.'" class="list-group-item" data-count="'. $num .'">'.$year.'年'.$month.'月 ('.$num.')'.'</a>';
+        $year_archives = array_reduce($archives, function($carry, $archive) use ($default_year_collapse) {
+            $year = $archive['year'];
+            if ( ! isset($carry[$year])) {
+                $carry[$year] = array(
+                    'year' => $year,
+                    'archives' => array(),
+                    'count' => 0,
+                    'collapse' => $default_year_collapse ? true : ($year !== date('Y')),
+                );
             }
-        }
-        $list .= '</div></div></div></div>';
+            $carry[$year]['archives'][] = $archive;
+            $carry[$year]['count'] += $archive['count'];
+            return $carry;
+        }, array());
+
+        ob_start();
+        include __DIR__ . '/qblog/qblog_archives_by_year.html';
+        $html = ob_get_clean();
     } else {
-        $list .= '<ul class="qblog_archives">';
-        foreach (explode("\n", $archives_list) as $line) {
-            if (rtrim($line) != '') {
-                list($year, $month, $num) = explode(",", rtrim($line));
-                $archives_url = $script.'?QBlog&amp;mode=archives&amp;date='.rawurlencode($year.$month);
-                $list .= '<li><a href="'.$archives_url.'">'.$year.'年'.$month.'月 ('.$num.')'.'</a></li>';
-            }
-        }
-        $list .= '</ul>';
+        ob_start();
+        include __DIR__ . '/qblog/qblog_archives.html';
+        $html = ob_get_clean();
     }
 
-    if ($by_year) {
-        plugin_qblog_archives_set_js_for_by_year();
-    }
-
-    return $list;
+    return $html;
 }
 
-function plugin_qblog_archives_set_js_for_by_year() {
-    $qt = get_qt();
-
-    $js = '
-<script>
-$(function(){
-    $(".plugin-qblog-archives-year").each(function(){
-        var year = $(this).text();
-        var $archives = $(this).next().find("a");
-        var count = 0;
-        $archives.each(function(){
-            count += parseInt($(this).data("count"), 10);
-        });
-        $(this).text(year + "年（" + count + "）");
-    });
-});
-</script>
-';
-    $qt->appendv_once('plugin_qblog_archives_set_js_for_by_year', 'beforescript', $js);
+/**
+ * 渡した年月のアーカイブページへのURLを生成する。
+ * @return [String] url
+ */
+function plugin_qblog_archives_get_archive_url($year, $month) {
+    global $script;
+    return $script . '?QBlog&mode=archives&date=' . rawurlencode($year.$month);
 }
