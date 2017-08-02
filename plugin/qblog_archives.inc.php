@@ -35,14 +35,15 @@ function plugin_qblog_archives_convert()
     }
     //------------------------------------
 
-    $by_year = false;        // 年数毎にまとめる
-    $by_year_threashold = 0; // 何件を超えたらまとめ出すか
+    $by_year = false; // 年数毎にまとめる
+    $default_year_collapse = false;
 
     foreach ($args as $arg) {
         $arg = trim($arg);
-        if (preg_match('/by_year(?:=(\d+))?/', $arg, $matches)) {
+        if ($arg === 'by_year') {
             $by_year = true;
-            $by_year_threashold = (int)$matches[1];
+        } else if ($arg === 'year_collapse') {
+            $default_year_collapse = true;
         }
     }
 
@@ -56,9 +57,6 @@ function plugin_qblog_archives_convert()
 
     // 件数が by_year_threashold に満たなければ by_year を解除する
     $archives = explode("\n", $archives_list);
-    if ($by_year && count($archives) < $by_year_threashold) {
-        $by_year = false;
-    }
 
     $list = '';
 
@@ -78,7 +76,7 @@ function plugin_qblog_archives_convert()
                     } else {
                         $year_heading = true;
                     }
-                    $year_collapse = $current_year !== date('Y');
+                    $year_collapse = $default_year_collapse ? true : ($current_year !== date('Y'));
                     $list .= '<a data-toggle="collapse" href="#qblog_archives_by_year_'.$year.'" class="list-group-item plugin-qblog-archives-year '. ($year_collapse ? 'collapsed' : '') .'">'. $current_year .'</a><div class="plugin-qblog-archives-year-container collapse '. ($year_collapse ? '' : 'in') .'" id="qblog_archives_by_year_'.$year.'"><div class="list-group">';
                 }
                 $archives_url = $script.'?QBlog&amp;mode=archives&amp;date='.rawurlencode($year.$month);
