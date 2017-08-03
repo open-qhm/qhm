@@ -297,3 +297,25 @@ display: block;
 .qblog_categories:after {
     clear: both;
 }
+
+.qblog_archives.by-year a:hover {
+  background-color: #f5f5f5;
+}
+
+.plugin-qblog-archives-year {
+  position: relative;
+}
+
+.plugin-qblog-archives-year::after {
+  display: block;
+  position: absolute;
+  font-family: 'Glyphicons Halflings';
+  content: "\e114";
+  right: 5px;
+  top: 5px;
+  color: #c0c0c0;
+}
+
+.plugin-qblog-archives-year.collapsed::after {
+  content: "\e080";
+}

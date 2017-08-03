@@ -1,0 +1,26 @@
+<div class="qblog_archives by-year">
+  <div class="list-group">
+    <?php foreach ($year_archives as $year_archive): ?>
+      <a
+        data-toggle="collapse"
+        href="#qblog_archives_by_year_<?php echo h($year_archive['year']) ?>"
+        class="list-group-item plugin-qblog-archives-year <?php echo $year_archive['collapse'] ? 'collapsed' : '' ?>"
+      >
+        <?php echo h($year_archive['year']) ?>年 (<?php echo h($year_archive['count']) ?>)
+      </a>
+      <div class="plugin-qblog-archives-year-container collapse <?php echo $year_archive['collapse'] ? '' : 'in' ?>" id="qblog_archives_by_year_<?php echo h($year_archive['year']) ?>">
+        <div class="list-group">
+          <?php foreach ($year_archive['archives'] as $archive): ?>
+            <a
+              href="<?php echo h($archive['url']) ?>"
+              class="list-group-item"
+              data-count="<?php echo h($archive['count']) ?>"
+            >
+              <?php echo h($archive['year']) ?>年<?php echo h($archive['month']) ?>月 (<?php echo h($archive['count']) ?>)
+            </a>
+          <?php endforeach ?>
+        </div>
+      </div>
+    <?php endforeach ?>
+  </div>
+</div>
