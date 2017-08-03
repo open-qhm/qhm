@@ -23,15 +23,15 @@ function plugin_qblog_archives_convert()
     //閉鎖中は何も表示しない
     if ($qblog_close && ! ss_admin_check())
     {
-    return '';
+        return '';
     }
 
     $args = func_get_args();
 
     //---- キャッシュのための処理を登録 -----
     $qt = get_qt();
-    if($qt->create_cache) {
-      return $qt->get_dynamic_plugin_mark(__FUNCTION__, $args);
+    if ($qt->create_cache) {
+        return $qt->get_dynamic_plugin_mark(__FUNCTION__, $args);
     }
     //------------------------------------
 
@@ -49,14 +49,14 @@ function plugin_qblog_archives_convert()
     }
 
     $archives_file = CACHEQBLOG_DIR . 'qblog_archives.dat';
-    if( file_exists($archives_file) ){
-    $archives_list = file_get_contents($archives_file);
+    if (file_exists($archives_file)) {
+        $archives_list = file_get_contents($archives_file);
     }
-    else{
-    $archives_list = array();
+    else {
+        $archives_list = array();
     }
 
-    $archives = array_map(function($line){
+    $archives = array_map(function($line) {
         list($year, $month, $num) = explode(",", rtrim($line));
         return array(
             'year' => $year,
