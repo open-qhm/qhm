@@ -16,7 +16,7 @@
               class="list-group-item"
               data-count="<?php echo h($archive['count']) ?>"
             >
-              <?php echo h($archive['year']) ?>年<?php echo h($archive['month']) ?>月 (<?php echo h($archive['count']) ?>)
+              <span class="plugin-qblog-archives-unvisible-year"><?php echo h($archive['year']) ?>年</span><?php echo h($archive['month']) ?>月 (<?php echo h($archive['count']) ?>)
             </a>
           <?php endforeach ?>
         </div>
