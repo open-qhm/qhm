@@ -319,3 +319,7 @@ display: block;
 .plugin-qblog-archives-year.collapsed::after {
   content: "\e080";
 }
+
+.plugin-qblog-archives-unvisible-year {
+  visibility: hidden;
+}
