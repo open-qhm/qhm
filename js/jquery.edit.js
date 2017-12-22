@@ -19,7 +19,7 @@ $(document).ready(function(){
 		var $links = $("#mobilesm, #mobilemd, #mobilelg, #tablet, #laptop, #desktop");
 
 		$links.on("click", function(){
-			var features = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,";
+			var features = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,scrollbars=yes,";
 			switch ($(this).attr("id")) {
 				case "mobilesm":
 					features += "width=320,height=568,top=50,left=500";
