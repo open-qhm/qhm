@@ -14,11 +14,11 @@ function plugin_diff_action()
 	global $layout_pages, $style_name;
 
 	$editable = edit_auth($page, FALSE, FALSE);
-    if(!$editable){
-        header("Location: $script");
-        exit();        
-    }
-    
+	if(!$editable){
+		header("Location: $script");
+		exit();
+	}
+
 	$page = isset($vars['page']) ? $vars['page'] : '';
 	check_readable($page, true, true);
 
@@ -29,6 +29,9 @@ function plugin_diff_action()
 		$style_name = '..';
 		$is_layout = TRUE;
 	}
+
+	// スタイルシートを出力
+	plugin_diff_set_css();
 
 	$action = isset($vars['action']) ? $vars['action'] : '';
 	switch ($action) {
@@ -43,7 +46,7 @@ function plugin_diff_view($page)
 	global $script, $hr;
 	global $layout_pages;
 	$qm = get_qm();
-	
+
 	$r_page = rawurlencode($page);
 	$s_page = htmlspecialchars($page);
 
@@ -106,7 +109,7 @@ function plugin_diff_delete($page)
 {
 	global $script, $vars;
 	$qm = get_qm();
-	
+
 	$filename = DIFF_DIR . encode($page) . '.txt';
 	$body = '';
 	if (! is_pagename($page))     $body = 'Invalid page name';
@@ -141,4 +144,19 @@ EOD;
 
 	return array('msg'=>$qm->m['plg_diff']['title_delete'], 'body'=>$body);
 }
-?>
+
+function plugin_diff_set_css() {
+	$qt = get_qt();
+	$style_tag = <<< HTML
+<style>
+span.diff_added {
+  color: blue;
+}
+
+span.diff_removed {
+  color: red;
+}
+</style>
+HTML;
+	$qt->appendv_once('plugin_diff_css', 'beforescript', $style_tag);
+}
