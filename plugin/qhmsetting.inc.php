@@ -3301,8 +3301,8 @@ EOD;
 
 	if (count($plugin_caches) > 0) {
 		$body .= <<< HTML
-<h3 style="margin-top:2em;">その他プラグイン用キャッシュの初期化</h3>
-<p>その他プラグインにより生成されたキャッシュを削除します。<br />
+<h3 style="margin-top:2em;">プラグイン用キャッシュの初期化</h3>
+<p>プラグインにより生成されたキャッシュを削除します。<br />
 下記プラグインの挙動が改善する可能性があります。</p>
 <ul>
 	<li><code>contentsx</code></li>
