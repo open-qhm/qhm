@@ -3296,6 +3296,38 @@ EOD;
 EOD;
     }
 
+	// プラグインのキャッシュファイル
+	$plugin_caches = plugin_qhmsetting_get_plugin_cache_files();
+
+	if (count($plugin_caches) > 0) {
+		$body .= <<< HTML
+<h3 style="margin-top:2em;">その他プラグイン用キャッシュの初期化</h3>
+<p>その他プラグインにより生成されたキャッシュを削除します。<br />
+下記プラグインの挙動が改善する可能性があります。</p>
+<ul>
+	<li><code>contentsx</code></li>
+</ul>
+<p>削除ファイルを確認し、よろしければ「削除を実行する」ボタンを押してください。</p>
+<form action="{$script}" method="post">
+	<ul>
+HTML;
+		foreach ($plugin_caches as $file) {
+			$body .= <<< HTML
+		<li class="qhm-plugin-cache-file">{$file}</li>
+HTML;
+		}
+
+		$body .= <<< HTML
+	</ul>
+
+	<input type="hidden" name="plugin_del" value="plugin_del" />
+	<input type="hidden" name="phase" value="clear" />
+	<input type="hidden" name="mode" value="msg" />
+	<input type="hidden" name="cmd" value="qhmsetting" />
+	<p><input type="submit" name="clear" value="削除を実行する" class="btn btn-primary"></p>
+</form>
+HTML;
+	}
 
 	return $body;
 }
@@ -3453,6 +3485,36 @@ EOD;
 </ul>
 ';
 	}
+
+	// ----------------- プラグインキャッシュの削除 ----------------
+	if (isset($vars['plugin_del'])) {
+		$files = plugin_qhmsetting_get_plugin_cache_files();
+		$oks = array();
+		foreach ($files as $i => $file) {
+			if (unlink($file)) {
+				$oks[] = $file;
+			}
+		}
+		$_SESSION['flash_msg'] = <<< HTML
+<h2>プラグインキャッシュの削除完了</h2>
+<p>以下のファイルを削除しました。</p>
+<ul>
+HTML;
+		foreach ($oks as $file) {
+			$_SESSION['flash_msg'] .= <<< HTML
+	<li>{$file}</li>
+HTML;
+		}
+
+		$_SESSION['flash_msg'] .= <<< HTML
+</ul>
+HTML;
+	}
+}
+
+function plugin_qhmsetting_get_plugin_cache_files() {
+	$plugin_caches = glob(CACHE_DIR . '*.contentsx');
+	return $plugin_caches;
 }
 
 function plugin_qhmsetting_clear_view_search2_cache()
