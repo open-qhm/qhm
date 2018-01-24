@@ -1,7 +1,17 @@
-Order allow,deny
-Deny from all
+<IfVersion >= 2.4>
+	Require all denied
+</IfVersion>
+<IfVersion < 2.4>
+	Order allow,deny
+	Deny from all
+</IfVersion>
 
 # Amazon plugin's Image cache
 <FilesMatch ".*\.(jpg|JPG|png|PNG|gif|GIF|jpeg|JPEG)$">
-	Allow from all
+	<IfVersion >= 2.4>
+		Require all granted
+	</IfVersion>
+	<IfVersion < 2.4>
+		Allow from all
+	</IfVersion>
 </FilesMatch>
