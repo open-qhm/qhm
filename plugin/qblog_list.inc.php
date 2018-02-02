@@ -3,17 +3,17 @@
  *   QBlog Plugin
  *   -------------------------------------------
  *   ./plugin/qblog_list.inc.php
- *   
+ *
  *   Copyright (c) 2012 hokuken
  *   http://hokuken.com/
- *   
+ *
  *   created  : 12/07/26
  *   modified :
- *   
+ *
  *   Description
- *   
+ *
  *   Usage :
- *   
+ *
  */
 
 // Default number of 'Show latest N posts'
@@ -45,44 +45,46 @@ function plugin_qblog_list_convert()
 	global $vars, $qblog_date_format, $show_passage;
 	global $qblog_page_prefix, $qblog_defaultpage, $qblog_page_format, $qblog_close;
 	global $style_name;
-	
+
 	//閉鎖中は何も表示しない
 	if ($qblog_close && ! ss_admin_check())
 	{
 		return '';
 	}
-	
+
 	static $exec_count = 1;
-	
+
 	$qm = get_qm();
 	$qt = get_qt();
-	
+
 	$qt->setv('jquery_include', TRUE);
+
+	set_js_for_fix_distortion_of_thumbnails();
 
 	$list_type = PLUGIN_QBLOG_LIST_TYPE;
 	$recent_posts = PLUGIN_QBLOG_LIST_DEFAULT_POSTS;
 	if (func_num_args()) {
 		$args = func_get_args();
-		
+
 		if (count($args) > 2)
 		{
 			return '#qblog_list([line or table], [number])';
 		}
-		
+
 		foreach ($args as $arg)
 		{
 			if (is_numeric($arg))
 			{
 				$recent_posts = (int)$arg;
 			}
-			
+
 			if ($arg == 'line')
 			{
 				$list_type = $arg;
 			}
 		}
 	}
-	
+
 	//表示モード
 	//recent, archives, category
 	$mode = isset($vars['mode']) ? $vars['mode'] : 'recent';
@@ -107,7 +109,7 @@ function plugin_qblog_list_convert()
 <link rel="stylesheet" href="plugin/qblog/qblog.css" />';
 	$qt->appendv_once('qblog_beforescript', 'beforescript', $head);
 
-	
+
 	//---- キャッシュのための処理を登録 -----
 	$qt->enable_cache = FALSE;
 	//------------------------------------
@@ -118,10 +120,10 @@ function plugin_qblog_list_convert()
 
 	$script = get_script_uri();
 	$date = $items = '';
-	
+
 	//h2.title 前に挿入するHTML
 	$pre_title_html = '';
-	
+
 	// !新規記事追加リンクを表示
 	// デフォルトブログページが編集できるユーザー
 	$editable = FALSE;
@@ -140,7 +142,7 @@ function plugin_qblog_list_convert()
 		{
 			$filename_prefix = encode(substr($newpage, 0, $number_holder_pos));
 			$files = glob(DATA_DIR . $filename_prefix . '*');
-			
+
 			$pattern = '/^(' . str_replace('#', '(\d+)', preg_quote($newpage)) . ')$/';
 			$max = 1;
 			foreach ($files as $file)
@@ -151,14 +153,14 @@ function plugin_qblog_list_convert()
 					$max = max($mts[2], $max);
 				}
 			}
-			
+
 			$newpage = str_replace('#', $max + 1, $newpage);
 		}
-		
+
 		$addpostlink = $script . '?cmd=qblog&mode=addpost';
 		$pre_title_html .= '<a href="'. h($addpostlink) .'" class="badge badge-info" style="color:#fff"><i class="icon-white icon-edit" style="vertical-align:text-bottom;"></i> 記事の追加</a> ';
 	}
-	
+
 
 	// !モードによって、読み込むキャッシュを替える
 	$pages = array();
@@ -189,10 +191,10 @@ function plugin_qblog_list_convert()
 			}
 
 			$count_pages = count($pages);
-			
+
 			natsort($pages);
 			$pages = array_reverse($pages);
-			
+
 			$pages = array_slice($pages, $start, $recent_posts);
 
 			$subtitle = "{$year}年{$month}月";
@@ -204,7 +206,7 @@ function plugin_qblog_list_convert()
 			$pages = explode("\n", trim(file_get_contents(CACHEQBLOG_DIR . encode($cat) . '.qbc.dat')));
 			$count_pages = count($pages);
 			$pages = array_slice($pages, $start, $recent_posts);
-			
+
 			$pre_title_html .= '<span class="badge">カテゴリ：'.h($cat).'</span> ';
 			break;
 		default://recent mode
@@ -216,7 +218,7 @@ function plugin_qblog_list_convert()
 				$pages[] = rtrim($line);
 			}
 	}
-	
+
 	//! 記事毎のデータをまとめる
 	$posts = array();
 	foreach ($pages as $i => $page) {
@@ -226,9 +228,9 @@ function plugin_qblog_list_convert()
 		{
 			continue;
 		}
-		
+
 		$r_page = rawurlencode($page);
-		
+
 		if (is_file(SWFU_IMAGE_DIR . $data['image']))
 		{
 			$data['image'] = SWFU_IMAGE_DIR . $data['image'];
@@ -242,7 +244,7 @@ function plugin_qblog_list_convert()
 		{
 			$data['image'] = PLUGIN_DIR . 'qblog/qblog_thumbnail.png';
 		}
-		
+
 		$posts[$i] = array(
 			'page'  => $page,
 			'title' => $data['title'],
@@ -252,7 +254,7 @@ function plugin_qblog_list_convert()
 			'url' => $script . '?' . $r_page . $addquery,
 			'date' => get_qblog_date($qblog_date_format, $page),
 		);
-	}	
+	}
 
 	// !ページネーションリンクを足す
 	$paginates = array();
@@ -262,21 +264,21 @@ function plugin_qblog_list_convert()
 		{
 			$paginates[PLUGIN_QBLOG_LIST_PAGINATE_LAST_NAV] = $script .'?'. $qblog_defaultpage. '&p=1' . $addquery;
 		}
-	
+
 		$paginate_length = ceil($count_pages / $recent_posts);
 
 		if (PLUGIN_QBLOG_LIST_PAGINATE_NUM < $paginate_length)
 		{
-			
+
 		}
-		
+
 		$range = (int)floor(PLUGIN_QBLOG_LIST_PAGINATE_NUM / 2);
 		$start = (int)max(1, $page_num - $range);
 		$end = (int)min($paginate_length+1, $start + PLUGIN_QBLOG_LIST_PAGINATE_NUM);
-		
+
 		// 最初<<< 1 | 2 | 3 | 4 | 5 >>>最後
 		// 最初<<< 5 | 6 | 7 | 8 | 9 >>>最後
-		
+
 		for ($i = $start; $i < $end; $i++)
 		{
 			$paginates[$i] = $script .'?'. $qblog_defaultpage .'&p='. ($i) . $addquery;
@@ -285,7 +287,7 @@ function plugin_qblog_list_convert()
 				$paginates[$i] = '';
 			}
 		}
-		
+
 		if ($page_num < $paginate_length)
 		{
 			$paginates[PLUGIN_QBLOG_LIST_PAGINATE_FIRST_NAV] = $script .'?'. $qblog_defaultpage .'&p='. ($paginate_length).$addquery;
@@ -315,6 +317,15 @@ function plugin_qblog_list_convert()
 	}
 
 	return '<div id="qblog">'. $items .'</div>';
+}
+
+/**
+ * サムネイル画像の歪みを修正するJSを発行
+ */
+function set_js_for_fix_distortion_of_thumbnails() {
+	$js = file_get_contents(PLUGIN_DIR . '/qblog/fix_distortion_of_thumbnails.js');
+	$qt = get_qt();
+	$qt->appendv_once('qblog_list_fix_distortion_of_thumbnails', 'beforescript', wrap_script_tag($js));
 }
 
 /* End of file qblog_list.inc.php */
