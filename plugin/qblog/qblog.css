@@ -101,6 +101,14 @@ float: left;
 margin-right: 16px;
 display: block;
 }
+.qblog-list-table .qblog_thumbnail_box {
+width: 120px;
+height: 120px;
+background-size: cover;
+background-position: center;
+float: left;
+margin-right: 16px;
+}
 .qblog_date {
 position: absolute;
 top:100px;
