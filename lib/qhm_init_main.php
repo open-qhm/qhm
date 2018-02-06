@@ -98,6 +98,9 @@ if ($is_bootstrap_skin)
     if (file_exists(SKIN_DIR.$style_name.'/base.css')) {
         $bootstrap_css .= '<link rel="stylesheet" href="'.SKIN_DIR.$style_name.'/base.css">';
     }
+    // 印刷用CSS
+    $bootstrap_css .= '<link rel="stylesheet" href="skin/print.css" media="print">';
+
     $bootstrap_script = '<script type="text/javascript" src="skin/bootstrap/js/bootstrap.min.js"></script>';
     //FontAwesome
     $bootstrap_script .= '<script src="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>';
