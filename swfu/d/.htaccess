@@ -1,9 +1,9 @@
 # Prohibit direct access
 <FilesMatch "\.(php[3457]?|pht|phtml|cgi|pl|exe|com)$">
-	<IfVersion >= 2.4>
+	<IfModule authz_host_module>
 		Require all denied
-	</IfVersion>
-	<IfVersion < 2.4>
+	</IfModule>
+	<IfModule !authz_host_module>
 		Deny from all
-	</IfVersion>
+	</IfModule>
 </FilesMatch>

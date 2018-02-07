@@ -1,10 +1,10 @@
 # Prohibit direct access
 <FilesMatch "\.(ini\.php|lng\.php|txt|gz|tgz)$">
-	<IfVersion >= 2.4>
+	<IfModule authz_host_module>
 		Require all granted
-	</IfVersion>
-	<IfVersion < 2.4>
+	</IfModule>
+	<IfModule !authz_host_module>
 		Order allow,deny
 		Allow from all
-	</IfVersion>
+	</IfModule>
 </FilesMatch>
