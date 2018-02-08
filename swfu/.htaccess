@@ -1,10 +1,5 @@
 # Prohibit direct access
 <FilesMatch "\.(ini\.php|lng\.php|txt|gz|tgz)$">
-	<IfVersion >= 2.4>
-		Require all granted
-	</IfVersion>
-	<IfVersion < 2.4>
-		Order allow,deny
-		Allow from all
-	</IfVersion>
+	Order allow,deny
+	Allow from all
 </FilesMatch>

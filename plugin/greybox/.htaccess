@@ -1,7 +1,2 @@
-<IfVersion >= 2.4>
-	Require all granted
-</IfVersion>
-<IfVersion < 2.4>
-	Order allow,deny
-	Allow from all
-</IfVersion>
+Order allow,deny
+allow from all
