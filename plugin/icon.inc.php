@@ -34,13 +34,13 @@ function plugin_icon_inline()
 		}
 		if ($arg === 'font-awesome' OR $arg === 'fa')
 		{
-    		$icon_base = 'fa';
-    		$icon_prefix = $icon_base . '-';
-    		plugin_icon_set_font_awesome();
+			$icon_base = 'fa';
+			$icon_prefix = $icon_base . '-';
+			plugin_icon_set_font_awesome();
 		}
 		else if ($icon_base === 'fa' && preg_match('/^[1-5]x|lg$/', $arg))
 		{
-    		$icon_options = " {$icon_prefix}{$arg}";
+			$icon_options = " {$icon_prefix}{$arg}";
 		}
 		else if ($arg !== '')
 		{
@@ -56,10 +56,10 @@ function plugin_icon_inline()
 
 function plugin_icon_set_font_awesome()
 {
-    $qt = get_qt();
-    $addcss = <<<HTML
+	$qt = get_qt();
+	$addcss = <<<HTML
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/v4-shims.js"></script>
 HTML;
-    $qt->appendv_once('plugin_icon_font_awesome', 'beforescript', $addcss);
+	$qt->appendv_once('plugin_icon_font_awesome', 'beforescript', $addcss);
 }
