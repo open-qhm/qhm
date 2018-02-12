@@ -99,9 +99,12 @@ if ($is_bootstrap_skin)
         $bootstrap_css .= '<link rel="stylesheet" href="'.SKIN_DIR.$style_name.'/base.css">';
     }
     $bootstrap_script = '<script type="text/javascript" src="skin/bootstrap/js/bootstrap.min.js"></script>';
-    //FontAwesome
-    $bootstrap_script .= '<script src="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"></script>';
     $qt->setv('bootstrap_script', $bootstrap_script);
+    //FontAwesome
+    if (exist_plugin('icon'))
+    {
+        plugin_icon_set_font_awesome();
+    }
 }
 
 // CSSの生成
