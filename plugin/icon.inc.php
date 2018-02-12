@@ -57,8 +57,9 @@ function plugin_icon_inline()
 function plugin_icon_set_font_awesome()
 {
     $qt = get_qt();
-    $addcss = '
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-';
+    $addcss = <<<HTML
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/v4-shims.js"></script>
+HTML;
     $qt->appendv_once('plugin_icon_font_awesome', 'beforescript', $addcss);
 }
