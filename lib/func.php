@@ -2033,3 +2033,17 @@ function get_qhm_option($key = NULL)
 function cancel_xss_protection() {
     header('X-XSS-Protection: 0');
 }
+
+/**
+ * 生の JavaScript を <script></script> で囲む。
+ *
+ * @param [String] $js JavaScript
+ * @param [String] $delimiter タグの前後に入れる区切り文字。デフォルトで改行
+ */
+function wrap_script_tag($js, $delimiter = "\n") {
+	$lines = array();
+	$lines[] = '<script>';
+	$lines[] = $js;
+	$lines[] = '</script>';
+	return join($delimiter, $lines) . $delimiter;
+}

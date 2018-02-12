@@ -3,13 +3,13 @@
  *   Template for QBlog List
  *   -------------------------------------------
  *   ./plugin/qblog/list_template.html
- *   
+ *
  *   Copyright (c) 2012 hokuken
  *   http://hokuken.com/
- *   
+ *
  *   created  : 12/07/30
  *   modified :
- *   
+ *
  */
 ?>
 
@@ -17,8 +17,11 @@
 <ul>
 <?php foreach ($posts as $post):?>
 	<li>
-		<a href="<?php echo h($post['url'])?>"><img src="<?php echo h($post['image'])?>" class="qblog_thumbnail"/>
-		<span class="qblog_date"><?php echo h($post['date'])?></span></a>
+		<a href="<?php echo h($post['url'])?>">
+			<div class="qblog_thumbnail_box" style="background-image: url(<?php echo h($post['image'])?>)">
+				<div class="qblog_date"><?php echo h($post['date'])?></div>
+			</div>
+		</a>
 		<h2 class="qblog_title no-toc"><a href="<?php echo h($post['url'])?>"><?php echo h($post['title'])?></a></h2>
 		<p class="qblog_abstract"><a href="<?php echo h($post['url'])?>"><?php echo h($post['abstract'])?></a></p>
 	</li>
