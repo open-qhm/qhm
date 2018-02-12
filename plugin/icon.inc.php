@@ -45,7 +45,7 @@ function plugin_icon_inline()
 			$icon_prefix = 'fa-';
 			plugin_icon_set_font_awesome();
 		}
-		else if (preg_match('/^fa[bsrl]?$/', $icon_base) && preg_match('/^[1-5]x|lg$/', $arg))
+		else if (preg_match('/^fa[bsrl]?$/', $icon_base) && preg_match('/^[1-5]x|lg|fw$/', $arg))
 		{
 			$icon_options = " {$icon_prefix}{$arg}";
 		}
