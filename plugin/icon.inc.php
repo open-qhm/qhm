@@ -32,13 +32,20 @@ function plugin_icon_inline()
 			$icon_base = 'glyphicon';
 			$icon_prefix = $icon_base . '-';
 		}
+		// FontAwesome 4 系互換の記述
 		if ($arg === 'font-awesome' OR $arg === 'fa')
 		{
 			$icon_base = 'fa';
 			$icon_prefix = $icon_base . '-';
 			plugin_icon_set_font_awesome();
 		}
-		else if ($icon_base === 'fa' && preg_match('/^[1-5]x|lg$/', $arg))
+		// FontAwesome 5
+		else if (preg_match('/^(fa[bsrl])$/', $arg)) {
+			$icon_base = $arg;
+			$icon_prefix = 'fa-';
+			plugin_icon_set_font_awesome();
+		}
+		else if (preg_match('/^fa[bsrl]?$/', $icon_base) && preg_match('/^[1-5]x|lg$/', $arg))
 		{
 			$icon_options = " {$icon_prefix}{$arg}";
 		}
