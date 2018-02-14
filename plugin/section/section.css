@@ -168,7 +168,7 @@
   bottom:0;
   left: 0;
 }
-svg {
+.qhm-section-filter {
   width: 0;
   height: 0;
   position: absolute;
