@@ -109,6 +109,11 @@ background-position: center;
 float: left;
 margin-right: 16px;
 }
+@media print {
+  .qblog-list-table .qblog_thumbnail_box {
+    -webkit-print-color-adjust: exact;
+  }
+}
 .qblog_date {
 position: absolute;
 top:100px;
