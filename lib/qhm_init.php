@@ -209,7 +209,7 @@ if (window.qhm_enable_unload_confirm) {
 }
 </script>
 
-<link rel="stylesheet" media="screen" href="skin/hokukenstyle/qhm.css">
+<link rel="stylesheet" href="skin/hokukenstyle/qhm.css">
 <link rel="stylesheet" media="screen" href="js/thickbox.css">
 
 EOD;
