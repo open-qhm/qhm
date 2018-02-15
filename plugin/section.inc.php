@@ -252,7 +252,7 @@ function plugin_section_convert()
         {
             $attrs['data-filter'] = $filter;
             $svg_html = '
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg class="qhm-section-filter" version="1.1" xmlns="http://www.w3.org/2000/svg">
   <filter id="blur">
     <feGaussianBlur stdDeviation="6" />
   </filter>

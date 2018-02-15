@@ -209,7 +209,7 @@ if (window.qhm_enable_unload_confirm) {
 }
 </script>
 
-<link rel="stylesheet" media="screen" href="skin/hokukenstyle/qhm.css">
+<link rel="stylesheet" href="skin/hokukenstyle/qhm.css">
 <link rel="stylesheet" media="screen" href="js/thickbox.css">
 
 EOD;
@@ -271,12 +271,12 @@ EOD;
 	),
 	'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE),
   'haikpreviewlinks' => array('name'=>'プレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
-      'mobilesm' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.0 inch',  'link'=>'#', 'visible'=>TRUE),
-      'mobilemd' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.7 inch',  'link'=>'#', 'visible'=>TRUE),
-      'mobilelg' => array('name'=>'<i class="fa fa-lg fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 5.5 inch',  'link'=>'#', 'visible'=>TRUE),
-      'tablet' => array('name'=>'<i class="fa fa-lg fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'#', 'visible'=>TRUE),
-      'laptop' => array('name'=>'<i class="fa fa-lg fa-laptop" aria-hidden="true"></i><span class="sr-only">デスクトップ</span> 1366×768',  'link'=>'#', 'visible'=>TRUE),
-      'desktop' => array('name'=>'<i class="fa fa-lg fa-desktop" aria-hidden="true"></i><span class="sr-only">モバイル</span> 1920×1080', 'link'=>'#', 'visible'=>TRUE),
+      'mobilesm' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.0 inch',  'link'=>'#', 'visible'=>TRUE),
+      'mobilemd' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.7 inch',  'link'=>'#', 'visible'=>TRUE),
+      'mobilelg' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 5.5 inch',  'link'=>'#', 'visible'=>TRUE),
+      'tablet' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'#', 'visible'=>TRUE),
+      'laptop' => array('name'=>'<i class="fa fa-lg fa-fw fa-laptop" aria-hidden="true"></i><span class="sr-only">デスクトップ</span> 1366×768',  'link'=>'#', 'visible'=>TRUE),
+      'desktop' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i><span class="sr-only">モバイル</span> 1920×1080', 'link'=>'#', 'visible'=>TRUE),
     )
   ),
 
@@ -521,7 +521,7 @@ EOD;
 	//最大化型のtoolbar_upper
 	$tk_append = '
 <!-- Toolbar upper -->
-<div id="toolbar_upper_max" class="toolbar_upper" style="'.$tb_max_disp.'">
+<div id="toolbar_upper_max" class="toolbar_upper hidden-print" style="'.$tb_max_disp.'">
 	<div class="toolkit_switch expand toolline">[ー]</div><div>'.$tools_str.'</div></div>';
 
 //最小化型のtoolbar upper
@@ -531,7 +531,7 @@ EOD;
 
 	$tk_append .= '
 <!-- Toolbar upper -->
-<div id="toolbar_upper_min" class="toolbar_upper" style="border-bottom:1px dashed #999;position:fixed;top:0px;left:0px;line-height:0.8em;'.$tb_min_disp.'">
+<div id="toolbar_upper_min" class="toolbar_upper hidden-print" style="border-bottom:1px dashed #999;position:fixed;top:0px;left:0px;line-height:0.8em;'.$tb_min_disp.'">
 	<div class="toolkit_switch toolleft">[＋]</div>
 	<div style="float:left;">'.$tools_str.'</div>
 </div>';
@@ -545,7 +545,7 @@ EOD;
 
 	//shortcut 一覧
 	$tk_append = '
-<div id="shortcut_list">
+<div id="shortcut_list" class="hidden-print">
 <p style="text-align:right;padding-right:20px;margin:0;"><a href="#" style="color:#ddd;font-size:13px">'. $qm->m['qhm_init']['sc_close'].'</a></p>
 <table style="border:none;background-color:transparent;">
 	<thead>
