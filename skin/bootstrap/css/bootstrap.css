@@ -5233,6 +5233,8 @@ button.list-group-item {
 .list-group-item.disabled:focus .list-group-item-text {
   color: #777777;
 }
+/*
+ // haik テーマと競合するので削除
 .list-group-item.active,
 .list-group-item.active:hover,
 .list-group-item.active:focus {
@@ -5241,6 +5243,7 @@ button.list-group-item {
   background-color: #337ab7;
   border-color: #337ab7;
 }
+*/
 .list-group-item.active .list-group-item-heading,
 .list-group-item.active:hover .list-group-item-heading,
 .list-group-item.active:focus .list-group-item-heading,
