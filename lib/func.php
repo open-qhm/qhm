@@ -973,7 +973,7 @@ function output_site_close_message($site_name, $login_url)
 {
 	global $qhm_adminmenu;
 
-	$qhm_sign = ($qhm_adminmenu < 2) ? '<a href="'. h($login_url) . '">QHM</a>' : 'QHM';
+	$qhm_sign = ($qhm_adminmenu < 2) ? '<a href="'. h($login_url) . '">HAIK</a>' : 'HAIK';
 
 	pkwk_common_headers();
 	$qm = get_qm();
