@@ -264,6 +264,17 @@ if (file_exists($qhm_ini_php_path) ){
 }
 
 
+// !3.1. load env ========================================================================
+#
+# - HAIKUSER
+# - HAIKPASSWD
+#
+if (isset($_ENV['HAIKUSER'])) {
+	$username = $_ENV['HAIKUSER'];
+}
+if (isset($_ENV['HAIKPASSWD'])) {
+	$passwd = $_ENV['HAIKPASSWD'];
+}
 
 
 
