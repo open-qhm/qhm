@@ -245,7 +245,7 @@ function plugin_system_updater_move($source, $dist)
 				$exclude_ptn = '/
 					\A
 					(?: # 完全一致
-						(?:.htaccess|qhm\.ini\.php|\.gitignore|\composer\.(?:json|lock)|\.editorconfig)
+						(?:.htaccess|qhm\.ini\.php|\.gitignore|\composer\.(?:json|lock)|\.editorconfig|app\.json)
 						|
 						(?:qhm_(?:.+)\.ini\.txt)
 						\z
