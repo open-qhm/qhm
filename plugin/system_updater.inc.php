@@ -245,14 +245,14 @@ function plugin_system_updater_move($source, $dist)
 				$exclude_ptn = '/
 					\A
 					(?: # 完全一致
-						(?:.htaccess|qhm\.ini\.php)
+						(?:.htaccess|qhm\.ini\.php|\.gitignore|\composer\.(?:json|lock)|\.editorconfig)
 						|
 						(?:qhm_(?:.+)\.ini\.txt)
 						\z
 					)|(?: # 前方一致
 						(?:
 							attach|diff|backup|counter|cache|cacheqhm|cacheqblog|
-							skin\/hokukenstyle|swfu\/d|swfu\/data|trackback|wiki
+							skin\/hokukenstyle\/(.+)|swfu\/d|swfu\/data|trackback|wiki
 						)
 						\/
 					)
