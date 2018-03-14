@@ -156,29 +156,39 @@ EOD;
     $style = '';
     if (exist_plugin('icon'))
     {
-        plugin_icon_set_font_awesome();
-        $style = '
+        plugin_icon_set_font_awesome(true);
+        $style = <<< HTML
 <style>
-[data-plugin=search2] > div.input-group,
-[data-plugin=search2] > div.form-group {
-    position: relative;
+[data-plugin=search2] > .input-group,
+[data-plugin=search2] > .form-group {
+  position: relative;
 }
-[data-plugin=search2] > div.input-group:before,
-[data-plugin=search2] > div.form-group:before {
-    font-family: FontAwesome;
-    content: "\f002";
-    position:absolute;
-    top:8px;
-    left:10px;
-    z-index: 3;
-    color: #999;
-    line-height: 1.42857143;
+[data-plugin=search2] > .input-group::before,
+[data-plugin=search2] > .form-group::before {
+  display: none;
+  font-family: "Font Awesome 5 Solid";
+  content: "\\f002";
 }
-[data-plugin=search2] input[type=text] {
-    padding-left:30px;
+[data-plugin=search2] .svg-inline--fa {
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  z-index: 5;
+  color: #999;
+}
+[data-plugin=search2] .input-group .svg-inline--fa {
+  top: 13px;
+  left: 10px;
+}
+[data-plugin=search2] .form-group .svg-inline--fa {
+  top: 10px;
+  left: 10px;
+}
+[data-plugin=search2] input[type="text"] {
+  padding-left: 30px;
 }
 </style>
-';
+HTML;
     }
 
     $qt->appendv_once("plugin_search2_style", "beforescript", $style);

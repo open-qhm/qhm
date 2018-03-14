@@ -61,12 +61,27 @@ function plugin_icon_inline()
 	return sprintf($format, h($icon_base), h($icon_name), $icon_options);
 }
 
-function plugin_icon_set_font_awesome()
+/**
+ * FontAwesome 5 を読みこむ
+ *
+ * @param boolean $search_pseudo_elements CSS Pseudo Elements を利用するかどうか
+ * @see https://fontawesome.com/how-to-use/svg-with-js#pseudo-elements
+ */
+function plugin_icon_set_font_awesome($search_pseudo_elements = false)
 {
 	$qt = get_qt();
-	$addcss = <<<HTML
+	$js = <<<HTML
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/v4-shims.js"></script>
 HTML;
-	$qt->appendv_once('plugin_icon_font_awesome', 'beforescript', $addcss);
+    // CSS Pseudo-elements を利用する場合
+    if ($search_pseudo_elements) {
+        $extrajs = <<< HTML
+<script>
+  FontAwesomeConfig = { searchPseudoElements: true };
+</script>
+HTML;
+        $qt->prependv_once('plugin_icon_font_awesome_pseudo_elements', 'beforescript', $extrajs);
+    }
+	$qt->appendv_once('plugin_icon_font_awesome', 'beforescript', $js);
 }
