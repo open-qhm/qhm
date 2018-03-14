@@ -1,0 +1,47 @@
+# !/bin/bash
+
+###############################
+#
+# Release Tag to GitHub
+#
+###############################
+
+VERSION=$(grep "define('QHM_VERSION" lib/init.php | cut -d "'" -f 4)
+VTEXT="v$VERSION"
+
+# re-tag
+git tag | grep $VTEXT
+if [ $? = 0 ]; then
+  git tag --delete $VTEXT
+  git push --delete origin $VTEXT
+fi
+git tag $VTEXT
+git push origin $VTEXT
+
+github-release info \
+  --user $CIRCLE_PROJECT_USERNAME \
+  --repo $CIRCLE_PROJECT_REPONAME \
+  --tag $VTEXT
+if [ $? = 1 ]; then
+  subcommand=release
+else
+  subcommand=edit
+fi
+
+# create release
+github-release $subcommand \
+  --user $CIRCLE_PROJECT_USERNAME \
+  --repo $CIRCLE_PROJECT_REPONAME \
+  --tag $VTEXT \
+  --name $VTEXT \
+  --description "手動更新には「更新ファイル」をダウンロードしてご利用ください。"
+
+# upload files
+github-release upload \
+  --user $CIRCLE_PROJECT_USERNAME \
+  --repo $CIRCLE_PROJECT_REPONAME \
+  --tag $VTEXT \
+  --label "更新ファイル" \
+  --name "qhm-${VERSION}_update.zip" \
+  --file "tmp/build/update_$VERSION.zip" \
+  --replace

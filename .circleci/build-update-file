@@ -1,0 +1,55 @@
+# !/bin/bash
+
+###############################
+#
+# Build Script for QHM Update Package
+#
+###############################
+
+
+## Remove Files of dist dir
+# @param string dist path
+function remove_data_files {
+  local paths=(.htaccess qhm.ini.php qhm_access.ini.txt qhm_users.ini.txt attach backup cache cacheqblog cacheqhm counter diff fwd3/sys/data skin/wordpress skin/hokukenstyle/*/ trackback wiki swfu/data swfu/d .circleci)
+  for path in "${paths[@]}"
+  do
+    echo "Remove $1/$path"
+    rm -rf "$1/$path"
+  done
+
+  # touch empty file to cacheqblog and cacheqhm
+  mkdir "$1/cacheqhm" && touch "$1/cacheqhm/index.html"
+  mkdir "$1/cacheqblog" && touch "$1/cacheqblog/index.html"
+  echo
+}
+
+
+#
+# Main
+#
+
+#1. ファイルをコピーする
+#2. 不要なファイルを削除
+#3. zip アーカイブ→生成物ディレクトリ
+
+#
+# Build Package
+#
+
+QHM_VERSION=$(grep "define('QHM_VERSION" lib/init.php | cut -d "'" -f 4)
+echo "Build QHM v$QHM_VERSION's update file."
+
+mkdir tmp
+
+git archive HEAD --output=tmp/qhm.tar.gz --prefix="tmp/update_$QHM_VERSION/"
+tar -zxvf tmp/qhm.tar.gz
+
+remove_data_files "tmp/update_$QHM_VERSION"
+
+cd tmp
+mkdir build
+zip -r "build/update_$QHM_VERSION.zip" "update_$QHM_VERSION"
+
+echo
+echo "Complete Build QHM v$QHM_VERSION's update file."
+echo
