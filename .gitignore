@@ -15,6 +15,7 @@ count/*
 swfu/d/*
 swfu/data/*
 skin/hokukenstyle/*
+vendor
 
 # Development
 node_modules
