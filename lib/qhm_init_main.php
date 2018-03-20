@@ -98,6 +98,8 @@ if ($is_bootstrap_skin)
     if (file_exists(SKIN_DIR.$style_name.'/base.css')) {
         $bootstrap_css .= '<link rel="stylesheet" href="'.SKIN_DIR.$style_name.'/base.css">';
     }
+    // 印刷用CSS
+    $bootstrap_css .= '<link rel="stylesheet" href="'.SKIN_DIR.'print.css" media="print">';
 
     $bootstrap_script = '<script type="text/javascript" src="skin/bootstrap/js/bootstrap.min.js"></script>';
     $qt->setv('bootstrap_script', $bootstrap_script);
