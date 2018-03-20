@@ -8,6 +8,33 @@
     font-size: 16px !important;
   }
 
+  .haik-menu h3,
+  .haik-article-menu h3 {
+    font-size: 14px !important;
+  }
+
+  .haik-menu h4,
+  .haik-article-menu h4 {
+    font-size: 14px !important;
+    opacity: 0.7;
+  }
+
+  .haik-menu a,
+  .haik-article-menu a {
+    color: inherit;
+  }
+
+  .haik-menu .list-group .list-group-item {
+    border: none;
+    padding: 5px 0;
+  }
+
+  .haik-menu .list-group .list2 {
+    padding: 5px 0;
+    list-style: none;
+    opacity: 0.7;
+  }
+
   .haik-licence {
     text-align: center;
   }
