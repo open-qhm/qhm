@@ -317,6 +317,23 @@
 }).call(this);
 
 (function() {
+  var $;
+
+  if (typeof jQuery === "undefined" || jQuery === null) {
+    return;
+  }
+
+  $ = jQuery;
+
+  $(function() {
+    return $('#navigator.haik-nav ul.list1').each(function() {
+      return $(this).removeClass('list1').addClass('qhm-bs-nav nav navbar-nav');
+    });
+  });
+
+}).call(this);
+
+(function() {
   QHM.scroll = function(target, delay) {
     var scrollTop;
     delay = delay || 300;
