@@ -64,7 +64,6 @@ counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 [pukiwiki]: http://pukiwiki.osdn.jp/
 [hokuken]: http://www.hokuken.com/
 [license]: https://github.com/open-qhm/qhm/blob/master/LICENSE
-[openqhm]: http://www.open-qhm.net/
 [haik-cms]: https://haik-cms.jp/
 [haik-cms-man]: http://manual.haik-cms.jp/
 [qhm-installer]: https://github.com/open-qhm/qhm-installer

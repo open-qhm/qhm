@@ -184,7 +184,7 @@ $(document).ready(function(){
 		"g+o": function(){if(typeof window.otherplugin != "undefined")otherplugin()},
 		"g+t": function(){$("html,body").animate({scrollTop:0}, "fast")},
 		"g+q": function(){location.href=$("#searchlink").attr("href")},
-		"g+Shift+/": function(){window.open("http://www.open-qhm.net/")},
+		"g+Shift+/": function(){window.open("http://manual.haik-cms.jp/")},
 		"Shift+/": function(){$("#shortcut_list").fadeIn("fast")},
 		"g+n": function(){location.href=$("#newlink").attr("href")},
 		"g+m": function(){location.href=$("#maplink").attr("href")},

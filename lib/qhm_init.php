@@ -281,7 +281,6 @@ EOD;
   ),
 
 	'configlink' => array('name'=>$qm->m['qhm_init']['configlink_name'], 'link'=>$link_qhm_setting, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
-// 	'helplink'   => array('name'=>'open-qhm.net', 'link'=>$link_help, 'style'=>'', 'visible'=>true, 'sub'=>array()),
 	'passwordlink'   => array('name'=>$qm->m['qhm_init']['passwordlink_name'], 'link'=>$link_password, 'style'=>'', 'visible'=>true, 'sub'=>array()),
 	'logoutlink' => array('name'=>$qm->m['qhm_init']['logoutlink_name'], 'link'=>$link_qhm_logout, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
 	'updatelink' => array('name'=>$qm->m['qhm_init']['updatelink_name'], 'link'=>$link_qhm_update, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),

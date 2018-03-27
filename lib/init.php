@@ -14,7 +14,7 @@ define('S_VERSION', '1.4.7');
 define('QHM_VERSION', '7.2.4');  //絶対に編集しないで下さい
 define('QHM_OPTIONS', 'update=download; support=false; banner=true');
 define('S_COPYRIGHT',
-	'powered by <strong><a href="http://www.open-qhm.net/">HAIK</a> ' . QHM_VERSION . '</strong><br />' .
+	'powered by <strong><a href="https://haik-cms.jp/">HAIK</a> ' . QHM_VERSION . '</strong><br />' .
 	' based on <a href="http://pukiwiki.sourceforge.jp/">PukiWiki</a> ' . S_VERSION . ' ' .
 	' License is <a href="http://www.gnu.org/licenses/gpl.html">GPL</a>.'
 );
@@ -26,7 +26,7 @@ define('SWFU_IMAGEDB_PATH', SWFU_DIR.'data/image.txt');
 define('SWFU_IMAGE_DIR', SWFU_DIR.'d/');
 
 // URLs
-define('QHM_HOME', 'http://www.open-qhm.net/');
+define('QHM_HOME', 'https://haik-cms.jp/');
 
 /////////////////////////////////////////////////
 // Init server variables
