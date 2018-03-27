@@ -1490,7 +1490,7 @@ function plugin_qhmsetting_info_getVals($params)
 		),
 		'no_qhm_licence' => array(
 			'title' => 'ライセンス表記',
-			'msg' => 'ページ右のHAIKライセンス表記を表示、非表示を設定します<br />（<a href="http://www.open-qhm.net/index.php?QHMLicence#n8d1069b" target="new">非表示にすると認証ページアクセスが難しくなります</a>）',
+			'msg' => 'ページ右のHAIKライセンス表記を表示、非表示を設定します<br />（非表示にすると認証ページアクセスが難しくなります）',
 			'default' => $params['no_qhm_licence'],
 			'option' => array(
 				0 => "表示する",
