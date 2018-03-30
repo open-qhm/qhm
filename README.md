@@ -67,3 +67,12 @@ counter/, counter/*, diff/, diff/*, wiki/, wiki/*
 [haik-cms]: https://haik-cms.jp/
 [haik-cms-man]: http://manual.haik-cms.jp/
 [qhm-installer]: https://github.com/open-qhm/qhm-installer
+
+
+## [BrowserStack](https://www.browserstack.com/) - Cross-browser testing tool
+
+We appreciate the support of BrowserStack for providing cross browser test service to our projects!
+
+[![BrowserStack](https://user-images.githubusercontent.com/808888/38138970-68707288-3468-11e8-904d-907049942f19.png)](https://www.browserstack.com/)
+
+
