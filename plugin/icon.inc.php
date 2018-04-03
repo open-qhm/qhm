@@ -63,6 +63,8 @@ function plugin_icon_inline()
 
 /**
  * FontAwesome 5 を読みこむ
+ * $search_pseudo_elements を true にすると、疑似要素にFontAwesomeを使えるが、
+ * IE, Edge で #bs_carousel が正常に動作しなくなる影響があるので解決するまで使わないこと。
  *
  * @param boolean $search_pseudo_elements CSS Pseudo Elements を利用するかどうか
  * @see https://fontawesome.com/how-to-use/svg-with-js#pseudo-elements
@@ -71,8 +73,8 @@ function plugin_icon_set_font_awesome($search_pseudo_elements = false)
 {
 	$qt = get_qt();
 	$js = <<<HTML
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/v4-shims.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>
 HTML;
     // CSS Pseudo-elements を利用する場合
     if ($search_pseudo_elements) {
