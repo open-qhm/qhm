@@ -14,7 +14,7 @@
  *
  */
 
-define('PLUGIN_SKIN_CUSTOMIZER_CDN', 'http://open-qhm.github.io/haik-parts');
+define('PLUGIN_SKIN_CUSTOMIZER_CDN', 'https://open-qhm.github.io/haik-parts');
 function plugin_skin_customizer_action()
 {
     global $vars, $script;
@@ -268,8 +268,8 @@ function plugin_skin_customizer_set_form()
                 break;
 
             case 'select_img':
-                $host = PLUGIN_SKIN_CUSTOMIZER_CDN;
-                $haik_bg_images = file_get_contents("{$host}/data/images.json");
+                $host = ltrim(PLUGIN_SKIN_CUSTOMIZER_CDN, 'https:');
+                $haik_bg_images = file_get_contents(PLUGIN_SKIN_CUSTOMIZER_CDN . '/data/images.json');
                 $haik_bg_images = json_decode($haik_bg_images, true);
                 foreach ($haik_bg_images as $i => $bg_image)
                 {
@@ -301,8 +301,8 @@ function plugin_skin_customizer_set_form()
                 break;
 
             case 'select_texture':
-                $host = PLUGIN_SKIN_CUSTOMIZER_CDN;
-                $haik_bg_images = file_get_contents("{$host}/data/textures.json");
+                $host = ltrim(PLUGIN_SKIN_CUSTOMIZER_CDN, 'https:');
+                $haik_bg_images = file_get_contents(PLUGIN_SKIN_CUSTOMIZER_CDN . '/data/textures.json');
                 $haik_bg_images = json_decode($haik_bg_images, true);
                 foreach ($haik_bg_images as $i => $bg_image)
                 {
