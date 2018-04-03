@@ -132,6 +132,7 @@ EOD;
   <input type="hidden" name="cmd" value="search2" />
   <input type="hidden" name="type" value="AND" />
   <div class="form-group">
+    <i class="fas fa-search"></i>
     <input type="text"  name="word" value="'.h($s_word).'" class="form-control" placeholder="検索ワード" />
   </div>
 </form>
@@ -143,6 +144,7 @@ EOD;
 <form action="'.$script.'" method="get" class="qhm-search2 form-inline" data-plugin="search2">
   <input type="hidden" name="cmd" value="search2" />
   <div class="input-group '.$width_class.'">
+    <i class="fas fa-search"></i>
     <input type="text"  name="word" value="'.h($s_word).'" class="form-control" placeholder="検索ワード" />
     <div class="input-group-btn">
       <input class="btn btn-'.$btn_type.'" type="submit" value="検索" />
@@ -156,36 +158,31 @@ EOD;
     $style = '';
     if (exist_plugin('icon'))
     {
-        plugin_icon_set_font_awesome(true);
+        plugin_icon_set_font_awesome();
         $style = <<< HTML
 <style>
 [data-plugin=search2] > .input-group,
 [data-plugin=search2] > .form-group {
   position: relative;
 }
-[data-plugin=search2] > .input-group::before,
-[data-plugin=search2] > .form-group::before {
-  display: none;
-  font-family: "Font Awesome 5 Solid";
-  content: "\\f002";
-}
-[data-plugin=search2] .svg-inline--fa {
+[data-plugin=search2] > .form-group > .svg-inline--fa {
   position: absolute;
-  top: 13px;
-  left: 10px;
-  z-index: 5;
+  top: 10px;
+  left: 9px;
   color: #999;
 }
-[data-plugin=search2] .input-group .svg-inline--fa {
-  top: 13px;
-  left: 10px;
-}
-[data-plugin=search2] .form-group .svg-inline--fa {
-  top: 10px;
-  left: 10px;
+[data-plugin=search2] > .input-group > .svg-inline--fa {
+    position: absolute;
+    top: 13px;
+    left: 9px;
+    color: #999;
+    z-index: 10;
 }
 [data-plugin=search2] input[type="text"] {
   padding-left: 30px;
+}
+[data-plugin=search2] input[type="text"]:-ms-input-placeholder {
+  line-height: 24px;
 }
 </style>
 HTML;
