@@ -18,13 +18,12 @@ function plugin_backup_action()
 	$qm = get_qm();
 
 	$editable = edit_auth($page, FALSE, FALSE);
-    if(!$editable){
-        header("Location: $script");
-        exit();        
-    }
-    
-	if (! $do_backup) return;
-	
+	if (!$editable) {
+		header("Location: $script");
+		exit();
+	}
+
+	if (!$do_backup) return;
 
 	$page = isset($vars['page']) ? $vars['page']  : '';
 	if ($page == '') return array('msg'=>$qm->m['plg_backup']['title_backuplist'], 'body'=>plugin_backup_get_list_all());
@@ -61,7 +60,7 @@ function plugin_backup_action()
 	$script = get_script_uri();
 
 	$body  = '<ul>' . "\n";
-	if ( ! $is_layout)
+	if (!$is_layout)
 	{
 		$body .= ' <li><a href="' . $script . '?cmd=backup">' . $qm->m['plg_backup']['backuplist'] . '</a></li>' ."\n";
 	}
@@ -69,22 +68,26 @@ function plugin_backup_action()
 	$href    = $script . '?cmd=backup&amp;page=' . $r_page . '&amp;age=' . $s_age;
 	$is_page = is_page($page);
 
-	if ($is_page && $action != 'diff')
+	if ($is_page && $action != 'diff') {
+		exist_plugin('diff') && plugin_diff_set_css();
 		$body .= ' <li>' . str_replace('$1', '<a href="' . $href .
 			'&amp;action=diff">' . $qm->m['plg_backup']['diff'] . '</a>',
 			$qm->m['plg_backup']['view']) . '</li>' . "\n";
+	}
 
-	if ($is_page && $action != 'nowdiff')
+	if ($is_page && $action != 'nowdiff') {
+		exist_plugin('diff') && plugin_diff_set_css();
 		$body .= ' <li>' . str_replace('$1', '<a href="' . $href .
 			'&amp;action=nowdiff">' . $qm->m['plg_backup']['nowdiff'] . '</a>',
 			$qm->m['plg_backup']['view']) . '</li>' . "\n";
+	}
 
 	if ($action != 'source')
 		$body .= ' <li>' . str_replace('$1', '<a href="' . $href .
 			'&amp;action=source">' . $qm->m['plg_backup']['source'] . '</a>',
 			$qm->m['plg_backup']['view']) . '</li>' . "\n";
 
-	if (! PLUGIN_BACKUP_DISABLE_BACKUP_RENDERING && $action)
+	if (!PLUGIN_BACKUP_DISABLE_BACKUP_RENDERING && $action)
 		$body .= ' <li>' . str_replace('$1', '<a href="' . $href .
 			'">' . $qm->m['plg_backup']['backup'] . '</a>',
 			$qm->m['plg_backup']['view']) . '</li>' . "\n";
@@ -160,7 +163,7 @@ function plugin_backup_delete($page)
 
 	$qm = get_qm();
 
-	if (! _backup_file_exists($page))
+	if (!_backup_file_exists($page))
 		return array('msg'=>$qm->m['plg_backup']['title_pagebackuplist'], 'body'=>plugin_backup_get_list($page)); // Say "is not found"
 
 	$body = '';
@@ -228,24 +231,24 @@ function plugin_backup_get_list($page)
 	$script = get_script_uri();
 	$r_page = rawurlencode($page);
 	$s_page = htmlspecialchars($page);
-	
+
 	//バックアップ一覧へのリンクは、
 	//レイアウト部品の場合、編集リンクを表示する
-	
+
 	$backuplist_link = $is_layout ?
 		('<a href="'.h($script).'?cmd=edit&amp;page='.$r_page.'">' .h($layout_pages[$page]). 'を編集する</a>') :
 		('<a href="'.h($script).'?cmd=backup">'.$qm->m['plg_backup']['backuplist'].'</a>');
-	
+
 	$retval = array();
 	$retval[0] = '
 <ul>
   <li>
-    ' .$backuplist_link. '
-    <ul>
+	' .$backuplist_link. '
+	<ul>
 ';
 	$retval[1] = "\n";
 	$retval[2] = <<<EOD
-    </ul>
+	</ul>
   </li>
 </ul>
 EOD;
@@ -258,7 +261,7 @@ EOD;
 		return join('', $retval);
 	}
 
-	if (! PKWK_READONLY) {
+	if (!PKWK_READONLY) {
 		$retval[1] .= '   <li><a href="' . $script . '?cmd=backup&amp;action=delete&amp;page=' .
 			$r_page . '">';
 		$retval[1] .= str_replace('$1', $is_layout ? h($layout_pages[$page]) : $s_page, $qm->m['plg_backup']['title_backup_delete']);
@@ -268,17 +271,17 @@ EOD;
 	$href = $script . '?cmd=backup&amp;page=' . $r_page . '&amp;age=';
 	$_anchor_from = $_anchor_to   = '';
 	foreach ($backups as $age=>$data) {
-		if (! PLUGIN_BACKUP_DISABLE_BACKUP_RENDERING) {
+		if (!PLUGIN_BACKUP_DISABLE_BACKUP_RENDERING) {
 			$_anchor_from = '<a href="' . $href . $age . '">';
 			$_anchor_to   = '</a>';
 		}
 		$date = format_date($data['time'], TRUE);
 		$retval[1] .= <<<EOD
    <li>$_anchor_from$age $date$_anchor_to
-     [ <a href="$href$age&amp;action=diff">{$qm->m['plg_backup']['diff']}</a>
-     | <a href="$href$age&amp;action=nowdiff">{$qm->m['plg_backup']['nowdiff']}</a>
-     | <a href="$href$age&amp;action=source">{$qm->m['plg_backup']['source']}</a>
-     ]
+	 [ <a href="$href$age&amp;action=diff">{$qm->m['plg_backup']['diff']}</a>
+	 | <a href="$href$age&amp;action=nowdiff">{$qm->m['plg_backup']['nowdiff']}</a>
+	 | <a href="$href$age&amp;action=source">{$qm->m['plg_backup']['source']}</a>
+	 ]
    </li>
 EOD;
 	}

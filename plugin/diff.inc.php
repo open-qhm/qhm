@@ -150,11 +150,11 @@ function plugin_diff_set_css() {
 	$style_tag = <<< HTML
 <style>
 span.diff_added {
-  color: blue;
+  color: #337ab7;
 }
 
 span.diff_removed {
-  color: red;
+  color: #a94442;
 }
 </style>
 HTML;
