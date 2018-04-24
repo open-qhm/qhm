@@ -95,6 +95,8 @@ function plugin_sitemap_action() {
 						} elseif (preg_match('/&([^\(]+)(?:\((.*)\))?;/', $line, $matches)) {
 							if ( (PLUGIN_SITEMAP_PLUGIN_PRIORITY_UP   != '') and preg_match('/^' . PLUGIN_SITEMAP_PLUGIN_PRIORITY_UP   . '$/', $matches[1], $matches2) ) $_priority += 0.2;
 							if ( (PLUGIN_SITEMAP_PLUGIN_PRIORITY_DOWN != '') and preg_match('/^' . PLUGIN_SITEMAP_PLUGIN_PRIORITY_DOWN . '$/', $matches[1], $matches2) ) $_priority -= 0.1;
+						} elseif (preg_match('/^NOINDEX:(?:.*)$/', $line)) {
+							$show = false;
 						}
 					}
 				}
