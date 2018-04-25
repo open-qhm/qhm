@@ -28,7 +28,7 @@ define('PLUGIN_SITEMAP_READ_PAGES', true);
 
 define('PLUGIN_SITEMAP_PLUGIN_PRIORITY_UP',   '(counter)');
 define('PLUGIN_SITEMAP_PLUGIN_PRIORITY_DOWN', '(norelated)');
-define('PLUGIN_SITEMAP_PLUGIN_NO_FOLLOW',     '(nofollow)');
+define('PLUGIN_SITEMAP_PLUGIN_NO_FOLLOW',     '(nofollow|secret)');
 
 define('PLUGIN_SITEMAP_PAGE_ALLOW',    '');
 define('PLUGIN_SITEMAP_PAGE_DISALLOW', '^(Pukiwiki\/.*)$');
