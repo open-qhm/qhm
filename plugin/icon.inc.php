@@ -73,8 +73,8 @@ function plugin_icon_set_font_awesome($search_pseudo_elements = false)
 {
 	$qt = get_qt();
 	$js = <<<HTML
-<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
-<script defer src="https://use.fontawesome.com/releases/v5.0.9/js/v4-shims.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/v4-shims.js"></script>
 HTML;
     // CSS Pseudo-elements を利用する場合
     if ($search_pseudo_elements) {
