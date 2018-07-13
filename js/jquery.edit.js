@@ -179,6 +179,7 @@ $(document).ready(function(){
 		"g+e": function(){location.href=$("#editlink").attr("href")},
 		"g+p": function(){$("input:submit[name=preview]").click()},
 		"g+s": function(){$("input:submit[name=write]").click()},
+		"g+z": function(){$("input:submit[name=cancel]").get(0) && history].back()},
 		"g+a": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", $("#reflink").attr("href"));},
 		"g+i": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", "swfu/index.php?KeepThis=true&TB_iframe=true");},
 		"g+o": function(){if(typeof window.otherplugin != "undefined")otherplugin()},
