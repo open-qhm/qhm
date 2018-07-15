@@ -213,7 +213,22 @@ $(function(){
     	$a.nextAll("div.slideshowbox:not(:visible)").show("fast", function(){
     		$a.hide();
     	});
-    	
+
     	return false;
+    });
+
+    // keyboard shortcut
+    shortcut.add("u", function(){
+      location.href = $("#upload_link").attr("href");
+    }, {
+      disable_in_input: true
+    });
+
+    $(document).keydown(function(e){
+      if (e.keyCode == 27) {
+        if (window.parent) {
+          window.parent.tb_remove();
+        }
+      }
     });
 });
