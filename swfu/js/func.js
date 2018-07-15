@@ -231,4 +231,9 @@ $(function(){
         }
       }
     });
+
+    // focus
+    setTimeout(function(){
+      $(window).focus();
+    }, 300);
 });
