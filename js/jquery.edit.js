@@ -176,25 +176,22 @@ $(document).ready(function(){
 
 
 	$(document).shortkeys({
-		"g+e": function(){location.href=$("#editlink").attr("href")},
-		"g+p": function(){$("input:submit[name=preview]").click()},
-		"g+s": function(){$("input:submit[name=write]").click()},
-		"g+z": function(){$("input:submit[name=cancel]").get(0) && history].back()},
-		"g+a": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", $("#reflink").attr("href"));},
-		"g+i": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", "swfu/index.php?KeepThis=true&TB_iframe=true");},
+		"e": function(){location.href=$("#editlink").attr("href")},
+		"p": function(){$("input:submit[name=preview]").click()},
+		"z": function(){$("input:submit[name=cancel]").get(0) && history.back()},
+		"a": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", $("#reflink").attr("href"));},
+		"i": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", "swfu/index.php?KeepThis=true&TB_iframe=true");},
 		"g+o": function(){if(typeof window.otherplugin != "undefined")otherplugin()},
 		"g+t": function(){$("html,body").animate({scrollTop:0}, "fast")},
-		"g+q": function(){location.href=$("#searchlink").attr("href")},
-		"g+Shift+/": function(){window.open("http://manual.haik-cms.jp/")},
+		"q": function(){location.href=$("#searchlink").attr("href")},
+		"m": function(){window.open("http://manual.haik-cms.jp/")},
 		"Shift+/": function(){$("#shortcut_list").fadeIn("fast")},
-		"g+n": function(){location.href=$("#newlink").attr("href")},
+		"n": function(){location.href=$("#newlink").attr("href")},
 		"g+m": function(){location.href=$("#maplink").attr("href")},
-		"g+l": function(){location.href=$("#pagelistlink").attr("href")},
-		"g+f": function(){if(typeof window.qhm_has_fwd3 != "undefined")location.href=$("#fwd3link").attr("href")},
-		"g+c": function(){location.href=$("#configlink").attr("href")},
-		"g+u": function(){$("#shareQHMPage").modal()},
-		"g+h": function(){location.href="index.php"},
-		"g+g": function(){window.open("http://www.google.co.jp/")},
+		"l": function(){location.href=$("#pagelistlink").attr("href")},
+		"c": function(){location.href=$("#configlink").attr("href")},
+		"u": function(){$("#shareQHMPage").modal()},
+		"h": function(){location.href="index.php"},
 		"/": function(){$("#msg").focus()}
 	});
 	$("#msg").keydown(function(e){
