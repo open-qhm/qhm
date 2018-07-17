@@ -174,7 +174,7 @@ $(document).ready(function(){
 		return false;
 	}
 
-
+	var isWin = (navigator.platform.indexOf('win') != -1);
 	$(document).shortkeys({
 		"e": function(){location.href=$("#editlink").attr("href")},
 		"p": function(){$("input:submit[name=preview]").click()},
@@ -197,6 +197,14 @@ $(document).ready(function(){
 	$("#msg").keydown(function(e){
 		if (e.keyCode == 27) {
 			$(this).blur();
+		}
+	});
+	$(document).keydown(function(e){
+		if ($("#msg").length === 0) return;
+		//Save [Ctrl + S] [Command + S]
+		if (((isWin && e.ctrlKey) || (! isWin && e.metaKey)) && e.keyCode == 83) {
+			e.preventDefault();
+			$("input:submit[name=write]").click();
 		}
 	});
 	$("#shortcut_list a").click(function(){
