@@ -181,12 +181,8 @@ $(function(){
         // keyboard shortcut in textarea#msg
         var isWin = (navigator.platform.indexOf('win') != -1);
         $("#msg").keydown(function(e){
-          //[esc]
-          if (e.keyCode == 27) {
-            $(this).blur();
-          }
           //Save [Ctrl + S] [Command + S]
-          else if (((isWin && e.ctrlKey) || (! isWin && e.metaKey)) && e.keyCode == 83) {
+          if (((isWin && e.ctrlKey) || (! isWin && e.metaKey)) && e.keyCode == 83) {
             e.preventDefault();
             $("input:submit[name=write]").click();
           }
