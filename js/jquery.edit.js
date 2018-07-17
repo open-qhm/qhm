@@ -179,18 +179,16 @@ $(document).ready(function(){
 		"e": function(){location.href=$("#editlink").attr("href")},
 		"p": function(){$("input:submit[name=preview]").click()},
 		"z": function(){$("input:submit[name=cancel]").get(0) && history.back()},
-		"a": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", $("#reflink").attr("href"));},
-		"i": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", "swfu/index.php?KeepThis=true&TB_iframe=true");},
-		"g+o": function(){if(typeof window.otherplugin != "undefined")otherplugin()},
-		"g+t": function(){$("html,body").animate({scrollTop:0}, "fast")},
+		"a": function(){if(typeof window.qhm_has_swfu != "undefined"){$("#keybind_list").modal("hide");tb_show("", $("#reflink").attr("href"));}},
+		"i": function(){if(typeof window.qhm_has_swfu != "undefined"){$("#keybind_list").modal("hide");tb_show("", "swfu/index.php?KeepThis=true&TB_iframe=true");}},
+		"t": function(){$("html,body").animate({scrollTop:0}, "fast")},
 		"q": function(){location.href=$("#searchlink").attr("href")},
 		"m": function(){window.open("http://manual.haik-cms.jp/")},
-		"Shift+/": function(){$("#shortcut_list").fadeIn("fast")},
+		"Shift+/": function(){$("#keybind_list").modal()},
 		"n": function(){location.href=$("#newlink").attr("href")},
-		"g+m": function(){location.href=$("#maplink").attr("href")},
 		"l": function(){location.href=$("#pagelistlink").attr("href")},
 		"c": function(){location.href=$("#configlink").attr("href")},
-		"u": function(){$("#shareQHMPage").modal()},
+		"u": function(){$("#keybind_list").modal("hide");$("#shareQHMPage").modal()},
 		"h": function(){location.href="index.php"},
 		"/": function(){$("#msg").focus()}
 	});
@@ -207,13 +205,9 @@ $(document).ready(function(){
 			$("input:submit[name=write]").click();
 		}
 	});
-	$("#shortcut_list a").click(function(){
-		$("#shortcut_list").fadeOut("fast");
-		return false;
-	});
 	$(document).keydown(function(e){
 		if (e.keyCode == 27) {
-			$("#shortcut_list:visible").fadeOut("fast");
+			$("#keybind_list").modal("hide");
 			$("#tinyUrl:visible").fadeOut("fast");
 			$("#shareQHMPage").modal("hide");
 		}
