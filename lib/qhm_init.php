@@ -539,6 +539,8 @@ EOD;
 	}
 
 	//shortcut 一覧
+	$is_osx = preg_match('/Mac OS X/', UA_FULL);
+	$keybind_for_save = $is_osx ? '⌘+S' : 'Ctrl+S';
 	$tk_append = <<<HTML
 <div class="modal fade hidden-print" role="dialog" id="keybind_list">
 	<div class="modal-dialog" role="document">
@@ -577,7 +579,7 @@ EOD;
 							<td>{$qm->m['qhm_init']['sc_search']}</td>
 						</tr>
 						<tr>
-							<th><code>Ctrl+S</code></th>
+							<th><code>{$keybind_for_save}</code></th>
 							<td>{$qm->m['qhm_init']['sc_save']}</td>
 							<th><code>N</code></th>
 							<td>{$qm->m['qhm_init']['sc_newpage']}</td>
