@@ -207,6 +207,7 @@ $(document).ready(function(){
 		if (e.keyCode == 27) {
 			$("#shortcut_list:visible").fadeOut("fast");
 			$("#tinyUrl:visible").fadeOut("fast");
+			$("#shareQHMPage").modal("hide");
 		}
 	});
 
