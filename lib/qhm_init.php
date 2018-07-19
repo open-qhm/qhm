@@ -181,12 +181,8 @@ $(function(){
         // keyboard shortcut in textarea#msg
         var isWin = (navigator.platform.indexOf('win') != -1);
         $("#msg").keydown(function(e){
-          //[esc]
-          if (e.keyCode == 27) {
-            $(this).blur();
-          }
           //Save [Ctrl + S] [Command + S]
-          else if (((isWin && e.ctrlKey) || (! isWin && e.metaKey)) && e.keyCode == 83) {
+          if (((isWin && e.ctrlKey) || (! isWin && e.metaKey)) && e.keyCode == 83) {
             e.preventDefault();
             $("input:submit[name=write]").click();
           }
@@ -543,83 +539,88 @@ EOD;
 	}
 
 	//shortcut 一覧
-	$tk_append = '
-<div id="shortcut_list" class="hidden-print">
-<p style="text-align:right;padding-right:20px;margin:0;"><a href="#" style="color:#ddd;font-size:13px">'. $qm->m['qhm_init']['sc_close'].'</a></p>
-<table style="border:none;background-color:transparent;">
-	<thead>
-		<tr>
-			<th width="80">&nbsp;</th>
-			<th width="320">'. $qm->m['qhm_init']['sc_col_edit'].'</th>
-			<th width="80">&nbsp;</th>
-			<th width="320">'. $qm->m['qhm_init']['sc_col_move'].'</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<th style="color:yellow;text-align:right;">esc</th>
-			<td>'. $qm->m['qhm_init']['sc_blur'].'</td>
-			<th style="color:yellow;text-align:right;">g -> t</th>
-			<td>'. $qm->m['qhm_init']['sc_scroll_top'].'</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">g -> e</th>
-			<td>'. $qm->m['qhm_init']['sc_jump_edit']. '</td>
-			<th style="color:yellow;text-align:right;">g -> h</th>
-			<td>'. $qm->m['qhm_init']['sc_jump_home']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">g -> p</th>
-			<td>'. $qm->m['qhm_init']['sc_preview']. '</td>
-			<th style="color:yellow;text-align:right;">g -> q</th>
-			<td>'. $qm->m['qhm_init']['sc_search']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">g -> s</th>
-			<td>'. $qm->m['qhm_init']['sc_save']. '</td>
-			<th style="color:yellow;text-align:right;">g -> n</th>
-			<td>'. $qm->m['qhm_init']['sc_newpage']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">g -> a</th>
-			<td>'. $qm->m['qhm_init']['sc_attach']. '</td>
-			<th style="color:yellow;text-align:right;">g -> m</th>
-			<td>'. $qm->m['qhm_init']['sc_map']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">g -> i</th>
-			<td>'. $qm->m['qhm_init']['sc_image']. '</td>
-			<th style="color:yellow;text-align:right;">g -> l</th>
-			<td>'. $qm->m['qhm_init']['sc_filelist']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">g -> o</th>
-			<td>'. $qm->m['qhm_init']['sc_open_tools']. '</td>
-			<th style="color:yellow;text-align:right;">g -> c</th>
-			<td>'. $qm->m['qhm_init']['sc_jump_settings']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">/</th>
-			<td>'. $qm->m['qhm_init']['sc_focus']. '</td>
-			<th style="color:yellow;text-align:right;">g -> f</th>
-			<td>'. $qm->m['qhm_init']['sc_urlshorter']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">g -> u</th>
-			<td>ページの共有・URL表示</td>
-			<th style="color:yellow;text-align:right;">g -> ?</th>
-			<td>'. $qm->m['qhm_init']['sc_open_help']. '</td>
-		</tr>
-		<tr>
-			<th style="color:yellow;text-align:right;">&nbsp;</th>
-			<td>&nbsp;</td>
-			<th style="color:yellow;text-align:right;">g -> g</th>
-			<td>'. $qm->m['qhm_init']['sc_open_google']. '</td>
-		</tr>
-	</tbody>
-</table>
+	$is_osx = preg_match('/Mac OS X/', UA_FULL);
+	$keybind_for_save = $is_osx ? '⌘+S' : 'Ctrl+S';
+	$tk_append = <<<HTML
+<div class="modal fade hidden-print" role="dialog" id="keybind_list">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">ショートカット一覧</h4>
+			</div>
+			<div class="modal-body">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>&nbsp;</th>
+							<th>ページ</th>
+							<th>&nbsp;</th>
+							<th>{$qm->m['qhm_init']['sc_col_move']}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th><code>E</code></th>
+							<td>{$qm->m['qhm_init']['sc_jump_edit']}</td>
+							<th><code>T</code></th>
+							<td>{$qm->m['qhm_init']['sc_scroll_top']}</td>
+						</tr>
+						<tr>
+							<th><code>P</code></th>
+							<td>{$qm->m['qhm_init']['sc_preview']}</td>
+							<th><code>H</code></th>
+							<td>{$qm->m['qhm_init']['sc_jump_home']}</td>
+						</tr>
+						<tr>
+							<th><code>Z</code></th>
+							<td>編集をキャンセル</td>
+							<th><code>Q</code></th>
+							<td>{$qm->m['qhm_init']['sc_search']}</td>
+						</tr>
+						<tr>
+							<th><code>{$keybind_for_save}</code></th>
+							<td>{$qm->m['qhm_init']['sc_save']}</td>
+							<th><code>N</code></th>
+							<td>{$qm->m['qhm_init']['sc_newpage']}</td>
+						</tr>
+						<tr>
+							<th><code>A</code></th>
+							<td>{$qm->m['qhm_init']['sc_attach']}</td>
+							<th><code>L</code></th>
+							<td>{$qm->m['qhm_init']['sc_filelist']}</td>
+						</tr>
+						<tr>
+							<th><code>I</code></th>
+							<td>SWFUを開く</td>
+							<th><code>C</code></th>
+							<td>{$qm->m['qhm_init']['sc_jump_settings']}</td>
+						</tr>
+						<tr>
+							<th><code>/</code></th>
+							<td>編集ボックスへフォーカス</td>
+							<th><code>M</code></th>
+							<td>{$qm->m['qhm_init']['sc_open_help']}</td>
+						</tr>
+						<tr>
+							<th><code>ESC</code></th>
+							<td>編集ボックスのフォーカスを外す</td>
+							<th>&nbsp;</th>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<th><code>U</code></th>
+							<td>共有・URL表示</td>
+							<th>&nbsp;</th>
+							<td>&nbsp;</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
-';
+HTML;
 
 	//ページ共有
 	$tweettext = '%TITLE% - '. $_go_url;

@@ -11,7 +11,7 @@
 // PukiWiki version / Copyright / Licence
 
 define('S_VERSION', '1.4.7');
-define('QHM_VERSION', '7.2.7');  //絶対に編集しないで下さい
+define('QHM_VERSION', '7.3.0');  //絶対に編集しないで下さい
 define('QHM_OPTIONS', 'update=download; support=false; banner=true');
 define('S_COPYRIGHT',
 	'powered by <strong><a href="https://haik-cms.jp/">HAIK</a> ' . QHM_VERSION . '</strong><br />' .
@@ -178,6 +178,7 @@ if (! file_exists(UA_INI_FILE) || ! is_readable(UA_INI_FILE)) {
 
 define('UA_NAME', isset($user_agent['name']) ? $user_agent['name'] : '');
 define('UA_VERS', isset($user_agent['vers']) ? $user_agent['vers'] : '');
+define('UA_FULL', isset($user_agent['agent']) ? $user_agent['agent'] : '');
 unset($user_agent);	// Unset after reading UA_INI_FILE
 
 /////////////////////////////////////////////////

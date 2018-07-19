@@ -22,13 +22,13 @@ function lastscript(){
 				title:'ロック解除'
 			});
 	}
-	
+
 	if(parent.document.getElementById('msg')){
 	}
 	else{
 		$("body").append('<style>.editmode{display:none}</style>');
 	}
-	
+
 	if(parent.document.getElementById('wrapper')){
 		$("#qhmtop").css('display','none');
 	}
@@ -63,11 +63,11 @@ function insert_cmd(insert){
 	var browser = 2;
 	if (el.length > 0) {
 		if( el.setSelectionRange ){
-			
+
 		} else if( parent.document.selection.createRange ){
 			browser=1;
 		}
-	}	
+	}
 
 
 	if (browser == 1) { // IE
@@ -79,12 +79,12 @@ function insert_cmd(insert){
 		var body = el.value;
 		var at = parentMsgSelectionStart;
 		var tmp = body.substr(0, at);
-		 
+
 		el.value = tmp + insert + body.substr(at, body.length);
 		var cursor = insert.length + at;
 		el.setSelectionRange(cursor, cursor);
 	}
-		
+
 	if(l != 'true'){
 		self.parent.tb_remove();
 	}
@@ -103,9 +103,9 @@ function insert_val(id){
 }
 
 function toggle_lock(){
-	
+
 	var l = $.cookie('locking');
-	
+
 	if(l == 'true'){
 		$("a#window_lock img")
 			.attr({
@@ -149,7 +149,7 @@ function confirm_page_chg(msg){
 function confirm_page_set(){
 	var el = document.getElementById('new_page');
 	var msg = el.value;
-	
+
 	if(window.confirm("ページ名に「"+msg+"」をセットします。\n"+msg+"編集中に切り替えます")){
 		return true;
 	}
@@ -158,7 +158,7 @@ function confirm_page_set(){
 	}
 }
 
-// !onload function 
+// !onload function
 $(function(){
 	// !File Upload
     $('#file_upload').fileUploadUI({
@@ -186,9 +186,9 @@ $(function(){
         		link = file.path;
         		target = ' target="_blank"';
         	}
-        	
+
         	display_buttons();
-        	
+
             return $('<tr><td class="file_preview">'+ preview +'</td><td><a href="'+ link +'"'+ target +'>' + file.name + '</a><br />'+ file.size +'<\/td><td>'+file.buttons+'</td><\/tr>');
         },
         onDragOver: function() {
@@ -200,9 +200,9 @@ $(function(){
         onDrop: function() {
         	$("#file_upload > div").text("");
         }
-        
+
     });
-    
+
     // !triggers
     $("#openSlideshowBox")
     .each(function(){
@@ -213,7 +213,31 @@ $(function(){
     	$a.nextAll("div.slideshowbox:not(:visible)").show("fast", function(){
     		$a.hide();
     	});
-    	
+
     	return false;
     });
+
+    // keyboard shortcut
+    shortcut.add("u", function(){
+      if ($("#swfu_fileupload").length > 0) {
+        $("#swfu_fileupload").click();
+      } else {
+        location.href = $("#upload_link").attr("href");
+      }
+    }, {
+      disable_in_input: true
+    });
+
+    $(document).keydown(function(e){
+      if (e.keyCode == 27) {
+        if (window.parent) {
+          window.parent.tb_remove();
+        }
+      }
+    });
+
+    // focus
+    setTimeout(function(){
+      $(window).focus();
+    }, 300);
 });

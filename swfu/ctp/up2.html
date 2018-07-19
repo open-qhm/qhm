@@ -38,7 +38,7 @@ if($page_name!='') {
 </p>
 
 <form id="file_upload" action="upload2.php" method="POST" enctype="multipart/form-data">
-    <input type="file" name="file" multiple>
+    <input type="file" name="file" multiple id="swfu_fileupload">
     <button>Upload</button>
     <div></div>
     <input type="hidden" name="page" value="<?php echo h($page_name)?>" />

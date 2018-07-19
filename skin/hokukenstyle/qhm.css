@@ -142,41 +142,6 @@ ul.toolbar_submenu li{
 	margin:0 5px;
 }
 
-
-#shortcut_list {
-	width: 100%;
-	font-size:18px;
-	color:#ddd;
-	line-height: 1.5em;
-	text-align: center;
-	border-top:1px dashed #999;
-	border-bottom:1px dashed #999;
-	background-color:#333;
-	padding:5px;
-	margin-top:0px;
-	position: fixed;
-	top: 80px;
-	left: 0;
-	z-index:40;
-	opacity: 0.85;
-	display:none;
-}
-#shortcut_list a{
-	background:none;
-}
-#shortcut_list table {
-	margin: 0 auto;
-}
-#shortcut_list table thead th {
-	text-align: left;
-}
-#shortcut_list table tbody td {
-	text-align: left;
-}
-#shortcut_list table tbody th {
- 	font-family: monospace;
- 	padding-right:10px;
-}
 #tinyUrl {
 	width: 640px;
 	height: 90px;

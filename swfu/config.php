@@ -299,7 +299,7 @@ function echo_menu($recent_file, $recent_page)
 
 	echo <<<EOD
 <p style="line-height:1.7em;"><font style="font-size:0.9em;"><strong>{$uplink_msg}</strong>{$uplink_msg_after}</font><br />
-<span style="background-color:#eee;border:1px solid #ccc;padding:5px;font-size:12px;font-weight:bold;"><a href="{$uploader}{$uplink_query}">アップロード</a></span></p>
+<span style="background-color:#eee;border:1px solid #ccc;padding:5px;font-size:12px;font-weight:bold;"><a href="{$uploader}{$uplink_query}" id="upload_link">アップロード</a></span></p>
 <br />
 <p id="swfutop"><a href="$top">*&nbsp;トップへ&nbsp;*</a></p>
 <p id="qhmtop"><a href="../">*&nbsp;HAIKトップへ&nbsp;*</a></p>

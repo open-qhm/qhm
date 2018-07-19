@@ -174,26 +174,22 @@ $(document).ready(function(){
 		return false;
 	}
 
-
+	var isWin = (navigator.platform.indexOf('win') != -1);
 	$(document).shortkeys({
-		"g+e": function(){location.href=$("#editlink").attr("href")},
-		"g+p": function(){$("input:submit[name=preview]").click()},
-		"g+s": function(){$("input:submit[name=write]").click()},
-		"g+a": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", "swfu/index_child.php?page='.rawurlencode($vars['page']).'&KeepThis=true&TB_iframe=true");},
-		"g+i": function(){if(typeof window.qhm_has_swfu != "undefined")tb_show("", "swfu/index_child.php?page='.rawurlencode($vars['page']).'&KeepThis=true&TB_iframe=true");},
-		"g+o": function(){if(typeof window.otherplugin != "undefined")otherplugin()},
-		"g+t": function(){$("html,body").animate({scrollTop:0}, "fast")},
-		"g+q": function(){location.href=$("#searchlink").attr("href")},
-		"g+Shift+/": function(){window.open("http://manual.haik-cms.jp/")},
-		"Shift+/": function(){$("#shortcut_list").fadeIn("fast")},
-		"g+n": function(){location.href=$("#newlink").attr("href")},
-		"g+m": function(){location.href=$("#maplink").attr("href")},
-		"g+l": function(){location.href=$("#pagelistlink").attr("href")},
-		"g+f": function(){if(typeof window.qhm_has_fwd3 != "undefined")location.href=$("#fwd3link").attr("href")},
-		"g+c": function(){location.href=$("#configlink").attr("href")},
-		"g+u": function(){$("#shareQHMPage").modal()},
-		"g+h": function(){location.href="index.php"},
-		"g+g": function(){window.open("http://www.google.co.jp/")},
+		"e": function(){location.href=$("#editlink").attr("href")},
+		"p": function(){$("input:submit[name=preview]").click()},
+		"z": function(){$("input:submit[name=cancel]").get(0) && history.back()},
+		"a": function(){if(typeof window.qhm_has_swfu != "undefined"){$("#keybind_list").modal("hide");tb_show("", $("#reflink").attr("href"));}},
+		"i": function(){if(typeof window.qhm_has_swfu != "undefined"){$("#keybind_list").modal("hide");tb_show("", "swfu/index.php?KeepThis=true&TB_iframe=true");}},
+		"t": function(){$("html,body").animate({scrollTop:0}, "fast")},
+		"q": function(){location.href=$("#searchlink").attr("href")},
+		"m": function(){window.open("http://manual.haik-cms.jp/")},
+		"Shift+/": function(){$("#keybind_list").modal()},
+		"n": function(){location.href=$("#newlink").attr("href")},
+		"l": function(){location.href=$("#pagelistlink").attr("href")},
+		"c": function(){location.href=$("#configlink").attr("href")},
+		"u": function(){$("#keybind_list").modal("hide");$("#shareQHMPage").modal()},
+		"h": function(){location.href="index.php"},
 		"/": function(){$("#msg").focus()}
 	});
 	$("#msg").keydown(function(e){
@@ -201,14 +197,19 @@ $(document).ready(function(){
 			$(this).blur();
 		}
 	});
-	$("#shortcut_list a").click(function(){
-		$("#shortcut_list").fadeOut("fast");
-		return false;
+	$(document).keydown(function(e){
+		if ($("#msg").length === 0) return;
+		//Save [Ctrl + S] [Command + S]
+		if (((isWin && e.ctrlKey) || (! isWin && e.metaKey)) && e.keyCode == 83) {
+			e.preventDefault();
+			$("input:submit[name=write]").click();
+		}
 	});
 	$(document).keydown(function(e){
 		if (e.keyCode == 27) {
-			$("#shortcut_list:visible").fadeOut("fast");
+			$("#keybind_list").modal("hide");
 			$("#tinyUrl:visible").fadeOut("fast");
+			$("#shareQHMPage").modal("hide");
 		}
 	});
 
