@@ -394,11 +394,11 @@ function get_buttons($image, $br = true)
 		$past_ard = "#show({$name},aroundr,,{$desc})";
 		$lightbx2 = "&amp;show({$name},lightbox2=group,50%,{$desc});";
 		$greybx = "&amp;show({$name},greybox=group,50%,{$desc});";
+		$colorbox = "&amp;show({$name},colorbox=group,{$desc});";
 
 		$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$past.'\');">'.$btnimg['show'].'</a>'. ($br? ' ': ' ');
 		$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$past_ard.'\');">'.$btnimg['show_ar'].'</a>'. ($br? '<br />': ' ');
-		$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$lightbx2.'\');">'.$btnimg['lbx'].'</a>'. ($br? ' ': ' ');
-		$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$greybx.'\');">'.$btnimg['gbx'].'</a><br />';
+		$buttons .= '<button type="button" onclick="insert_cmd(\''. $colorbox .'\')" style="padding: 4px; margin: 4px 0; background-color: #99ffff; color: black; border-radius: 4px;">Colorbox</button><br />';
 	}
 	/* ビデオファイル */
 	else if( preg_match('/.*(swf|mov|ram|wmv|avi|flv)$/i',$name) ){
