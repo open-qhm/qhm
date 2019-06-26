@@ -396,9 +396,9 @@ function get_buttons($image, $br = true)
 		$greybx = "&amp;show({$name},greybox=group,50%,{$desc});";
 		$colorbox = "&amp;show({$name},colorbox=group,{$desc});";
 
-		$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$past.'\');">'.$btnimg['show'].'</a>'. ($br? ' ': ' ');
-		$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$past_ard.'\');">'.$btnimg['show_ar'].'</a>'. ($br? '<br />': ' ');
-		$buttons .= '<button type="button" onclick="insert_cmd(\''. $colorbox .'\')" style="padding: 4px; margin: 4px 0; background-color: #99ffff; color: black; border-radius: 4px;">Colorbox</button><br />';
+		$buttons .= '<button type="button" onclick="insert_cmd(\''.$past.'\');" class="editmode button-paste">貼り付け</button>'. ($br? ' ': ' ');
+		$buttons .= '<button type="button" onclick="insert_cmd(\''.$past_ard.'\');" class="editmode button-paste">回り込み</button>'. ($br? '<br />': ' ');
+		$buttons .= '<button type="button" onclick="insert_cmd(\''. $colorbox .'\')" class="editmode button-paste">ポップアップ</button><br />';
 	}
 	/* ビデオファイル */
 	else if( preg_match('/.*(swf|mov|ram|wmv|avi|flv)$/i',$name) ){
@@ -412,12 +412,12 @@ function get_buttons($image, $br = true)
 	}
 
 	$past = "&dlbutton({$path});";
-	$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$past.'\');">'.$btnimg['dlbtn'].'</a> ';
+	$buttons .= '<button type="button" onclick="insert_cmd(\''.$past.'\');" class="editmode button-paste">DLボタン</button> ';
 	$past = "&dllink({$path}){ダウンロード};";
-	$buttons .= '<a href="#" class="editmode" onclick="insert_cmd(\''.$past.'\');">'.$btnimg['dllnk'].'</a>';
+	$buttons .= '<button type="button" onclick="insert_cmd(\''.$past.'\');" class="editmode button-paste">DLリンク</button>';
 
 	$past = basename($path);
-	$buttons .= '<br><button type="button" class="editmode btn-filename" onclick="insert_cmd(\''.$past.'\');">'.'ファイル名'.'</buton>';
+	$buttons .= '<br><button type="button" class="editmode button-paste" onclick="insert_cmd(\''.$past.'\');">ファイル名</buton>';
 
 	if ($print) {
 		echo $buttons;

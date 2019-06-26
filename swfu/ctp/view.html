@@ -90,15 +90,19 @@ if ($page_name !== '')
 <table>
   <tr>
     <td style="padding-left: 0;">
-貼り付け
-<input type="text" value="<?php echo $past?>" onclick="this.select();" size="12" readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past?>');"><?php echo $btnimg['ref']?></a>
-<br />
-回り込み
-<input type="text" value="<?php echo $past_ard?>" onclick="this.select();"  size="12"  readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past_ard?>');"><?php echo $btnimg['ref_ard']?></a>
+			<p>
+			貼り付け
+			<input type="text" value="<?php echo $past?>" onclick="this.select();" size="12" readonly="readonly" /> <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past?>');">貼り付け</button>
+			<p>
+			回り込み
+			<input type="text" value="<?php echo $past_ard?>" onclick="this.select();"  size="12"  readonly="readonly" /> <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past_ard?>');">回り込み</button>
+			</p>
     </td>
     <td style="vertical-align: top;">
-colorbox
-<input type="text" value="<?php echo $colorbox?>" onclick="this.select();" size="12"  readonly="readonly" /> <button type="button" onclick="insert_cmd('<?php echo $colorbox ?>')" style="padding: 4px 8px; background-color: #99ffff; color: black; border-radius: 4px;">Colorbox</button><br />
+			<p>
+			colorbox
+			<input type="text" value="<?php echo $colorbox?>" onclick="this.select();" size="12"  readonly="readonly" /> <button type="button" onclick="insert_cmd('<?php echo $colorbox ?>')" class="editmode button-paste is-small">ポップアップ</button><br />
+			</p>
     </td>
   </tr>
 </table>
@@ -141,10 +145,10 @@ $past2 = "&dllink({$path}){ここに表示名、画像};";
 
 <p>ダウンロードボタン<br />
 <input type="text" value="<?php echo $past?>" readonly="readonly" onclick="this.select();" />
- <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past?>');"><?php echo $btnimg['dlbtn']?></a></p>
+ <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past?>');">DLボタン</button></p>
 <p>ダウンロードリンク<br />
 <input type="text" value="<?php echo $past2?>" readonly="readonly" onclick="this.select();" />
- <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past2?>');"><?php echo $btnimg['dllnk']?></a></p>
+ <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past2?>');">DLリンク</button></p>
 <p>URL<br />
 <input type="text" value="<?php echo _getHost().'/'.BASE.SWFU_DATA_DIR.$name?>" onclick="this.select();"   readonly="readonly" /> <a href="<?php echo _getHost().'/'.BASE.SWFU_DATA_DIR.$name?>" target="_blank"><img src="images/out_link.png" alt="別ウインドウで開く" title="別ウインドウで開く" /></a></p>
 <p>Dir<br />
