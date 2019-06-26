@@ -32,7 +32,7 @@ function plugin_social_buttons_convert()
 	$text = ''; //extra text
 	$float = 'right'; //left|right
 
-	$service_list = array('google_plusone', 'twitter', 'facebook_like');
+	$service_list = array('twitter', 'facebook_like');
 
 	$services = array();
 	foreach ($args as $arg)
@@ -48,11 +48,6 @@ function plugin_social_buttons_convert()
 		{
 			$option_str = isset($mts[1]) ? $mts[1] : '';
 			$services['facebook_like'] = plugin_social_buttons_parse_option($option_str);
-		}
-		else if (preg_match('/^(?:google_plusone|gp)(?:=([^,\)]*))?$/', $arg, $mts))
-		{
-			$option_str = isset($mts[1]) ? $mts[1] : '';
-			$services['google_plusone'] = plugin_social_buttons_parse_option($option_str);
 		}
 		else if (in_array($arg, array('h1', 'h2', 'large')))
 		{
@@ -130,25 +125,6 @@ function plugin_social_buttons_convert()
 				$option['show_faces'] ='false';
 				$option['layout'] = $tmp;
 				$option['width'] = isset($option['width']) ? $option['width'] : $width;
-				break;
-			case 'google_plusone':
-				$count = TRUE;
-				//size
-				switch ($layout)
-				{
-					case 'h1':
-						$count = 'false';
-					case 'h2':
-						$tmp = 'medium';
-						break;
-					default: //large
-						$tmp = 'tall';
-				}
-				$option['size'] = $tmp;
-				$option['count'] = $count;
-
-				//lang
-				$option['lang'] = 'ja';
 				break;
 		}
 
