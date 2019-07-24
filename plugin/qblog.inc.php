@@ -1224,10 +1224,9 @@ function plugin_qblog_get_default_ping()
 http://blog.goo.ne.jp/XMLRPC
 http://blogsearch.google.co.jp/ping/RPC2
 http://ping.bloggers.jp/rpc/
-http://ping.blogranking.net/
 http://ping.fc2.com/
-http://ping.namaan.net/rpc/
 http://pingoo.jp/ping/
+http://ping.freeblogranking.com/xmlrpc/
 EOP;
 	return trim($ping);
 }
