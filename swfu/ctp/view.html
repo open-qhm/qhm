@@ -19,6 +19,7 @@ $btnimg = array(
 	'ref_ard' => '<img src="images/btn_ref_around.png" alt="回り込み貼り付け" title="回り込み貼り付けコマンドを挿入" />',
 	'dlbtn' => '<img src="images/btn_dlbutton.png" alt="ダウンロードボタン" title="ダウンロードボタンコマンドを挿入" />',
 	'dllnk' => '<img src="images/btn_dllink.png" alt="ダウンロードリンク" title="ダウンロードリンクコマンドを挿入" />',
+  'cbx' => '<img src="images/btn_colorbox.png" alt="colorbox" title="colorboxコマンドを挿入" />',
 	'lbx' => '<img src="images/btn_lightbx.png" alt="lightbox2" title="lightbox2コマンドを挿入" />',
 	'gbx' => '<img src="images/btn_greybx.png" alt="greybox" title="greyboxコマンドを挿入" />',
 	'video' => '<img src="images/btn_playvideo.png" alt="playvideo" title="playvideoコマンドを挿入" />',
@@ -58,6 +59,7 @@ $btn_dscr = h($image['description']);
 $btn_dscr2 = h(addcslashes($image['description'], "'"));
 $past = "&amp;show({$name},,{$btn_dscr2});";
 $past_ard = "#show({$name},aroundr,{$btn_dscr2})";
+$colorbox = "&amp;show({$name},colorbox=group,{$btn_dscr2});";
 $lightbx2 = "&amp;show({$name},lightbox2=group,50%,{$btn_dscr2});";
 $greybx = "&amp;show({$name},greybox=group,50%,{$btn_dscr2});";
 $mv = "#main_visual({$path})";
@@ -82,35 +84,28 @@ if ($page_name !== '')
 	$api_params[] = 'page='. rawurlencode($page_name);
 }
 ?>
-<table>
-  <tr>
-    <td style="padding-left: 0;">
-貼り付け
-<input type="text" value="<?php echo $past?>" onclick="this.select();" size="12" readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past?>');"><?php echo $btnimg['ref']?></a>
-<br />
-回り込み
-<input type="text" value="<?php echo $past_ard?>" onclick="this.select();"  size="12"  readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past_ard?>');"><?php echo $btnimg['ref_ard']?></a>
-    </td>
-    <td>
-lightbox2
-<input type="text" value="<?php echo $lightbx2?>" onclick="this.select();" size="12"  readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $lightbx2?>');"><?php echo $btnimg['lbx']?></a><br />
-greybox&nbsp;&nbsp;
-<input type="text" value="<?php echo $greybx?>" onclick="this.select();" size="12"  readonly="readonly" /> <a href="#" class="editmode" onclick="insert_cmd('<?php echo $greybx?>');"><?php echo $btnimg['gbx']?></a>
-    </td>
-  </tr>
-</table>
-
-<p>
-	メインビジュアル<br />
-	<input type="text" readonly="readonly" value="<?php echo h($mv)?>" onclick="this.select();" size="20" />
-	<a href="#" class="editmode" onclick="insert_cmd('<?php echo h($mv)?>');"><?php echo $btnimg['mv']?></a><br />
-	ロゴ画像<br />
-	<input type="text" value="<?php echo h($logo)?>" onclick="this.select();" size="20" />
-	<a href="#" class="editmode" onclick="insert_cmd('<?php echo h($logo)?>');"><?php echo $btnimg['logo']?></a><br />
-</p>
 
 <p><img src="d/<?php echo $image['name']?>" title="<?php echo $btn_dscr?>" alt="<?php echo $btn_dscr?>" style="max-width:600px;max-height:600px;" /></p>
 
+<table>
+  <tr>
+    <td style="padding-left: 0;">
+			<p>
+			貼り付け
+			<input type="text" value="<?php echo $past?>" onclick="this.select();" size="12" readonly="readonly" /> <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past?>');">貼り付け</button>
+			<p>
+			回り込み
+			<input type="text" value="<?php echo $past_ard?>" onclick="this.select();"  size="12"  readonly="readonly" /> <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past_ard?>');">回り込み</button>
+			</p>
+    </td>
+    <td style="vertical-align: top;">
+			<p>
+			colorbox
+			<input type="text" value="<?php echo $colorbox?>" onclick="this.select();" size="12"  readonly="readonly" /> <button type="button" onclick="insert_cmd('<?php echo $colorbox ?>')" class="editmode button-paste is-small">ポップアップ</button><br />
+			</p>
+    </td>
+  </tr>
+</table>
 
 <?php }else if( preg_match('/.*(swf|mov|ram|wmv|avi|flv)$/i',$name) ){ ?>
 <!-- ! ==== 動画の場合 ============= -->
@@ -150,10 +145,10 @@ $past2 = "&dllink({$path}){ここに表示名、画像};";
 
 <p>ダウンロードボタン<br />
 <input type="text" value="<?php echo $past?>" readonly="readonly" onclick="this.select();" />
- <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past?>');"><?php echo $btnimg['dlbtn']?></a></p>
+ <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past?>');">DLボタン</button></p>
 <p>ダウンロードリンク<br />
 <input type="text" value="<?php echo $past2?>" readonly="readonly" onclick="this.select();" />
- <a href="#" class="editmode" onclick="insert_cmd('<?php echo $past2?>');"><?php echo $btnimg['dllnk']?></a></p>
+ <button type="button" class="editmode button-paste is-small" onclick="insert_cmd('<?php echo $past2?>');">DLリンク</button></p>
 <p>URL<br />
 <input type="text" value="<?php echo _getHost().'/'.BASE.SWFU_DATA_DIR.$name?>" onclick="this.select();"   readonly="readonly" /> <a href="<?php echo _getHost().'/'.BASE.SWFU_DATA_DIR.$name?>" target="_blank"><img src="images/out_link.png" alt="別ウインドウで開く" title="別ウインドウで開く" /></a></p>
 <p>Dir<br />
