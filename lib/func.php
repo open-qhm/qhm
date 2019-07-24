@@ -129,7 +129,8 @@ function is_qblog($page = NULL)
 		'YYYY' => '\d{4}',
 		'MM'   => '\d{2}',
 		'DD'   => '\d{2}',
-		'#'    => '\d+',
+		'\#'   => '\d+', // PHP7.3 対応 @see https://www.php.net/manual/ja/migration73.other-changes.php#migration73.other-changes.pcre
+		'#'    => '\d+'  // PHP7.2 以下対応
 	);
 	$re = preg_quote($qblog_page_format);
 	$re = str_replace(
