@@ -691,8 +691,8 @@ function socialbutton_hatena_oldstyle(target, options, defaults, index, max_inde
 	url = htmlspecialchars(url);
 
 	var tag = '<span style="font-size: ' + height + 'px; line-height: 100%; ">'
-			+ '<span style="padding-right: ' + padding + 'px"><a href="http://b.hatena.ne.jp/entry/add/' + url + '" target="_blank"><img src="' + button + '" style="border: none; vertical-align: text-bottom" /></a></span>'
-			+ '<a href="http://b.hatena.ne.jp/entry/' + url + '" target="_blank"><img src="http://b.hatena.ne.jp/entry/image/' + url + '" style="border: none; vertical-align: text-bottom" /></a>'
+			+ '<span style="padding-right: ' + padding + 'px"><a href="http://b.hatena.ne.jp/entry/add/' + url + '" target="_blank" rel="noopener"><img src="' + button + '" style="border: none; vertical-align: text-bottom" /></a></span>'
+			+ '<a href="http://b.hatena.ne.jp/entry/' + url + '" target="_blank" rel="noopener"><img src="http://b.hatena.ne.jp/entry/image/' + url + '" style="border: none; vertical-align: text-bottom" /></a>'
 			+ '</span>';
 
 	$(target).html(tag);

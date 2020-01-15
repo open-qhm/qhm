@@ -127,7 +127,7 @@ Quick LikeGate のページへ移動して、確認コードをコピペして�
 				// ntc end
 			}
 			$add_body = '
-Quick LikeGate は<a href="'. PLUGIN_QLG_APP_URL. '" target="_blank">こちら</a>。
+Quick LikeGate は<a href="'. PLUGIN_QLG_APP_URL. '" target="_blank" rel="noopener">こちら</a>。
 ';
 
 			return convert_html($ntc). $add_body;

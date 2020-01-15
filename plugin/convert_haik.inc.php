@@ -114,7 +114,7 @@ EOD;
 </div>
 
 <div class="alert alert-warning">
-  icon プラグインは IcoMoon から <a href="http://getbootstrap.com/components/#glyphicons" title="Bootstrap glyphicons" target="_blank">glyphicon</a>, <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" title="FontAwesome Cheatsheat" target="_blank">font-awesome</a> に変更されました。<br>
+  icon プラグインは IcoMoon から <a href="http://getbootstrap.com/components/#glyphicons" title="Bootstrap glyphicons" target="_blank" rel="noopener">glyphicon</a>, <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" title="FontAwesome Cheatsheat" target="_blank" rel="noopener">font-awesome</a> に変更されました。<br>
   指定したアイコン名によっては表示されなくなる場合があります。
 </div>
 

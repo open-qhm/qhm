@@ -23,10 +23,11 @@ function plugin_otherwin_inline()
 	if (($url == '' && $target == '') || $text == '' || func_num_args() > 3)
 		return PLUGIN_OTHERWIN_USAGE;
     
-    $url = is_url($url) ? $url : 'index.php?'.rawurlencode($url);
-    $target = ($target == '') ? '_blank' : $target;
+	$url = is_url($url) ? $url : 'index.php?'.rawurlencode($url);
+	$target = ($target == '') ? '_blank' : $target;
+	$rel = $target === '_blank' ? 'rel="noopener"' : '';
     
-	$ret = '<a href="' . $url . '" target="'. $target . '" >' . $text . '</a>';
+	$ret = '<a href="' . $url . '" target="'. $target . '" '. $rel .'>' . $text . '</a>';
 	
 	return $ret;
 }

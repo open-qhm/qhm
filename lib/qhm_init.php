@@ -656,7 +656,7 @@ HTML;
         <textarea cols="90" rows="3" class="form-control">'. h($tweettext) .'</textarea>
 		<ol class="help-block">
 			<li><span class="small">内容を編集して投稿できます。<br /><b>%URL%</b> と書くとURLに自動変換されます。</span></li>
-			<li><a href="'. $tweeturl .'" class="shareTwitter btn qhm-btn-primary qhm-btn-sm" data-format="'. h($tweeturl_fmt) .'" data-url="'. h($_go_url) .'" target="_blank">クリックしてTwitterへ投稿</a></li>
+			<li><a href="'. $tweeturl .'" class="shareTwitter btn qhm-btn-primary qhm-btn-sm" data-format="'. h($tweeturl_fmt) .'" data-url="'. h($_go_url) .'" target="_blank" rel="noopener">クリックしてTwitterへ投稿</a></li>
 		</ol>
       </div>
     </div>
@@ -667,7 +667,7 @@ HTML;
 
         <ol class="help-block">
           <li>短縮URLをコピーする。</li>
-          <li><a href="http://www.facebook.com/" class="btn qhm-btn-primary qhm-btn-sm" target="_blank">ここをクリックして、Facebook を開いて投稿</a></li>
+          <li><a href="http://www.facebook.com/" class="btn qhm-btn-primary qhm-btn-sm" target="_blank" rel="noopener">ここをクリックして、Facebook を開いて投稿</a></li>
         </ol>
       </div>
     </div>

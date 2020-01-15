@@ -68,7 +68,7 @@ function plugin_canonical_show_info()
 <div style="border:solid 1px #00e;background-color:#eef;max-width:80%;width:80%;text-align:left;padding:0 1.5em;margin:1em auto;">
   <p>
     <strong>このページは canonical URL が指定されています。</strong><br>
-    <a href="'.h($qt->getv('canonical_url')).'" target="_blank">確認</a>
+    <a href="'.h($qt->getv('canonical_url')).'" target="_blank" rel="noopener">確認</a>
   </p>
 </div>';
         }
@@ -82,7 +82,7 @@ function plugin_canonical_show_info()
   </button>
 
   <strong>このページは canonical URL が指定されています。</strong><br>
-  <a href="'.h($qt->getv('canonical_url')).'" target="_blank" class="btn btn-info">確認</a>
+  <a href="'.h($qt->getv('canonical_url')).'" target="_blank" rel="noopener" class="btn btn-info">確認</a>
 </div>';
         }
     }

@@ -61,7 +61,7 @@ function startvideo_flvplayerlite(url,e,w,h,cnt) {
 		name: "playerlite"
 	};
 
-	e.innerHTML = '<span id="playerlite'+cnt+'">ビデオの再生には、FlashPlayerが必要です。<br /><a href="http://get.adobe.com/jp/flashplayer/otherversions/" target="_blank" title="外部ウィンドウで開きます">こちら</a>より、インストールしてください。<br /><br />iPad、iPhoneの方は、こちらをクリックするとビデオが再生されます。<br /><a href="'+url+'">ビデオを再生する</a>';
+	e.innerHTML = '<span id="playerlite'+cnt+'">ビデオの再生には、FlashPlayerが必要です。<br /><a href="http://get.adobe.com/jp/flashplayer/otherversions/" target="_blank" rel="noopener" title="外部ウィンドウで開きます">こちら</a>より、インストールしてください。<br /><br />iPad、iPhoneの方は、こちらをクリックするとビデオが再生されます。<br /><a href="'+url+'">ビデオを再生する</a>';
 	e.onclick = 'return false';
 	
 	flashvars.vidPath = url;

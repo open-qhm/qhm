@@ -132,7 +132,7 @@ function plugin_fb_root_set_page_js()
 function FB_init_callback() {
 	FB.Canvas.setAutoGrow();
 	//link mod
-	$("#body a:not([href^=#])").attr("target", "_blank")
+	$("#body a:not([href^=#])").attr("target", "_blank").attr("rel", "noopener")
 		.filter("[href*=\'facebook.com\']:not([href*=\'developers.facebook.com\'])").attr("target", "_parent");
 	$("form").append(\'<input type="hidden" name="signed_request" value="'.h($vars['signed_request']).'" /> \');
 }
