@@ -196,7 +196,8 @@ $adcode = array(
 	'utm_source',
 	'gclid',
 	'OVRAW',
-	'__utma'
+	'__utma',
+	'fbclid'
 );
 
 
