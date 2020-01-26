@@ -11,7 +11,7 @@
 // PukiWiki version / Copyright / Licence
 
 define('S_VERSION', '1.4.7');
-define('QHM_VERSION', '7.3.5');  //絶対に編集しないで下さい
+define('QHM_VERSION', '7.3.6');  //絶対に編集しないで下さい
 define('QHM_OPTIONS', 'update=download; support=false; banner=true');
 define('S_COPYRIGHT',
 	'powered by <strong><a href="https://haik-cms.jp/">HAIK</a> ' . QHM_VERSION . '</strong><br />' .
