@@ -1669,7 +1669,8 @@ function qblog_get_newpage($date = NULL)
 		$filename_prefix = encode(substr($newpage, 0, $number_holder_pos));
 		$files = glob(DATA_DIR . $filename_prefix . '*');
 		
-		$pattern = '/^(' . str_replace('#', '(\d+)', preg_quote($newpage)) . ')$/';
+		// PHP7.3 より正規表現において # が特殊文字として扱われる
+		$pattern = '/^(' . str_replace(['\#', '#'], '(\d+)', preg_quote($newpage)) . ')$/';
 		$max = 0;
 		foreach ($files as $file)
 		{
