@@ -368,7 +368,8 @@ Content-Transfer-Encoding: '.$encoding.'
 	 */
 	function mime($str = '', $mail_encode = 'ISO-2022-JP') {
 		mb_internal_encoding($mail_encode);
-		$str = mb_encode_mimeheader($str, $mail_encode, $this->encoding);
+		$str = mb_convert_encoding($str, $mail_encode, $this->encoding);
+		$str = mb_encode_mimeheader($str, $mail_encode, 'B');
 		mb_internal_encoding($this->encoding);
 
 		return $str;
