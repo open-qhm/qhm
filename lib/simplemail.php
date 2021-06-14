@@ -239,6 +239,7 @@ class SimpleMail{
 		}
 
 		$body = str_replace("\r", "", $body);
+		$body = $this->normalize($body);
 		$body = mb_convert_kana($body, "KV");
 		$body = mb_convert_encoding($body, $mail_encode, $this->encoding);
 
@@ -362,13 +363,23 @@ Content-Transfer-Encoding: '.$encoding.'
 		return $ret;
 	}
 
+	// 濁点付きの文字が2文字扱いにならないよう合成する
+	function normalize($str) {
+		if (class_exists('Normalizer')) {
+			$str = Normalizer::normalize($str, Normalizer::FORM_C);
+		}
+		return $str;
+	}
+
 	/**
 	 *   内部エンコードを変えて、mb_encode_mimeheader() をかける
 	 *   長い差し出し人名などに対応（長すぎると消える）
 	 */
 	function mime($str = '', $mail_encode = 'ISO-2022-JP') {
 		mb_internal_encoding($mail_encode);
-		$str = mb_encode_mimeheader($str, $mail_encode, $this->encoding);
+		$str = $this->normalize($str);
+		$str = mb_convert_encoding($str, $mail_encode, $this->encoding);
+		$str = mb_encode_mimeheader($str, $mail_encode, 'B');
 		mb_internal_encoding($this->encoding);
 
 		return $str;
