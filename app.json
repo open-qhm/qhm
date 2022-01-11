@@ -1,5 +1,6 @@
 {
   "name": "qhm",
+  "stack": "heroku-20",
   "scripts": {
   },
   "env": {
