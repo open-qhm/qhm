@@ -20,3 +20,6 @@ vendor
 # Development
 node_modules
 .php-version
+
+# Build
+tmp/*
