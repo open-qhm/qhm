@@ -49,6 +49,13 @@ function plugin_icon_inline()
 		{
 			$icon_options = " {$icon_prefix}{$arg}";
 		}
+		// Bootstrap Icons
+		else if ($arg === 'bootstrap-icons' OR $arg === 'bi')
+		{
+			$icon_base = 'bi';
+			$icon_prefix = $icon_base . '-';
+			plugin_icon_set_bootstrap_icons();
+		}
 		else if ($arg !== '')
 		{
 			$icon_name = $arg;
@@ -86,4 +93,13 @@ HTML;
         $qt->prependv_once('plugin_icon_font_awesome_pseudo_elements', 'beforescript', $extrajs);
     }
 	$qt->appendv_once('plugin_icon_font_awesome', 'beforescript', $js);
+}
+
+function plugin_icon_set_bootstrap_icons()
+{
+	$qt = get_qt();
+	$head = <<<HTML
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+HTML;
+	$qt->appendv_once('plugin_icon_bootstrap_icons', 'beforescript', $head);
 }
