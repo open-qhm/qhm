@@ -1965,7 +1965,8 @@ $(document).ready(function(){
 				.html('<label>'+$$.html()+'</label>')
 					.find("input.cp_popup_prompt")
 					.width(inputWidth)
-					.val(opt.defval);
+					.val(opt.defval)
+					.on('keydown', (e) => { e.stopPropagation() });
 			}
 
 			var css = opt.css || {};
