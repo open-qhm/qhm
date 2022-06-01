@@ -25,6 +25,11 @@ function plugin_icon_inline()
 	$icon_prefix = $icon_base . '-';
 	$icon_name = $icon_options = '';
 
+	if (isset($args[0]) && preg_match('/^<span class="material-symbols-(outlined|rounded|sharp)">(.+)<\/span>$/', $args[0], $matches)) {
+		plugin_icon_set_google_material_icons($matches[1]);
+		return $args[0];
+	}
+
 	foreach ($args as $arg)
 	{
 		if ($arg === 'glyphicon')
@@ -102,4 +107,20 @@ function plugin_icon_set_bootstrap_icons()
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 HTML;
 	$qt->appendv_once('plugin_icon_bootstrap_icons', 'beforescript', $head);
+}
+
+function plugin_icon_set_google_material_icons($type) {
+	$type_capitalized = ucfirst($type);
+	$qt = get_qt();
+	$head = <<<HTML
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+$type_capitalized:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+<style>
+.material-symbols-$type {
+  display: inline-flex;
+  vertical-align: middle;
+	font-size: inherit;
+}
+</style>
+HTML;
+	$qt->appendv_once("plugin_icon_google_material_icons_$type", 'beforescript', $head);
 }
