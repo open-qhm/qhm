@@ -780,6 +780,20 @@ $(document).ready(function(){
 			func: 'cpInsert',
 			value: '&show(,,画像の説明);'
 		},
+		'haikIcon': {
+			caption: 'アイコン',
+			classAttribute: 'qhm-btn qhm-btn-default qhm-btn-sm',
+			func: 'cpDialog',
+			value: [
+				[
+					{msg:'アイコン用HTMLを入力してください（Google Material Icons に対応）',option:{
+						type: 'text',
+						inputWidthRatio: 1,
+						css:{clear:"both"}
+					}}
+				],
+				'&icon(${1});']
+		},
     'haikOl': {
       caption: '番号付き箇条書き',
       classAttribute: 'qhm-btn qhm-btn-default qhm-btn-sm',
@@ -1339,7 +1353,7 @@ $(document).ready(function(){
 		],
 
 		qhmHaik : [
-			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikAttach', 'haikColors', 'haikParts']
+			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikIcon', 'haikAttach', 'haikColors', 'haikParts']
 		],
 
 		//QBlog
@@ -1352,7 +1366,7 @@ $(document).ready(function(){
 			['green', 'lime', 'lightgreen', 'purple', 'magenta', 'pink', 'red', 'orange', 'yellow']
 		],
 		qhmHaikQBlog : [
-			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikAttach'],
+			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikIcon', 'haikAttach'],
 			['haikColors', 'haikParts']
 		],
 
