@@ -790,9 +790,18 @@ $(document).ready(function(){
 						type: 'text',
 						inputWidthRatio: 1,
 						css:{clear:"both"}
+					}},
+					{msg:'<span style="color:#2C48BF">文字色</span>を入力してください',option:{
+						type: 'text',
+						inputWidthRatio: 0.3,
+						css:{clear:"both"}
+					}},
+					{msg:'文字サイズ<span style="font-size:11px">（数値、単位付き指定（ex:2em）、small、largeなど）</span>',option:{
+						type: 'text',
+						inputWidthRatio: 0.3
 					}}
 				],
-				'&icon(${1});']
+				'&deco(${2},${3}){&icon(${1});};']
 		},
     'haikOl': {
       caption: '番号付き箇条書き',
