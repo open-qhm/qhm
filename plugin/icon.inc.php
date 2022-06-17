@@ -24,6 +24,9 @@ function plugin_icon_inline()
 	$icon_base = 'glyphicon';
 	$icon_prefix = $icon_base . '-';
 	$icon_name = $icon_options = '';
+	$icon_text = '';
+
+	$format = '<i class="%s %s%s" aria-hidden="true"></i>';
 
 	if (isset($args[0]) && preg_match('/^<span class="material-symbols-(outlined|rounded|sharp)">(.+)<\/span>$/', $args[0], $matches)) {
 		plugin_icon_set_google_material_icons($matches[1]);
@@ -61,6 +64,17 @@ function plugin_icon_inline()
 			$icon_prefix = $icon_base . '-';
 			plugin_icon_set_bootstrap_icons();
 		}
+		// Google Material Symbols
+		else if (preg_match('/^gms(o|r|s)$/', $arg, $mts)) {
+			$map = [
+				"o" => "outlined",
+				"r" => "rounded",
+				"s" => "sharp"
+			];
+			$icon_base = 'material-symbols-' . $map[$mts[1]];
+			$icon_prefix = '';
+			$format = '<i class="%s">%s</i>';
+		}
 		else if ($arg !== '')
 		{
 			$icon_name = $arg;
@@ -69,7 +83,6 @@ function plugin_icon_inline()
 
 	$icon_name = $icon_prefix.$icon_name;
 
-	$format = '<i class="%s %s%s" aria-hidden="true"></i>';
 	return sprintf($format, h($icon_base), h($icon_name), $icon_options);
 }
 
