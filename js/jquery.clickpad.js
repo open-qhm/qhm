@@ -781,7 +781,7 @@ $(document).ready(function(){
 			value: '&show(,,画像の説明);'
 		},
 		'haikIcon': {
-			caption: 'アイコン',
+			caption: '<i class="fas fa-icons"></i><span class="sr-only">アイコン</span>',
 			classAttribute: 'qhm-btn qhm-btn-default qhm-btn-sm',
 			func: 'cpDialog',
 			value: [
