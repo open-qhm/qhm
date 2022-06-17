@@ -786,9 +786,9 @@ $(document).ready(function(){
 			func: 'cpDialog',
 			value: [
 				[
-					{msg:'アイコン用HTMLを入力してください（Google Material Icons に対応）',option:{
+					{msg:'アイコン用HTMLを入力してください。<br /><strong>対応アイコン</strong><ul style="margin-bottom: 10px"><li><a href="https://fonts.google.com/icons" target="_blank">Google Material Icons</a></li></ul>',option:{
 						type: 'text',
-						inputWidthRatio: 1,
+						inputWidthRatio: 0.9,
 						css:{clear:"both"}
 					}},
 					{msg:'<span style="color:#2C48BF">文字色</span>を入力してください',option:{
