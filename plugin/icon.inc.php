@@ -71,9 +71,11 @@ function plugin_icon_inline()
 				"r" => "rounded",
 				"s" => "sharp"
 			];
-			$icon_base = 'material-symbols-' . $map[$mts[1]];
+			$type = $map[$mts[1]];
+			$icon_base = 'material-symbols-' . $type;
 			$icon_prefix = '';
 			$format = '<i class="%s">%s</i>';
+			plugin_icon_set_google_material_icons($type);
 		}
 		else if ($arg !== '')
 		{
