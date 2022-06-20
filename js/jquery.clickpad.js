@@ -780,6 +780,29 @@ $(document).ready(function(){
 			func: 'cpInsert',
 			value: '&show(,,画像の説明);'
 		},
+		'haikIcon': {
+			caption: '<i class="fas fa-icons"></i><span class="sr-only">アイコン</span>',
+			classAttribute: 'qhm-btn qhm-btn-default qhm-btn-sm',
+			func: 'cpDialog',
+			value: [
+				[
+					{msg:'アイコン用HTMLを入力してください。<br /><strong>対応アイコン</strong><ul style="margin-bottom: 10px"><li><a href="https://fonts.google.com/icons" target="_blank">Google Material Icons</a></li></ul>',option:{
+						type: 'text',
+						inputWidthRatio: 0.9,
+						css:{clear:"both"}
+					}},
+					{msg:'<span style="color:#2C48BF">文字色</span>を入力してください',option:{
+						type: 'text',
+						inputWidthRatio: 0.3,
+						css:{clear:"both"}
+					}},
+					{msg:'文字サイズ<span style="font-size:11px">（数値、単位付き指定（ex:2em）、small、largeなど）</span>',option:{
+						type: 'text',
+						inputWidthRatio: 0.3
+					}}
+				],
+				'&deco(${2},${3}){&icon(${1});};']
+		},
     'haikOl': {
       caption: '番号付き箇条書き',
       classAttribute: 'qhm-btn qhm-btn-default qhm-btn-sm',
@@ -1339,7 +1362,7 @@ $(document).ready(function(){
 		],
 
 		qhmHaik : [
-			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikAttach', 'haikColors', 'haikParts']
+			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikIcon', 'haikAttach', 'haikColors', 'haikParts']
 		],
 
 		//QBlog
@@ -1352,7 +1375,7 @@ $(document).ready(function(){
 			['green', 'lime', 'lightgreen', 'purple', 'magenta', 'pink', 'red', 'orange', 'yellow']
 		],
 		qhmHaikQBlog : [
-			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikAttach'],
+			['haikHeader', 'haikB', 'haikHandline', 'haikDecop', 'haikBr', 'haikHr', 'haikLink', 'haikUl', 'haikLeft', 'haikCenter', 'haikRight', 'haikIcon', 'haikAttach'],
 			['haikColors', 'haikParts']
 		],
 
