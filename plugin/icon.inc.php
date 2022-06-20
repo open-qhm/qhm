@@ -28,7 +28,7 @@ function plugin_icon_inline()
 
 	$format = '<i class="%s %s%s" aria-hidden="true"></i>';
 
-	if (isset($args[0]) && preg_match('/^<span class="material-symbols-(outlined|rounded|sharp)">(.+)<\/span>$/', $args[0], $matches)) {
+	if (isset($args[0]) && preg_match('/^<span class="material-symbols-(outlined|rounded|sharp)">\s*(\w+)\s*<\/span>$/', $args[0], $matches)) {
 		plugin_icon_set_google_material_icons($matches[1]);
 		return $args[0];
 	}
