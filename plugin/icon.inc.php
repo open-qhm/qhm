@@ -29,7 +29,7 @@ function plugin_icon_inline()
 	$format = '<i class="%s %s%s" aria-hidden="true"></i>';
 
 	if (isset($args[0]) && preg_match('/^<span class="material-symbols-(outlined|rounded|sharp)">\s*(\w+)\s*<\/span>$/', $args[0], $matches)) {
-		plugin_icon_set_google_material_icons($matches[1]);
+		plugin_icon_set_google_material_symbols($matches[1]);
 		return $args[0];
 	}
 
@@ -75,7 +75,7 @@ function plugin_icon_inline()
 			$icon_base = 'material-symbols-' . $type;
 			$icon_prefix = '';
 			$format = '<i class="%s">%s</i>';
-			plugin_icon_set_google_material_icons($type);
+			plugin_icon_set_google_material_symbols($type);
 		}
 		else if ($arg !== '')
 		{
@@ -124,7 +124,7 @@ HTML;
 	$qt->appendv_once('plugin_icon_bootstrap_icons', 'beforescript', $head);
 }
 
-function plugin_icon_set_google_material_icons($type) {
+function plugin_icon_set_google_material_symbols($type) {
 	$type_capitalized = ucfirst($type);
 	$qt = get_qt();
 	$head = <<<HTML
