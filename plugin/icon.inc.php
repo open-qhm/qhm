@@ -82,6 +82,21 @@ function plugin_icon_inline()
 			$format = '<i class="%s">%s</i>';
 			plugin_icon_set_google_material_symbols($type);
 		}
+		// Google Material Icons
+		else if (preg_match('/^gmi(o|f|r|s|tt)$/', $arg, $mts)) {
+			$map = [
+				"o" => "outlined",
+				"f" => "filled",
+				"r" => "round",
+				"s" => "sharp",
+				"tt" => "two-tone"
+			];
+			$type = $map[$mts[1]];
+			$icon_base = $type === 'filled' ? 'material-icons' : 'material-icons-' . $type;
+			$icon_prefix = '';
+			$format = '<i class="%s">%s</i>';
+			plugin_icon_set_google_material_icons($type);
+		}
 		else if ($arg !== '')
 		{
 			$icon_name = $arg;
