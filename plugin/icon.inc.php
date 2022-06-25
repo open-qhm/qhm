@@ -32,6 +32,11 @@ function plugin_icon_inline()
 		plugin_icon_set_google_material_symbols($matches[1]);
 		return $args[0];
 	}
+	if (isset($args[0]) && preg_match('/^<span class="material-icons(?:-(outlined|round|sharp|two-tone))?">\s*(\w+)\s*<\/span>$/', $args[0], $matches)) {
+		$type = isset($matches[1]) ? $matches[1] : 'filled';
+		plugin_icon_set_google_material_icons($type);
+		return $args[0];
+	}
 
 	foreach ($args as $arg)
 	{
@@ -131,6 +136,30 @@ function plugin_icon_set_google_material_symbols($type) {
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+$type_capitalized:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
 <style>
 .material-symbols-$type {
+  display: inline-flex;
+  vertical-align: middle;
+	font-size: inherit;
+}
+</style>
+HTML;
+	$qt->appendv_once("plugin_icon_google_material_symbols_$type", 'beforescript', $head);
+}
+
+function plugin_icon_set_google_material_icons($type) {
+	$map = [
+		"outlined" => "+Outlined",
+		"filled" => "",
+		"round" => "+Round",
+		"sharp" => "+Sharp",
+		"two-tone" => "+Two+Tone"
+	];
+	$additional_query = $map[$type];
+	$qt = get_qt();
+	$head = <<<HTML
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons$additional_query" rel="stylesheet">
+<style>
+.material-icons,
+.material-icons-$type {
   display: inline-flex;
   vertical-align: middle;
 	font-size: inherit;
