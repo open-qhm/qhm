@@ -1,8 +1,8 @@
 <?php
 // PukiWiki - Yet another WikiWikiWeb clone.
-// $Id: default.ini.php,v 1.25 2005/12/20 14:04:40 henoheno Exp $
-// Copyright (C)
-//   2003-2005 PukiWiki Developers Team
+// default.ini.php - CVE-2022-36350 version for PukiWiki 1.4.7-1.5.1
+// Copyright
+//   2003-2022 PukiWiki Development Team
 //   2001-2002 Originally written by yu-ji
 // License: GPL v2 or (at your option) any later version
 //
@@ -111,10 +111,13 @@ $usefacemark = 1;
 /////////////////////////////////////////////////
 // ユーザ定義ルール(コンバート時に置換)
 $line_rules = array(
-	'COLOR\(([^\(\)]*)\){([^}]*)}'	=> '<span style="color:$1">$2</span>',
-	'SIZE\(([^\(\)]*)\){([^}]*)}'	=> '<span style="font-size:$1px">$2</span>',
-	'COLOR\(([^\(\)]*)\):((?:(?!COLOR\([^\)]+\)\:).)*)'	=> '<span style="color:$1">$2</span>',
-	'SIZE\(([^\(\)]*)\):((?:(?!SIZE\([^\)]+\)\:).)*)'	=> '<span class="size$1">$2</span>',
+	'COLOR\(((?:[a-zA-Z]{1,20})|(?:#[0-9a-fA-F]{3,6}))\){([^}]*)}'
+		=> '<span style="color:$1">$2</span>',
+	'SIZE\((\d{1,2})\){([^}]*)}' => '<span style="font-size:$1px">$2</span>',
+	'COLOR\(((?:[a-zA-Z]{1,20})|(?:#[0-9a-fA-F]{3,6}))\):((?:(?!COLOR\([^\)]+\)\:).)*)'
+		=> '<span style="color:$1">$2</span>',
+	// "SIZE(n):" PukiWiki 1.3 compatible notation
+	'SIZE\(([1-7])\):((?:(?!SIZE\([^\)]+\)\:).)*)' => '<span class="size$1">$2</span>',
 	'%%%(?!%)((?:(?!%%%).)*)%%%'	=> '<ins>$1</ins>',
 	'%%(?!%)((?:(?!%%).)*)%%'	=> '<del>$1</del>',
 	"'''(?!')((?:(?!''').)*)'''"	=> '<em>$1</em>',
