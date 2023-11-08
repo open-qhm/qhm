@@ -262,7 +262,7 @@ window.onload = function() {
  			|| location.port != '{$server_port}'
  			|| location.pathname != '{$script_name}' ) {
 
- 		var href = location.href.replace(location.search, '');
+		var href = location.href.replace(location.search, '').replace(location.hash, '');
 
  		if(! href.match(/\.php$/)){
  			href += 'index.php';
