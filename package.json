@@ -1,6 +1,7 @@
 {
   "name": "qhm",
   "scripts": {
+    "dev:clickpad": "esbuild js/clickpad/jquery.clickpad.js --bundle --watch --sourcemap --outfile=js/jquery.clickpad.js"
   },
   "devDependencies": {
     "esbuild": "0.20.0"
