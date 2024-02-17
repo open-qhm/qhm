@@ -143,6 +143,8 @@ if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
 <!--[if IE 6]><script type="text/javascript" src="js/fixed.js"></script><![endif]-->
 <script type="text/javascript" src="js/thickbox.js"></script>
 <script type="text/javascript" src="js/jquery.clickpad.js{$refleshjs}"></script>
+<script type="text/javascript" src="js/clickpad2.js{$refleshjs}"></script>
+<link rel="stylesheet" href="js/clickpad2/clickpad2.css{$refreshjs}">
 <script type="text/javascript" src="js/jquery.exnote.js"></script>
 <script type="text/javascript" src="js/jquery.shortkeys.js"></script>
 <script type="text/javascript" src="js/jquery.edit.js"></script>
@@ -151,8 +153,7 @@ if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
 $(function(){
   // clickpad
   if($("#msg").length) {
-    $("#msg").clickpad({buttons:"{$btnset_name}",autoGrow:false})
-      .data("original", $("#msg").val());
+    $("#msg").data("original", $("#msg").val());
 
 		otherplugin = function(){
 {$op_func}
