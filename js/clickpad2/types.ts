@@ -1,5 +1,5 @@
 export type ButtonData = Record<string, ButtonDefinition>
-type ButtonDefinition = {
+export type ButtonDefinition = {
   caption: string
 } & (InsertButtonVariant | WrapButtonVariant | DialogButtonVariant | EvalButtonVariant)
 type Style = Record<string, string>
