@@ -1,7 +1,7 @@
 export type ButtonData = Record<string, ButtonDefinition>
 export type ButtonDefinition = {
   caption: string
-} & (InsertButtonVariant | WrapButtonVariant | DialogButtonVariant | EvalButtonVariant)
+} & (InsertButtonVariant | WrapButtonVariant | DialogButtonVariant)
 type Style = Record<string, string>
 
 type InsertButtonVariant = {
@@ -18,8 +18,7 @@ type WrapButtonVariant = {
 type DialogButtonVariant = {
   variant: "dialog"
   dialog: Dialog
-  prefix: string
-  suffix?: string
+  value: string
 }
 type Dialog = string | DialogSetting[]
 type DialogSetting = string | {
@@ -33,6 +32,7 @@ type DialogOptionTextVariant = {
   type: "text"
   width: string | number
   defaultValue?: string
+  useSelection?: boolean
 }
 type DialogOptionCheckboxVariant = {
   type: "checkbox"
@@ -45,9 +45,4 @@ type DialogOptionSelectionVariant = {
     value: string
     checked: boolean
   }[]
-}
-
-type EvalButtonVariant = {
-  script: string
-  replace?: Record<string, string>
 }
