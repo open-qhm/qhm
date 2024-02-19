@@ -61,12 +61,25 @@
       variant: "insert",
       value: "\n*** "
     },
-    // TODO: dialog
     "link": {
       caption: "\u30EA\u30F3\u30AF",
-      variant: "wrap",
-      prefix: "[[",
-      suffix: "]]"
+      variant: "dialog",
+      dialog: [
+        {
+          message: "\u30EA\u30F3\u30AF\u540D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+          option: {
+            type: "text",
+            useSelection: true
+          }
+        },
+        {
+          message: "\u30EA\u30F3\u30AF\u5148\uFF08\u30DA\u30FC\u30B8\u540D, URL\uFF09\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+          option: {
+            type: "text"
+          }
+        }
+      ],
+      value: "[[${1}>${2}]]"
     },
     "bold": {
       caption: "\u592A\u5B57",
@@ -180,6 +193,72 @@
   };
   var buttonNames = Object.keys(buttonData);
 
+  // js/clickpad2/variant-dialog.js
+  var makeButtonVariantDialog = (buttonId, buttonDefinition) => {
+    if (buttonDefinition.variant !== "dialog") {
+      throw new Error("variant is not dialog");
+    }
+    const button = document.createElement("button");
+    button.classList.add("clickpad2__pallet-button");
+    button.dataset.id = buttonId;
+    button.dataset.variant = "dialog";
+    button.textContent = buttonDefinition.caption;
+    button.type = "button";
+    button.onclick = () => {
+      const dialog = document.createElement("dialog");
+      dialog.classList.add("clickpad2__dialog");
+      const content = document.createElement("div");
+      content.classList.add("clickpad2__dialog-content");
+      buttonDefinition.dialog.forEach(({ message, option }) => {
+        const label = document.createElement("label");
+        label.textContent = message;
+        content.appendChild(label);
+        const input = document.createElement("input");
+        input.onkeydown = (e) => {
+          e.stopPropagation();
+        };
+        input.type = option.type;
+        if (option.useSelection) {
+          const textarea = document.querySelector("#msg");
+          const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+          input.value = selectedText;
+        }
+        content.appendChild(input);
+      });
+      dialog.appendChild(content);
+      const close = document.createElement("button");
+      close.type = "button";
+      close.textContent = "\u9589\u3058\u308B";
+      close.onclick = () => {
+        dialog.close();
+      };
+      dialog.appendChild(close);
+      const insert = document.createElement("button");
+      insert.type = "button";
+      insert.textContent = "\u633F\u5165";
+      insert.onclick = () => {
+        const textarea = document.querySelector("#msg");
+        const { selectionStart, selectionEnd } = textarea;
+        const selectedText = textarea.value.substring(selectionStart, selectionEnd);
+        const textBefore = textarea.value.substring(0, selectionStart);
+        const textAfter = textarea.value.substring(selectionEnd);
+        let insertText = buttonDefinition.value;
+        content.querySelectorAll("input").forEach((input, index) => {
+          insertText = insertText.replace(`\${${index + 1}}`, input.value);
+        });
+        insertText = insertText.replace("${selection}", selectedText);
+        textarea.value = textBefore + insertText + textAfter;
+        textarea.setSelectionRange(selectionStart, selectionStart + insertText.length);
+        dialog.close();
+        textarea.focus();
+      };
+      dialog.appendChild(insert);
+      document.body.appendChild(dialog);
+      dialog.showModal();
+    };
+    return button;
+  };
+
   // js/clickpad2/variant-insert.js
   var makeButtonVariantInsert = (buttonId, buttonDefinition) => {
     if (buttonDefinition.variant !== "insert") {
@@ -198,6 +277,30 @@
       const textAfter = textarea.value.substring(cursorPos);
       textarea.value = textBefore + buttonDefinition.value + textAfter;
       textarea.setSelectionRange(cursorPos + buttonDefinition.value.length, cursorPos + buttonDefinition.value.length);
+      textarea.focus();
+    };
+    return button;
+  };
+
+  // js/clickpad2/variant-wrap.js
+  var makeButtonVariantWrap = (buttonId, buttonDefinition) => {
+    if (buttonDefinition.variant !== "wrap") {
+      throw new Error("variant is not wrap");
+    }
+    const button = document.createElement("button");
+    button.classList.add("clickpad2__pallet-button");
+    button.dataset.id = buttonId;
+    button.dataset.variant = "wrap";
+    button.textContent = buttonDefinition.caption;
+    button.type = "button";
+    button.onclick = () => {
+      const textarea = document.querySelector("#msg");
+      const { selectionStart, selectionEnd } = textarea;
+      const textBefore = textarea.value.substring(0, selectionStart);
+      const textSelected = textarea.value.substring(selectionStart, selectionEnd);
+      const textAfter = textarea.value.substring(selectionEnd);
+      textarea.value = textBefore + buttonDefinition.prefix + textSelected + buttonDefinition.suffix + textAfter;
+      textarea.setSelectionRange(selectionStart, selectionEnd + buttonDefinition.prefix.length + buttonDefinition.suffix.length);
       textarea.focus();
     };
     return button;
@@ -227,15 +330,14 @@
       pallet.appendChild(rowElem);
       row.forEach((buttonId) => {
         const buttonDefinition = buttonData[buttonId];
-        if (buttonDefinition.variant !== "insert") {
-          const button = document.createElement("button");
-          button.classList.add("clickpad2__pallet-button");
-          button.dataset.id = buttonId;
-          button.textContent = buttonData[buttonId].caption;
-          button.type = "button";
-          rowElem.appendChild(button);
-        } else {
+        if (buttonDefinition.variant === "insert") {
           const button = makeButtonVariantInsert(buttonId, buttonDefinition);
+          rowElem.appendChild(button);
+        } else if (buttonDefinition.variant === "wrap") {
+          const button = makeButtonVariantWrap(buttonId, buttonDefinition);
+          rowElem.appendChild(button);
+        } else if (buttonDefinition.variant === "dialog") {
+          const button = makeButtonVariantDialog(buttonId, buttonDefinition);
           rowElem.appendChild(button);
         }
       });

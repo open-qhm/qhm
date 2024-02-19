@@ -1,5 +1,7 @@
 import { buttonData } from './buttonData'
+import { makeButtonVariantDialog } from './variant-dialog'
 import { makeButtonVariantInsert } from './variant-insert'
+import { makeButtonVariantWrap } from './variant-wrap'
 
 const pallets = [
   ['add-image'],
@@ -28,15 +30,14 @@ export function showPallet(textarea) {
 
     row.forEach((buttonId) => {
       const buttonDefinition = buttonData[buttonId]
-      if (buttonDefinition.variant !== 'insert') {
-        const button = document.createElement('button')
-        button.classList.add('clickpad2__pallet-button')
-        button.dataset.id = buttonId
-        button.textContent = buttonData[buttonId].caption
-        button.type = 'button'
-        rowElem.appendChild(button)
-      } else {
+      if (buttonDefinition.variant === 'insert') {
         const button = makeButtonVariantInsert(buttonId, buttonDefinition)
+        rowElem.appendChild(button)
+      } else if (buttonDefinition.variant === 'wrap') {
+        const button = makeButtonVariantWrap(buttonId, buttonDefinition)
+        rowElem.appendChild(button)
+      } else if (buttonDefinition.variant === 'dialog') {
+        const button = makeButtonVariantDialog(buttonId, buttonDefinition)
         rowElem.appendChild(button)
       }
     })

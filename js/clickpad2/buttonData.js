@@ -60,12 +60,26 @@ export const buttonData = {
     variant: 'insert',
     value: '\n*** ',
   },
-  // TODO: dialog
   'link': {
     caption: 'リンク',
-    variant: 'wrap',
-    prefix: '[[',
-    suffix: ']]'
+    variant: 'dialog',
+    dialog: [
+      {
+        message: 'リンク名を入力してください。',
+        option: {
+          type: 'text',
+          useSelection: true
+        }
+      },
+      {
+        message: 'リンク先（ページ名, URL）を入力してください。',
+        option: {
+          type: 'text',
+        }
+      }
+    ],
+    value: '[[${1}>${2}]]',
+
   },
   'bold': {
     caption: '太字',
