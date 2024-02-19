@@ -207,13 +207,18 @@
     button.onclick = () => {
       const dialog = document.createElement("dialog");
       dialog.classList.add("clickpad2__dialog");
+      const form = document.createElement("form");
       const content = document.createElement("div");
       content.classList.add("clickpad2__dialog-content");
-      buttonDefinition.dialog.forEach(({ message, option }) => {
+      buttonDefinition.dialog.forEach(({ message, option }, index) => {
+        const wrapper = document.createElement("div");
+        const id = `dialog-control-${index + 1}`;
         const label = document.createElement("label");
         label.textContent = message;
+        label.htmlFor = id;
         content.appendChild(label);
         const input = document.createElement("input");
+        input.id = id;
         input.onkeydown = (e) => {
           e.stopPropagation();
         };
@@ -223,20 +228,24 @@
           const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
           input.value = selectedText;
         }
-        content.appendChild(input);
+        wrapper.appendChild(input);
+        content.appendChild(wrapper);
       });
-      dialog.appendChild(content);
+      form.appendChild(content);
+      dialog.appendChild(form);
       const close = document.createElement("button");
       close.type = "button";
       close.textContent = "\u9589\u3058\u308B";
       close.onclick = () => {
         dialog.close();
+        document.querySelector("#msg").focus();
       };
       dialog.appendChild(close);
       const insert = document.createElement("button");
-      insert.type = "button";
+      insert.type = "submit";
       insert.textContent = "\u633F\u5165";
-      insert.onclick = () => {
+      insert.onclick = (e) => {
+        e.preventDefault();
         const textarea = document.querySelector("#msg");
         const { selectionStart, selectionEnd } = textarea;
         const selectedText = textarea.value.substring(selectionStart, selectionEnd);
@@ -252,9 +261,12 @@
         dialog.close();
         textarea.focus();
       };
-      dialog.appendChild(insert);
+      form.appendChild(insert);
       document.body.appendChild(dialog);
       dialog.showModal();
+      dialog.onclose = () => {
+        dialog.remove();
+      };
     };
     return button;
   };

@@ -18,13 +18,21 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
     const dialog = document.createElement('dialog')
     dialog.classList.add('clickpad2__dialog')
     // dialog の中身を生成する
+    // form で囲む
+    const form = document.createElement('form')
+
     const content = document.createElement('div')
     content.classList.add('clickpad2__dialog-content')
-    buttonDefinition.dialog.forEach(({ message, option }) => {
+    buttonDefinition.dialog.forEach(({ message, option }, index) => {
+      const wrapper = document.createElement('div')
+
+      const id = `dialog-control-${index + 1}`
       const label = document.createElement('label')
       label.textContent = message
+      label.htmlFor = id
       content.appendChild(label)
       const input = document.createElement('input')
+      input.id = id
       input.onkeydown = (e) => {
         e.stopPropagation()
       }
@@ -34,9 +42,11 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
         const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)
         input.value = selectedText
       }
-      content.appendChild(input)
+      wrapper.appendChild(input)
+      content.appendChild(wrapper)
     })
-    dialog.appendChild(content)
+    form.appendChild(content)
+    dialog.appendChild(form)
 
     // 閉じるボタンを生成する
     const close = document.createElement('button')
@@ -44,14 +54,16 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
     close.textContent = '閉じる'
     close.onclick = () => {
       dialog.close()
+      document.querySelector('#msg').focus()
     }
     dialog.appendChild(close)
 
     // 挿入ボタンを生成する
     const insert = document.createElement('button')
-    insert.type = 'button'
+    insert.type = 'submit'
     insert.textContent = '挿入'
-    insert.onclick = () => {
+    insert.onclick = (e) => {
+      e.preventDefault()
       const textarea = document.querySelector('#msg')
       const { selectionStart, selectionEnd } = textarea
       const selectedText = textarea.value.substring(selectionStart, selectionEnd)
@@ -68,13 +80,16 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
       dialog.close()
       textarea.focus()
     }
-    dialog.appendChild(insert)
+    form.appendChild(insert)
 
     // dialog を body に追加する
     document.body.appendChild(dialog)
 
     // dialog を表示する
     dialog.showModal()
+    dialog.onclose = () => {
+      dialog.remove()
+    }
   }
 
   return button
