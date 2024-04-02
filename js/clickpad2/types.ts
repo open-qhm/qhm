@@ -1,7 +1,11 @@
 export type ButtonData = Record<string, ButtonDefinition>
 export type ButtonDefinition = {
   caption: string
-} & (InsertButtonVariant | WrapButtonVariant | DialogButtonVariant)
+  cover?: CoverOption
+} & (
+  InsertButtonVariant | WrapButtonVariant | DialogButtonVariant
+)
+
 type Style = Record<string, string>
 
 type InsertButtonVariant = {
@@ -46,3 +50,18 @@ type DialogOptionSelectionVariant = {
     checked: boolean
   }[]
 }
+
+type IconCover = {
+  kind: "icon"
+  provider: "google"
+  name: string
+}
+type ColorCover = {
+  kind: "color"
+  color: string
+}
+type TextCover = {
+  kind: "text"
+  text: string
+}
+export type CoverOption = IconCover | ColorCover | TextCover

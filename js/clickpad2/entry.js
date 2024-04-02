@@ -1,4 +1,5 @@
-import { buttonData } from './buttonData'
+import { coverButton } from './button-cover'
+import { buttonData } from './button-data'
 import { makeButtonVariantDialog } from './variant-dialog'
 import { makeButtonVariantInsert } from './variant-insert'
 import { makeButtonVariantWrap } from './variant-wrap'
@@ -30,16 +31,15 @@ export function showPallet(textarea) {
 
     row.forEach((buttonId) => {
       const buttonDefinition = buttonData[buttonId]
+      let button
       if (buttonDefinition.variant === 'insert') {
-        const button = makeButtonVariantInsert(buttonId, buttonDefinition)
-        rowElem.appendChild(button)
+        button = makeButtonVariantInsert(buttonId, buttonDefinition)
       } else if (buttonDefinition.variant === 'wrap') {
-        const button = makeButtonVariantWrap(buttonId, buttonDefinition)
-        rowElem.appendChild(button)
+        button = makeButtonVariantWrap(buttonId, buttonDefinition)
       } else if (buttonDefinition.variant === 'dialog') {
-        const button = makeButtonVariantDialog(buttonId, buttonDefinition)
-        rowElem.appendChild(button)
+        button = makeButtonVariantDialog(buttonId, buttonDefinition)
       }
+      rowElem.appendChild(coverButton(button, buttonDefinition.cover))
     })
   })
 }

@@ -135,6 +135,9 @@ if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
     {
         $btnset_name = is_qblog() ? 'qhmHaikQBlog' : 'qhmHaik';
     }
+		if (exist_plugin('icon')) {
+				plugin_icon_set_google_material_icons("outlined");
+		}
 
     $refleshjs = '?'.QHM_VERSION;
 
