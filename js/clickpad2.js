@@ -356,16 +356,68 @@
         name: "html"
       }
     },
-    // TODO: dialog
     "label": {
       caption: "\u30E9\u30D9\u30EB",
-      variant: "insert",
-      value: "&label(label);",
+      variant: "dialog",
+      value: "&label(${2}){${1}};",
       cover: {
         kind: "icon",
         provider: "google",
         name: "pin"
-      }
+      },
+      dialog: [
+        {
+          message: "\u8868\u793A\u6587\u5B57",
+          option: {
+            type: "text",
+            useSelection: true
+          }
+        },
+        {
+          message: "\u8272",
+          option: {
+            type: "radio",
+            values: [
+              {
+                label: "\u7070\u8272",
+                color: "#777777",
+                value: "",
+                checked: true
+              },
+              {
+                label: "\u6C34\u8272",
+                color: "#5bc0de",
+                value: "info",
+                checked: false
+              },
+              {
+                label: "\u9752",
+                color: "#337ab7",
+                value: "primary",
+                checked: false
+              },
+              {
+                label: "\u7DD1",
+                color: "#5cb85c",
+                value: "success",
+                checked: false
+              },
+              {
+                label: "\u9EC4",
+                color: "#f0ad4e",
+                value: "warning",
+                checked: false
+              },
+              {
+                label: "\u8D64",
+                color: "#d9534f",
+                value: "danger",
+                checked: false
+              }
+            ]
+          }
+        }
+      ]
     },
     // TODO: dialog
     "icon": {

@@ -331,16 +331,68 @@ export const buttonData = {
       name: "html"
     }
   },
-  // TODO: dialog
   'label': {
     caption: 'ラベル',
-    variant: 'insert',
-    value: '&label(label);',
+    variant: 'dialog',
+    value: '&label(${2}){${1}};',
     cover: {
       kind: "icon",
       provider: "google",
       name: "pin"
-    }
+    },
+    dialog: [
+      {
+        message: '表示文字',
+        option: {
+          type: 'text',
+          useSelection: true
+        }
+      },
+      {
+        message: '色',
+        option: {
+          type: 'radio',
+          values: [
+            {
+              label: '灰色',
+              color: '#777777',
+              value: '',
+              checked: true,
+            },
+            {
+              label: '水色',
+              color: '#5bc0de',
+              value: 'info',
+              checked: false,
+            },
+            {
+              label: '青',
+              color: '#337ab7',
+              value: 'primary',
+              checked: false,
+            },
+            {
+              label: '緑',
+              color: '#5cb85c',
+              value: 'success',
+              checked: false,
+            },
+            {
+              label: '黄',
+              color: '#f0ad4e',
+              value: 'warning',
+              checked: false,
+            },
+            {
+              label: '赤',
+              color: '#d9534f',
+              value: 'danger',
+              checked: false,
+            }
+          ]
+        }
+      }
+    ]
   },
   // TODO: dialog
   'icon': {
