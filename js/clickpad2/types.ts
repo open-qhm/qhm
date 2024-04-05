@@ -44,9 +44,13 @@ type DialogOptionCheckboxVariant = {
 }
 type DialogOptionSelectionVariant = {
   type: "radio" | "select"
-  values: {
+  values: ({
     label: string
     color?: string
+  } | {
+    label: string
+    labelStyle: Style
+  }) & {
     value: string
     checked: boolean
   }[]
