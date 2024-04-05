@@ -27,23 +27,100 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
       const wrapper = document.createElement('div')
 
       const id = `dialog-control-${index + 1}`
-      const label = document.createElement('label')
-      label.textContent = message
-      label.htmlFor = id
-      content.appendChild(label)
-      const input = document.createElement('input')
-      input.id = id
-      input.onkeydown = (e) => {
-        e.stopPropagation()
+
+      switch (option.type) {
+        case 'text': {
+          const label = document.createElement('label')
+          label.textContent = message
+          label.htmlFor = id
+          content.appendChild(label)
+          const input = document.createElement('input')
+          input.id = id
+          input.name = id
+          input.onkeydown = (e) => {
+            e.stopPropagation()
+          }
+          input.type = 'text'
+          if (option.useSelection) {
+            const textarea = document.querySelector('#msg')
+            const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)
+            input.value = selectedText
+          }
+          wrapper.appendChild(input)
+          content.appendChild(wrapper)
+          break
+        }
+        case 'checkbox': {
+          const label = document.createElement('label')
+          label.textContent = message
+          label.htmlFor = id
+          content.appendChild(label)
+          const input = document.createElement('input')
+          input.id = id
+          input.name = id
+          input.type = 'checkbox'
+          wrapper.appendChild(input)
+          content.appendChild(wrapper)
+          break
+        }
+        case 'radio': {
+          const label = document.createElement('label')
+          label.textContent = message
+          content.appendChild(label)
+
+          // option.values ごとに label>input を生成する
+          option.values.forEach(({ label, color, value, checked }, index2) => {
+            const _id = `${id}-${index2 + 1}`
+            const labelElement = document.createElement('label')
+            const input = document.createElement('input')
+            input.id = _id
+            input.type = 'radio'
+            input.name = id
+            input.value = value
+            input.checked = checked
+            labelElement.appendChild(input)
+            if (color !== undefined) {
+              // 色名をlabel, color を背景色にする
+              const colorBox = document.createElement('span')
+              colorBox.title = label
+              colorBox.style.backgroundColor = color
+              colorBox.style.aspectRatio = '1 / 1'
+              colorBox.style.display = 'inline-block'
+              colorBox.style.width = '1em'
+              colorBox.style.marginLeft = '5px'
+              colorBox.style.marginRight = '10px'
+              labelElement.appendChild(colorBox)
+            } else {
+              labelElement.appendChild(document.createTextNode(label))
+            }
+            wrapper.appendChild(labelElement)
+            content.appendChild(wrapper)
+          })
+          break
+        }
+        case 'select': {
+          const label = document.createElement('label')
+          label.textContent = message
+          content.appendChild(label)
+
+          // option.values ごとに label>input を生成する
+          option.values.forEach(({ label, value, checked }, index2) => {
+            const _id = `${id}-${index2 + 1}`
+            const labelElement = document.createElement('label')
+            const input = document.createElement('input')
+            input.id = _id
+            input.type = 'checkbox'
+            input.name = id
+            input.value = value
+            input.checked = checked
+            labelElement.appendChild(input)
+            labelElement.appendChild(document.createTextNode(label))
+            wrapper.appendChild(labelElement)
+            content.appendChild(wrapper)
+          })
+          break
+        }
       }
-      input.type = option.type
-      if (option.useSelection) {
-        const textarea = document.querySelector('#msg')
-        const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)
-        input.value = selectedText
-      }
-      wrapper.appendChild(input)
-      content.appendChild(wrapper)
     })
     form.appendChild(content)
     dialog.appendChild(form)
@@ -71,9 +148,27 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
       const textAfter = textarea.value.substring(selectionEnd)
       // テンプレート文字列を展開する
       let insertText = buttonDefinition.value
-      content.querySelectorAll('input').forEach((input, index) => {
-        insertText = insertText.replace('${'+`${index + 1}` + '}', input.value)
-      })
+      // フォームから FormData を取得する
+      const form = dialog.querySelector('form')
+      const formData = new FormData(form)
+
+      // formData の内容を使って置換する
+      const formValues = Array.from(formData.entries()).reduce((memo, [key, value]) => {
+        // key 毎にvalueを格納する
+        if (memo[key] !== undefined) {
+          memo[key].push(value)
+        } else {
+          memo[key] = [value]
+        }
+        return memo
+      }, {})
+
+      for (const [key, values] of Object.entries(formValues)) {
+        const index = key.match(/(\d+)/)[1]
+        console.log({ index, values })
+        insertText = insertText.replace('${'+ index + '}', values.join(','))
+      }
+
       insertText = insertText.replace('${selection}', selectedText)
       textarea.value = textBefore + insertText + textAfter
       textarea.setSelectionRange(selectionStart, selectionStart + insertText.length)

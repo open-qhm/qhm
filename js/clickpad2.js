@@ -219,11 +219,127 @@
         name: "add_location"
       }
     },
-    // TODO: dialog
     "button": {
       caption: "\u30DC\u30BF\u30F3",
-      variant: "insert",
-      value: "&button(\u30DC\u30BF\u30F3\u540D,URL);",
+      variant: "dialog",
+      dialog: [
+        {
+          message: "\u8868\u793A\u6587\u5B57",
+          option: {
+            type: "text",
+            width: 200,
+            useSelection: true
+          }
+        },
+        {
+          message: "\u30EA\u30F3\u30AF",
+          option: {
+            type: "text",
+            width: 200
+          }
+        },
+        {
+          message: "\u30B5\u30A4\u30BA",
+          option: {
+            type: "radio",
+            values: [
+              {
+                label: "\u6A19\u6E96",
+                value: "",
+                checked: true
+              },
+              {
+                label: "\u5927\u304D\u3044",
+                value: "lg",
+                checked: false
+              },
+              {
+                label: "\u5C0F\u3055\u3044",
+                value: "sm",
+                checked: false
+              },
+              {
+                label: "\u6975\u5C0F",
+                value: "xs",
+                checked: false
+              }
+            ]
+          }
+        },
+        {
+          message: "\u8272",
+          option: {
+            type: "radio",
+            values: [
+              {
+                label: "\u7070\u8272",
+                color: "#babcbc",
+                value: "",
+                checked: true
+              },
+              {
+                label: "\u9752\u7DD1",
+                color: "#4ecdc4",
+                value: "info",
+                checked: false
+              },
+              {
+                label: "\u9752",
+                color: "#3bafda",
+                value: "primary",
+                checked: false
+              },
+              {
+                label: "\u7DD1",
+                color: "#9fd85d",
+                value: "success",
+                checked: false
+              },
+              {
+                label: "\u9EC4",
+                color: "#ffc551",
+                value: "warning",
+                checked: false
+              },
+              {
+                label: "\u8D64",
+                color: "#fc5f62",
+                value: "danger",
+                checked: false
+              }
+            ]
+          }
+        },
+        {
+          message: "\u30AA\u30D7\u30B7\u30E7\u30F3",
+          option: {
+            type: "select",
+            values: [
+              {
+                label: "\u30D6\u30ED\u30C3\u30AF\uFF08\u6A2A\u5E45\u4E00\u676F\uFF09",
+                value: "block",
+                checked: false
+              },
+              {
+                label: "\u30B0\u30E9\u30C7\u30FC\u30B7\u30E7\u30F3",
+                value: "gradient",
+                checked: false
+              },
+              {
+                label: "\u7E01\u53D6\u308A",
+                value: "ghost",
+                checked: false
+              },
+              {
+                label: "\u7E01\u53D6\u308A\uFF08\u80CC\u666F\u767D\u4EE5\u5916\uFF09",
+                value: "ghost-w",
+                checked: false
+              }
+            ]
+          }
+        }
+      ],
+      value: "&button(${2},${3},${4},${5}){${1}};",
       cover: {
         kind: "icon",
         provider: "google",
@@ -396,23 +512,94 @@
       buttonDefinition.dialog.forEach(({ message, option }, index) => {
         const wrapper = document.createElement("div");
         const id = `dialog-control-${index + 1}`;
-        const label = document.createElement("label");
-        label.textContent = message;
-        label.htmlFor = id;
-        content.appendChild(label);
-        const input = document.createElement("input");
-        input.id = id;
-        input.onkeydown = (e) => {
-          e.stopPropagation();
-        };
-        input.type = option.type;
-        if (option.useSelection) {
-          const textarea = document.querySelector("#msg");
-          const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
-          input.value = selectedText;
+        switch (option.type) {
+          case "text": {
+            const label = document.createElement("label");
+            label.textContent = message;
+            label.htmlFor = id;
+            content.appendChild(label);
+            const input = document.createElement("input");
+            input.id = id;
+            input.name = id;
+            input.onkeydown = (e) => {
+              e.stopPropagation();
+            };
+            input.type = "text";
+            if (option.useSelection) {
+              const textarea = document.querySelector("#msg");
+              const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
+              input.value = selectedText;
+            }
+            wrapper.appendChild(input);
+            content.appendChild(wrapper);
+            break;
+          }
+          case "checkbox": {
+            const label = document.createElement("label");
+            label.textContent = message;
+            label.htmlFor = id;
+            content.appendChild(label);
+            const input = document.createElement("input");
+            input.id = id;
+            input.name = id;
+            input.type = "checkbox";
+            wrapper.appendChild(input);
+            content.appendChild(wrapper);
+            break;
+          }
+          case "radio": {
+            const label = document.createElement("label");
+            label.textContent = message;
+            content.appendChild(label);
+            option.values.forEach(({ label: label2, color, value, checked }, index2) => {
+              const _id = `${id}-${index2 + 1}`;
+              const labelElement = document.createElement("label");
+              const input = document.createElement("input");
+              input.id = _id;
+              input.type = "radio";
+              input.name = id;
+              input.value = value;
+              input.checked = checked;
+              labelElement.appendChild(input);
+              if (color !== void 0) {
+                const colorBox = document.createElement("span");
+                colorBox.title = label2;
+                colorBox.style.backgroundColor = color;
+                colorBox.style.aspectRatio = "1 / 1";
+                colorBox.style.display = "inline-block";
+                colorBox.style.width = "1em";
+                colorBox.style.marginLeft = "5px";
+                colorBox.style.marginRight = "10px";
+                labelElement.appendChild(colorBox);
+              } else {
+                labelElement.appendChild(document.createTextNode(label2));
+              }
+              wrapper.appendChild(labelElement);
+              content.appendChild(wrapper);
+            });
+            break;
+          }
+          case "select": {
+            const label = document.createElement("label");
+            label.textContent = message;
+            content.appendChild(label);
+            option.values.forEach(({ label: label2, value, checked }, index2) => {
+              const _id = `${id}-${index2 + 1}`;
+              const labelElement = document.createElement("label");
+              const input = document.createElement("input");
+              input.id = _id;
+              input.type = "checkbox";
+              input.name = id;
+              input.value = value;
+              input.checked = checked;
+              labelElement.appendChild(input);
+              labelElement.appendChild(document.createTextNode(label2));
+              wrapper.appendChild(labelElement);
+              content.appendChild(wrapper);
+            });
+            break;
+          }
         }
-        wrapper.appendChild(input);
-        content.appendChild(wrapper);
       });
       form.appendChild(content);
       dialog.appendChild(form);
@@ -435,9 +622,21 @@
         const textBefore = textarea.value.substring(0, selectionStart);
         const textAfter = textarea.value.substring(selectionEnd);
         let insertText = buttonDefinition.value;
-        content.querySelectorAll("input").forEach((input, index) => {
-          insertText = insertText.replace(`\${${index + 1}}`, input.value);
-        });
+        const form2 = dialog.querySelector("form");
+        const formData = new FormData(form2);
+        const formValues = Array.from(formData.entries()).reduce((memo, [key, value]) => {
+          if (memo[key] !== void 0) {
+            memo[key].push(value);
+          } else {
+            memo[key] = [value];
+          }
+          return memo;
+        }, {});
+        for (const [key, values] of Object.entries(formValues)) {
+          const index = key.match(/(\d+)/)[1];
+          console.log({ index, values });
+          insertText = insertText.replace("${" + index + "}", values.join(","));
+        }
         insertText = insertText.replace("${selection}", selectedText);
         textarea.value = textBefore + insertText + textAfter;
         textarea.setSelectionRange(selectionStart, selectionStart + insertText.length);
