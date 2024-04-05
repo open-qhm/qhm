@@ -46,6 +46,7 @@ type DialogOptionSelectionVariant = {
   type: "radio" | "select"
   values: {
     label: string
+    color?: string
     value: string
     checked: boolean
   }[]

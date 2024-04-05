@@ -194,11 +194,127 @@ export const buttonData = {
       name: "add_location"
     }
   },
-  // TODO: dialog
   'button': {
     caption: 'ボタン',
-    variant: 'insert',
-    value: '&button(ボタン名,URL);',
+    variant: 'dialog',
+    dialog: [
+      {
+        message: "表示文字",
+        option: {
+          type: 'text',
+          width: 200,
+          useSelection: true,
+        }
+      },
+      {
+        message: "リンク",
+        option: {
+          type: 'text',
+          width: 200,
+        }
+      },
+      {
+        message: "サイズ",
+        option: {
+          type: 'radio',
+          values: [
+            {
+              label: '標準',
+              value: '',
+              checked: true
+            },
+            {
+              label: '大きい',
+              value: 'lg',
+              checked: false,
+            },
+            {
+              label: '小さい',
+              value: 'sm',
+              checked: false,
+            },
+            {
+              label: '極小',
+              value: 'xs',
+              checked: false
+            }
+          ]
+        }
+      },
+      {
+        message: '色',
+        option: {
+          type: 'radio',
+          values: [
+            {
+              label: '灰色',
+              color: '#babcbc',
+              value: '',
+              checked: true,
+            },
+            {
+              label: '青緑',
+              color: '#4ecdc4',
+              value: 'info',
+              checked: false,
+            },
+            {
+              label: '青',
+              color: '#3bafda',
+              value: 'primary',
+              checked: false,
+            },
+            {
+              label: '緑',
+              color: '#9fd85d',
+              value: 'success',
+              checked: false,
+            },
+            {
+              label: '黄',
+              color: '#ffc551',
+              value: 'warning',
+              checked: false,
+            },
+            {
+              label: '赤',
+              color: '#fc5f62',
+              value: 'danger',
+              checked: false,
+            },
+          ]
+        }
+      },
+      {
+        message: 'オプション',
+        option: {
+          type: 'select',
+          values: [
+            {
+              label: 'ブロック（横幅一杯）',
+              value: 'block',
+              checked: false,
+            },
+            {
+              label: 'グラデーション',
+              value: 'gradient',
+              checked: false,
+            },
+            {
+              label: '縁取り',
+              value: 'ghost',
+              checked: false,
+            },
+            {
+              label: '縁取り（背景白以外）',
+              value: 'ghost-w',
+              checked: false,
+            }
+          ]
+        }
+      }
+    ],
+    value: '&button(${2},${3},${4},${5}){${1}};',
     cover: {
       kind: "icon",
       provider: "google",
