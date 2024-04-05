@@ -82,13 +82,9 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             if (color !== undefined) {
               // 色名をlabel, color を背景色にする
               const colorBox = document.createElement('span')
+              colorBox.classList.add('clickpad2__dialog-radio-color-box')
               colorBox.title = label
               colorBox.style.backgroundColor = color
-              colorBox.style.aspectRatio = '1 / 1'
-              colorBox.style.display = 'inline-block'
-              colorBox.style.width = '1em'
-              colorBox.style.marginLeft = '5px'
-              colorBox.style.marginRight = '10px'
               labelElement.appendChild(colorBox)
             } else {
               labelElement.appendChild(document.createTextNode(label))
