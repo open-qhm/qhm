@@ -31,7 +31,15 @@ type DialogSetting = string | {
 }
 type DialogOption = {
   css?: Style
-} & (DialogOptionTextVariant | DialogOptionCheckboxVariant | DialogOptionSelectionVariant)
+} & (
+  DialogOptionTextVariant 
+  | DialogOptionCheckboxVariant 
+  | DialogOptionSelectionVariant 
+  | DialogOptionDecoFontStyle 
+  | DialogOptionDecoFontColor 
+  | DialogOptionDecoBgColor 
+  | DialogOptionDecoFontSize
+)
 type DialogOptionTextVariant = {
   type: "text"
   width: string | number
@@ -49,11 +57,27 @@ type DialogOptionSelectionVariant = {
     color?: string
   } | {
     label: string
+    icon: string
+  } | {
+    label: string
     labelStyle: Style
   }) & {
     value: string
     checked: boolean
   }[]
+}
+/* deco dialog 内でのみ使う */
+type DialogOptionDecoFontStyle = {
+  type: "deco-font",
+}
+type DialogOptionDecoFontColor = {
+  type: "deco-color"
+}
+type DialogOptionDecoBgColor = {
+  type: "deco-bg-color"
+}
+type DialogOptionDecoFontSize = {
+  type: "deco-font-size"
 }
 
 type IconCover = {
