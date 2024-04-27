@@ -177,17 +177,41 @@
         name: "format_bold"
       }
     },
-    // TODO: dialog
     "deco": {
       caption: "\u88C5\u98FE",
-      variant: "wrap",
-      prefix: "%%",
-      suffix: "%%",
+      variant: "dialog",
       cover: {
         kind: "icon",
         provider: "google",
         name: "border_color"
-      }
+      },
+      dialog: [
+        {
+          message: "\u88C5\u98FE\u30C1\u30A7\u30C3\u30AF\u30DC\u30C3\u30AF\u30B9",
+          option: {
+            type: "deco-font"
+          }
+        },
+        {
+          message: "\u6587\u5B57\u8272",
+          option: {
+            type: "deco-color"
+          }
+        },
+        {
+          message: "\u80CC\u666F\u8272",
+          option: {
+            type: "deco-bg-color"
+          }
+        },
+        {
+          message: "\u6587\u5B57\u30B5\u30A4\u30BA",
+          option: {
+            type: "deco-font-size"
+          }
+        }
+      ],
+      value: "&deco(${1},${2},${3},${4}){${selection}};"
     },
     "li": {
       caption: "\u7B87\u6761\u66F8\u304D",
@@ -450,16 +474,49 @@
         name: "format_align_right"
       }
     },
-    // TODO: dialog
     "layout": {
       caption: "\u30EC\u30A4\u30A2\u30A6\u30C8",
-      variant: "insert",
-      value: "\n#layout(\u30EC\u30A4\u30A2\u30A6\u30C8\u540D);",
+      variant: "dialog",
+      value: "\n#layout(${1})\n",
       cover: {
         kind: "icon",
         provider: "google",
         name: "dashboard"
-      }
+      },
+      dialog: [
+        {
+          message: "\u30EC\u30A4\u30A2\u30A6\u30C8\u540D",
+          option: {
+            type: "radio",
+            values: [
+              {
+                label: "\u30E9\u30F3\u30C7\u30A3\u30F3\u30B0",
+                icon: "crop_din",
+                value: "landing",
+                checked: true
+              },
+              {
+                label: "\u30D5\u30EB",
+                icon: "padding",
+                value: "fullpage",
+                checked: false
+              },
+              {
+                label: "\u30CE\u30FC\u30E1\u30CB\u30E5\u30FC",
+                icon: "web_asset",
+                value: "nomenu",
+                checked: false
+              },
+              {
+                label: "\u30EF\u30A4\u30C9",
+                icon: "view_sidebar",
+                value: "wide",
+                checked: false
+              }
+            ]
+          }
+        }
+      ]
     },
     // TODO: dialog
     "section": {
@@ -563,6 +620,7 @@
       content.classList.add("clickpad2__dialog-content");
       buttonDefinition.dialog.forEach(({ message, option }, index) => {
         const wrapper = document.createElement("div");
+        wrapper.classList.add("clickpad2__dialog-item");
         const id = `dialog-control-${index + 1}`;
         switch (option.type) {
           case "text": {
@@ -603,9 +661,10 @@
             const label = document.createElement("label");
             label.textContent = message;
             content.appendChild(label);
-            option.values.forEach(({ label: label2, color, value, checked }, index2) => {
+            option.values.forEach(({ label: label2, color, icon, value, checked }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
+              labelElement.classList.add("clickpad2__dialog-radio-item-label");
               const input = document.createElement("input");
               input.id = _id;
               input.type = "radio";
@@ -614,11 +673,22 @@
               input.checked = checked;
               labelElement.appendChild(input);
               if (color !== void 0) {
+                labelElement.classList.add("clickpad2__dialog-radio-item-label--color");
                 const colorBox = document.createElement("span");
                 colorBox.classList.add("clickpad2__dialog-radio-color-box");
                 colorBox.title = label2;
                 colorBox.style.backgroundColor = color;
                 labelElement.appendChild(colorBox);
+              } else if (icon !== void 0) {
+                labelElement.classList.add("clickpad2__dialog-radio-item-label--icon");
+                const iconElement = document.createElement("span");
+                iconElement.classList.add("material-icons-outlined");
+                iconElement.textContent = icon;
+                labelElement.appendChild(iconElement);
+                const text = document.createElement("span");
+                text.textContent = label2;
+                text.classList.add("clickpad2__dialog-radio-item-label-text");
+                labelElement.appendChild(text);
               } else {
                 labelElement.appendChild(document.createTextNode(label2));
               }
@@ -645,6 +715,113 @@
               wrapper.appendChild(labelElement);
               content.appendChild(wrapper);
             });
+            break;
+          }
+          case "deco-font": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-deco-font-item");
+            const fontStyles = [
+              { name: "bold", label: "\u592A\u5B57", value: "b" },
+              { name: "underline", label: "\u4E0B\u7DDA", value: "u" },
+              { name: "italic", label: "\u659C\u4F53", value: "i" }
+            ];
+            fontStyles.forEach((fontStyle, index2) => {
+              const label = document.createElement("label");
+              label.classList.add("clickpad2__dialog-deco-font-item-label", `clickpad2__dialog-deco-font-item-label-${fontStyle.name}`);
+              const labelTitle = document.createElement("span");
+              labelTitle.textContent = fontStyle.label;
+              const _id = `${id}-${index + 1}`;
+              const input = document.createElement("input");
+              input.type = "checkbox";
+              input.id = _id;
+              input.name = id;
+              input.value = fontStyle.value;
+              label.appendChild(input);
+              label.appendChild(labelTitle);
+              item.appendChild(label);
+            });
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
+            break;
+          }
+          case "deco-color": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-deco-color-item");
+            const label = document.createElement("label");
+            const title = document.createElement("span");
+            title.classList.add("clickpad2__dialog-deco-color-item-title");
+            title.textContent = "\u6587\u5B57\u8272";
+            const tip = document.createElement("span");
+            tip.classList.add("clickpad2__dialog-deco-color-item-tip");
+            tip.textContent = "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09";
+            label.appendChild(title);
+            label.appendChild(tip);
+            label.htmlFor = id;
+            item.appendChild(label);
+            const input = document.createElement("input");
+            input.id = id;
+            input.name = id;
+            input.type = "text";
+            item.appendChild(input);
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
+            break;
+          }
+          case "deco-bg-color": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-deco-bg-color-item");
+            const label = document.createElement("label");
+            const title = document.createElement("span");
+            title.classList.add("clickpad2__dialog-deco-bg-color-item-title");
+            title.textContent = "\u80CC\u666F\u8272";
+            const tip = document.createElement("span");
+            tip.classList.add("clickpad2__dialog-deco-bg-color-item-tip");
+            tip.textContent = "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09";
+            label.appendChild(title);
+            label.appendChild(tip);
+            label.htmlFor = id;
+            content.appendChild(label);
+            const input = document.createElement("input");
+            input.id = id;
+            input.name = id;
+            input.type = "text";
+            item.appendChild(input);
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
+            break;
+          }
+          case "deco-font-size": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-deco-font-size-item");
+            const label = document.createElement("label");
+            const title = document.createElement("span");
+            title.classList.add("clickpad2__dialog-deco-font-size-item-title");
+            title.textContent = "\u6587\u5B57\u30B5\u30A4\u30BA";
+            const tip = document.createElement("span");
+            tip.classList.add("clickpad2__dialog-deco-font-size-item-tip");
+            tip.textContent = "\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09";
+            label.appendChild(title);
+            label.appendChild(tip);
+            label.htmlFor = id;
+            item.appendChild(label);
+            const input = document.createElement("input");
+            input.id = id;
+            input.name = id;
+            input.type = "text";
+            item.appendChild(input);
+            const legend = document.createElement("div");
+            legend.classList.add("clickpad2__dialog-deco-font-size-item-legend");
+            const legendTitle = document.createElement("span");
+            legendTitle.textContent = "[ \u6587\u5B57\u30B5\u30A4\u30BA\u6307\u5B9A\u30AD\u30FC\u30EF\u30FC\u30C9 ]";
+            legend.appendChild(legendTitle);
+            const br = document.createElement("br");
+            legend.appendChild(br);
+            const legendTip = document.createElement("span");
+            legendTip.textContent = "xx-small / x-small / small / medium\uFF08\u521D\u671F\u5024\uFF09/ large / x-large / xx-large";
+            legend.appendChild(legendTip);
+            item.appendChild(legend);
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
             break;
           }
         }

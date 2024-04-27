@@ -24,10 +24,38 @@
   height: 30px;
 }
 
+.clickpad2__dialog-item:has(.clickpad2__dialog-radio-item-label--icon) {
+  display: flex;
+  gap: 10px;
+}
+
+.clickpad2__dialog-radio-item-label.clickpad2__dialog-radio-item-label--icon {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px;
+
+  input {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+  }
+  span.material-icons-outlined {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    font-size: 4em;
+  }
+  .clickpad2__dialog-radio-item-label-text {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: center;
+  }
+}
+
 .clickpad2__dialog-radio-color-box {
   aspect-ratio: 1 / 1;
   display: inline-block;
   width: 1em;
   margin-left: 5px;
   margin-right: 5px;
+  border-radius: 2px;
 }

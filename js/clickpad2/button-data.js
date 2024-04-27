@@ -152,17 +152,41 @@ export const buttonData = {
       name: "format_bold"
     }
   },
-  // TODO: dialog
   'deco': {
     caption: '装飾',
-    variant: 'wrap',
-    prefix: '%%',
-    suffix: '%%',
+    variant: 'dialog',
     cover: {
       kind: "icon",
       provider: "google",
       name: "border_color"
-    }
+    },
+    dialog: [
+      {
+        message: '装飾チェックボックス',
+        option: {
+          type: 'deco-font',
+        },
+      },
+      {
+        message: '文字色',
+        option: {
+          type: 'deco-color',
+        },
+      },
+      {
+        message: '背景色',
+        option: {
+          type: 'deco-bg-color',
+        },
+      },
+      {
+        message: '文字サイズ',
+        option: {
+          type: 'deco-font-size',
+        },
+      },
+    ],
+    value: '&deco(${1},${2},${3},${4}){${selection}};',
   },
   'li': {
     caption: '箇条書き',
@@ -425,16 +449,49 @@ export const buttonData = {
       name: "format_align_right"
     }
   },
-  // TODO: dialog
   'layout': {
     caption: 'レイアウト',
-    variant: 'insert',
-    value: '\n#layout(レイアウト名);',
+    variant: 'dialog',
+    value: '\n#layout(${1})\n',
     cover: {
       kind: "icon",
       provider: "google",
       name: "dashboard"
-    }
+    },
+    dialog: [
+      {
+        message: 'レイアウト名',
+        option: {
+          type: 'radio',
+          values: [
+            {
+              label: 'ランディング',
+              icon: 'crop_din',
+              value: 'landing',
+              checked: true
+            },
+            {
+              label: 'フル',
+              icon: 'padding',
+              value: 'fullpage',
+              checked: false,
+            },
+            {
+              label: 'ノーメニュー',
+              icon: 'web_asset',
+              value: 'nomenu',
+              checked: false,
+            },
+            {
+              label: 'ワイド',
+              icon: 'view_sidebar',
+              value: 'wide',
+              checked: false,
+            }
+          ]
+        }
+      }
+    ]
   },
   // TODO: dialog
   'section': {
