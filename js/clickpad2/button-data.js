@@ -182,9 +182,15 @@ export const buttonData = {
       {
         message: '文字サイズ',
         option: {
-          type: 'deco-font-size',
+          type: 'text',
         },
       },
+      {
+        message: '',
+        option: {
+          type: 'font-size-guide',
+        }
+      }
     ],
     value: '&deco(${1},${2},${3},${4}){${selection}};',
   },
@@ -421,13 +427,45 @@ export const buttonData = {
   // TODO: dialog
   'icon': {
     caption: 'アイコン',
-    variant: 'insert',
-    value: '&icon(icon);',
+    variant: 'dialog',
     cover: {
       kind: "icon",
       provider: "google",
       name: "interests"
-    }
+    },
+    value: '&icon(${2},${3},${4});',
+    dialog: [
+      {
+        message: '',
+        option: {
+          type: 'icon-header',
+        },
+      },
+      {
+        message: 'アイコンコード',
+        option: {
+          type: 'text',
+        }
+      },
+      {
+        message: '色（カラーコード/カラーネーム）',
+        option: {
+          type: 'text',
+        }
+      },
+      {
+        message: 'サイズ（数値/em/キーワード）',
+        option: {
+          type: 'text'
+        }
+      },
+      {
+        message: '',
+        option: {
+          type: 'font-size-guide'
+        }
+      }
+    ]
   },
   'center': {
     caption: '中央寄せ',

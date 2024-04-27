@@ -32,13 +32,14 @@ type DialogSetting = string | {
 type DialogOption = {
   css?: Style
 } & (
-  DialogOptionTextVariant 
-  | DialogOptionCheckboxVariant 
-  | DialogOptionSelectionVariant 
-  | DialogOptionDecoFontStyle 
-  | DialogOptionDecoFontColor 
-  | DialogOptionDecoBgColor 
-  | DialogOptionDecoFontSize
+  DialogOptionTextVariant
+  | DialogOptionCheckboxVariant
+  | DialogOptionSelectionVariant
+  | DialogOptionFontSizeGuide
+  | DialogOptionDecoFontStyle
+  | DialogOptionDecoFontColor
+  | DialogOptionDecoBgColor
+  | DialogOptionIconHeader
 )
 type DialogOptionTextVariant = {
   type: "text"
@@ -66,6 +67,9 @@ type DialogOptionSelectionVariant = {
     checked: boolean
   }[]
 }
+type DialogOptionFontSizeGuide = {
+  type: "font-size-guide"
+}
 /* deco dialog 内でのみ使う */
 type DialogOptionDecoFontStyle = {
   type: "deco-font",
@@ -76,8 +80,10 @@ type DialogOptionDecoFontColor = {
 type DialogOptionDecoBgColor = {
   type: "deco-bg-color"
 }
-type DialogOptionDecoFontSize = {
-  type: "deco-font-size"
+
+/* icon dialog 内でのみ使う */
+type DialogOptionIconHeader = {
+  type: "icon-header"
 }
 
 type IconCover = {

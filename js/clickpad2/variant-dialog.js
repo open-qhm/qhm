@@ -211,30 +211,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           content.appendChild(wrapper)
           break
         }
-        case 'deco-font-size': {
+        case 'font-size-guide': {
           const item = document.createElement('div')
-          item.classList.add('clickpad2__dialog-deco-font-size-item')
-          const label = document.createElement('label')
-          const title = document.createElement('span')
-          title.classList.add('clickpad2__dialog-deco-font-size-item-title')
-          title.textContent = '文字サイズ'
-          const tip = document.createElement('span')
-          tip.classList.add('clickpad2__dialog-deco-font-size-item-tip')
-          tip.textContent = '（数値/em/キーワード）'
-          label.appendChild(title)
-          label.appendChild(tip)
-          label.htmlFor = id
-          item.appendChild(label)
-
-          const input = document.createElement('input')
-          input.id = id
-          input.name = id
-          input.type = 'text'
-          item.appendChild(input)
+          item.classList.add('clickpad2__dialog-font-size-guide-item')
 
           // 凡例
           const legend = document.createElement('div')
-          legend.classList.add('clickpad2__dialog-deco-font-size-item-legend')
+          legend.classList.add('clickpad2__dialog-font-size-guide-item-legend')
           const legendTitle = document.createElement('span')
           legendTitle.textContent = '[ 文字サイズ指定キーワード ]'
           legend.appendChild(legendTitle)
@@ -244,6 +227,39 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           legendTip.textContent = 'xx-small / x-small / small / medium（初期値）/ large / x-large / xx-large'
           legend.appendChild(legendTip)
           item.appendChild(legend)
+
+          wrapper.appendChild(item)
+          content.appendChild(wrapper)
+          break
+        }
+        case 'icon-header': {
+          const item = document.createElement('div')
+          item.classList.add('clickpad2__dialog-icon-header-item')
+
+          // タイトル
+          const title = document.createElement('h3')
+          title.textContent = 'Google アイコン検索リンク'
+          title.classList.add('clickpad2__dialog-icon-header-item-title')
+          item.appendChild(title)
+
+          // Material Icons へのリンク
+          const materialIconsLink = document.createElement('a')
+          materialIconsLink.textContent = 'Material Icons'
+          materialIconsLink.href = 'https://fonts.google.com/icons?icon.set=Material+Icons'
+          materialIconsLink.target = '_blank'
+          item.appendChild(materialIconsLink)
+
+          // Material Symbold へのリンク
+          const materialSymbolsLink = document.createElement('a')
+          materialSymbolsLink.textContent = 'Material Symbols'
+          materialSymbolsLink.href = 'https://fonts.google.com/icons?icon.set=Material+Symbols'
+          materialSymbolsLink.target = '_blank'
+          item.appendChild(materialSymbolsLink)
+
+          // 説明文
+          const description = document.createElement('p')
+          description.textContent = '(アイコンをクリックして表示される右側ウィンドウ内の<span ...から始まる枠内のコードを [アイコンコード] に入力します）'
+          item.appendChild(description)
 
           wrapper.appendChild(item)
           content.appendChild(wrapper)

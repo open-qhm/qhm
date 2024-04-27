@@ -207,7 +207,13 @@
         {
           message: "\u6587\u5B57\u30B5\u30A4\u30BA",
           option: {
-            type: "deco-font-size"
+            type: "text"
+          }
+        },
+        {
+          message: "",
+          option: {
+            type: "font-size-guide"
           }
         }
       ],
@@ -446,13 +452,45 @@
     // TODO: dialog
     "icon": {
       caption: "\u30A2\u30A4\u30B3\u30F3",
-      variant: "insert",
-      value: "&icon(icon);",
+      variant: "dialog",
       cover: {
         kind: "icon",
         provider: "google",
         name: "interests"
-      }
+      },
+      value: "&icon(${2},${3},${4});",
+      dialog: [
+        {
+          message: "",
+          option: {
+            type: "icon-header"
+          }
+        },
+        {
+          message: "\u30A2\u30A4\u30B3\u30F3\u30B3\u30FC\u30C9",
+          option: {
+            type: "text"
+          }
+        },
+        {
+          message: "\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          option: {
+            type: "text"
+          }
+        },
+        {
+          message: "\u30B5\u30A4\u30BA\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09",
+          option: {
+            type: "text"
+          }
+        },
+        {
+          message: "",
+          option: {
+            type: "font-size-guide"
+          }
+        }
+      ]
     },
     "center": {
       caption: "\u4E2D\u592E\u5BC4\u305B",
@@ -790,27 +828,11 @@
             content.appendChild(wrapper);
             break;
           }
-          case "deco-font-size": {
+          case "font-size-guide": {
             const item = document.createElement("div");
-            item.classList.add("clickpad2__dialog-deco-font-size-item");
-            const label = document.createElement("label");
-            const title = document.createElement("span");
-            title.classList.add("clickpad2__dialog-deco-font-size-item-title");
-            title.textContent = "\u6587\u5B57\u30B5\u30A4\u30BA";
-            const tip = document.createElement("span");
-            tip.classList.add("clickpad2__dialog-deco-font-size-item-tip");
-            tip.textContent = "\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09";
-            label.appendChild(title);
-            label.appendChild(tip);
-            label.htmlFor = id;
-            item.appendChild(label);
-            const input = document.createElement("input");
-            input.id = id;
-            input.name = id;
-            input.type = "text";
-            item.appendChild(input);
+            item.classList.add("clickpad2__dialog-font-size-guide-item");
             const legend = document.createElement("div");
-            legend.classList.add("clickpad2__dialog-deco-font-size-item-legend");
+            legend.classList.add("clickpad2__dialog-font-size-guide-item-legend");
             const legendTitle = document.createElement("span");
             legendTitle.textContent = "[ \u6587\u5B57\u30B5\u30A4\u30BA\u6307\u5B9A\u30AD\u30FC\u30EF\u30FC\u30C9 ]";
             legend.appendChild(legendTitle);
@@ -820,6 +842,30 @@
             legendTip.textContent = "xx-small / x-small / small / medium\uFF08\u521D\u671F\u5024\uFF09/ large / x-large / xx-large";
             legend.appendChild(legendTip);
             item.appendChild(legend);
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
+            break;
+          }
+          case "icon-header": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-icon-header-item");
+            const title = document.createElement("h3");
+            title.textContent = "Google \u30A2\u30A4\u30B3\u30F3\u691C\u7D22\u30EA\u30F3\u30AF";
+            title.classList.add("clickpad2__dialog-icon-header-item-title");
+            item.appendChild(title);
+            const materialIconsLink = document.createElement("a");
+            materialIconsLink.textContent = "Material Icons";
+            materialIconsLink.href = "https://fonts.google.com/icons?icon.set=Material+Icons";
+            materialIconsLink.target = "_blank";
+            item.appendChild(materialIconsLink);
+            const materialSymbolsLink = document.createElement("a");
+            materialSymbolsLink.textContent = "Material Symbols";
+            materialSymbolsLink.href = "https://fonts.google.com/icons?icon.set=Material+Symbols";
+            materialSymbolsLink.target = "_blank";
+            item.appendChild(materialSymbolsLink);
+            const description = document.createElement("p");
+            description.textContent = "(\u30A2\u30A4\u30B3\u30F3\u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u8868\u793A\u3055\u308C\u308B\u53F3\u5074\u30A6\u30A3\u30F3\u30C9\u30A6\u5185\u306E<span ...\u304B\u3089\u59CB\u307E\u308B\u67A0\u5185\u306E\u30B3\u30FC\u30C9\u3092 [\u30A2\u30A4\u30B3\u30F3\u30B3\u30FC\u30C9] \u306B\u5165\u529B\u3057\u307E\u3059\uFF09";
+            item.appendChild(description);
             wrapper.appendChild(item);
             content.appendChild(wrapper);
             break;
