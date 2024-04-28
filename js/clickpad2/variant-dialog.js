@@ -47,6 +47,9 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)
             input.value = selectedText
           }
+          if (option.prefix !== undefined) {
+            input.dataset.prefix = option.prefix
+          }
           wrapper.appendChild(input)
           content.appendChild(wrapper)
           break
@@ -54,14 +57,23 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
         case 'checkbox': {
           const label = document.createElement('label')
           label.textContent = message
-          label.htmlFor = id
           content.appendChild(label)
-          const input = document.createElement('input')
-          input.id = id
-          input.name = id
-          input.type = 'checkbox'
-          wrapper.appendChild(input)
-          content.appendChild(wrapper)
+
+          // option.values ごとに label>input を生成する
+          option.values.forEach(({ label, value }, index2) => {
+            const _id = `${id}-${index2 + 1}`
+            const labelElement = document.createElement('label')
+            labelElement.classList.add('clickpad2__dialog-checkbox-item-label')
+            const input = document.createElement('input')
+            input.id = _id
+            input.type = 'checkbox'
+            input.name = id
+            input.value = value
+            labelElement.appendChild(input)
+            labelElement.appendChild(document.createTextNode(label))
+            wrapper.appendChild(labelElement)
+            content.appendChild(wrapper)
+          })
           break
         }
         case 'radio': {
@@ -232,6 +244,15 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           content.appendChild(wrapper)
           break
         }
+        case 'section-header': {
+          const item = document.createElement('h2')
+          item.classList.add('clickpad2__dialog-section-header-item')
+          item.textContent = message
+
+          wrapper.appendChild(item)
+          content.appendChild(wrapper)
+          break
+        }
         case 'icon-header': {
           const item = document.createElement('div')
           item.classList.add('clickpad2__dialog-icon-header-item')
@@ -311,8 +332,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
       for (const [key, values] of Object.entries(formValues)) {
         const index = key.match(/(\d+)/)[1]
         console.log({ index, values })
-        insertText = insertText.replace('${'+ index + '}', values.join(','))
+        const prefix = form.querySelector(`[name="${key}"]`)?.dataset?.prefix ?? ''
+        const joinedValue = values.join(',')
+        const valueText = joinedValue.length > 0 ? prefix + joinedValue : joinedValue
+        insertText = insertText.replace('${'+ index + '}', valueText)
       }
+      // 残った ${\d+} を削除する
+      insertText = insertText.replace(/\$\{\d+\}/g, '')
 
       insertText = insertText.replace('${selection}', selectedText)
       textarea.value = textBefore + insertText + textAfter

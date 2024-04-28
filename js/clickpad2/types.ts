@@ -36,6 +36,7 @@ type DialogOption = {
   | DialogOptionCheckboxVariant
   | DialogOptionSelectionVariant
   | DialogOptionFontSizeGuide
+  | DialogOptionSectionHeader
   | DialogOptionDecoFontStyle
   | DialogOptionDecoFontColor
   | DialogOptionDecoBgColor
@@ -46,10 +47,14 @@ type DialogOptionTextVariant = {
   width: string | number
   defaultValue?: string
   useSelection?: boolean
+  prefix?: string
 }
 type DialogOptionCheckboxVariant = {
   type: "checkbox"
-  value: string
+  values: {
+    label: string
+    value: string
+  }[]
 }
 type DialogOptionSelectionVariant = {
   type: "radio" | "select"
@@ -70,9 +75,12 @@ type DialogOptionSelectionVariant = {
 type DialogOptionFontSizeGuide = {
   type: "font-size-guide"
 }
+type DialogOptionSectionHeader = {
+  type: "section-header"
+}
 /* deco dialog 内でのみ使う */
 type DialogOptionDecoFontStyle = {
-  type: "deco-font",
+  type: "deco-font"
 }
 type DialogOptionDecoFontColor = {
   type: "deco-color"

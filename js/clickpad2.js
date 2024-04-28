@@ -556,16 +556,127 @@
         }
       ]
     },
-    // TODO: dialog
     "section": {
       caption: "\u30BB\u30AF\u30B7\u30E7\u30F3",
-      variant: "insert",
-      value: "\n#section(\u30BB\u30AF\u30B7\u30E7\u30F3\u540D);",
+      variant: "dialog",
+      value: "\n#section(jumbotron,${1},${2},${3},${4},${5},${6},${8},${9},${10}){{\n${selection}\n}}\n",
       cover: {
         kind: "icon",
         provider: "google",
         name: "crop_3_2"
-      }
+      },
+      dialog: [
+        {
+          message: "\u6C34\u5E73\u4F4D\u7F6E",
+          option: {
+            type: "radio",
+            values: [
+              {
+                label: "\u5DE6",
+                value: "left"
+              },
+              {
+                label: "\u4E2D\u592E",
+                value: "center"
+              },
+              {
+                label: "\u53F3",
+                value: "right"
+              }
+            ]
+          }
+        },
+        {
+          message: "\u5782\u76F4\u4F4D\u7F6E",
+          option: {
+            type: "radio",
+            values: [
+              {
+                label: "\u4E0A",
+                value: "top"
+              },
+              {
+                label: "\u4E2D\u592E",
+                value: "middle"
+              },
+              {
+                label: "\u4E0B",
+                value: "bottom"
+              }
+            ]
+          }
+        },
+        {
+          message: "\u6587\u5B57\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          option: {
+            type: "text",
+            prefix: "color="
+          }
+        },
+        {
+          message: "\u80CC\u666F\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          option: {
+            type: "text",
+            prefix: "bgcolor="
+          }
+        },
+        {
+          message: "\u9AD8\u3055\uFF08\u4F8B\uFF1A500\uFF09",
+          option: {
+            type: "text"
+          }
+        },
+        {
+          message: "\u80CC\u666F\u753B\u50CF\uFF08\u4F8B\uFF1Aimage/jpg\uFF09",
+          option: {
+            type: "text"
+          }
+        },
+        {
+          message: "\u80CC\u666F\u753B\u50CF\u30AA\u30D7\u30B7\u30E7\u30F3",
+          option: {
+            type: "section-header"
+          }
+        },
+        {
+          message: "\u660E\u308B\u304F\u3059\u308B\uFF080\u301C100\uFF09",
+          option: {
+            type: "text",
+            prefix: "light="
+          }
+        },
+        {
+          message: "\u6697\u304F\u3059\u308B\uFF080\u301C100\uFF09",
+          option: {
+            type: "text",
+            prefix: "dark="
+          }
+        },
+        {
+          message: "",
+          option: {
+            type: "checkbox",
+            values: [
+              {
+                label: "\u56FA\u5B9A",
+                value: "fixed"
+              },
+              {
+                label: "\u307C\u304B\u3059",
+                value: "blur"
+              },
+              {
+                label: "\u30D5\u30A3\u30C3\u30C8",
+                value: "fit"
+              },
+              {
+                label: "\u30D5\u30EB",
+                value: "page"
+              }
+            ]
+          }
+        }
+      ]
     },
     //
     "column:2": {
@@ -678,6 +789,9 @@
               const selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd);
               input.value = selectedText;
             }
+            if (option.prefix !== void 0) {
+              input.dataset.prefix = option.prefix;
+            }
             wrapper.appendChild(input);
             content.appendChild(wrapper);
             break;
@@ -685,14 +799,21 @@
           case "checkbox": {
             const label = document.createElement("label");
             label.textContent = message;
-            label.htmlFor = id;
             content.appendChild(label);
-            const input = document.createElement("input");
-            input.id = id;
-            input.name = id;
-            input.type = "checkbox";
-            wrapper.appendChild(input);
-            content.appendChild(wrapper);
+            option.values.forEach(({ label: label2, value }, index2) => {
+              const _id = `${id}-${index2 + 1}`;
+              const labelElement = document.createElement("label");
+              labelElement.classList.add("clickpad2__dialog-checkbox-item-label");
+              const input = document.createElement("input");
+              input.id = _id;
+              input.type = "checkbox";
+              input.name = id;
+              input.value = value;
+              labelElement.appendChild(input);
+              labelElement.appendChild(document.createTextNode(label2));
+              wrapper.appendChild(labelElement);
+              content.appendChild(wrapper);
+            });
             break;
           }
           case "radio": {
@@ -846,6 +967,14 @@
             content.appendChild(wrapper);
             break;
           }
+          case "section-header": {
+            const item = document.createElement("h2");
+            item.classList.add("clickpad2__dialog-section-header-item");
+            item.textContent = message;
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
+            break;
+          }
           case "icon-header": {
             const item = document.createElement("div");
             item.classList.add("clickpad2__dialog-icon-header-item");
@@ -906,8 +1035,12 @@
         for (const [key, values] of Object.entries(formValues)) {
           const index = key.match(/(\d+)/)[1];
           console.log({ index, values });
-          insertText = insertText.replace("${" + index + "}", values.join(","));
+          const prefix = form2.querySelector(`[name="${key}"]`)?.dataset?.prefix ?? "";
+          const joinedValue = values.join(",");
+          const valueText = joinedValue.length > 0 ? prefix + joinedValue : joinedValue;
+          insertText = insertText.replace("${" + index + "}", valueText);
         }
+        insertText = insertText.replace(/\$\{\d+\}/g, "");
         insertText = insertText.replace("${selection}", selectedText);
         textarea.value = textBefore + insertText + textAfter;
         textarea.setSelectionRange(selectionStart, selectionStart + insertText.length);
