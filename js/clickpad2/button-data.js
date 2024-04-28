@@ -531,16 +531,127 @@ export const buttonData = {
       }
     ]
   },
-  // TODO: dialog
   'section': {
     caption: 'セクション',
-    variant: 'insert',
-    value: '\n#section(セクション名);',
+    variant: 'dialog',
+    value: '\n#section(jumbotron,${1},${2},${3},${4},${5},${6},${8},${9},${10}){{\n${selection}\n}}\n',
     cover: {
       kind: "icon",
       provider: "google",
       name: "crop_3_2"
-    }
+    },
+    dialog: [
+      {
+        message: '水平位置',
+        option: {
+          type: 'radio',
+          values: [
+            {
+              label: '左',
+              value: 'left',
+            },
+            {
+              label: '中央',
+              value: 'center',
+            },
+            {
+              label: '右',
+              value: 'right',
+            }
+          ]
+        }
+      },
+      {
+        message: '垂直位置',
+        option: {
+          type: 'radio',
+          values: [
+            {
+              label: '上',
+              value: 'top',
+            },
+            {
+              label: '中央',
+              value: 'middle',
+            },
+            {
+              label: '下',
+              value: 'bottom',
+            }
+          ]
+        }
+      },
+      {
+        message: '文字色（カラーコード/カラーネーム）',
+        option: {
+          type: 'text',
+          prefix: 'color='
+        }
+      },
+      {
+        message: '背景色（カラーコード/カラーネーム）',
+        option: {
+          type: 'text',
+          prefix: 'bgcolor='
+        }
+      },
+      {
+        message: '高さ（例：500）',
+        option: {
+          type: 'text',
+        }
+      },
+      {
+        message: '背景画像（例：image/jpg）',
+        option: {
+          type: 'text',
+        }
+      },
+      {
+        message: '背景画像オプション',
+        option: {
+          type: 'section-header',
+        }
+      },
+      {
+        message: '明るくする（0〜100）',
+        option: {
+          type: 'text',
+          prefix: 'light=',
+        }
+      },
+      {
+        message: '暗くする（0〜100）',
+        option: {
+          type: 'text',
+          prefix: 'dark=',
+        }
+      },
+      {
+        message: '',
+        option: {
+          type: 'checkbox',
+          values: [
+            {
+              label: '固定',
+              value: 'fixed',
+            },
+            {
+              label: 'ぼかす',
+              value: 'blur',
+            },
+            {
+              label: 'フィット',
+              value: 'fit',
+            },
+            {
+              label: 'フル',
+              value: 'page',
+            }
+          ]
+        }
+      }
+    ]
   },
   //
   'column:2': {
