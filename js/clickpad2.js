@@ -776,13 +776,13 @@
     button.type = "button";
     button.onclick = () => {
       const dialog = document.createElement("dialog");
-      dialog.classList.add("clickpad2__dialog");
+      dialog.classList.add("clickpad2__dialog", `clickpad2__dialog--${buttonId}`);
       const form = document.createElement("form");
       const content = document.createElement("div");
       content.classList.add("clickpad2__dialog-content");
       buttonDefinition.dialog.forEach(({ message, option }, index) => {
         const wrapper = document.createElement("div");
-        wrapper.classList.add("clickpad2__dialog-item");
+        wrapper.classList.add("clickpad2__dialog-item", `clickpad2__dialog-item--${option.type}`);
         const id = `dialog-control-${index + 1}`;
         switch (option.type) {
           case "text": {
