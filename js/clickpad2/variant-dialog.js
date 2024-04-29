@@ -31,12 +31,16 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
       switch (option.type) {
         case 'text': {
+          const item = document.createElement('div')
+          item.classList.add('clickpad2__dialog-text-item')
+
           if (message !== undefined) {
             const label = document.createElement('label')
             label.textContent = message
             label.htmlFor = id
-            content.appendChild(label)
+            item.appendChild(label)
           }
+
           const input = document.createElement('input')
           input.id = id
           input.name = id
@@ -52,15 +56,19 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           if (option.prefix !== undefined) {
             input.dataset.prefix = option.prefix
           }
-          wrapper.appendChild(input)
+          item.appendChild(input)
+          wrapper.appendChild(item)
           content.appendChild(wrapper)
           break
         }
         case 'checkbox': {
+          const item = document.createElement('div')
+          item.classList.add('clickpad2__dialog-checkbox-item')
+
           if (message !== undefined) {
             const label = document.createElement('label')
             label.textContent = message
-            content.appendChild(label)
+            item.appendChild(label)
           }
 
           // option.values ごとに label>input を生成する
@@ -75,16 +83,21 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             input.value = value
             labelElement.appendChild(input)
             labelElement.appendChild(document.createTextNode(label))
-            wrapper.appendChild(labelElement)
-            content.appendChild(wrapper)
+
+            item.appendChild(labelElement)
           })
+          wrapper.appendChild(item)
+          content.appendChild(wrapper)
           break
         }
         case 'radio': {
+          const item = document.createElement('div')
+          item.classList.add('clickpad2__dialog-radio-item')
+
           if (message !== undefined) {
             const label = document.createElement('label')
             label.textContent = message
-            content.appendChild(label)
+            item.appendChild(label)
           }
 
           // option.values ごとに label>input を生成する
@@ -121,16 +134,20 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             } else {
               labelElement.appendChild(document.createTextNode(label))
             }
-            wrapper.appendChild(labelElement)
-            content.appendChild(wrapper)
+            item.appendChild(labelElement)
           })
+          wrapper.appendChild(item)
+          content.appendChild(wrapper)
           break
         }
         case 'select': {
+          const item = document.createElement('div')
+          item.classList.add('clickpad2__dialog-select-item')
+
           if (message !== undefined) {
             const label = document.createElement('label')
             label.textContent = message
-            content.appendChild(label)
+            item.appendChild(label)
           }
 
           // option.values ごとに label>input を生成する
@@ -145,9 +162,10 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             input.checked = checked
             labelElement.appendChild(input)
             labelElement.appendChild(document.createTextNode(label))
-            wrapper.appendChild(labelElement)
-            content.appendChild(wrapper)
+            item.appendChild(labelElement)
           })
+          wrapper.appendChild(item)
+          content.appendChild(wrapper)
           break
         }
         case 'font-size-guide': {
@@ -172,9 +190,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           break
         }
         case 'section-header': {
-          const item = document.createElement('h2')
+          const item = document.createElement('div')
           item.classList.add('clickpad2__dialog-section-header-item')
-          item.textContent = message
+
+          // タイトル
+          const heading = document.createElement('h2')
+          heading.textContent = message
+          item.appendChild(heading)
 
           wrapper.appendChild(item)
           content.appendChild(wrapper)
@@ -218,20 +240,25 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
     form.appendChild(content)
     dialog.appendChild(form)
 
-    // 閉じるボタンを生成する
+    const action = document.createElement('div')
+    action.classList.add('clickpad2__dialog-action')
+
+    // キャンセルボタンを生成する
     const close = document.createElement('button')
+    close.classList.add('btn', 'btn-text')
     close.type = 'button'
-    close.textContent = '閉じる'
+    close.textContent = 'キャンセル'
     close.onclick = () => {
       dialog.close()
       document.querySelector('#msg').focus()
     }
-    dialog.appendChild(close)
+    action.appendChild(close)
 
-    // 挿入ボタンを生成する
+    // OKボタンを生成する
     const insert = document.createElement('button')
+    insert.classList.add('btn', 'btn-primary')
     insert.type = 'submit'
-    insert.textContent = '挿入'
+    insert.textContent = 'OK'
     insert.onclick = (e) => {
       e.preventDefault()
       const textarea = document.querySelector('#msg')
@@ -273,7 +300,9 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
       dialog.close()
       textarea.focus()
     }
-    form.appendChild(insert)
+    action.appendChild(insert)
+
+    form.appendChild(action)
 
     // dialog を body に追加する
     document.body.appendChild(dialog)

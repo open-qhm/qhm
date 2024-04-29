@@ -786,11 +786,13 @@
         const id = `dialog-control-${index + 1}`;
         switch (option.type) {
           case "text": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-text-item");
             if (message !== void 0) {
               const label = document.createElement("label");
               label.textContent = message;
               label.htmlFor = id;
-              content.appendChild(label);
+              item.appendChild(label);
             }
             const input = document.createElement("input");
             input.id = id;
@@ -807,15 +809,18 @@
             if (option.prefix !== void 0) {
               input.dataset.prefix = option.prefix;
             }
-            wrapper.appendChild(input);
+            item.appendChild(input);
+            wrapper.appendChild(item);
             content.appendChild(wrapper);
             break;
           }
           case "checkbox": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-checkbox-item");
             if (message !== void 0) {
               const label = document.createElement("label");
               label.textContent = message;
-              content.appendChild(label);
+              item.appendChild(label);
             }
             option.values.forEach(({ label, value }, index2) => {
               const _id = `${id}-${index2 + 1}`;
@@ -828,16 +833,19 @@
               input.value = value;
               labelElement.appendChild(input);
               labelElement.appendChild(document.createTextNode(label));
-              wrapper.appendChild(labelElement);
-              content.appendChild(wrapper);
+              item.appendChild(labelElement);
             });
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
             break;
           }
           case "radio": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-radio-item");
             if (message !== void 0) {
               const label = document.createElement("label");
               label.textContent = message;
-              content.appendChild(label);
+              item.appendChild(label);
             }
             option.values.forEach(({ label, color, icon, value, checked }, index2) => {
               const _id = `${id}-${index2 + 1}`;
@@ -870,16 +878,19 @@
               } else {
                 labelElement.appendChild(document.createTextNode(label));
               }
-              wrapper.appendChild(labelElement);
-              content.appendChild(wrapper);
+              item.appendChild(labelElement);
             });
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
             break;
           }
           case "select": {
+            const item = document.createElement("div");
+            item.classList.add("clickpad2__dialog-select-item");
             if (message !== void 0) {
               const label = document.createElement("label");
               label.textContent = message;
-              content.appendChild(label);
+              item.appendChild(label);
             }
             option.values.forEach(({ label, value, checked }, index2) => {
               const _id = `${id}-${index2 + 1}`;
@@ -892,9 +903,10 @@
               input.checked = checked;
               labelElement.appendChild(input);
               labelElement.appendChild(document.createTextNode(label));
-              wrapper.appendChild(labelElement);
-              content.appendChild(wrapper);
+              item.appendChild(labelElement);
             });
+            wrapper.appendChild(item);
+            content.appendChild(wrapper);
             break;
           }
           case "font-size-guide": {
@@ -916,9 +928,11 @@
             break;
           }
           case "section-header": {
-            const item = document.createElement("h2");
+            const item = document.createElement("div");
             item.classList.add("clickpad2__dialog-section-header-item");
-            item.textContent = message;
+            const heading = document.createElement("h2");
+            heading.textContent = message;
+            item.appendChild(heading);
             wrapper.appendChild(item);
             content.appendChild(wrapper);
             break;
@@ -951,17 +965,21 @@
       });
       form.appendChild(content);
       dialog.appendChild(form);
+      const action = document.createElement("div");
+      action.classList.add("clickpad2__dialog-action");
       const close = document.createElement("button");
+      close.classList.add("btn", "btn-text");
       close.type = "button";
-      close.textContent = "\u9589\u3058\u308B";
+      close.textContent = "\u30AD\u30E3\u30F3\u30BB\u30EB";
       close.onclick = () => {
         dialog.close();
         document.querySelector("#msg").focus();
       };
-      dialog.appendChild(close);
+      action.appendChild(close);
       const insert = document.createElement("button");
+      insert.classList.add("btn", "btn-primary");
       insert.type = "submit";
-      insert.textContent = "\u633F\u5165";
+      insert.textContent = "OK";
       insert.onclick = (e) => {
         e.preventDefault();
         const textarea = document.querySelector("#msg");
@@ -995,7 +1013,8 @@
         dialog.close();
         textarea.focus();
       };
-      form.appendChild(insert);
+      action.appendChild(insert);
+      form.appendChild(action);
       document.body.appendChild(dialog);
       dialog.showModal();
       dialog.onclose = () => {
