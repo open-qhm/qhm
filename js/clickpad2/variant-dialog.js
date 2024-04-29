@@ -83,6 +83,8 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             item.appendChild(label)
           }
 
+          const choices = document.createElement('div')
+          choices.classList.add('clickpad2__dialog-choices')
           // option.values ごとに label>input を生成する
           option.values.forEach(({ label, value }, index2) => {
             const _id = `${id}-${index2 + 1}`
@@ -96,8 +98,9 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             labelElement.appendChild(input)
             labelElement.appendChild(document.createTextNode(label))
 
-            item.appendChild(labelElement)
+            choices.appendChild(labelElement)
           })
+          item.appendChild(choices)
           wrapper.appendChild(item)
           content.appendChild(wrapper)
           break
@@ -118,7 +121,8 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             item.appendChild(label)
           }
 
-          // option.values ごとに label>input を生成する
+          const choices = document.createElement('div')
+          choices.classList.add('clickpad2__dialog-choices')          // option.values ごとに label>input を生成する
           option.values.forEach(({ label, color, icon, value, checked }, index2) => {
             const _id = `${id}-${index2 + 1}`
             const labelElement = document.createElement('label')
@@ -152,8 +156,9 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             } else {
               labelElement.appendChild(document.createTextNode(label))
             }
-            item.appendChild(labelElement)
+            choices.appendChild(labelElement)
           })
+          item.appendChild(choices)
           wrapper.appendChild(item)
           content.appendChild(wrapper)
           break
@@ -174,10 +179,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             item.appendChild(label)
           }
 
+          const choices = document.createElement('div')
+          choices.classList.add('clickpad2__dialog-choices')
           // option.values ごとに label>input を生成する
           option.values.forEach(({ label, value, checked }, index2) => {
             const _id = `${id}-${index2 + 1}`
             const labelElement = document.createElement('label')
+            labelElement.classList.add('clickpad2__dialog-select-item-label')
             const input = document.createElement('input')
             input.id = _id
             input.type = 'checkbox'
@@ -186,8 +194,9 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             input.checked = checked
             labelElement.appendChild(input)
             labelElement.appendChild(document.createTextNode(label))
-            item.appendChild(labelElement)
+            choices.appendChild(labelElement)
           })
+          item.appendChild(choices)
           wrapper.appendChild(item)
           content.appendChild(wrapper)
           break
@@ -324,7 +333,7 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
       dialog.close()
       textarea.focus()
     }
-    action.appendChild(insert)
+    action.prepend(insert)
 
     form.appendChild(action)
 

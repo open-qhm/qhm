@@ -146,20 +146,22 @@
       variant: "dialog",
       dialog: [
         {
-          message: "\u30EA\u30F3\u30AF\u540D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+          message: "\u8868\u793A\u6587\u5B57",
           option: {
             type: "text",
             useSelection: true
           }
         },
         {
-          message: "\u30EA\u30F3\u30AF\u5148\uFF08\u30DA\u30FC\u30B8\u540D, URL\uFF09\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
+          message: "\u30EA\u30F3\u30AF",
+          tip: "\uFF08\u30DA\u30FC\u30B8\u540D/URL\uFF09",
           option: {
-            type: "text"
+            type: "text",
+            prefix: ">"
           }
         }
       ],
-      value: "[[${1}>${2}]]",
+      value: "[[${1}${2}]]",
       cover: {
         kind: "icon",
         provider: "google",
@@ -845,6 +847,8 @@
               }
               item.appendChild(label);
             }
+            const choices = document.createElement("div");
+            choices.classList.add("clickpad2__dialog-choices");
             option.values.forEach(({ label, value }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
@@ -856,8 +860,9 @@
               input.value = value;
               labelElement.appendChild(input);
               labelElement.appendChild(document.createTextNode(label));
-              item.appendChild(labelElement);
+              choices.appendChild(labelElement);
             });
+            item.appendChild(choices);
             wrapper.appendChild(item);
             content.appendChild(wrapper);
             break;
@@ -876,6 +881,8 @@
               }
               item.appendChild(label);
             }
+            const choices = document.createElement("div");
+            choices.classList.add("clickpad2__dialog-choices");
             option.values.forEach(({ label, color, icon, value, checked }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
@@ -907,8 +914,9 @@
               } else {
                 labelElement.appendChild(document.createTextNode(label));
               }
-              item.appendChild(labelElement);
+              choices.appendChild(labelElement);
             });
+            item.appendChild(choices);
             wrapper.appendChild(item);
             content.appendChild(wrapper);
             break;
@@ -927,9 +935,12 @@
               }
               item.appendChild(label);
             }
+            const choices = document.createElement("div");
+            choices.classList.add("clickpad2__dialog-choices");
             option.values.forEach(({ label, value, checked }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
+              labelElement.classList.add("clickpad2__dialog-select-item-label");
               const input = document.createElement("input");
               input.id = _id;
               input.type = "checkbox";
@@ -938,8 +949,9 @@
               input.checked = checked;
               labelElement.appendChild(input);
               labelElement.appendChild(document.createTextNode(label));
-              item.appendChild(labelElement);
+              choices.appendChild(labelElement);
             });
+            item.appendChild(choices);
             wrapper.appendChild(item);
             content.appendChild(wrapper);
             break;
@@ -1048,7 +1060,7 @@
         dialog.close();
         textarea.focus();
       };
-      action.appendChild(insert);
+      action.prepend(insert);
       form.appendChild(action);
       document.body.appendChild(dialog);
       dialog.showModal();
