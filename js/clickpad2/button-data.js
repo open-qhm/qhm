@@ -162,25 +162,38 @@ export const buttonData = {
     },
     dialog: [
       {
-        message: '装飾チェックボックス',
         option: {
-          type: 'deco-font',
+          type: 'checkbox',
+          values: [
+            {
+              label: '太字',
+              value: 'b',
+            },
+            {
+              label: '下線',
+              value: 'u',
+            },
+            {
+              label: '斜体',
+              value: 'i',
+            }
+          ]
         },
       },
       {
-        message: '文字色',
+        message: '文字色（カラーコード/カラーネーム）',
         option: {
-          type: 'deco-color',
+          type: 'text',
         },
       },
       {
-        message: '背景色',
+        message: '背景色（カラーコード/カラーネーム）',
         option: {
-          type: 'deco-bg-color',
+          type: 'text',
         },
       },
       {
-        message: '文字サイズ',
+        message: '文字サイズ（数値/em/キーワード）',
         option: {
           type: 'text',
         },
