@@ -181,19 +181,22 @@ export const buttonData = {
         },
       },
       {
-        message: '文字色（カラーコード/カラーネーム）',
+        message: '文字色',
+        tip: '（カラーコード/カラーネーム）',
         option: {
           type: 'text',
         },
       },
       {
-        message: '背景色（カラーコード/カラーネーム）',
+        message: '背景色',
+        tip: '（カラーコード/カラーネーム）',
         option: {
           type: 'text',
         },
       },
       {
-        message: '文字サイズ（数値/em/キーワード）',
+        message: '文字サイズ',
+        tip: '（数値/em/キーワード）',
         option: {
           type: 'text',
         },
@@ -461,13 +464,15 @@ export const buttonData = {
         }
       },
       {
-        message: '色（カラーコード/カラーネーム）',
+        message: '色',
+        tip: '（カラーコード/カラーネーム）',
         option: {
           type: 'text',
         }
       },
       {
-        message: 'サイズ（数値/em/キーワード）',
+        message: 'サイズ',
+        tip: '（数値/em/キーワード）',
         option: {
           type: 'text'
         }
@@ -595,27 +600,31 @@ export const buttonData = {
         }
       },
       {
-        message: '文字色（カラーコード/カラーネーム）',
+        message: '文字色',
+        tip: '（カラーコード/カラーネーム）',
         option: {
           type: 'text',
           prefix: 'color='
         }
       },
       {
-        message: '背景色（カラーコード/カラーネーム）',
+        message: '背景色',
+        tip: '（カラーコード/カラーネーム）',
         option: {
           type: 'text',
           prefix: 'bgcolor='
         }
       },
       {
-        message: '高さ（例：500）',
+        message: '高さ',
+        tip: '（例：500）',
         option: {
           type: 'text',
         }
       },
       {
-        message: '背景画像（例：image/jpg）',
+        message: '背景画像',
+        tip: '（例：image/jpg）',
         option: {
           type: 'text',
         }
@@ -627,14 +636,16 @@ export const buttonData = {
         }
       },
       {
-        message: '明るくする（0〜100）',
+        message: '明るくする',
+        tip: '（0〜100）',
         option: {
           type: 'text',
           prefix: 'light=',
         }
       },
       {
-        message: '暗くする（0〜100）',
+        message: '暗くする',
+        tip: '（0〜100）',
         option: {
           type: 'text',
           prefix: 'dark=',

@@ -23,7 +23,7 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
     const content = document.createElement('div')
     content.classList.add('clickpad2__dialog-content')
-    buttonDefinition.dialog.forEach(({ message, option }, index) => {
+    buttonDefinition.dialog.forEach(({ message, tip, option }, index) => {
       const wrapper = document.createElement('div')
       wrapper.classList.add('clickpad2__dialog-item', `clickpad2__dialog-item--${option.type}`)
 
@@ -36,8 +36,14 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
           if (message !== undefined) {
             const label = document.createElement('label')
+            label.classList.add('clickpad2__dialog-item-label')
             label.textContent = message
             label.htmlFor = id
+            if (tip !== undefined) {
+              const small = document.createElement('small')
+              small.textContent = tip
+              label.appendChild(small)
+            }
             item.appendChild(label)
           }
 
@@ -67,7 +73,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
           if (message !== undefined) {
             const label = document.createElement('label')
+            label.classList.add('clickpad2__dialog-item-label')
             label.textContent = message
+            if (tip !== undefined) {
+              const small = document.createElement('small')
+              small.textContent = tip
+              label.appendChild(small)
+            }
             item.appendChild(label)
           }
 
@@ -75,7 +87,7 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           option.values.forEach(({ label, value }, index2) => {
             const _id = `${id}-${index2 + 1}`
             const labelElement = document.createElement('label')
-            labelElement.classList.add('clickpad2__dialog-checkbox-item-label')
+            labelElement.classList.add('clickpad2__dialog-item-label')
             const input = document.createElement('input')
             input.id = _id
             input.type = 'checkbox'
@@ -96,7 +108,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
           if (message !== undefined) {
             const label = document.createElement('label')
+            label.classList.add('clickpad2__dialog-item-label')
             label.textContent = message
+            if (tip !== undefined) {
+              const small = document.createElement('small')
+              small.textContent = tip
+              label.appendChild(small)
+            }
             item.appendChild(label)
           }
 
@@ -146,7 +164,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
           if (message !== undefined) {
             const label = document.createElement('label')
+            label.classList.add('clickpad2__dialog-item-label')
             label.textContent = message
+            if (tip !== undefined) {
+              const small = document.createElement('small')
+              small.textContent = tip
+              label.appendChild(small)
+            }
             item.appendChild(label)
           }
 

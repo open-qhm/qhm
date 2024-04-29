@@ -206,19 +206,22 @@
           }
         },
         {
-          message: "\u6587\u5B57\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          message: "\u6587\u5B57\u8272",
+          tip: "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
           option: {
             type: "text"
           }
         },
         {
-          message: "\u80CC\u666F\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          message: "\u80CC\u666F\u8272",
+          tip: "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
           option: {
             type: "text"
           }
         },
         {
-          message: "\u6587\u5B57\u30B5\u30A4\u30BA\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09",
+          message: "\u6587\u5B57\u30B5\u30A4\u30BA",
+          tip: "\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09",
           option: {
             type: "text"
           }
@@ -486,13 +489,15 @@
           }
         },
         {
-          message: "\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          message: "\u8272",
+          tip: "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
           option: {
             type: "text"
           }
         },
         {
-          message: "\u30B5\u30A4\u30BA\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09",
+          message: "\u30B5\u30A4\u30BA",
+          tip: "\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09",
           option: {
             type: "text"
           }
@@ -620,27 +625,31 @@
           }
         },
         {
-          message: "\u6587\u5B57\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          message: "\u6587\u5B57\u8272",
+          tip: "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
           option: {
             type: "text",
             prefix: "color="
           }
         },
         {
-          message: "\u80CC\u666F\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
+          message: "\u80CC\u666F\u8272",
+          tip: "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
           option: {
             type: "text",
             prefix: "bgcolor="
           }
         },
         {
-          message: "\u9AD8\u3055\uFF08\u4F8B\uFF1A500\uFF09",
+          message: "\u9AD8\u3055",
+          tip: "\uFF08\u4F8B\uFF1A500\uFF09",
           option: {
             type: "text"
           }
         },
         {
-          message: "\u80CC\u666F\u753B\u50CF\uFF08\u4F8B\uFF1Aimage/jpg\uFF09",
+          message: "\u80CC\u666F\u753B\u50CF",
+          tip: "\uFF08\u4F8B\uFF1Aimage/jpg\uFF09",
           option: {
             type: "text"
           }
@@ -652,14 +661,16 @@
           }
         },
         {
-          message: "\u660E\u308B\u304F\u3059\u308B\uFF080\u301C100\uFF09",
+          message: "\u660E\u308B\u304F\u3059\u308B",
+          tip: "\uFF080\u301C100\uFF09",
           option: {
             type: "text",
             prefix: "light="
           }
         },
         {
-          message: "\u6697\u304F\u3059\u308B\uFF080\u301C100\uFF09",
+          message: "\u6697\u304F\u3059\u308B",
+          tip: "\uFF080\u301C100\uFF09",
           option: {
             type: "text",
             prefix: "dark="
@@ -780,7 +791,7 @@
       const form = document.createElement("form");
       const content = document.createElement("div");
       content.classList.add("clickpad2__dialog-content");
-      buttonDefinition.dialog.forEach(({ message, option }, index) => {
+      buttonDefinition.dialog.forEach(({ message, tip, option }, index) => {
         const wrapper = document.createElement("div");
         wrapper.classList.add("clickpad2__dialog-item", `clickpad2__dialog-item--${option.type}`);
         const id = `dialog-control-${index + 1}`;
@@ -790,8 +801,14 @@
             item.classList.add("clickpad2__dialog-text-item");
             if (message !== void 0) {
               const label = document.createElement("label");
+              label.classList.add("clickpad2__dialog-item-label");
               label.textContent = message;
               label.htmlFor = id;
+              if (tip !== void 0) {
+                const small = document.createElement("small");
+                small.textContent = tip;
+                label.appendChild(small);
+              }
               item.appendChild(label);
             }
             const input = document.createElement("input");
@@ -819,13 +836,19 @@
             item.classList.add("clickpad2__dialog-checkbox-item");
             if (message !== void 0) {
               const label = document.createElement("label");
+              label.classList.add("clickpad2__dialog-item-label");
               label.textContent = message;
+              if (tip !== void 0) {
+                const small = document.createElement("small");
+                small.textContent = tip;
+                label.appendChild(small);
+              }
               item.appendChild(label);
             }
             option.values.forEach(({ label, value }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
-              labelElement.classList.add("clickpad2__dialog-checkbox-item-label");
+              labelElement.classList.add("clickpad2__dialog-item-label");
               const input = document.createElement("input");
               input.id = _id;
               input.type = "checkbox";
@@ -844,7 +867,13 @@
             item.classList.add("clickpad2__dialog-radio-item");
             if (message !== void 0) {
               const label = document.createElement("label");
+              label.classList.add("clickpad2__dialog-item-label");
               label.textContent = message;
+              if (tip !== void 0) {
+                const small = document.createElement("small");
+                small.textContent = tip;
+                label.appendChild(small);
+              }
               item.appendChild(label);
             }
             option.values.forEach(({ label, color, icon, value, checked }, index2) => {
@@ -889,7 +918,13 @@
             item.classList.add("clickpad2__dialog-select-item");
             if (message !== void 0) {
               const label = document.createElement("label");
+              label.classList.add("clickpad2__dialog-item-label");
               label.textContent = message;
+              if (tip !== void 0) {
+                const small = document.createElement("small");
+                small.textContent = tip;
+                label.appendChild(small);
+              }
               item.appendChild(label);
             }
             option.values.forEach(({ label, value, checked }, index2) => {

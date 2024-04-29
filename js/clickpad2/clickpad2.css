@@ -59,3 +59,22 @@
   margin-right: 5px;
   border-radius: 2px;
 }
+
+.clickpad2__dialog label {
+  font-weight: normal;
+}
+.clickpad2__dialog label.clickpad2__dialog-item-label {
+  display: block;
+}
+
+.clickpad2__dialog--deco label:has(input[value="b"]) {
+  font-weight: bold;
+}
+
+.clickpad2__dialog--deco label:has(input[value="i"]) {
+  font-style: italic;
+}
+
+.clickpad2__dialog--deco label:has(input[value="u"]) {
+  text-decoration: underline;
+}
