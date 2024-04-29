@@ -121,20 +121,22 @@ export const buttonData = {
     variant: 'dialog',
     dialog: [
       {
-        message: 'リンク名を入力してください。',
+        message: '表示文字',
         option: {
           type: 'text',
           useSelection: true
         }
       },
       {
-        message: 'リンク先（ページ名, URL）を入力してください。',
+        message: 'リンク',
+        tip: '（ページ名/URL）',
         option: {
           type: 'text',
+          prefix: '>'
         }
       }
     ],
-    value: '[[${1}>${2}]]',
+    value: '[[${1}${2}]]',
     cover: {
       kind: "icon",
       provider: "google",
