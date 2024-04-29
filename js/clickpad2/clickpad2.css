@@ -70,8 +70,13 @@
   border-radius: 2px;
 }
 
-.clickpad2__dialog label.clickpad2__dialog-item-label {
+.clickpad2__dialog-item-label {
   display: block;
+}
+
+.clickpad2__dialog-item-label small {
+  font-size: 12px;
+  font-weight: normal;
 }
 
 .clickpad2__dialog-choices {
@@ -85,13 +90,22 @@
 }
 
 .clickpad2__dialog-radio-item-label,
+.clickpad2__dialog-checkbox-item-label,
 .clickpad2__dialog-select-item-label {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   font-weight: normal;
 }
-
+.clickpad2__dialog-font-size-guide-item-legend h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+.clickpad2__dialog-font-size-guide-item-legend p {
+  font-size: 12px;
+  margin: 0;
+}
 .clickpad2__dialog-action {
   margin-top: 20px;
   display: flex;
@@ -115,14 +129,54 @@
 }
 
 /* deco */
+.clickpad2__dialog--deco .clickpad2__dialog-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-content > :first-child {
+  grid-column: 1/ 3;
+}
 .clickpad2__dialog--deco label:has(input[value="b"]) {
   font-weight: bold;
 }
-
 .clickpad2__dialog--deco label:has(input[value="i"]) {
   font-style: italic;
 }
-
 .clickpad2__dialog--deco label:has(input[value="u"]) {
   text-decoration: underline;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-text-item:has(#dialog-control-2) .clickpad2__dialog-item-label-title {
+  color: #4169e1;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-text-item:has(#dialog-control-3) .clickpad2__dialog-item-label-title {
+  background-color: #d9d9d9;
+}
+
+/* icon */
+.clickpad2__dialog--icon .clickpad2__dialog-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.clickpad2__dialog--icon .clickpad2__dialog-item:first-child {
+  grid-column: 1 / 3;
+}
+.clickpad2__dialog--icon .clickpad2__dialog-icon-header-item-title {
+  font-size: 16px;
+  margin: 0;
+}
+.clickpad2__dialog--icon p {
+  font-size: 12px;
+  margin: 0;
+  white-space: pre-wrap;
+}
+.clickpad2__dialog-icon-header-item-link-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 0;
+}
+.clickpad2__dialog-icon-header-item-link-grid a {
+  font-size: 16px;
+  text-decoration: none;
 }

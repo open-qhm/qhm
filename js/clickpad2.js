@@ -804,8 +804,11 @@
             if (message !== void 0) {
               const label = document.createElement("label");
               label.classList.add("clickpad2__dialog-item-label");
-              label.textContent = message;
               label.htmlFor = id;
+              const labelTitle = document.createElement("span");
+              labelTitle.classList.add("clickpad2__dialog-item-label-title");
+              labelTitle.textContent = message;
+              label.appendChild(labelTitle);
               if (tip !== void 0) {
                 const small = document.createElement("small");
                 small.textContent = tip;
@@ -839,7 +842,10 @@
             if (message !== void 0) {
               const label = document.createElement("label");
               label.classList.add("clickpad2__dialog-item-label");
-              label.textContent = message;
+              const labelTitle = document.createElement("span");
+              labelTitle.classList.add("clickpad2__dialog-item-label-title");
+              labelTitle.textContent = message;
+              label.appendChild(labelTitle);
               if (tip !== void 0) {
                 const small = document.createElement("small");
                 small.textContent = tip;
@@ -852,7 +858,7 @@
             option.values.forEach(({ label, value }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
-              labelElement.classList.add("clickpad2__dialog-item-label");
+              labelElement.classList.add("clickpad2__dialog-checkbox-item-label");
               const input = document.createElement("input");
               input.id = _id;
               input.type = "checkbox";
@@ -873,7 +879,10 @@
             if (message !== void 0) {
               const label = document.createElement("label");
               label.classList.add("clickpad2__dialog-item-label");
-              label.textContent = message;
+              const labelTitle = document.createElement("span");
+              labelTitle.classList.add("clickpad2__dialog-item-label-title");
+              labelTitle.textContent = message;
+              label.appendChild(labelTitle);
               if (tip !== void 0) {
                 const small = document.createElement("small");
                 small.textContent = tip;
@@ -927,7 +936,10 @@
             if (message !== void 0) {
               const label = document.createElement("label");
               label.classList.add("clickpad2__dialog-item-label");
-              label.textContent = message;
+              const labelTitle = document.createElement("span");
+              labelTitle.classList.add("clickpad2__dialog-item-label-title");
+              labelTitle.textContent = message;
+              label.appendChild(labelTitle);
               if (tip !== void 0) {
                 const small = document.createElement("small");
                 small.textContent = tip;
@@ -961,14 +973,15 @@
             item.classList.add("clickpad2__dialog-font-size-guide-item");
             const legend = document.createElement("div");
             legend.classList.add("clickpad2__dialog-font-size-guide-item-legend");
-            const legendTitle = document.createElement("span");
+            const legendTitle = document.createElement("h3");
             legendTitle.textContent = "[ \u6587\u5B57\u30B5\u30A4\u30BA\u6307\u5B9A\u30AD\u30FC\u30EF\u30FC\u30C9 ]";
             legend.appendChild(legendTitle);
-            const br = document.createElement("br");
-            legend.appendChild(br);
-            const legendTip = document.createElement("span");
-            legendTip.textContent = "xx-small / x-small / small / medium\uFF08\u521D\u671F\u5024\uFF09/ large / x-large / xx-large";
-            legend.appendChild(legendTip);
+            const legendTip1 = document.createElement("p");
+            legendTip1.textContent = "xx-small / x-small / small / medium\uFF08\u521D\u671F\u5024\uFF09";
+            const legendTip2 = document.createElement("p");
+            legendTip2.textContent = "large / x-large / xx-large";
+            legend.appendChild(legendTip1);
+            legend.appendChild(legendTip2);
             item.appendChild(legend);
             wrapper.appendChild(item);
             content.appendChild(wrapper);
@@ -991,18 +1004,21 @@
             title.textContent = "Google \u30A2\u30A4\u30B3\u30F3\u691C\u7D22\u30EA\u30F3\u30AF";
             title.classList.add("clickpad2__dialog-icon-header-item-title");
             item.appendChild(title);
+            const linkGrid = document.createElement("div");
+            linkGrid.classList.add("clickpad2__dialog-icon-header-item-link-grid");
             const materialIconsLink = document.createElement("a");
             materialIconsLink.textContent = "Material Icons";
             materialIconsLink.href = "https://fonts.google.com/icons?icon.set=Material+Icons";
             materialIconsLink.target = "_blank";
-            item.appendChild(materialIconsLink);
+            linkGrid.appendChild(materialIconsLink);
             const materialSymbolsLink = document.createElement("a");
             materialSymbolsLink.textContent = "Material Symbols";
             materialSymbolsLink.href = "https://fonts.google.com/icons?icon.set=Material+Symbols";
             materialSymbolsLink.target = "_blank";
-            item.appendChild(materialSymbolsLink);
+            linkGrid.appendChild(materialSymbolsLink);
+            item.appendChild(linkGrid);
             const description = document.createElement("p");
-            description.textContent = "(\u30A2\u30A4\u30B3\u30F3\u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u8868\u793A\u3055\u308C\u308B\u53F3\u5074\u30A6\u30A3\u30F3\u30C9\u30A6\u5185\u306E<span ...\u304B\u3089\u59CB\u307E\u308B\u67A0\u5185\u306E\u30B3\u30FC\u30C9\u3092 [\u30A2\u30A4\u30B3\u30F3\u30B3\u30FC\u30C9] \u306B\u5165\u529B\u3057\u307E\u3059\uFF09";
+            description.textContent = "(\u30A2\u30A4\u30B3\u30F3\u3092\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u8868\u793A\u3055\u308C\u308B\n\u53F3\u5074\u30A6\u30A3\u30F3\u30C9\u30A6\u5185\u306E<span ...\u304B\u3089\u59CB\u307E\u308B\u67A0\u5185\u306E\u30B3\u30FC\u30C9\u3092 [\u30A2\u30A4\u30B3\u30F3\u30B3\u30FC\u30C9] \u306B\u5165\u529B\u3057\u307E\u3059\uFF09";
             item.appendChild(description);
             wrapper.appendChild(item);
             content.appendChild(wrapper);
