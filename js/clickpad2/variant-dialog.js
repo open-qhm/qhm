@@ -37,8 +37,13 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           if (message !== undefined) {
             const label = document.createElement('label')
             label.classList.add('clickpad2__dialog-item-label')
-            label.textContent = message
             label.htmlFor = id
+
+            const labelTitle = document.createElement('span')
+            labelTitle.classList.add('clickpad2__dialog-item-label-title')
+            labelTitle.textContent = message
+            label.appendChild(labelTitle)
+
             if (tip !== undefined) {
               const small = document.createElement('small')
               small.textContent = tip
@@ -74,7 +79,12 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           if (message !== undefined) {
             const label = document.createElement('label')
             label.classList.add('clickpad2__dialog-item-label')
-            label.textContent = message
+
+            const labelTitle = document.createElement('span')
+            labelTitle.classList.add('clickpad2__dialog-item-label-title')
+            labelTitle.textContent = message
+            label.appendChild(labelTitle)
+            
             if (tip !== undefined) {
               const small = document.createElement('small')
               small.textContent = tip
@@ -89,7 +99,7 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           option.values.forEach(({ label, value }, index2) => {
             const _id = `${id}-${index2 + 1}`
             const labelElement = document.createElement('label')
-            labelElement.classList.add('clickpad2__dialog-item-label')
+            labelElement.classList.add('clickpad2__dialog-checkbox-item-label')
             const input = document.createElement('input')
             input.id = _id
             input.type = 'checkbox'
@@ -112,7 +122,12 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           if (message !== undefined) {
             const label = document.createElement('label')
             label.classList.add('clickpad2__dialog-item-label')
-            label.textContent = message
+
+            const labelTitle = document.createElement('span')
+            labelTitle.classList.add('clickpad2__dialog-item-label-title')
+            labelTitle.textContent = message
+            label.appendChild(labelTitle)
+
             if (tip !== undefined) {
               const small = document.createElement('small')
               small.textContent = tip
@@ -170,7 +185,12 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           if (message !== undefined) {
             const label = document.createElement('label')
             label.classList.add('clickpad2__dialog-item-label')
-            label.textContent = message
+
+            const labelTitle = document.createElement('span')
+            labelTitle.classList.add('clickpad2__dialog-item-label-title')
+            labelTitle.textContent = message
+            label.appendChild(labelTitle)
+
             if (tip !== undefined) {
               const small = document.createElement('small')
               small.textContent = tip
@@ -208,14 +228,16 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           // 凡例
           const legend = document.createElement('div')
           legend.classList.add('clickpad2__dialog-font-size-guide-item-legend')
-          const legendTitle = document.createElement('span')
+          const legendTitle = document.createElement('h3')
           legendTitle.textContent = '[ 文字サイズ指定キーワード ]'
           legend.appendChild(legendTitle)
-          const br = document.createElement('br')
-          legend.appendChild(br)
-          const legendTip = document.createElement('span')
-          legendTip.textContent = 'xx-small / x-small / small / medium（初期値）/ large / x-large / xx-large'
-          legend.appendChild(legendTip)
+
+          const legendTip1 = document.createElement('p')
+          legendTip1.textContent = 'xx-small / x-small / small / medium（初期値）'
+          const legendTip2 = document.createElement('p')
+          legendTip2.textContent = 'large / x-large / xx-large'
+          legend.appendChild(legendTip1)
+          legend.appendChild(legendTip2)
           item.appendChild(legend)
 
           wrapper.appendChild(item)
@@ -245,23 +267,28 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           title.classList.add('clickpad2__dialog-icon-header-item-title')
           item.appendChild(title)
 
+          const linkGrid = document.createElement('div')
+          linkGrid.classList.add('clickpad2__dialog-icon-header-item-link-grid')
+
           // Material Icons へのリンク
           const materialIconsLink = document.createElement('a')
           materialIconsLink.textContent = 'Material Icons'
           materialIconsLink.href = 'https://fonts.google.com/icons?icon.set=Material+Icons'
           materialIconsLink.target = '_blank'
-          item.appendChild(materialIconsLink)
+          linkGrid.appendChild(materialIconsLink)
 
           // Material Symbold へのリンク
           const materialSymbolsLink = document.createElement('a')
           materialSymbolsLink.textContent = 'Material Symbols'
           materialSymbolsLink.href = 'https://fonts.google.com/icons?icon.set=Material+Symbols'
           materialSymbolsLink.target = '_blank'
-          item.appendChild(materialSymbolsLink)
+          linkGrid.appendChild(materialSymbolsLink)
+
+          item.appendChild(linkGrid)
 
           // 説明文
           const description = document.createElement('p')
-          description.textContent = '(アイコンをクリックして表示される右側ウィンドウ内の<span ...から始まる枠内のコードを [アイコンコード] に入力します）'
+          description.textContent = '(アイコンをクリックして表示される\n右側ウィンドウ内の<span ...から始まる枠内のコードを [アイコンコード] に入力します）'
           item.appendChild(description)
 
           wrapper.appendChild(item)
