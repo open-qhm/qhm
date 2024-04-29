@@ -27,6 +27,7 @@ type DialogButtonVariant = {
 type Dialog = string | DialogSetting[]
 type DialogSetting = string | {
   message?: string
+  tip?: string
   option: DialogOption
 }
 type DialogOption = {
