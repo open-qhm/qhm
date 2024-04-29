@@ -31,10 +31,12 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
       switch (option.type) {
         case 'text': {
-          const label = document.createElement('label')
-          label.textContent = message
-          label.htmlFor = id
-          content.appendChild(label)
+          if (message !== undefined) {
+            const label = document.createElement('label')
+            label.textContent = message
+            label.htmlFor = id
+            content.appendChild(label)
+          }
           const input = document.createElement('input')
           input.id = id
           input.name = id
@@ -55,9 +57,11 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           break
         }
         case 'checkbox': {
-          const label = document.createElement('label')
-          label.textContent = message
-          content.appendChild(label)
+          if (message !== undefined) {
+            const label = document.createElement('label')
+            label.textContent = message
+            content.appendChild(label)
+          }
 
           // option.values ごとに label>input を生成する
           option.values.forEach(({ label, value }, index2) => {
@@ -77,9 +81,11 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           break
         }
         case 'radio': {
-          const label = document.createElement('label')
-          label.textContent = message
-          content.appendChild(label)
+          if (message !== undefined) {
+            const label = document.createElement('label')
+            label.textContent = message
+            content.appendChild(label)
+          }
 
           // option.values ごとに label>input を生成する
           option.values.forEach(({ label, color, icon, value, checked }, index2) => {
@@ -121,9 +127,11 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
           break
         }
         case 'select': {
-          const label = document.createElement('label')
-          label.textContent = message
-          content.appendChild(label)
+          if (message !== undefined) {
+            const label = document.createElement('label')
+            label.textContent = message
+            content.appendChild(label)
+          }
 
           // option.values ごとに label>input を生成する
           option.values.forEach(({ label, value, checked }, index2) => {
@@ -140,87 +148,6 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             wrapper.appendChild(labelElement)
             content.appendChild(wrapper)
           })
-          break
-        }
-        case 'deco-font': {
-          const item = document.createElement('div')
-          item.classList.add('clickpad2__dialog-deco-font-item')
-
-          const fontStyles = [
-            { name: 'bold', label: '太字', value: 'b' },
-            { name: 'underline', label: '下線', value: 'u' },
-            { name: 'italic', label: '斜体', value: 'i' }
-          ]
-          fontStyles.forEach((fontStyle, index2) => {
-            const label = document.createElement('label')
-            label.classList.add('clickpad2__dialog-deco-font-item-label', `clickpad2__dialog-deco-font-item-label-${fontStyle.name}`)
-            const labelTitle = document.createElement('span')
-            labelTitle.textContent = fontStyle.label
-
-            const _id = `${id}-${index + 1}`
-            const input = document.createElement('input')
-            input.type = 'checkbox'
-            input.id = _id
-            input.name = id
-            input.value = fontStyle.value
-
-            label.appendChild(input)
-            label.appendChild(labelTitle)
-            item.appendChild(label)
-          })
-
-          wrapper.appendChild(item)
-          content.appendChild(wrapper)
-          break
-        }
-        case 'deco-color': {
-          const item = document.createElement('div')
-          item.classList.add('clickpad2__dialog-deco-color-item')
-          const label = document.createElement('label')
-          const title = document.createElement('span')
-          title.classList.add('clickpad2__dialog-deco-color-item-title')
-          title.textContent = '文字色'
-          const tip = document.createElement('span')
-          tip.classList.add('clickpad2__dialog-deco-color-item-tip')
-          tip.textContent = '（カラーコード/カラーネーム）'
-          label.appendChild(title)
-          label.appendChild(tip)
-          label.htmlFor = id
-          item.appendChild(label)
-
-          const input = document.createElement('input')
-          input.id = id
-          input.name = id
-          input.type = 'text'
-          item.appendChild(input)
-
-          wrapper.appendChild(item)
-          content.appendChild(wrapper)
-          break
-        }
-        case 'deco-bg-color': {
-          const item = document.createElement('div')
-          item.classList.add('clickpad2__dialog-deco-bg-color-item')
-          const label = document.createElement('label')
-          const title = document.createElement('span')
-          title.classList.add('clickpad2__dialog-deco-bg-color-item-title')
-          title.textContent = '背景色'
-          const tip = document.createElement('span')
-          tip.classList.add('clickpad2__dialog-deco-bg-color-item-tip')
-          tip.textContent = '（カラーコード/カラーネーム）'
-          label.appendChild(title)
-          label.appendChild(tip)
-          label.htmlFor = id
-          content.appendChild(label)
-
-          const input = document.createElement('input')
-          input.id = id
-          input.name = id
-          input.type = 'text'
-          item.appendChild(input)
-
-          wrapper.appendChild(item)
-          content.appendChild(wrapper)
           break
         }
         case 'font-size-guide': {

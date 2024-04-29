@@ -187,25 +187,38 @@
       },
       dialog: [
         {
-          message: "\u88C5\u98FE\u30C1\u30A7\u30C3\u30AF\u30DC\u30C3\u30AF\u30B9",
           option: {
-            type: "deco-font"
+            type: "checkbox",
+            values: [
+              {
+                label: "\u592A\u5B57",
+                value: "b"
+              },
+              {
+                label: "\u4E0B\u7DDA",
+                value: "u"
+              },
+              {
+                label: "\u659C\u4F53",
+                value: "i"
+              }
+            ]
           }
         },
         {
-          message: "\u6587\u5B57\u8272",
+          message: "\u6587\u5B57\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
           option: {
-            type: "deco-color"
+            type: "text"
           }
         },
         {
-          message: "\u80CC\u666F\u8272",
+          message: "\u80CC\u666F\u8272\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09",
           option: {
-            type: "deco-bg-color"
+            type: "text"
           }
         },
         {
-          message: "\u6587\u5B57\u30B5\u30A4\u30BA",
+          message: "\u6587\u5B57\u30B5\u30A4\u30BA\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09",
           option: {
             type: "text"
           }
@@ -773,10 +786,12 @@
         const id = `dialog-control-${index + 1}`;
         switch (option.type) {
           case "text": {
-            const label = document.createElement("label");
-            label.textContent = message;
-            label.htmlFor = id;
-            content.appendChild(label);
+            if (message !== void 0) {
+              const label = document.createElement("label");
+              label.textContent = message;
+              label.htmlFor = id;
+              content.appendChild(label);
+            }
             const input = document.createElement("input");
             input.id = id;
             input.name = id;
@@ -797,10 +812,12 @@
             break;
           }
           case "checkbox": {
-            const label = document.createElement("label");
-            label.textContent = message;
-            content.appendChild(label);
-            option.values.forEach(({ label: label2, value }, index2) => {
+            if (message !== void 0) {
+              const label = document.createElement("label");
+              label.textContent = message;
+              content.appendChild(label);
+            }
+            option.values.forEach(({ label, value }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
               labelElement.classList.add("clickpad2__dialog-checkbox-item-label");
@@ -810,17 +827,19 @@
               input.name = id;
               input.value = value;
               labelElement.appendChild(input);
-              labelElement.appendChild(document.createTextNode(label2));
+              labelElement.appendChild(document.createTextNode(label));
               wrapper.appendChild(labelElement);
               content.appendChild(wrapper);
             });
             break;
           }
           case "radio": {
-            const label = document.createElement("label");
-            label.textContent = message;
-            content.appendChild(label);
-            option.values.forEach(({ label: label2, color, icon, value, checked }, index2) => {
+            if (message !== void 0) {
+              const label = document.createElement("label");
+              label.textContent = message;
+              content.appendChild(label);
+            }
+            option.values.forEach(({ label, color, icon, value, checked }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
               labelElement.classList.add("clickpad2__dialog-radio-item-label");
@@ -835,7 +854,7 @@
                 labelElement.classList.add("clickpad2__dialog-radio-item-label--color");
                 const colorBox = document.createElement("span");
                 colorBox.classList.add("clickpad2__dialog-radio-color-box");
-                colorBox.title = label2;
+                colorBox.title = label;
                 colorBox.style.backgroundColor = color;
                 labelElement.appendChild(colorBox);
               } else if (icon !== void 0) {
@@ -845,11 +864,11 @@
                 iconElement.textContent = icon;
                 labelElement.appendChild(iconElement);
                 const text = document.createElement("span");
-                text.textContent = label2;
+                text.textContent = label;
                 text.classList.add("clickpad2__dialog-radio-item-label-text");
                 labelElement.appendChild(text);
               } else {
-                labelElement.appendChild(document.createTextNode(label2));
+                labelElement.appendChild(document.createTextNode(label));
               }
               wrapper.appendChild(labelElement);
               content.appendChild(wrapper);
@@ -857,10 +876,12 @@
             break;
           }
           case "select": {
-            const label = document.createElement("label");
-            label.textContent = message;
-            content.appendChild(label);
-            option.values.forEach(({ label: label2, value, checked }, index2) => {
+            if (message !== void 0) {
+              const label = document.createElement("label");
+              label.textContent = message;
+              content.appendChild(label);
+            }
+            option.values.forEach(({ label, value, checked }, index2) => {
               const _id = `${id}-${index2 + 1}`;
               const labelElement = document.createElement("label");
               const input = document.createElement("input");
@@ -870,83 +891,10 @@
               input.value = value;
               input.checked = checked;
               labelElement.appendChild(input);
-              labelElement.appendChild(document.createTextNode(label2));
+              labelElement.appendChild(document.createTextNode(label));
               wrapper.appendChild(labelElement);
               content.appendChild(wrapper);
             });
-            break;
-          }
-          case "deco-font": {
-            const item = document.createElement("div");
-            item.classList.add("clickpad2__dialog-deco-font-item");
-            const fontStyles = [
-              { name: "bold", label: "\u592A\u5B57", value: "b" },
-              { name: "underline", label: "\u4E0B\u7DDA", value: "u" },
-              { name: "italic", label: "\u659C\u4F53", value: "i" }
-            ];
-            fontStyles.forEach((fontStyle, index2) => {
-              const label = document.createElement("label");
-              label.classList.add("clickpad2__dialog-deco-font-item-label", `clickpad2__dialog-deco-font-item-label-${fontStyle.name}`);
-              const labelTitle = document.createElement("span");
-              labelTitle.textContent = fontStyle.label;
-              const _id = `${id}-${index + 1}`;
-              const input = document.createElement("input");
-              input.type = "checkbox";
-              input.id = _id;
-              input.name = id;
-              input.value = fontStyle.value;
-              label.appendChild(input);
-              label.appendChild(labelTitle);
-              item.appendChild(label);
-            });
-            wrapper.appendChild(item);
-            content.appendChild(wrapper);
-            break;
-          }
-          case "deco-color": {
-            const item = document.createElement("div");
-            item.classList.add("clickpad2__dialog-deco-color-item");
-            const label = document.createElement("label");
-            const title = document.createElement("span");
-            title.classList.add("clickpad2__dialog-deco-color-item-title");
-            title.textContent = "\u6587\u5B57\u8272";
-            const tip = document.createElement("span");
-            tip.classList.add("clickpad2__dialog-deco-color-item-tip");
-            tip.textContent = "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09";
-            label.appendChild(title);
-            label.appendChild(tip);
-            label.htmlFor = id;
-            item.appendChild(label);
-            const input = document.createElement("input");
-            input.id = id;
-            input.name = id;
-            input.type = "text";
-            item.appendChild(input);
-            wrapper.appendChild(item);
-            content.appendChild(wrapper);
-            break;
-          }
-          case "deco-bg-color": {
-            const item = document.createElement("div");
-            item.classList.add("clickpad2__dialog-deco-bg-color-item");
-            const label = document.createElement("label");
-            const title = document.createElement("span");
-            title.classList.add("clickpad2__dialog-deco-bg-color-item-title");
-            title.textContent = "\u80CC\u666F\u8272";
-            const tip = document.createElement("span");
-            tip.classList.add("clickpad2__dialog-deco-bg-color-item-tip");
-            tip.textContent = "\uFF08\u30AB\u30E9\u30FC\u30B3\u30FC\u30C9/\u30AB\u30E9\u30FC\u30CD\u30FC\u30E0\uFF09";
-            label.appendChild(title);
-            label.appendChild(tip);
-            label.htmlFor = id;
-            content.appendChild(label);
-            const input = document.createElement("input");
-            input.id = id;
-            input.name = id;
-            input.type = "text";
-            item.appendChild(input);
-            wrapper.appendChild(item);
-            content.appendChild(wrapper);
             break;
           }
           case "font-size-guide": {
