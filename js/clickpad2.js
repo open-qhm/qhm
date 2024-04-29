@@ -1031,7 +1031,7 @@
       const action = document.createElement("div");
       action.classList.add("clickpad2__dialog-action");
       const close = document.createElement("button");
-      close.classList.add("btn", "btn-text");
+      close.classList.add("btn", "btn-link");
       close.type = "button";
       close.textContent = "\u30AD\u30E3\u30F3\u30BB\u30EB";
       close.onclick = () => {

@@ -305,7 +305,7 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
     // キャンセルボタンを生成する
     const close = document.createElement('button')
-    close.classList.add('btn', 'btn-text')
+    close.classList.add('btn', 'btn-link')
     close.type = 'button'
     close.textContent = 'キャンセル'
     close.onclick = () => {
