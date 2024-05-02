@@ -208,3 +208,9 @@
   font-size: 16px;
   margin: 20px 0 0;
 }
+.clickpad2__dialog--section .clickpad2__dialog-text-item:has(#dialog-control-3) .clickpad2__dialog-item-label-title {
+  color: #4169e1;
+}
+.clickpad2__dialog--section .clickpad2__dialog-text-item:has(#dialog-control-4) .clickpad2__dialog-item-label-title {
+  background-color: #d9d9d9;
+}
