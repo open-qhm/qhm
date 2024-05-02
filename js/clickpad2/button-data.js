@@ -13,7 +13,7 @@ export const buttonData = {
   'title': {
     caption: 'タイトル',
     variant: 'insert',
-    value: '\nTITLE:',
+    value: 'TITLE:',
     cover: {
       kind: "icon",
       provider: "google",
@@ -23,7 +23,7 @@ export const buttonData = {
   'delimiter:start': {
     caption: '編集区切り線（開始点）',
     variant: 'insert',
-    value: '\n//▼ ┈ <内容名・始点> ┈ ▼┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈▼\n',
+    value: '//▼ ┈ <内容名・始点> ┈ ▼┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈▼\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -33,7 +33,7 @@ export const buttonData = {
   'delimiter:end': {
     caption: '編集区切り線（終了点）',
     variant: 'insert',
-    value: '\n//▲ ┈ <内容名・終点> ┈ ▲┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈▲\n',
+    value: '//▲ ┈ <内容名・終点> ┈ ▲┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈▲\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -43,7 +43,7 @@ export const buttonData = {
   'comment-out': {
     caption: 'コメントアウト',
     variant: 'insert',
-    value: '\n//',
+    value: '//',
     cover: {
       kind: "icon",
       provider: "google",
@@ -73,7 +73,7 @@ export const buttonData = {
   'hr': {
     caption: '区切り線',
     variant: 'insert',
-    value: '\n----\n',
+    value: '----\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -83,7 +83,7 @@ export const buttonData = {
   'h1': {
     caption: '見出し1',
     variant: 'insert',
-    value: '\n! ',
+    value: '! ',
     cover: {
       kind: "text",
       text: "h1"
@@ -92,7 +92,7 @@ export const buttonData = {
   'h2': {
     caption: '見出し2',
     variant: 'insert',
-    value: '\n* ',
+    value: '* ',
     cover: {
       kind: "text",
       text: "h2"
@@ -101,7 +101,7 @@ export const buttonData = {
   'h3': {
     caption: '見出し3',
     variant: 'insert',
-    value: '\n** ',
+    value: '** ',
     cover: {
       kind: "text",
       text: "h3"
@@ -110,7 +110,7 @@ export const buttonData = {
   'h4': {
     caption: '見出し4',
     variant: 'insert',
-    value: '\n*** ',
+    value: '*** ',
     cover: {
       kind: "text",
       text: "h4"
@@ -210,12 +210,12 @@ export const buttonData = {
         }
       }
     ],
-    value: '&deco(${1},${2},${3},${4}){${selection}};',
+    value: '&deco(${2},${3},${1},${4}){${selection}};',
   },
   'li': {
     caption: '箇条書き',
     variant: 'insert',
-    value: '\n- ※箇条書き',
+    value: '- ※箇条書き',
     cover: {
       kind: "icon",
       provider: "google",
@@ -225,7 +225,7 @@ export const buttonData = {
   'ol': {
     caption: '番号付き箇条書き',
     variant: 'insert',
-    value: '\n+ ※数字箇条書き\n+ ※数字箇条書き\n+ ※数字箇条書き\n',
+    value: '+ ※数字箇条書き\n+ ※数字箇条書き\n+ ※数字箇条書き\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -372,7 +372,7 @@ export const buttonData = {
   'html': {
     caption: 'HTML挿入',
     variant: 'insert',
-    value: '\n#html{{\n※HTMLコード\n}}\n',
+    value: '#html{{\n※HTMLコード\n}}\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -490,7 +490,7 @@ export const buttonData = {
   'center': {
     caption: '中央寄せ',
     variant: 'insert',
-    value: '\nCENTER:\n',
+    value: 'CENTER:\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -500,7 +500,7 @@ export const buttonData = {
   'right': {
     caption: '右寄せ',
     variant: 'insert',
-    value: '\nRIGHT:\n',
+    value: 'RIGHT:\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -510,7 +510,7 @@ export const buttonData = {
   'layout': {
     caption: 'レイアウト',
     variant: 'dialog',
-    value: '\n#layout(${1})\n',
+    value: '#layout(${1})\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -554,7 +554,7 @@ export const buttonData = {
   'section': {
     caption: 'セクション',
     variant: 'dialog',
-    value: '\n#section(jumbotron,${1},${2},${3},${4},${5},${6},${8},${9},${10}){{\n${selection}\n}}\n',
+    value: '#section(jumbotron,${1},${2},${3},${4},${5},${6},${8},${9},${10}){{\n${selection}\n}}\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -683,7 +683,7 @@ export const buttonData = {
   'column:2': {
     caption: '段組み2列',
     variant: 'insert',
-    value: '\n#cols{{\n※左の内容\n====\n※右の内容\n}}',
+    value: '#cols{{\n※左の内容\n====\n※右の内容\n}}',
     cover: {
       kind: "icon",
       provider: "google",
@@ -693,7 +693,7 @@ export const buttonData = {
   'column:3': {
     caption: '段組み3列',
     variant: 'insert',
-    value: '\n#cols{{\n※左の内容\n====\n※中央の内容\n====\n※右の内容\n}}',
+    value: '#cols{{\n※左の内容\n====\n※中央の内容\n====\n※右の内容\n}}',
     cover: {
       kind: "icon",
       provider: "google",
@@ -703,7 +703,7 @@ export const buttonData = {
   'table': {
     caption: '表',
     variant: 'insert',
-    value: '\n//|STYLE:class=table table-striped|\n|LEFT:50|LEFT:50|c\n|~見出し|内容|\n|~見出し|内容|\n|~見出し|内容|\n|~見出し|内容|\n',
+    value: '//|STYLE:class=table table-striped|\n|LEFT:50|LEFT:50|c\n|~見出し|内容|\n|~見出し|内容|\n|~見出し|内容|\n|~見出し|内容|\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -713,7 +713,7 @@ export const buttonData = {
   'viewport:pc': {
     caption: 'PC表示',
     variant: 'insert',
-    value: '\n#only_pc{{\n※内容\n}}\n',
+    value: '#only_pc{{\n※内容\n}}\n',
     cover: {
       kind: "icon",
       provider: "google",
@@ -723,7 +723,7 @@ export const buttonData = {
   'viewport:sp': {
     caption: 'SP表示',
     variant: 'insert',
-    value: '\n#only_mobile{{\n※内容\n}}\n',
+    value: '#only_mobile{{\n※内容\n}}\n',
     cover: {
       kind: "icon",
       provider: "google",
