@@ -38,7 +38,7 @@
     "title": {
       caption: "\u30BF\u30A4\u30C8\u30EB",
       variant: "insert",
-      value: "\nTITLE:",
+      value: "TITLE:",
       cover: {
         kind: "icon",
         provider: "google",
@@ -48,7 +48,7 @@
     "delimiter:start": {
       caption: "\u7DE8\u96C6\u533A\u5207\u308A\u7DDA\uFF08\u958B\u59CB\u70B9\uFF09",
       variant: "insert",
-      value: "\n//\u25BC \u2508 <\u5185\u5BB9\u540D\u30FB\u59CB\u70B9> \u2508 \u25BC\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u25BC\n",
+      value: "//\u25BC \u2508 <\u5185\u5BB9\u540D\u30FB\u59CB\u70B9> \u2508 \u25BC\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u25BC\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -58,7 +58,7 @@
     "delimiter:end": {
       caption: "\u7DE8\u96C6\u533A\u5207\u308A\u7DDA\uFF08\u7D42\u4E86\u70B9\uFF09",
       variant: "insert",
-      value: "\n//\u25B2 \u2508 <\u5185\u5BB9\u540D\u30FB\u7D42\u70B9> \u2508 \u25B2\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u25B2\n",
+      value: "//\u25B2 \u2508 <\u5185\u5BB9\u540D\u30FB\u7D42\u70B9> \u2508 \u25B2\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u2508\u25B2\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -68,7 +68,7 @@
     "comment-out": {
       caption: "\u30B3\u30E1\u30F3\u30C8\u30A2\u30A6\u30C8",
       variant: "insert",
-      value: "\n//",
+      value: "//",
       cover: {
         kind: "icon",
         provider: "google",
@@ -98,7 +98,7 @@
     "hr": {
       caption: "\u533A\u5207\u308A\u7DDA",
       variant: "insert",
-      value: "\n----\n",
+      value: "----\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -108,7 +108,7 @@
     "h1": {
       caption: "\u898B\u51FA\u30571",
       variant: "insert",
-      value: "\n! ",
+      value: "! ",
       cover: {
         kind: "text",
         text: "h1"
@@ -117,7 +117,7 @@
     "h2": {
       caption: "\u898B\u51FA\u30572",
       variant: "insert",
-      value: "\n* ",
+      value: "* ",
       cover: {
         kind: "text",
         text: "h2"
@@ -126,7 +126,7 @@
     "h3": {
       caption: "\u898B\u51FA\u30573",
       variant: "insert",
-      value: "\n** ",
+      value: "** ",
       cover: {
         kind: "text",
         text: "h3"
@@ -135,7 +135,7 @@
     "h4": {
       caption: "\u898B\u51FA\u30574",
       variant: "insert",
-      value: "\n*** ",
+      value: "*** ",
       cover: {
         kind: "text",
         text: "h4"
@@ -235,12 +235,12 @@
           }
         }
       ],
-      value: "&deco(${1},${2},${3},${4}){${selection}};"
+      value: "&deco(${2},${3},${1},${4}){${selection}};"
     },
     "li": {
       caption: "\u7B87\u6761\u66F8\u304D",
       variant: "insert",
-      value: "\n- \u203B\u7B87\u6761\u66F8\u304D",
+      value: "- \u203B\u7B87\u6761\u66F8\u304D",
       cover: {
         kind: "icon",
         provider: "google",
@@ -250,7 +250,7 @@
     "ol": {
       caption: "\u756A\u53F7\u4ED8\u304D\u7B87\u6761\u66F8\u304D",
       variant: "insert",
-      value: "\n+ \u203B\u6570\u5B57\u7B87\u6761\u66F8\u304D\n+ \u203B\u6570\u5B57\u7B87\u6761\u66F8\u304D\n+ \u203B\u6570\u5B57\u7B87\u6761\u66F8\u304D\n",
+      value: "+ \u203B\u6570\u5B57\u7B87\u6761\u66F8\u304D\n+ \u203B\u6570\u5B57\u7B87\u6761\u66F8\u304D\n+ \u203B\u6570\u5B57\u7B87\u6761\u66F8\u304D\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -397,7 +397,7 @@
     "html": {
       caption: "HTML\u633F\u5165",
       variant: "insert",
-      value: "\n#html{{\n\u203BHTML\u30B3\u30FC\u30C9\n}}\n",
+      value: "#html{{\n\u203BHTML\u30B3\u30FC\u30C9\n}}\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -515,7 +515,7 @@
     "center": {
       caption: "\u4E2D\u592E\u5BC4\u305B",
       variant: "insert",
-      value: "\nCENTER:\n",
+      value: "CENTER:\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -525,7 +525,7 @@
     "right": {
       caption: "\u53F3\u5BC4\u305B",
       variant: "insert",
-      value: "\nRIGHT:\n",
+      value: "RIGHT:\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -535,7 +535,7 @@
     "layout": {
       caption: "\u30EC\u30A4\u30A2\u30A6\u30C8",
       variant: "dialog",
-      value: "\n#layout(${1})\n",
+      value: "#layout(${1})\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -579,7 +579,7 @@
     "section": {
       caption: "\u30BB\u30AF\u30B7\u30E7\u30F3",
       variant: "dialog",
-      value: "\n#section(jumbotron,${1},${2},${3},${4},${5},${6},${8},${9},${10}){{\n${selection}\n}}\n",
+      value: "#section(jumbotron,${1},${2},${3},${4},${5},${6},${8},${9},${10}){{\n${selection}\n}}\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -708,7 +708,7 @@
     "column:2": {
       caption: "\u6BB5\u7D44\u307F2\u5217",
       variant: "insert",
-      value: "\n#cols{{\n\u203B\u5DE6\u306E\u5185\u5BB9\n====\n\u203B\u53F3\u306E\u5185\u5BB9\n}}",
+      value: "#cols{{\n\u203B\u5DE6\u306E\u5185\u5BB9\n====\n\u203B\u53F3\u306E\u5185\u5BB9\n}}",
       cover: {
         kind: "icon",
         provider: "google",
@@ -718,7 +718,7 @@
     "column:3": {
       caption: "\u6BB5\u7D44\u307F3\u5217",
       variant: "insert",
-      value: "\n#cols{{\n\u203B\u5DE6\u306E\u5185\u5BB9\n====\n\u203B\u4E2D\u592E\u306E\u5185\u5BB9\n====\n\u203B\u53F3\u306E\u5185\u5BB9\n}}",
+      value: "#cols{{\n\u203B\u5DE6\u306E\u5185\u5BB9\n====\n\u203B\u4E2D\u592E\u306E\u5185\u5BB9\n====\n\u203B\u53F3\u306E\u5185\u5BB9\n}}",
       cover: {
         kind: "icon",
         provider: "google",
@@ -728,7 +728,7 @@
     "table": {
       caption: "\u8868",
       variant: "insert",
-      value: "\n//|STYLE:class=table table-striped|\n|LEFT:50|LEFT:50|c\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n",
+      value: "//|STYLE:class=table table-striped|\n|LEFT:50|LEFT:50|c\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n|~\u898B\u51FA\u3057|\u5185\u5BB9|\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -738,7 +738,7 @@
     "viewport:pc": {
       caption: "PC\u8868\u793A",
       variant: "insert",
-      value: "\n#only_pc{{\n\u203B\u5185\u5BB9\n}}\n",
+      value: "#only_pc{{\n\u203B\u5185\u5BB9\n}}\n",
       cover: {
         kind: "icon",
         provider: "google",
@@ -748,7 +748,7 @@
     "viewport:sp": {
       caption: "SP\u8868\u793A",
       variant: "insert",
-      value: "\n#only_mobile{{\n\u203B\u5185\u5BB9\n}}\n",
+      value: "#only_mobile{{\n\u203B\u5185\u5BB9\n}}\n",
       cover: {
         kind: "icon",
         provider: "google",
