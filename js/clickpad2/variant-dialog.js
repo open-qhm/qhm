@@ -305,7 +305,7 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
     // キャンセルボタンを生成する
     const close = document.createElement('button')
-    close.classList.add('btn', 'btn-link')
+    close.classList.add('btn', 'btn-link', 'btn-sm')
     close.type = 'button'
     close.textContent = 'キャンセル'
     close.onclick = () => {
@@ -316,7 +316,7 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
 
     // OKボタンを生成する
     const insert = document.createElement('button')
-    insert.classList.add('btn', 'btn-primary')
+    insert.classList.add('btn', 'btn-primary', 'btn-sm', 'clickpad2__dialog-action-insert')
     insert.type = 'submit'
     insert.textContent = 'OK'
     insert.onclick = (e) => {

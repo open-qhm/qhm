@@ -1032,7 +1032,7 @@
       const action = document.createElement("div");
       action.classList.add("clickpad2__dialog-action");
       const close = document.createElement("button");
-      close.classList.add("btn", "btn-link");
+      close.classList.add("btn", "btn-link", "btn-sm");
       close.type = "button";
       close.textContent = "\u30AD\u30E3\u30F3\u30BB\u30EB";
       close.onclick = () => {
@@ -1041,7 +1041,7 @@
       };
       action.appendChild(close);
       const insert = document.createElement("button");
-      insert.classList.add("btn", "btn-primary");
+      insert.classList.add("btn", "btn-primary", "btn-sm", "clickpad2__dialog-action-insert");
       insert.type = "submit";
       insert.textContent = "OK";
       insert.onclick = (e) => {
