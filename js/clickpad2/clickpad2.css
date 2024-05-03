@@ -155,18 +155,24 @@
 }
 .clickpad2__dialog--deco label:has(input[value="b"]) {
   font-weight: bold;
+  font-size: 16px;
 }
 .clickpad2__dialog--deco label:has(input[value="i"]) {
   font-style: italic;
+  font-size: 16px;
 }
 .clickpad2__dialog--deco label:has(input[value="u"]) {
   text-decoration: underline;
+  font-size: 16px;
 }
 .clickpad2__dialog--deco .clickpad2__dialog-text-item:has(#dialog-control-2) .clickpad2__dialog-item-label-title {
   color: #4169e1;
 }
 .clickpad2__dialog--deco .clickpad2__dialog-text-item:has(#dialog-control-3) .clickpad2__dialog-item-label-title {
   background-color: #d9d9d9;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-choices {
+  column-gap: 30px;
 }
 
 /* icon */
