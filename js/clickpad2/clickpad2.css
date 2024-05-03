@@ -54,8 +54,8 @@
 }
 
 .clickpad2__dialog {
-  border: 2px solid #f5f5f7;
-  padding: 20px;
+  border: 5px solid #f5f5f7;
+  padding: 40px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   min-width: 600px;
 }
@@ -63,6 +63,11 @@
 .clickpad2__dialog-content {
   display: grid;
   gap: 10px;
+}
+
+.clickpad2__dialog-content input[type="text"] {
+  border: 1px solid #babcbc;
+  border-radius: 2px;
 }
 
 .clickpad2__dialog-radio-color-box {
@@ -219,4 +224,16 @@
 }
 .clickpad2__dialog--section .clickpad2__dialog-text-item:has(#dialog-control-4) .clickpad2__dialog-item-label-title {
   background-color: #d9d9d9;
+}
+
+/* label */
+.clickpad2__dialog--label {
+  min-width: auto;
+}
+.clickpad2__dialog--label .clickpad2__dialog-text-item,
+.clickpad2__dialog--label .clickpad2__dialog-radio-item,
+.clickpad2__dialog--label .clickpad2__dialog-checkbox-item,
+.clickpad2__dialog--label .clickpad2__dialog-select-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
 }
