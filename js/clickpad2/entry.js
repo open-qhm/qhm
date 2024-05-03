@@ -46,4 +46,6 @@ export function showPallet(textarea) {
 
 document.addEventListener('DOMContentLoaded', () => {
   showPallet(document.querySelector('#msg'))
+  /* Bootstrap tooltip を初期化する */
+  $('[data-toggle="tooltip"]').tooltip()
 })

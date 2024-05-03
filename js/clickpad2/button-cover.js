@@ -3,13 +3,16 @@
  * @param { import("./types").CoverOption | undefined } coverOption
  */
 export const coverButton = (button, coverOption) => {
-  if (coverOption === undefined) {
+    // button のテキストコンテントを title に退避する
+    button.title = button.textContent
+    // Bootstrap tooltip を設定する
+    button.dataset.toggle = 'tooltip'
+
+    if (coverOption === undefined) {
     return button
   }
 
   if (coverOption.kind === 'icon') {
-    // button のテキストコンテントを title に退避する
-    button.title = button.textContent
     // button のテキストコンテントを空にする
     button.textContent = ''
     // button の下に下記要素を追加する
