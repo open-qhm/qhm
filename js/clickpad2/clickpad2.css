@@ -19,9 +19,11 @@
 }
 
 .clickpad2__pallet-button {
+  display: grid;
+  place-items: center;
   background-color: #fff;
   border: none;
-  height: 30px;
+  height: 25px;
 }
 
 .clickpad2__dialog-item:has(.clickpad2__dialog-radio-item-label--icon) {
