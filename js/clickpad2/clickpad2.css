@@ -68,6 +68,7 @@
 .clickpad2__dialog-content input[type="text"] {
   border: 1px solid #babcbc;
   border-radius: 2px;
+  width: 85%;
 }
 
 .clickpad2__dialog-radio-color-box {
