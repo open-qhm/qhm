@@ -119,6 +119,10 @@
   font-weight: normal;
 }
 
+.clickpad2__dialog-action-insert.btn.btn-primary {
+  background-color: #428BCA;
+}
+
 /* link */
 .clickpad2__dialog--link .clickpad2__dialog-text-item {
   display: grid;
