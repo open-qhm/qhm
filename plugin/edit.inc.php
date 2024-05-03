@@ -66,7 +66,7 @@ EOD;
 			$qt->appendv('beforescript', $addscript);
 		}
 	} else {
-		if (is_bootstrap_skin()) {
+		if (is_bootstrap_skin() && !isset($vars['preview'])) {
 			// 編集画面のレイアウトを fullpage にする
 			if (exist_plugin("layout")) {
 				do_plugin_convert("layout", "nomenu");
