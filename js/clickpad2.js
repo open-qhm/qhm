@@ -1,11 +1,12 @@
 (() => {
   // js/clickpad2/button-cover.js
   var coverButton = (button, coverOption) => {
+    button.title = button.textContent;
+    button.dataset.toggle = "tooltip";
     if (coverOption === void 0) {
       return button;
     }
     if (coverOption.kind === "icon") {
-      button.title = button.textContent;
       button.textContent = "";
       const icon = document.createElement("span");
       icon.classList.add("material-icons-outlined");
@@ -1172,6 +1173,7 @@
   }
   document.addEventListener("DOMContentLoaded", () => {
     showPallet(document.querySelector("#msg"));
+    $('[data-toggle="tooltip"]').tooltip();
   });
 })();
 //# sourceMappingURL=clickpad2.js.map
