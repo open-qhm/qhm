@@ -209,8 +209,32 @@
 }
 .clickpad2__dialog--layout .clickpad2__dialog-choices {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto auto;
   column-gap: 20px;
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-1) {
+  transform: translateX(-7px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-1) .material-icons-outlined {
+  transform: translateX(-3px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-2) {
+  transform: translateX(8px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-2) .material-icons-outlined {
+  transform: translateX(-30px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-3) {
+  transform: translateX(-4px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-3) .material-icons-outlined {
+  transform: translateX(-1px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-4) {
+  transform: translateX(8px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-4) .material-icons-outlined {
+  transform: translateX(-25px);
 }
 
 /* section */
