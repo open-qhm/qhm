@@ -505,19 +505,6 @@
           option: {
             type: "text"
           }
-        },
-        {
-          message: "\u30B5\u30A4\u30BA",
-          tip: "\uFF08\u6570\u5024/em/\u30AD\u30FC\u30EF\u30FC\u30C9\uFF09",
-          option: {
-            type: "text"
-          }
-        },
-        {
-          message: "",
-          option: {
-            type: "font-size-guide"
-          }
         }
       ]
     },
