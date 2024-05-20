@@ -198,8 +198,16 @@
                 value: "b"
               },
               {
+                label: "\u5F37\u8ABF",
+                value: "h"
+              },
+              {
                 label: "\u4E0B\u7DDA",
                 value: "u"
+              },
+              {
+                label: "\u53D6\u308A\u6D88\u3057\u7DDA",
+                value: "s"
               },
               {
                 label: "\u659C\u4F53",
@@ -866,7 +874,9 @@
               input.name = id;
               input.value = value;
               labelElement.appendChild(input);
-              labelElement.appendChild(document.createTextNode(label));
+              const labelText = document.createElement("span");
+              labelText.textContent = label;
+              labelElement.appendChild(labelText);
               choices.appendChild(labelElement);
             });
             item.appendChild(choices);

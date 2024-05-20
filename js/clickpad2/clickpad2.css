@@ -153,15 +153,23 @@
 .clickpad2__dialog--deco .clickpad2__dialog-content > :first-child {
   grid-column: 1/ 3;
 }
-.clickpad2__dialog--deco label:has(input[value="b"]) {
+.clickpad2__dialog--deco label:has(input[value="b"]) span {
   font-weight: bold;
   font-size: 16px;
 }
-.clickpad2__dialog--deco label:has(input[value="i"]) {
+.clickpad2__dialog--deco label:has(input[value="h"]) span {
+  background-color: #fffacc;
+  font-size: 16px;
+}
+.clickpad2__dialog--deco label:has(input[value="i"]) span {
   font-style: italic;
   font-size: 16px;
 }
-.clickpad2__dialog--deco label:has(input[value="u"]) {
+.clickpad2__dialog--deco label:has(input[value="s"]) span {
+  text-decoration: line-through;
+  font-size: 16px;
+}
+.clickpad2__dialog--deco label:has(input[value="u"]) span {
   text-decoration: underline;
   font-size: 16px;
 }

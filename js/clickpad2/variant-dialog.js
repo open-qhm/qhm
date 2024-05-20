@@ -106,7 +106,9 @@ export const makeButtonVariantDialog = (buttonId, buttonDefinition) => {
             input.name = id
             input.value = value
             labelElement.appendChild(input)
-            labelElement.appendChild(document.createTextNode(label))
+            const labelText = document.createElement('span')  
+            labelText.textContent = label
+            labelElement.appendChild(labelText)
 
             choices.appendChild(labelElement)
           })
