@@ -480,19 +480,6 @@ export const buttonData = {
           type: 'text',
         }
       },
-      {
-        message: 'サイズ',
-        tip: '（数値/em/キーワード）',
-        option: {
-          type: 'text'
-        }
-      },
-      {
-        message: '',
-        option: {
-          type: 'font-size-guide'
-        }
-      }
     ]
   },
   'center': {
