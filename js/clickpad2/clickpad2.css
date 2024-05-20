@@ -210,6 +210,9 @@
   font-size: 16px;
   text-decoration: none;
 }
+.clickpad2__dialog--icon .clickpad2__dialog-action {
+  margin-top: 40px;
+}
 
 /* layout */
 .clickpad2__dialog--layout {
