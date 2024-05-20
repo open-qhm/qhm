@@ -172,8 +172,16 @@ export const buttonData = {
               value: 'b',
             },
             {
+              label: '強調',
+              value: 'h',
+            },
+            {
               label: '下線',
               value: 'u',
+            },
+            {
+              label: '取り消し線',
+              value: 's',
             },
             {
               label: '斜体',
