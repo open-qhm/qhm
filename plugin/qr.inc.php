@@ -45,7 +45,7 @@ function plugin_qr_inline() {
 		}
 	}
 
-	$qt->appendv_once('plugin_qr_js', 'beforescript', '<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	$qt->appendv_once('plugin_qr_js', 'beforescript', '<script src="js/qrcode.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$(".haik-plugin-qr-placeholder").each(function() {
@@ -58,5 +58,5 @@ $(function() {
 });
 </script>');
 
-	return '<div data-url="'. h($str) .'" data-width="'. h($w) .'" data-height="'. h($h) .'" class="haik-plugin-qr-placeholder"></div>';
+	return '<span data-url="'. h($str) .'" data-width="'. h($w) .'" data-height="'. h($h) .'" class="haik-plugin-qr-placeholder"></span>';
 }
