@@ -15,38 +15,46 @@ $(document).ready(function(){
 		$(".go_editbox").hide();
 
 		// プレビュー
-		var previewScreen;
-		var $links = $("#mobilesm, #mobilemd, #mobilelg, #tablet, #laptop, #desktop");
+		let previewScreens = [];
+		var $links = $("#mobile, #mobile_min, #tablet, #tablet_min, #desktop, #desktop_min");
 
 		$links.on("click", function(){
-			var features = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,scrollbars=yes,";
+			const baseFeatures = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,scrollbars=yes,";
+			const windowConfs = []
 			switch ($(this).attr("id")) {
-				case "mobilesm":
-					features += "width=320,height=568,top=50,left=500";
-					break;
-				case "mobilemd":
-					features += "width=375,height=667,top=50,left=500";
-					break;
-				case "mobilelg":
-					features += "width=414,height=736,top=50,left=500";
+				case "mobile":
+				case "mobile_min":
+					windowConfs.push({ features: baseFeatures + "width=375,height=667,top=50,left=-100", title: "📱4.7inch(375x667)"})
+					windowConfs.push({ features: baseFeatures + "width=375,height=812,top=50,left=280", title: "📱5.4inch(375x812)" })
+					windowConfs.push({ features: baseFeatures + "width=393,height=852,top=50,left=660", title: "📱6.1inch(393x852)" })
+					windowConfs.push({ features: baseFeatures + "width=430,height=932,top=50,left=1060", title: "📱6.7inch(430x932)" })
 					break;
 				case "tablet":
-					features += "width=768,height=1024,top=50,left=300";
-					break;
-				case "laptop":
-					features += "width=1366,height=768,top=50,left=100";
+				case "tablet_min":
+					windowConfs.push({ features: baseFeatures + "width=744,height=1133,top=50,left=-100", title: "📱8.3inch(744x1133)"})
+					windowConfs.push({ features: baseFeatures + "width=820,height=1180,top=50,left=-50", title: "📱10.9inch(820x1180)"})
+					windowConfs.push({ features: baseFeatures + "width=834,height=1194,top=50,left=0", title: "📱11inch(834x1194)"})
+					windowConfs.push({ features: baseFeatures + "width=1024,height=1366,top=50,left=50", title: "📱12.9inch(1024x1366)"})
 					break;
 				case "desktop":
-					features += "width=1920,height=1080,top=50,left=100";
+				case "desktop_min":
+					windowConfs.push({ features: baseFeatures + "width=1280,height=800,top=50,left=-100", title: "🖥13.3inch(1280x800)"})
+					windowConfs.push({ features: baseFeatures + "width=1440,height=932,top=50,left=-50", title: "🖥15.3inch(1440x932)"})
+					windowConfs.push({ features: baseFeatures + "width=1512,height=982,top=50,left=0", title: "🖥14.2inch(1512x982)"})
+					windowConfs.push({ features: baseFeatures + "width=1920,height=1080,top=50,left=50", title: "🖥FullHD(1920x1080)"})
 					break;
 			}
-			previewScreen = window.open(
-				location.href, "devicepreview",features
-			);
+			previewScreens = windowConfs.map((conf, index) => {
+				return window.open(
+					`${location.href}#${encodeURIComponent(conf.title)}`, `devicepreview${index+1}`, conf.features
+				)
+			});
 		});
 
 		$(window).on("unload", function(){
-			previewScreen && previewScreen.close();
+			for (const screen of previewScreens) {
+				screen.close();
+			}
 		});
 
 		if (window.name === "devicepreview") {
