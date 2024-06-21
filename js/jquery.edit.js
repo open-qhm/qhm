@@ -67,11 +67,11 @@ $(document).ready(function(){
 					break;
 				case "desktop2":
 				case "desktop2_min":
-					windowConfs.push({ features: baseFeatures + "width=1440,height=932,top=50,left=-50", title: "🖥15.3inch(1440x932)"})
+					windowConfs.push({ features: baseFeatures + "width=1512,height=982,top=50,left=0", title: "🖥14.2inch(1512x982)"})
 					break;
 				case "desktop3":
 				case "desktop3_min":
-					windowConfs.push({ features: baseFeatures + "width=1512,height=982,top=50,left=0", title: "🖥14.2inch(1512x982)"})
+					windowConfs.push({ features: baseFeatures + "width=1440,height=932,top=50,left=-50", title: "🖥15.3inch(1440x932)"})
 					break;
 				case "desktop4":
 				case "desktop4_min":
