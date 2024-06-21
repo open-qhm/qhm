@@ -10,25 +10,43 @@ $(document).ready(function(){
 		$('div.other_plugin').css('position','absolute');
 	}
 
+	// ツールバーのサイズを調整
+	$("#toolbar_upper_max").css({width: 135});
 
 	if ($('#msg').length <= 0) {
 		$(".go_editbox").hide();
 
 		// プレビュー
 		let previewScreens = [];
-		var $links = $("#mobile, #mobile_min, #tablet1, #tablet2, #tablet3, #tablet4, #tablet1_min, #tablet2_min, #tablet3_min, #tablet4_min, #desktop1, #desktop2, #desktop3, #desktop4, #desktop1_min, #desktop2_min, #desktop3_min, #desktop4_min");
+		var $links = $("#mobile_all, #mobile1, #mobile2, #mobile3, #mobile4, #mobile1_min, #mobile2_min, #mobile3_min, #mobile4_min, #mobile_min, #tablet1, #tablet2, #tablet3, #tablet4, #tablet1_min, #tablet2_min, #tablet3_min, #tablet4_min, #desktop1, #desktop2, #desktop3, #desktop4, #desktop1_min, #desktop2_min, #desktop3_min, #desktop4_min");
 		$links.closest(".toolbar_submenu").css("width", "max-content");
 
 		$links.on("click", function(){
 			const baseFeatures = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,scrollbars=yes,";
 			const windowConfs = []
 			switch ($(this).attr("id")) {
-				case "mobile":
-				case "mobile_min":
+				case "mobile_all":
+				case "mobile_all_min":
 					windowConfs.push({ features: baseFeatures + "width=375,height=667,top=50,left=-100", title: "📱4.7inch(375x667)"})
 					windowConfs.push({ features: baseFeatures + "width=375,height=812,top=50,left=280", title: "📱5.4inch(375x812)" })
 					windowConfs.push({ features: baseFeatures + "width=393,height=852,top=50,left=660", title: "📱6.1inch(393x852)" })
 					windowConfs.push({ features: baseFeatures + "width=430,height=932,top=50,left=1060", title: "📱6.7inch(430x932)" })
+					break;
+				case "mobile1":
+				case "mobile1_min":
+					windowConfs.push({ features: baseFeatures + "width=375,height=667,top=0,left=0", title: "📱4.7inch(375x667)"})
+					break;
+				case "mobile2":
+				case "mobile2_min":
+					windowConfs.push({ features: baseFeatures + "width=375,height=812,top=0,left=0", title: "📱5.4inch(375x812)" })
+					break;
+				case "mobile3":
+				case "mobile3_min":
+					windowConfs.push({ features: baseFeatures + "width=393,height=852,top=0,left=0", title: "📱6.1inch(393x852)" })
+					break;
+				case "mobile4":
+				case "mobile4_min":
+					windowConfs.push({ features: baseFeatures + "width=430,height=932,top=0,left=0", title: "📱6.7inch(430x932)" })
 					break;
 				case "tablet1":
 				case "tablet1_min":
