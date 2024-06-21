@@ -16,7 +16,8 @@ $(document).ready(function(){
 
 		// プレビュー
 		let previewScreens = [];
-		var $links = $("#mobile, #mobile_min, #tablet, #tablet_min, #desktop, #desktop_min");
+		var $links = $("#mobile, #mobile_min, #tablet1, #tablet2, #tablet3, #tablet4, #tablet1_min, #tablet2_min, #tablet3_min, #tablet4_min, #desktop1, #desktop2, #desktop3, #desktop4, #desktop1_min, #desktop2_min, #desktop3_min, #desktop4_min");
+		$links.closest(".toolbar_submenu").css("width", "max-content");
 
 		$links.on("click", function(){
 			const baseFeatures = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,scrollbars=yes,";
@@ -29,18 +30,36 @@ $(document).ready(function(){
 					windowConfs.push({ features: baseFeatures + "width=393,height=852,top=50,left=660", title: "📱6.1inch(393x852)" })
 					windowConfs.push({ features: baseFeatures + "width=430,height=932,top=50,left=1060", title: "📱6.7inch(430x932)" })
 					break;
-				case "tablet":
-				case "tablet_min":
+				case "tablet1":
+				case "tablet1_min":
 					windowConfs.push({ features: baseFeatures + "width=744,height=1133,top=50,left=-100", title: "📱8.3inch(744x1133)"})
-					windowConfs.push({ features: baseFeatures + "width=820,height=1180,top=50,left=-50", title: "📱10.9inch(820x1180)"})
-					windowConfs.push({ features: baseFeatures + "width=834,height=1194,top=50,left=0", title: "📱11inch(834x1194)"})
+					break;
+					case "tablet2":
+					case "tablet2_min":
+						windowConfs.push({ features: baseFeatures + "width=820,height=1180,top=50,left=-50", title: "📱10.9inch(820x1180)"})
+					break;
+				case "tablet3":
+				case "tablet3_min":
+						windowConfs.push({ features: baseFeatures + "width=834,height=1194,top=50,left=0", title: "📱11inch(834x1194)"})
+						break;
+				case "tablet4":
+				case "tablet4_min":
 					windowConfs.push({ features: baseFeatures + "width=1024,height=1366,top=50,left=50", title: "📱12.9inch(1024x1366)"})
 					break;
-				case "desktop":
-				case "desktop_min":
+				case "desktop1":
+				case "desktop1_min":
 					windowConfs.push({ features: baseFeatures + "width=1280,height=800,top=50,left=-100", title: "🖥13.3inch(1280x800)"})
+					break;
+				case "desktop2":
+				case "desktop2_min":
 					windowConfs.push({ features: baseFeatures + "width=1440,height=932,top=50,left=-50", title: "🖥15.3inch(1440x932)"})
+					break;
+				case "desktop3":
+				case "desktop3_min":
 					windowConfs.push({ features: baseFeatures + "width=1512,height=982,top=50,left=0", title: "🖥14.2inch(1512x982)"})
+					break;
+				case "desktop4":
+				case "desktop4_min":
 					windowConfs.push({ features: baseFeatures + "width=1920,height=1080,top=50,left=50", title: "🖥FullHD(1920x1080)"})
 					break;
 			}
