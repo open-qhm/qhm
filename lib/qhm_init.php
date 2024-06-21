@@ -266,20 +266,20 @@ EOD;
 			'qblognewlink' => array('name'=>'記事の追加', 'link'=>$script.'?cmd=qblog&mode=addpost', 'style'=>'', 'class'=>'', 'visible'=>TRUE),
 		)
 	),
-  'haikphonepreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> Phone', 'link'=>'', 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE, 'sub'=>array(
-		'mobile_all' => array('name'=>'All Preview',  'link'=>'#', 'visible'=>TRUE),
+  'haikphonepreviewlinks' => array('name'=>'<i class="fa fa-fw fa-mobile" aria-hidden="true"></i> Phone', 'link'=>'', 'style'=>'margin-top:1.1em;display:flex;align-items:center;gap:5px;', 'class'=>'', 'visible'=>TRUE, 'sub'=>array(
 		'mobile1' => array('name'=>'4.7 inch',  'link'=>'#', 'visible'=>TRUE),
 		'mobile2' => array('name'=>'5.4 inch',  'link'=>'#', 'visible'=>TRUE),
 		'mobile3' => array('name'=>'6.1 inch',  'link'=>'#', 'visible'=>TRUE),
 		'mobile4' => array('name'=>'6.7 inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile_all' => array('name'=>'All Preview',  'link'=>'#', 'style' => 'margin-top: 3px', 'visible'=>TRUE),
 	)),
-	'haiktabletpreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+	'haiktabletpreviewlinks' => array('name'=>'<i class="fa fa-fw fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'', 'style'=>'display:flex;align-items:center;gap:5px;', 'visible'=>TRUE, 'sub'=>array(
 		'tablet1' => array('name'=>'8.3 inch', 'link'=>'#', 'visible'=>TRUE),
 		'tablet2' => array('name'=>'10.9 inch', 'link'=>'#', 'visible'=>TRUE),
 		'tablet3' => array('name'=>'11 inch', 'link'=>'#', 'visible'=>TRUE),
 		'tablet4' => array('name'=>'12.9 inch', 'link'=>'#', 'visible'=>TRUE),
 	)),
-	'haikdesktoppreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+	'haikdesktoppreviewlinks' => array('name'=>'<i class="fa fa-fw fa-desktop" aria-hidden="true"></i> PC', 'link'=>'', 'style'=>'display:flex;align-items:center;gap:5px;', 'visible'=>TRUE, 'sub'=>array(
 		'desktop1' => array('name'=>'13.3 inch', 'link'=>'#', 'visible'=>TRUE),
 		'desktop2' => array('name'=>'14.2 inch', 'link'=>'#', 'visible'=>TRUE),
 		'desktop3' => array('name'=>'15.3 inch', 'link'=>'#', 'visible'=>TRUE),
