@@ -10,9 +10,6 @@ $(document).ready(function(){
 		$('div.other_plugin').css('position','absolute');
 	}
 
-	// ツールバーのサイズを調整
-	$("#toolbar_upper_max").css({width: 135});
-
 	if ($('#msg').length <= 0) {
 		$(".go_editbox").hide();
 
