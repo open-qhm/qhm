@@ -255,6 +255,7 @@ EOD;
 			'swfulink' => array('name'=>$qm->m['qhm_init']['swfulink_name'], 'link'=>'swfu/index.php', 'style'=>'','class'=>'swfu', 'visible'=>true, ),
 			'fwd3link' => array('name'=>$qm->m['qhm_init']['fwd3link_name'], 'link'=>'fwd3/sys/', 'style'=>'','class'=>'', 'visible'=>true, ),
 			'qdsgnlink' => array('name'=>$qm->m['qhm_init']['qdsgnlink_name'], 'link'=>'qdsgn/index.php', 'style'=>'','class'=>'', 'visible'=>true, ),
+			'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
 			'searchlink' => array('name'=>$qm->m['qhm_init']['searchlink_name'], 'link'=>$link_search, 'style'=>'','class'=>'', 'visible'=>true, ),
 		)),
 	'qbloglink' => array(
@@ -265,8 +266,7 @@ EOD;
 			'qblognewlink' => array('name'=>'記事の追加', 'link'=>$script.'?cmd=qblog&mode=addpost', 'style'=>'', 'class'=>'', 'visible'=>TRUE),
 		)
 	),
-	'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE),
-  'haikphonepreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> Phone', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+  'haikphonepreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> Phone', 'link'=>'', 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE, 'sub'=>array(
 		'mobile_all' => array('name'=>'All Preview',  'link'=>'#', 'visible'=>TRUE),
 		'mobile1' => array('name'=>'4.7 inch',  'link'=>'#', 'visible'=>TRUE),
 		'mobile2' => array('name'=>'5.4 inch',  'link'=>'#', 'visible'=>TRUE),
