@@ -252,12 +252,12 @@ EOD;
 			'yetlistlink' => array('name'=>$qm->m['qhm_init']['yetlistlink_name'], 'link'=>$link_yetlist, 'style'=>'','class'=>'', 'visible'=>true, ),
 		)),
 	'toollink'   => array('name'=>$qm->m['qhm_init']['toollink_name'], 'link'=>'', 'accesskey'=>'', 'style'=>'', 'class'=>'', 'visible'=>true, 'sub'=>array(
-			'swfulink' => array('name'=>$qm->m['qhm_init']['swfulink_name'], 'link'=>'swfu/index.php', 'style'=>'','class'=>'swfu', 'visible'=>true, ),
-			'fwd3link' => array('name'=>$qm->m['qhm_init']['fwd3link_name'], 'link'=>'fwd3/sys/', 'style'=>'','class'=>'', 'visible'=>true, ),
-			'qdsgnlink' => array('name'=>$qm->m['qhm_init']['qdsgnlink_name'], 'link'=>'qdsgn/index.php', 'style'=>'','class'=>'', 'visible'=>true, ),
-			'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
-			'searchlink' => array('name'=>$qm->m['qhm_init']['searchlink_name'], 'link'=>$link_search, 'style'=>'','class'=>'', 'visible'=>true, ),
-		)),
+		'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
+		'searchlink' => array('name'=>$qm->m['qhm_init']['searchlink_name'], 'link'=>$link_search, 'style'=>'','class'=>'', 'visible'=>true, ),
+		'swfulink' => array('name'=>$qm->m['qhm_init']['swfulink_name'], 'link'=>'swfu/index.php', 'style'=>'','class'=>'swfu', 'visible'=>true, ),
+		'fwd3link' => array('name'=>$qm->m['qhm_init']['fwd3link_name'], 'link'=>'fwd3/sys/', 'style'=>'','class'=>'', 'visible'=>true, ),
+		'qdsgnlink' => array('name'=>$qm->m['qhm_init']['qdsgnlink_name'], 'link'=>'qdsgn/index.php', 'style'=>'','class'=>'', 'visible'=>true, ),
+	)),
 	'qbloglink' => array(
 		'name' => 'ブログ', 'link'=>'', 'style'=>'','class'=>'', 'visible'=>true, 'sub' => array(
 			'qblogtoplink' => array('name'=>'トップ', 'link'=>$link_qblog, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
