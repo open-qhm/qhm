@@ -16,7 +16,6 @@ $(document).ready(function(){
 		// プレビュー
 		let previewScreens = [];
 		var $links = $("#mobile_all, #mobile1, #mobile2, #mobile3, #mobile4, #mobile1_min, #mobile2_min, #mobile3_min, #mobile4_min, #mobile_min, #tablet1, #tablet2, #tablet3, #tablet4, #tablet1_min, #tablet2_min, #tablet3_min, #tablet4_min, #desktop1, #desktop2, #desktop3, #desktop4, #desktop1_min, #desktop2_min, #desktop3_min, #desktop4_min");
-		$links.closest(".toolbar_submenu").css("width", "max-content");
 
 		$links.on("click", function(){
 			const baseFeatures = "menubar=no,location=no,resizable=yes,status=no,toolbar=no,scrollbars=yes,";
