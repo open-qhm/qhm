@@ -268,8 +268,14 @@ EOD;
 	'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE),
   'haikpreviewlinks' => array('name'=>'プレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
       'mobile' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> Phone',  'link'=>'#', 'visible'=>TRUE),
-      'tablet' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'#', 'visible'=>TRUE),
-      'desktop' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i><span class="sr-only">モバイル</span> PC', 'link'=>'#', 'visible'=>TRUE),
+      'tablet1' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 744x1133', 'link'=>'#', 'visible'=>TRUE),
+      'tablet2' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 820x1180', 'link'=>'#', 'visible'=>TRUE),
+      'tablet3' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 834x1194', 'link'=>'#', 'visible'=>TRUE),
+      'tablet4' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 1024x1366', 'link'=>'#', 'visible'=>TRUE),
+      'desktop1' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC 1280x800', 'link'=>'#', 'visible'=>TRUE),
+      'desktop2' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC 1440x932', 'link'=>'#', 'visible'=>TRUE),
+      'desktop3' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC 1512x982', 'link'=>'#', 'visible'=>TRUE),
+      'desktop4' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC 1920x1080', 'link'=>'#', 'visible'=>TRUE),
     )
   ),
 
