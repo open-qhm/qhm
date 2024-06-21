@@ -266,24 +266,24 @@ EOD;
 		)
 	),
 	'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE),
-  'haikphonepreviewlinks' => array('name'=>'Phoneプレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
-		'mobile_all' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i>All Preview',  'link'=>'#', 'visible'=>TRUE),
-		'mobile1' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> 4.7inch',  'link'=>'#', 'visible'=>TRUE),
-		'mobile2' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> 5.4inch',  'link'=>'#', 'visible'=>TRUE),
-		'mobile3' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> 6.1inch',  'link'=>'#', 'visible'=>TRUE),
-		'mobile4' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> 6.7inch',  'link'=>'#', 'visible'=>TRUE),
+  'haikphonepreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i> Phone', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+		'mobile_all' => array('name'=>'All Preview',  'link'=>'#', 'visible'=>TRUE),
+		'mobile1' => array('name'=>'4.7inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile2' => array('name'=>'5.4inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile3' => array('name'=>'6.1inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile4' => array('name'=>'6.7inch',  'link'=>'#', 'visible'=>TRUE),
 	)),
-	'haiktabletpreviewlinks' => array('name'=>'Tabletプレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
-		'tablet1' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 8.3inch', 'link'=>'#', 'visible'=>TRUE),
-		'tablet2' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 10.9inch', 'link'=>'#', 'visible'=>TRUE),
-		'tablet3' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 11', 'link'=>'#', 'visible'=>TRUE),
-		'tablet4' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet 12.9', 'link'=>'#', 'visible'=>TRUE),
+	'haiktabletpreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+		'tablet1' => array('name'=>'8.3inch', 'link'=>'#', 'visible'=>TRUE),
+		'tablet2' => array('name'=>'10.9inch', 'link'=>'#', 'visible'=>TRUE),
+		'tablet3' => array('name'=>'11inch', 'link'=>'#', 'visible'=>TRUE),
+		'tablet4' => array('name'=>'12.9inch', 'link'=>'#', 'visible'=>TRUE),
 	)),
-	'haikdesktoppreviewlinks' => array('name'=>'PCプレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
-		'desktop1' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC 13.3inch', 'link'=>'#', 'visible'=>TRUE),
-		'desktop2' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC 14.2inch', 'link'=>'#', 'visible'=>TRUE),
-		'desktop3' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC 15.3inch', 'link'=>'#', 'visible'=>TRUE),
-		'desktop4' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC FullHD', 'link'=>'#', 'visible'=>TRUE),
+	'haikdesktoppreviewlinks' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i> PC', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
+		'desktop1' => array('name'=>'13.3inch', 'link'=>'#', 'visible'=>TRUE),
+		'desktop2' => array('name'=>'14.2inch', 'link'=>'#', 'visible'=>TRUE),
+		'desktop3' => array('name'=>'15.3inch', 'link'=>'#', 'visible'=>TRUE),
+		'desktop4' => array('name'=>'FullHD', 'link'=>'#', 'visible'=>TRUE),
 	)),
 
 	'configlink' => array('name'=>$qm->m['qhm_init']['configlink_name'], 'link'=>$link_qhm_setting, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
