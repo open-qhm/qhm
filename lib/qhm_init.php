@@ -368,14 +368,14 @@ EOD;
 		$tools['reflink']['visible'] = false;
 	}
 	if(!file_exists('swfu/index.php')) {
-		$tools['toollink']['sub']['swfulink']['visible'] = false;
+		unset($tools['toollink']['sub']['swfulink']);
 		$tools['reflink']['class'] = '';
 	}
 	else {
 		$tools['reflink']['link'] = 'swfu/index_child.php?page='.rawurlencode($vars['page']).'&amp;KeepThis=true&amp;TB_iframe=true';
 	}
 	if(!file_exists('fwd3/sys/fwd3.txt')) {
-		$tools['toollink']['sub']['fwd3link']['visible'] = false;
+		unset($tools['toollink']['sub']['fwd3link']);
 	}
 	if(!file_exists('qdsgn/index.php')) {
 		if (isset($tools['toollink']['sub']['qdsgnlink'])) unset($tools['toollink']['sub']['qdsgnlink']);
