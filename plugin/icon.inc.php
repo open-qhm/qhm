@@ -139,7 +139,7 @@ function plugin_icon_set_bootstrap_icons()
 {
 	$qt = get_qt();
 	$head = <<<HTML
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 HTML;
 	$qt->appendv_once('plugin_icon_bootstrap_icons', 'beforescript', $head);
 }
