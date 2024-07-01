@@ -25,6 +25,11 @@ function plugin_deco_inline()
 	$underline = '';
 	$italic = '';
 	$strong = false;
+	$strike = false;
+	$handline = false;
+
+	$stg_s = '';
+	$stg_e = '';
 	
 	foreach($args as $v){
 		if( is_numeric($v) ){
@@ -45,6 +50,12 @@ function plugin_deco_inline()
 		else if( $v=='italic' || $v=='i'){
 			$italic = 'font-style:italic;';
 		}
+		else if ($v == 'strike' || $v == 's') {
+			$strike = true;
+		}
+		else if ($v == 'handline' || $v == 'h') {
+			$handline = true;
+		}
 		else if( preg_match(PLUGIN_DECO_REGEX, $v) ){
 			$color[$ccnt] = $v;
 			$ccnt++;
@@ -62,13 +73,17 @@ function plugin_deco_inline()
 	$style .= $underline.$italic;
 	$style .= '" ';
 
-	if( $strong ){
+	if ($strong) {
 		$stg_s = '<strong>';
 		$stg_e = '</strong>';
 	}
-	else{
-		$stg_s = '';
-		$stg_e = '';
+	if ($strike) {
+		$stg_s .= '<del>';
+		$stg_e = '</del>' . $stg_e;
+	}
+	if ($handline) {
+		$stg_s .= '<span class="handline">';
+		$stg_e = '</span>' . $stg_e;
 	}
 	
 	return '<span ' . $style . ' class="qhm-deco">'. $stg_s .$text . $stg_e . '</span>';

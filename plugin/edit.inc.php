@@ -22,21 +22,17 @@ function plugin_edit_action()
 	$prefix = '';
 
 	//メニューやナビの編集はスタイルを変える
-    if (array_key_exists($page, $layout_pages) && ! isset($vars['preview']))
-    {
-        $prefix = '<h2 class="title">'. h($layout_pages[$page]) .'の編集</h2>';
+	if (array_key_exists($page, $layout_pages) && ! isset($vars['preview']))
+	{
+		$prefix = '<h2 class="title">'. h($layout_pages[$page]) .'の編集</h2>';
 
-        if (is_bootstrap_skin())
-        {
-            if (exist_plugin("noeyecatch"))
-            {
-                do_plugin_convert("noeyecatch");
-            }
-        }
-        else
-        {
-            $style_name = '../';
-            $addscript = <<< EOD
+		if (is_bootstrap_skin()) {
+			if (exist_plugin("noeyecatch")) {
+				do_plugin_convert("noeyecatch");
+			}
+		} else {
+			$style_name = '../';
+			$addscript = <<< EOD
 <script type="text/javascript">
 \$(function(){
 
@@ -67,9 +63,16 @@ function plugin_edit_action()
 });
 </script>
 EOD;
-            $qt->appendv('beforescript', $addscript);
-        }
-    }
+			$qt->appendv('beforescript', $addscript);
+		}
+	} else {
+		if (is_bootstrap_skin() && !isset($vars['preview'])) {
+			// 編集画面のレイアウトを fullpage にする
+			if (exist_plugin("layout")) {
+				do_plugin_convert("layout", "nomenu");
+			}
+		}
+	}
 
 	check_editable($page, true, true);
 

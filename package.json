@@ -1,25 +1,9 @@
 {
-  "name": "qhmpro",
+  "name": "qhm",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:clickpad2": "esbuild js/clickpad2/entry.js --bundle --watch --sourcemap --outfile=js/clickpad2.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hokuken/qhmpro"
-  },
-  "author": "Hokuken.Inc <customer@hokuken.com>",
-  "bugs": {
-    "url": "https://github.com/hokuken/qhmpro/issues"
-  },
-  "homepage": "https://www.hokuken.com/qhmpro/",
   "devDependencies": {
-    "grunt": "^0.4.4",
-    "grunt-contrib-coffee": "^0.11.1",
-    "grunt-contrib-copy": "^0.5.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-uglify": "^0.5.1",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-exec": "^0.4.5",
-    "load-grunt-tasks": "^0.4.0"
+    "esbuild": "0.20.0"
   }
 }
