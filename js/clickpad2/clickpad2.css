@@ -1,0 +1,281 @@
+.clickpad2__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  user-select: none;
+}
+
+.clickpad2__pallet-row {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  background: #e0e0e0;
+}
+
+.clickpad2__pallet-button {
+  display: grid;
+  place-items: center;
+  background-color: #fff;
+  border: none;
+  height: 25px;
+}
+
+.clickpad2__dialog-item:has(.clickpad2__dialog-radio-item-label--icon) {
+  display: flex;
+  gap: 10px;
+}
+
+.clickpad2__dialog-radio-item-label.clickpad2__dialog-radio-item-label--icon {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 5px;
+
+  input {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+  }
+  span.material-icons-outlined {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    font-size: 4em;
+  }
+  .clickpad2__dialog-radio-item-label-text {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+    align-self: center;
+  }
+}
+
+.clickpad2__dialog {
+  border: 5px solid #f5f5f7;
+  padding: 35px 40px 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 600px;
+}
+
+.clickpad2__dialog-content {
+  display: grid;
+  gap: 10px;
+}
+
+.clickpad2__dialog-content input[type="text"] {
+  border: 1px solid #babcbc;
+  border-radius: 2px;
+  width: 85%;
+}
+
+.clickpad2__dialog-radio-color-box {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 2px;
+}
+
+.clickpad2__dialog-item-label {
+  display: block;
+}
+
+.clickpad2__dialog-item-label small {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.clickpad2__dialog-choices {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.clickpad2__dialog-choices input[type="radio"],
+.clickpad2__dialog-choices input[type="checkbox"] {
+  margin: 0;
+}
+
+.clickpad2__dialog-radio-item-label,
+.clickpad2__dialog-checkbox-item-label,
+.clickpad2__dialog-select-item-label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-weight: normal;
+}
+.clickpad2__dialog-font-size-guide-item-legend h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+}
+.clickpad2__dialog-font-size-guide-item-legend p {
+  font-size: 12px;
+  margin: 0;
+}
+.clickpad2__dialog-action {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.clickpad2__dialog-action .btn-link {
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.clickpad2__dialog-action-insert.btn.btn-primary {
+  background-color: #428BCA;
+}
+
+/* link */
+.clickpad2__dialog--link .clickpad2__dialog-text-item {
+  display: grid;
+  grid-template-columns: 180px minmax(240px, 1fr);
+}
+
+/* button */
+.clickpad2__dialog--button .clickpad2__dialog-text-item,
+.clickpad2__dialog--button .clickpad2__dialog-radio-item,
+.clickpad2__dialog--button .clickpad2__dialog-checkbox-item,
+.clickpad2__dialog--button .clickpad2__dialog-select-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+}
+
+/* deco */
+.clickpad2__dialog--deco .clickpad2__dialog-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-content > :first-child {
+  grid-column: 1/ 3;
+}
+.clickpad2__dialog--deco label:has(input[value="b"]) span {
+  font-weight: bold;
+  font-size: 16px;
+}
+.clickpad2__dialog--deco label:has(input[value="h"]) span {
+  background-color: #fffacc;
+  font-size: 16px;
+}
+.clickpad2__dialog--deco label:has(input[value="i"]) span {
+  font-style: italic;
+  font-size: 16px;
+}
+.clickpad2__dialog--deco label:has(input[value="s"]) span {
+  text-decoration: line-through;
+  font-size: 16px;
+}
+.clickpad2__dialog--deco label:has(input[value="u"]) span {
+  text-decoration: underline;
+  font-size: 16px;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-text-item:has(#dialog-control-2) .clickpad2__dialog-item-label-title {
+  color: #4169e1;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-text-item:has(#dialog-control-3) .clickpad2__dialog-item-label-title {
+  background-color: #d9d9d9;
+}
+.clickpad2__dialog--deco .clickpad2__dialog-choices {
+  column-gap: 30px;
+}
+
+/* icon */
+.clickpad2__dialog--icon .clickpad2__dialog-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.clickpad2__dialog--icon .clickpad2__dialog-item:first-child {
+  grid-column: 1 / 3;
+}
+.clickpad2__dialog--icon .clickpad2__dialog-icon-header-item-title {
+  font-size: 16px;
+  margin: 0;
+}
+.clickpad2__dialog--icon p {
+  font-size: 12px;
+  margin: 0;
+  white-space: pre-wrap;
+}
+.clickpad2__dialog-icon-header-item-link-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20px 0;
+}
+.clickpad2__dialog-icon-header-item-link-grid a {
+  font-size: 16px;
+  text-decoration: none;
+}
+.clickpad2__dialog--icon .clickpad2__dialog-action {
+  margin-top: 40px;
+}
+
+/* layout */
+.clickpad2__dialog--layout {
+  min-width: auto;
+}
+.clickpad2__dialog--layout .clickpad2__dialog-choices {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 20px;
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-1) {
+  transform: translateX(-7px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-1) .material-icons-outlined {
+  transform: translateX(-3px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-2) {
+  transform: translateX(8px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-2) .material-icons-outlined {
+  transform: translateX(-30px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-3) {
+  transform: translateX(-4px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-3) .material-icons-outlined {
+  transform: translateX(-1px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-4) {
+  transform: translateX(8px);
+}
+.clickpad2__dialog--layout .clickpad2__dialog-radio-item-label:has(#dialog-control-1-4) .material-icons-outlined {
+  transform: translateX(-25px);
+}
+
+/* section */
+.clickpad2__dialog--section .clickpad2__dialog-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.clickpad2__dialog--section .clickpad2__dialog-item--section-header {
+  grid-column: 1 / 3;
+}
+.clickpad2__dialog--section .clickpad2__dialog-item--section-header h2 {
+  font-size: 16px;
+  margin: 20px 0 0;
+}
+.clickpad2__dialog--section .clickpad2__dialog-text-item:has(#dialog-control-3) .clickpad2__dialog-item-label-title {
+  color: #4169e1;
+}
+.clickpad2__dialog--section .clickpad2__dialog-text-item:has(#dialog-control-4) .clickpad2__dialog-item-label-title {
+  background-color: #d9d9d9;
+}
+
+/* label */
+.clickpad2__dialog--label {
+  min-width: auto;
+}
+.clickpad2__dialog--label .clickpad2__dialog-text-item,
+.clickpad2__dialog--label .clickpad2__dialog-radio-item,
+.clickpad2__dialog--label .clickpad2__dialog-checkbox-item,
+.clickpad2__dialog--label .clickpad2__dialog-select-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+}
