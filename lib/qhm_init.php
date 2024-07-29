@@ -135,6 +135,9 @@ if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
     {
         $btnset_name = is_qblog() ? 'qhmHaikQBlog' : 'qhmHaik';
     }
+		if (exist_plugin('icon')) {
+				plugin_icon_set_google_material_icons("outlined");
+		}
 
     $refleshjs = '?'.QHM_VERSION;
 
@@ -143,6 +146,8 @@ if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
 <!--[if IE 6]><script type="text/javascript" src="js/fixed.js"></script><![endif]-->
 <script type="text/javascript" src="js/thickbox.js"></script>
 <script type="text/javascript" src="js/jquery.clickpad.js{$refleshjs}"></script>
+<script type="text/javascript" src="js/clickpad2.js{$refleshjs}"></script>
+<link rel="stylesheet" href="js/clickpad2/clickpad2.css{$refreshjs}">
 <script type="text/javascript" src="js/jquery.exnote.js"></script>
 <script type="text/javascript" src="js/jquery.shortkeys.js"></script>
 <script type="text/javascript" src="js/jquery.edit.js"></script>
@@ -151,8 +156,7 @@ if(($qt->getv('editable') || ss_admin_check()) && !$is_setting){
 $(function(){
   // clickpad
   if($("#msg").length) {
-    $("#msg").clickpad({buttons:"{$btnset_name}",autoGrow:false})
-      .data("original", $("#msg").val());
+    $("#msg").data("original", $("#msg").val());
 
 		otherplugin = function(){
 {$op_func}
@@ -252,11 +256,12 @@ EOD;
 			'yetlistlink' => array('name'=>$qm->m['qhm_init']['yetlistlink_name'], 'link'=>$link_yetlist, 'style'=>'','class'=>'', 'visible'=>true, ),
 		)),
 	'toollink'   => array('name'=>$qm->m['qhm_init']['toollink_name'], 'link'=>'', 'accesskey'=>'', 'style'=>'', 'class'=>'', 'visible'=>true, 'sub'=>array(
-			'swfulink' => array('name'=>$qm->m['qhm_init']['swfulink_name'], 'link'=>'swfu/index.php', 'style'=>'','class'=>'swfu', 'visible'=>true, ),
-			'fwd3link' => array('name'=>$qm->m['qhm_init']['fwd3link_name'], 'link'=>'fwd3/sys/', 'style'=>'','class'=>'', 'visible'=>true, ),
-			'qdsgnlink' => array('name'=>$qm->m['qhm_init']['qdsgnlink_name'], 'link'=>'qdsgn/index.php', 'style'=>'','class'=>'', 'visible'=>true, ),
-			'searchlink' => array('name'=>$qm->m['qhm_init']['searchlink_name'], 'link'=>$link_search, 'style'=>'','class'=>'', 'visible'=>true, ),
-		)),
+		'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
+		'searchlink' => array('name'=>$qm->m['qhm_init']['searchlink_name'], 'link'=>$link_search, 'style'=>'','class'=>'', 'visible'=>true, ),
+		'swfulink' => array('name'=>$qm->m['qhm_init']['swfulink_name'], 'link'=>'swfu/index.php', 'style'=>'','class'=>'swfu', 'visible'=>true, ),
+		'fwd3link' => array('name'=>$qm->m['qhm_init']['fwd3link_name'], 'link'=>'fwd3/sys/', 'style'=>'','class'=>'', 'visible'=>true, ),
+		'qdsgnlink' => array('name'=>$qm->m['qhm_init']['qdsgnlink_name'], 'link'=>'qdsgn/index.php', 'style'=>'','class'=>'', 'visible'=>true, ),
+	)),
 	'qbloglink' => array(
 		'name' => 'ブログ', 'link'=>'', 'style'=>'','class'=>'', 'visible'=>true, 'sub' => array(
 			'qblogtoplink' => array('name'=>'トップ', 'link'=>$link_qblog, 'style'=>'', 'class'=>'', 'visible'=>TRUE),
@@ -265,16 +270,25 @@ EOD;
 			'qblognewlink' => array('name'=>'記事の追加', 'link'=>$script.'?cmd=qblog&mode=addpost', 'style'=>'', 'class'=>'', 'visible'=>TRUE),
 		)
 	),
-	'haikskincustomizer' => array('name'=>'テーマ編集', 'link'=>$link_haik_skin_customizer, 'style'=>'margin-top:1.1em;', 'class'=>'', 'visible'=>TRUE),
-  'haikpreviewlinks' => array('name'=>'プレビュー', 'link'=>'', 'visible'=>TRUE, 'sub'=>array(
-      'mobilesm' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.0 inch',  'link'=>'#', 'visible'=>TRUE),
-      'mobilemd' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 4.7 inch',  'link'=>'#', 'visible'=>TRUE),
-      'mobilelg' => array('name'=>'<i class="fa fa-lg fa-fw fa-mobile" aria-hidden="true"></i><span class="sr-only">モバイル</span> 5.5 inch',  'link'=>'#', 'visible'=>TRUE),
-      'tablet' => array('name'=>'<i class="fa fa-lg fa-fw fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'#', 'visible'=>TRUE),
-      'laptop' => array('name'=>'<i class="fa fa-lg fa-fw fa-laptop" aria-hidden="true"></i><span class="sr-only">デスクトップ</span> 1366×768',  'link'=>'#', 'visible'=>TRUE),
-      'desktop' => array('name'=>'<i class="fa fa-lg fa-fw fa-desktop" aria-hidden="true"></i><span class="sr-only">モバイル</span> 1920×1080', 'link'=>'#', 'visible'=>TRUE),
-    )
-  ),
+  'haikphonepreviewlinks' => array('name'=>'<i class="fa fa-fw fa-mobile" aria-hidden="true"></i> Phone', 'link'=>'', 'style'=>'margin-top:1.1em;display:flex;align-items:center;gap:5px;', 'class'=>'', 'visible'=>TRUE, 'sub'=>array(
+		'mobile1' => array('name'=>'4.7 inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile2' => array('name'=>'5.4 inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile3' => array('name'=>'6.1 inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile4' => array('name'=>'6.7 inch',  'link'=>'#', 'visible'=>TRUE),
+		'mobile_all' => array('name'=>'All Preview',  'link'=>'#', 'style' => 'margin-top: 3px', 'visible'=>TRUE),
+	)),
+	'haiktabletpreviewlinks' => array('name'=>'<i class="fa fa-fw fa-tablet" aria-hidden="true"></i> Tablet', 'link'=>'', 'style'=>'display:flex;align-items:center;gap:5px;', 'visible'=>TRUE, 'sub'=>array(
+		'tablet1' => array('name'=>'8.3 inch', 'link'=>'#', 'visible'=>TRUE),
+		'tablet2' => array('name'=>'10.9 inch', 'link'=>'#', 'visible'=>TRUE),
+		'tablet3' => array('name'=>'11 inch', 'link'=>'#', 'visible'=>TRUE),
+		'tablet4' => array('name'=>'12.9 inch', 'link'=>'#', 'visible'=>TRUE),
+	)),
+	'haikdesktoppreviewlinks' => array('name'=>'<i class="fa fa-fw fa-desktop" aria-hidden="true"></i> PC', 'link'=>'', 'style'=>'display:flex;align-items:center;gap:5px;', 'visible'=>TRUE, 'sub'=>array(
+		'desktop1' => array('name'=>'13.3 inch', 'link'=>'#', 'visible'=>TRUE),
+		'desktop2' => array('name'=>'14.2 inch', 'link'=>'#', 'visible'=>TRUE),
+		'desktop3' => array('name'=>'15.3 inch', 'link'=>'#', 'visible'=>TRUE),
+		'desktop4' => array('name'=>'FullHD', 'link'=>'#', 'visible'=>TRUE),
+	)),
 
 	'configlink' => array('name'=>$qm->m['qhm_init']['configlink_name'], 'link'=>$link_qhm_setting, 'style'=>'margin-top:1.1em;', 'visible'=>true, 'sub'=>array()),
 	'passwordlink'   => array('name'=>$qm->m['qhm_init']['passwordlink_name'], 'link'=>$link_password, 'style'=>'', 'visible'=>true, 'sub'=>array()),
@@ -358,14 +372,14 @@ EOD;
 		$tools['reflink']['visible'] = false;
 	}
 	if(!file_exists('swfu/index.php')) {
-		$tools['toollink']['sub']['swfulink']['visible'] = false;
+		unset($tools['toollink']['sub']['swfulink']);
 		$tools['reflink']['class'] = '';
 	}
 	else {
 		$tools['reflink']['link'] = 'swfu/index_child.php?page='.rawurlencode($vars['page']).'&amp;KeepThis=true&amp;TB_iframe=true';
 	}
 	if(!file_exists('fwd3/sys/fwd3.txt')) {
-		$tools['toollink']['sub']['fwd3link']['visible'] = false;
+		unset($tools['toollink']['sub']['fwd3link']);
 	}
 	if(!file_exists('qdsgn/index.php')) {
 		if (isset($tools['toollink']['sub']['qdsgnlink'])) unset($tools['toollink']['sub']['qdsgnlink']);
