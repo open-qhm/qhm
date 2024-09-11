@@ -259,7 +259,7 @@ class Heading extends Element
 		return $this->last = & $this;
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return FALSE;
 	}
@@ -286,7 +286,7 @@ class HRule extends Element
 		parent::Element();
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return FALSE;
 	}
@@ -329,7 +329,7 @@ class ListContainer extends Element
 			$this->last = & $this->last->insert(Factory_Inline($text));
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return (! is_a($obj, 'ListContainer')
 			|| ($this->tag == $obj->tag && $this->level == $obj->level));
@@ -390,7 +390,7 @@ class ListElement extends Element
 		$this->head  = $head;
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return (! is_a($obj, 'ListContainer') || ($obj->level > $this->level));
 	}
@@ -462,7 +462,7 @@ class BQuote extends Element
 		}
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return (! is_a($obj, get_class($this)) || $obj->level >= $this->level);
 	}
@@ -700,7 +700,7 @@ EOS;
 		}
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		if (is_a($obj, 'Table')) {
 			if ($obj->col == $this->col) {
@@ -830,7 +830,7 @@ class YTable extends Element
 		$this->elements[] = $str;
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return is_a($obj, 'YTable') && ($obj->col == $this->col);
 	}
@@ -864,7 +864,7 @@ class Pre extends Element
 			(! $preformat_ltrim || $text == '' || $text[0] != ' ') ? $text : substr($text, 1));
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return is_a($obj, 'Pre');
 	}
@@ -893,7 +893,7 @@ class Div extends Element
 		list(, $this->name, $this->param) = array_pad($out, 3, '');
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return FALSE;
 	}
@@ -918,7 +918,7 @@ class Align extends Element
 		$this->ptag = $ptag;
 	}
 
-	function canContain(& $obj)
+	function canContain($obj)
 	{
 		return is_a($obj, 'Inline') OR is_a($obj, 'Heading') OR is_a($obj, 'Paragraph');
 	}
