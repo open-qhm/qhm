@@ -314,11 +314,8 @@ function PKWKMAIL_formmaker($attr,$cnfm, $a_page)
 			//set value and sanitize - 値のセットと無害化。チェックボックスだけ特別扱いの変数
 			if( is_array( $v ) ) {
 				foreach( $v as $kk => $vv ) {
-					if(get_magic_quotes_gpc()) { $vv = stripslashes($vv); }
 					$render_value_arr[] = htmlspecialchars( $vv, ENT_QUOTES );
 				}
-			}else{
-				if( get_magic_quotes_gpc() ) $v = htmlspecialchars( stripslashes($v),ENT_QUOTES );
 			}
 			$render_value[] = $v ;
 		}
@@ -514,7 +511,6 @@ function PKWKMAIL_confirm( $attr, $a_page )
 			if(is_array($value)){
 				//set value and sanitize: checkbox - チェックボックスの場合
 				foreach($value as $v_key => $v_arr){
-					if(get_magic_quotes_gpc())$v_arr = stripslashes($v_arr);
 					$v_arr = htmlspecialchars($v_arr, ENT_QUOTES);
 					$value_arr[] = $v_arr;
 					//preparing send data - 送信用データ準備
@@ -522,7 +518,6 @@ function PKWKMAIL_confirm( $attr, $a_page )
 				}
 			}else{
 				//set value and sanitize: non checkbox - 非チェックボックス
-				if(get_magic_quotes_gpc())$value = stripslashes($value);
 				$value = htmlspecialchars($value, ENT_QUOTES);
 				//preparing send data - 送信用データ準備
 				if( strpos($key,'_email') ) $send_email_value = $value ;
@@ -623,10 +618,6 @@ function PKWKMAIL_sent($attr)
 	$mail_content['mail_adrs']      = htmlspecialchars($vars['mail_adrs'],ENT_QUOTES);
 	$mail_content['admin_adrs']     = $attr['admin_adrs'];
 	$mail_content['admin_reply_to'] = ! empty( $attr['admin_reply_to'] ) ? $attr['admin_reply_to'] : $mail_content['mail_adrs'];
-
-	foreach($mail_content as $key => $value) {
-		if(get_magic_quotes_gpc()) $mail_content[$key] = stripslashes($value);
-	}
 
 	//preparing rendering data - 画面作成用データ準備
 	$mail_content['render_scrn'] = explode('PKWKMAIL_LATER_RETRUN',$mail_content['mail_data']);
