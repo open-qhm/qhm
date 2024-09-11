@@ -862,6 +862,7 @@ function pkwk_touch_file($filename, $time = FALSE, $atime = FALSE)
 //regist tinyurl table
 function add_tinycode($page)
 {
+	global $whatsnew;
 	if($page=='')
 		return false;
 	$qm = get_qm();

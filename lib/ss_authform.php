@@ -201,7 +201,7 @@ function ss_chkusr($title , $users ){
 }
 
 function auth_catbody($title, $contents, $retry=false){
-	global $script,$default_script,$admin_email;
+	global $script,$default_script,$admin_email,$pkwk_dtd;
 
 	$qm = get_qm();
 
