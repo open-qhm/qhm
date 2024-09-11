@@ -115,7 +115,7 @@ function http_request($url, $method = 'GET', $headers = '', $post = array(),
 			$url = trim($matches[1]);
 			if (! preg_match('/^https?:\//', $url)) {
 				// Relative path to Absolute
-				if ($url{0} != '/')
+				if ($url[0] != '/')
 					$url = substr($url_path, 0, strrpos($url_path, '/')) . '/' . $url;
 				$url = $url_base . $url; // Add sheme, host
 			}

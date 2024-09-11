@@ -720,13 +720,13 @@ function get_script_uri($init_uri = '')
 
 		// SCRIPT_NAME が'/'で始まっていない場合(cgiなど) REQUEST_URIを使ってみる
 		$path    = SCRIPT_NAME;
-		if ($path{0} != '/') {
-			if (! isset($_SERVER['REQUEST_URI']) || $_SERVER['REQUEST_URI']{0} != '/')
+		if ($path[0] != '/') {
+			if (! isset($_SERVER['REQUEST_URI']) || $_SERVER['REQUEST_URI'][0] != '/')
 				die_message($msg);
 
 			// REQUEST_URIをパースし、path部分だけを取り出す
 			$parse_url = parse_url($script . $_SERVER['REQUEST_URI']);
-			if (! isset($parse_url['path']) || $parse_url['path']{0} != '/')
+			if (! isset($parse_url['path']) || $parse_url['path'][0] != '/')
 				die_message($msg);
 
 			$path = $parse_url['path'];
@@ -798,7 +798,7 @@ function csv_explode($separator, $string)
 
 	foreach ($matches[1] as $str) {
 		$len = strlen($str);
-		if ($len > 1 && $str{0} == '"' && $str{$len - 1} == '"')
+		if ($len > 1 && $str[0] == '"' && $str[$len - 1] == '"')
 			$str = str_replace('""', '"', substr($str, 1, -1));
 		$retval[] = $str;
 	}
@@ -808,7 +808,7 @@ function csv_explode($separator, $string)
 // Implode an array with CSV data format (escape double quotes)
 function csv_implode($glue, $pieces)
 {
-	$_glue = ($glue != '') ? '\\' . $glue{0} : '';
+	$_glue = ($glue != '') ? '\\' . $glue[0] : '';
 	$arr = array();
 	foreach ($pieces as $str) {
 		if (preg_match('/[' . '"' . "\n\r" . $_glue . ']/', $str))

@@ -45,7 +45,7 @@ class Config
 		foreach (get_source($this->page) as $line) {
 			if ($line == '') continue;
 
-			$head  = $line{0};	// The first letter
+			$head  = $line[0];	// The first letter
 			$level = strspn($line, $head);
 
 			if ($level > 3) {

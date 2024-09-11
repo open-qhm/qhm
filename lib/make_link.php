@@ -787,7 +787,7 @@ function get_fullname($name, $refer)
 	if ($name == '' || $name == './') return $refer;
 
 	// Absolute path
-	if ($name{0} == '/') {
+	if ($name[0] == '/') {
 		$name = substr($name, 1);
 		return ($name == '') ? $defaultpage : $name;
 	}
