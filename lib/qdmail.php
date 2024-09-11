@@ -30,13 +30,7 @@ if (!defined('QD_DS')) {
 	define('QD_DS', DIRECTORY_SEPARATOR);
 }
 
-if ( defined('CAKE_CORE_INCLUDE_PATH') || defined('CAKE')) {
-	class QdmailBranch extends Object{
-	}
-}else{
-	class QdmailBranch{
-	}
-}
+class QdmailBranch{}
 
 if( !function_exists( 'qd_send_mail' ) ){
 

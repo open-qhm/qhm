@@ -876,4 +876,3 @@ function get_interwiki_url($name, $param)
 
 	return $url;
 }
-?>

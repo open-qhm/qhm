@@ -79,22 +79,22 @@ function exist_plugin($name)
 // Check if plugin API 'action' exists
 function exist_plugin_action($name) {
 	$func = get_plugin_prefix($name) . 'action';
-	return	function_exists($func) ? TRUE : exist_plugin($name) ?
-		function_exists($func) : FALSE;
+	return	function_exists($func) ? TRUE : (exist_plugin($name) ?
+		function_exists($func) : FALSE);
 }
 
 // Check if plugin API 'convert' exists
 function exist_plugin_convert($name) {
 	$func = get_plugin_prefix($name) . 'convert';
-	return	function_exists($func) ? TRUE : exist_plugin($name) ?
-		function_exists($func) : FALSE;
+	return	function_exists($func) ? TRUE :(exist_plugin($name) ?
+		function_exists($func) : FALSE);
 }
 
 // Check if plugin API 'inline' exists
 function exist_plugin_inline($name) {
 	$func = get_plugin_prefix($name) . 'inline';
-	return	function_exists($func) ? TRUE : exist_plugin($name) ?
-		function_exists($func) : FALSE;
+	return	function_exists($func) ? TRUE : (exist_plugin($name) ?
+		function_exists($func) : FALSE);
 }
 
 // Do init the plugin
