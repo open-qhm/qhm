@@ -167,7 +167,7 @@ function & Factory_Div(& $root, $text)
 // Inline elements
 class Inline extends Element
 {
-	function Inline($text)
+	function __construct($text)
 	{
 		parent::Element();
 		$this->elements[] = trim((substr($text, 0, 1) == "\n") ?
@@ -204,7 +204,7 @@ class Paragraph extends Element
 {
 	var $param;
 
-	function Paragraph($text, $param = '')
+	function __construct($text, $param = '')
 	{
 		parent::Element();
 		$this->param = $param;
@@ -236,7 +236,7 @@ class Heading extends Element
 	var $id;
 	var $msg_top;
 
-	function Heading(& $root, $text)
+	function __construct(& $root, $text)
 	{
 		parent::Element();
 
@@ -281,7 +281,7 @@ class Heading extends Element
 // Horizontal Rule
 class HRule extends Element
 {
-	function HRule(& $root, $text)
+	function __construct(& $root, $text)
 	{
 		parent::Element();
 	}
@@ -308,7 +308,7 @@ class ListContainer extends Element
 	var $margin;
 	var $left_margin;
 
-	function ListContainer($tag, $tag2, $head, $text)
+	function __construct($tag, $tag2, $head, $text)
 	{
 		parent::Element();
 
@@ -383,7 +383,7 @@ class ListContainer extends Element
 
 class ListElement extends Element
 {
-	function ListElement($level, $head)
+	function __construct($level, $head)
 	{
 		parent::Element();
 		$this->level = $level;
@@ -406,7 +406,7 @@ class ListElement extends Element
 // - Three
 class UList extends ListContainer
 {
-	function UList(& $root, $text)
+	function __construct(& $root, $text)
 	{
 		parent::ListContainer('ul', 'li', '-', $text);
 	}
@@ -417,7 +417,7 @@ class UList extends ListContainer
 // + Three
 class OList extends ListContainer
 {
-	function OList(& $root, $text)
+	function __construct(& $root, $text)
 	{
 		parent::ListContainer('ol', 'li', '+', $text);
 	}
@@ -428,7 +428,7 @@ class OList extends ListContainer
 // : definition3 | description3
 class DList extends ListContainer
 {
-	function DList($out)
+	function __construct($out)
 	{
 		parent::ListContainer('dl', 'dt', ':', $out[0]);
 		$this->last = & Element::insert(new ListElement($this->level, 'dd'));
@@ -443,7 +443,7 @@ class BQuote extends Element
 {
 	var $level;
 
-	function BQuote(& $root, $text)
+	function __construct(& $root, $text)
 	{
 		parent::Element();
 
@@ -506,7 +506,7 @@ class TableCell extends Element
 	var $rowspan = 1;
 	var $style; // is array('width'=>, 'align'=>...);
 
-	function TableCell($text, $is_template = FALSE)
+	function __construct($text, $is_template = FALSE)
 	{
 		parent::Element();
 		$this->style = $matches = array();
@@ -585,7 +585,7 @@ class Table extends Element
 	var $css_class;
 	var $css_enable;
 
-	function Table($out)
+	function __construct($out)
 	{
 		parent::Element();
 
@@ -795,7 +795,7 @@ class YTable extends Element
 {
 	var $col;
 
-	function YTable($_value)
+	function __construct($_value)
 	{
 		parent::Element();
 
@@ -856,7 +856,7 @@ class YTable extends Element
 // ' 'Space-beginning sentence
 class Pre extends Element
 {
-	function Pre(& $root, $text)
+	function __construct(& $root, $text)
 	{
 		global $preformat_ltrim;
 		parent::Element();
@@ -887,7 +887,7 @@ class Div extends Element
 	var $name;
 	var $param;
 
-	function Div($out)
+	function __construct($out)
 	{
 		parent::Element();
 		list(, $this->name, $this->param) = array_pad($out, 3, '');
@@ -911,7 +911,7 @@ class Align extends Element
 	var $align;
 	var $ptag;
 
-	function Align($align, $ptag=true)
+	function __construct($align, $ptag=true)
 	{
 		parent::Element();
 		$this->align = $align;
@@ -949,7 +949,7 @@ class Body extends Element
 		'#' => 'Div');
 	var $noPara = FALSE;
 
-	function Body($id)
+	function __construct($id)
 	{
 		$this->id            = $id;
 		$this->contents      = new Element();
@@ -1251,7 +1251,7 @@ class Body extends Element
 
 class Contents_UList extends ListContainer
 {
-	function Contents_UList($text, $level, $id)
+	function __construct($text, $level, $id)
 	{
 		// Reformatting $text
 		// A line started with "\n" means "preformatted" ... X(

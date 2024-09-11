@@ -251,7 +251,7 @@ class DiffLine
 	var $text;
 	var $status;
 
-	function DiffLine($text)
+	function __construct($text)
 	{
 		$this->text   = $text . "\n";
 		$this->status = array();

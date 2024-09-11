@@ -135,7 +135,7 @@ class ConfigTable
 	var $after  = array();	// Page contents (except table ones)
 	var $values = array();	// Table contents
 
-	function ConfigTable($title, $obj = NULL)
+	function __construct($title, $obj = NULL)
 	{
 		if ($obj !== NULL) {
 			$this->title  = $obj->title;
