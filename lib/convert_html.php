@@ -408,7 +408,7 @@ class UList extends ListContainer
 {
 	function __construct(& $root, $text)
 	{
-		parent::ListContainer('ul', 'li', '-', $text);
+		parent::__construct('ul', 'li', '-', $text);
 	}
 }
 
@@ -419,7 +419,7 @@ class OList extends ListContainer
 {
 	function __construct(& $root, $text)
 	{
-		parent::ListContainer('ol', 'li', '+', $text);
+		parent::__construct('ol', 'li', '+', $text);
 	}
 }
 
@@ -430,7 +430,7 @@ class DList extends ListContainer
 {
 	function __construct($out)
 	{
-		parent::ListContainer('dl', 'dt', ':', $out[0]);
+		parent::__construct('dl', 'dt', ':', $out[0]);
 		$this->last = & Element::insert(new ListElement($this->level, 'dd'));
 		if ($out[1] != '')
 			$this->last = & $this->last->insert(Factory_Inline($out[1]));
@@ -445,7 +445,7 @@ class BQuote extends Element
 
 	function __construct(& $root, $text)
 	{
-		parent::Element();
+		parent::__construct();
 
 		$head = substr($text, 0, 1);
 		$this->level = min(3, strspn($text, $head));
@@ -508,7 +508,7 @@ class TableCell extends Element
 
 	function __construct($text, $is_template = FALSE)
 	{
-		parent::Element();
+		parent::__construct();
 		$this->style = $matches = array();
 
 		while (preg_match('/^(?:(LEFT|CENTER|RIGHT)|(BG)?COLOR\(([#\w]+)\)|SIZE\((\d+)\)):(.*)$/', $text, $matches)) {
@@ -587,7 +587,7 @@ class Table extends Element
 
 	function __construct($out)
 	{
-		parent::Element();
+		parent::__construct();
 
 		// --------------------------------
 		// customize by hokuken.com
@@ -1257,7 +1257,7 @@ class Contents_UList extends ListContainer
 		// A line started with "\n" means "preformatted" ... X(
 		make_heading($text);
 		$text = "\n" . '<a href="#' . $id . '">' . $text . '</a>' . "\n";
-		parent::ListContainer('ul', 'li', '-', str_repeat('-', $level));
+		parent::__construct('ul', 'li', '-', str_repeat('-', $level));
 		$this->insert(Factory_Inline($text));
 	}
 

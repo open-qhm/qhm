@@ -451,7 +451,7 @@ class Plugin_Secedit_Sections
 {
 	var $sections;
 
-	function Plugin_Secedit_Sections($text)
+	function __construct($text)
 	{
 		$this->sections = $this->_parse($text);
 	}

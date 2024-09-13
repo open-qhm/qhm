@@ -38,7 +38,7 @@ class QHM_Message {
 	var $cache;
 	var $locales;
 	
-	private function QHM_Message() {
+	private function __construct() {
 		$this->m = array();
 		$this->file = 'lng.'. LANG. '.txt';
 		$this->file_ja = 'lng.ja.txt';

@@ -73,7 +73,7 @@ class QHM_Template {
 	/** キャッシュに関連するページのハッシュ配列 */
 	private $cache_rel_pages;
 
-	private function QHM_Template() {
+	private function __construct() {
 		$this->values = array();
 		$this->appended = array();
 		$this->dplugins = array();

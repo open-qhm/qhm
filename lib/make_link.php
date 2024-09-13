@@ -221,7 +221,7 @@ class Link_plugin extends Link
 
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()
@@ -305,7 +305,7 @@ class Link_note extends Link
 {
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()
@@ -373,7 +373,7 @@ class Link_url extends Link
 {
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()
@@ -419,7 +419,7 @@ class Link_url_interwiki extends Link
 {
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()
@@ -501,7 +501,7 @@ class Link_interwikiname extends Link
 
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()
@@ -570,7 +570,7 @@ class Link_bracketname extends Link
 
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()
@@ -632,7 +632,7 @@ class Link_wikiname extends Link
 {
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()
@@ -675,7 +675,7 @@ class Link_autolink extends Link
 	{
 		global $autolink;
 
-		parent::Link($start);
+		parent::__construct($start);
 
 		if (! $autolink || ! file_exists(CACHE_DIR . 'autolink.dat'))
 			return;
@@ -719,7 +719,7 @@ class Link_autolink_a extends Link_autolink
 {
 	function __construct($start)
 	{
-		parent::Link_autolink($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()

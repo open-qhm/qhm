@@ -27,7 +27,7 @@ class Config
 	var $name, $page; // Page name
 	var $objs = array();
 
-	function Config($name)
+	function __construct($name)
 	{
 		$this->name = $name;
 		$this->page = PKWK_CONFIG_PREFIX . $name;

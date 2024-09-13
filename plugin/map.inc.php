@@ -106,7 +106,7 @@ class MapNode
 	var $hide_pattern;
 	var $name;
 
-	function MapNode($page, $reverse = FALSE)
+	function __construct($page, $reverse = FALSE)
 	{
 		global $script, $non_list;
 

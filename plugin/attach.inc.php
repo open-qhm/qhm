@@ -449,7 +449,7 @@ class AttachFile
 	var $size_str = '';
 	var $status = array('count'=>array(0), 'age'=>'', 'pass'=>'', 'freeze'=>FALSE);
 
-	function AttachFile($page, $file, $age = 0)
+	function __construct($page, $file, $age = 0)
 	{
 		$this->page = $page;
 		$this->file = preg_replace('#^.*/#','',$file);
@@ -761,7 +761,7 @@ class AttachFiles
 	var $page;
 	var $files = array();
 
-	function AttachFiles($page)
+	function __construct($page)
 	{
 		$this->page = $page;
 	}
@@ -830,7 +830,7 @@ class AttachPages
 {
 	var $pages = array();
 
-	function AttachPages($page = '', $age = NULL)
+	function __construct($page = '', $age = NULL)
 	{
 
 		$dir = opendir(UPLOAD_DIR) or

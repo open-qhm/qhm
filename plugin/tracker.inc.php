@@ -259,7 +259,7 @@ class Tracker_field
 	var $sort_type = SORT_REGULAR;
 	var $id = 0;
 
-	function Tracker_field($field,$page,$refer,&$config)
+	function __construct($field,$page,$refer,&$config)
 	{
 		global $post;
 		static $id = 0;

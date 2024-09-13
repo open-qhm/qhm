@@ -460,7 +460,7 @@ class tarlib
 	var $dummydata;
 
 	// コンストラクタ
-	function tarlib() {
+	function __construct() {
 		$this->filename = '';
 		$this->fp       = FALSE;
 		$this->status   = TARLIB_STATUS_INIT;
