@@ -365,9 +365,9 @@ class Tracker_field_format extends Tracker_field
 	var $styles = array();
 	var $formats = array();
 
-	function Tracker_field_format($field,$page,$refer,&$config)
+	function __construct($field,$page,$refer,&$config)
 	{
-		parent::Tracker_field($field,$page,$refer,$config);
+		parent::__construct($field,$page,$refer,$config);
 
 		foreach ($this->config->get($this->name) as $option)
 		{

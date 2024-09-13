@@ -11,9 +11,9 @@
 
 class PluginTag extends Tag
 {
-    function PluginTag()
+    function __construct()
     {
-        parent::Tag();
+        parent::__construct();
         static $conf = array();
         if (empty($conf)) {
             $conf['listcmd'] = get_script_uri() . '?cmd=taglist&amp;tag=';

@@ -450,7 +450,7 @@ class Link_mailto extends Link
 
 	function __construct($start)
 	{
-		parent::Link($start);
+		parent::__construct($start);
 	}
 
 	function get_pattern()

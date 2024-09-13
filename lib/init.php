@@ -95,8 +95,6 @@ define('MB_LANGUAGE', $qm->m['mb_language']);
 mb_language(MB_LANGUAGE);
 mb_internal_encoding(SOURCE_ENCODING);
 mb_regex_encoding(SOURCE_ENCODING);
-ini_set('mbstring.http_input', 'pass');
-mb_http_output('pass');
 mb_detect_order('auto');
 
 /////////////////////////////////////////////////

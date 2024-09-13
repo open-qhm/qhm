@@ -33,7 +33,7 @@ class Element
 	var $elements; // References of childs
 	var $last;     // Insert new one at the back of the $last
 
-	function Element()
+	function __construct()
 	{
 		$this->elements = array();
 		$this->last     = & $this;
@@ -169,7 +169,7 @@ class Inline extends Element
 {
 	function __construct($text)
 	{
-		parent::Element();
+		parent::__construct();
 		$this->elements[] = trim((substr($text, 0, 1) == "\n") ?
 			$text : make_link($text));
 	}
@@ -206,7 +206,7 @@ class Paragraph extends Element
 
 	function __construct($text, $param = '')
 	{
-		parent::Element();
+		parent::__construct();
 		$this->param = $param;
 		if ($text == '') return;
 
@@ -238,7 +238,7 @@ class Heading extends Element
 
 	function __construct(& $root, $text)
 	{
-		parent::Element();
+		parent::__construct();
 
 	if (strspn($text, '!') > 0)
 	{
@@ -283,7 +283,7 @@ class HRule extends Element
 {
 	function __construct(& $root, $text)
 	{
-		parent::Element();
+		parent::__construct();
 	}
 
 	function canContain($obj)
@@ -310,7 +310,7 @@ class ListContainer extends Element
 
 	function __construct($tag, $tag2, $head, $text)
 	{
-		parent::Element();
+		parent::__construct();
 
 		$var_margin      = '_' . $tag . '_margin';
 		$var_left_margin = '_' . $tag . '_left_margin';
@@ -385,7 +385,7 @@ class ListElement extends Element
 {
 	function __construct($level, $head)
 	{
-		parent::Element();
+		parent::__construct();
 		$this->level = $level;
 		$this->head  = $head;
 	}
@@ -797,7 +797,7 @@ class YTable extends Element
 
 	function __construct($_value)
 	{
-		parent::Element();
+		parent::__construct();
 
 		$align = $value = $matches = array();
 		foreach($_value as $val) {
@@ -859,7 +859,7 @@ class Pre extends Element
 	function __construct(& $root, $text)
 	{
 		global $preformat_ltrim;
-		parent::Element();
+		parent::__construct();
 		$this->elements[] = htmlspecialchars(
 			(! $preformat_ltrim || $text == '' || $text[0] != ' ') ? $text : substr($text, 1));
 	}
@@ -889,7 +889,7 @@ class Div extends Element
 
 	function __construct($out)
 	{
-		parent::Element();
+		parent::__construct();
 		list(, $this->name, $this->param) = array_pad($out, 3, '');
 	}
 
@@ -913,7 +913,7 @@ class Align extends Element
 
 	function __construct($align, $ptag=true)
 	{
-		parent::Element();
+		parent::__construct();
 		$this->align = $align;
 		$this->ptag = $ptag;
 	}
@@ -954,7 +954,7 @@ class Body extends Element
 		$this->id            = $id;
 		$this->contents      = new Element();
 		$this->contents_last = & $this->contents;
-		parent::Element();
+		parent::__construct();
 	}
 
 	function parse(& $lines)
