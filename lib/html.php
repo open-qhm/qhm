@@ -1002,9 +1002,10 @@ function make_line_rules($str)
 	global $line_rules;
 	static $pattern, $replace;
 
-	if (! isset($pattern)) {
-		$pattern = array_map(create_function('$a',
-			'return \'/\' . $a . \'/\';'), array_keys($line_rules));
+	if (!isset($pattern)) {
+		$pattern = array_map(function($a) {
+			return '/' . $a . '/';
+		}, array_keys($line_rules));
 		$replace = array_values($line_rules);
 		unset($line_rules);
 	}
