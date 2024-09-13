@@ -1721,7 +1721,9 @@ class QHM_SkinCustomVariables {
 		$style_config = read_skin_config($style_name);
 		foreach ($style_config['custom_options'] as $name => $value)
 		{
-			$skin_custom_vars[$name] = $value['value'];
+			if (isset($value['value'])) {
+				$skin_custom_vars[$name] = $value['value'];
+			}
 		}
 
 		$custom_skin_file = CACHE_DIR.'custom_skin.'.$style_name.'.dat';

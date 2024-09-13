@@ -448,7 +448,7 @@ EOD;
 	$tools_str = '<ul class="toolbar_menu">';
 	foreach ($tools as $lv1key => $lv1) {
 		// main menu
-		$style = ($lv1['style'] != '') ? $lv1['style'] : '';
+		$style = $lv1['style'] ?? '';
 		// visible
 		if ($lv1['visible']) {
 			// link
@@ -458,7 +458,7 @@ EOD;
 				$tools_str .= '<li style="background-image:none;'.$style.'"'.$class.'><a href="'.$lv1['link'].'"'.$target.' id="'.$lv1key.'">'.$lv1['name'].'</a>';
 			}
 			else {
-				$class= ($lv1['class'] != '') ? ' class="'.$lv1['class'].'"' : '';
+				$class= isset($lv1['class']) ? ' class="'.$lv1['class'].'"' : '';
 				$style = ($style != '') ? ' style="position:relative;'.$class.$style.'"' : ' style="position:relative;"';
 				$tools_str .= '<li'.$style.'>'.$lv1['name'];
 			}
@@ -469,11 +469,11 @@ EOD;
 		}
 
 		// sub menu
-		if (count($lv1['sub']) > 0) {
+		if (count($lv1['sub'] ?? []) > 0) {
 			$tools_str .= '<ul class="toolbar_submenu">';
 			foreach ($lv1['sub'] as $lv2key => $lv2) {
-				$class= ($lv2['class'] != '') ? ' class="'.$lv2['class'].'"' : '';
-				$style = ($lv2['style'] != '') ? ' style="'.$lv2['style'].'"' : '';
+				$class= isset($lv2['class']) ? ' class="'.$lv2['class'].'"' : '';
+				$style = isset($lv2['style']) ? ' style="'.$lv2['style'].'"' : '';
 				$tools_str .= '<li'.$class.$style.'>';
 				$target = isset($lv2['target']) ? ' target="'.$lv2['target'].'"' : '';
 				// visible

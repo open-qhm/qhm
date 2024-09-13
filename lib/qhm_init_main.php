@@ -166,7 +166,7 @@ for ($i=0; $i< count($matches[0]); $i++) {
 $qt->setv('body', ($pairs==null) ? $body : strtr($body,$pairs));
 
 //qhmsetting の場合、ナビやメニューは不要
-if ($vars['plugin'] == 'qhmsetting' OR $vars['cmd'] == 'qhmsetting') return;
+if (isset($vars['plugin']) && $vars['plugin'] == 'qhmsetting' OR $vars['cmd'] == 'qhmsetting') return;
 
 //-------------------------------------------------
 //
@@ -189,7 +189,7 @@ if ( ! $qt->getv('no_menus'))
             //プレビューならクラスを付ける
             $focus_class = 'focus';
             if ($is_bootstrap_skin) $focus_class .= ' active';
-            if ($vars['preview'] && $vars['page'] == $navbar)
+            if (isset($vars['preview']) && $vars['preview'] && $vars['page'] == $navbar)
             {
                 $site_navigator = preg_replace($ptn, '<li class="'.$focus_class.'">$1</li>', convert_html($vars['msg']));
                 $site_navigator = '<div class="preview_highlight">'. $site_navigator .'</div>';
@@ -231,7 +231,7 @@ if ( ! $qt->getv('no_menus'))
         $_menubody = preg_replace($ptn, '<$1 class="focus">$2</$4>', do_plugin_convert('menu'));
 
         //プレビューならクラスを付ける
-        if ($vars['preview'] && $vars['page'] === $qblog_menubar )
+        if (isset($vars['preview']) && $vars['preview'] && $vars['page'] === $qblog_menubar )
         {
             if (trim($_menubody) !== '')
             {
@@ -273,7 +273,7 @@ $(function(){
 
         $addclass = '';
         //プレビューならクラスを付ける
-        if ($vars['preview'] && $vars['page'] == $menubar)
+        if (isset($vars['preview']) && $vars['page'] == $menubar)
         {
             $addclass = ' preview_highlight';
         }
@@ -310,7 +310,7 @@ EOD;
 
             //プレビューならクラスを付ける
             $addclass = '';
-            if ($vars['preview'] && $vars['page'] == $menubar2)
+            if (isset($vars['preview']) && $vars['page'] == $menubar2)
             {
                 $addclass = ' preview_highlight';
             }
@@ -331,7 +331,7 @@ EOD;
         $ptn = '"'.$script.'?'.rawurlencode($vars['page']).'"';
         $vars['page_alt'] = 'SiteNavigator2'; //swfuの制御のため
         //プレビューならクラスを付ける
-        if ($vars['preview'] && $vars['page'] == 'SiteNavigator2')
+        if (isset($vars['preview']) && $vars['page'] == 'SiteNavigator2')
         {
             $site_navigator2 = str_replace($ptn, $ptn.' class="focus"', convert_html($vars['msg']));
             if (trim($site_navigator2) !== '')
@@ -358,7 +358,7 @@ EOD;
         $ptn = '"'.$script.'?'.rawurlencode($vars['page']).'"';
         $vars['page_alt'] = 'SiteHeader'; //swfuの制御のため
         //プレビューならクラスを付ける
-        if ($vars['preview'] && $vars['page'] == 'SiteHeader')
+        if (isset($vars['preview']) && $vars['page'] == 'SiteHeader')
         {
             $site_header = convert_html($vars['msg']);
             if (trim($site_header) !== '')

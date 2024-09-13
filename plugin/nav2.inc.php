@@ -27,7 +27,7 @@ function plugin_nav2_convert()
 
     $args = func_get_args();
     $from_footer = FALSE;
-    if ($args[0] === '<from_footer_plugin>')
+    if (isset($args[0]) && $args[0] === '<from_footer_plugin>')
     {
         $from_footer = TRUE;
         array_shift($args);
