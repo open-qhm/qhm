@@ -371,7 +371,9 @@ class Tracker_field_format extends Tracker_field
 
 		foreach ($this->config->get($this->name) as $option)
 		{
-			list($key,$style,$format) = array_pad(array_map(create_function('$a','return trim($a);'),$option),3,'');
+			list($key, $style, $format) = array_pad(array_map(function($a) {
+					return trim($a);
+			}, $option), 3, '');
 			if ($style != '')
 			{
 				$this->styles[$key] = $style;
@@ -461,9 +463,10 @@ class Tracker_field_radio extends Tracker_field_format
 	function get_value($value)
 	{
 		static $options = array();
-		if (!array_key_exists($this->name,$options))
-		{
-			$options[$this->name] = array_flip(array_map(create_function('$arr','return $arr[0];'),$this->config->get($this->name)));
+		if (!array_key_exists($this->name, $options)) {
+			$options[$this->name] = array_flip(array_map(function($arr) {
+					return $arr[0];
+			}, $this->config->get($this->name)));
 		}
 		return array_key_exists($value,$options[$this->name]) ? $options[$this->name][$value] : $value;
 	}

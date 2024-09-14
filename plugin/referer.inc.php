@@ -52,44 +52,57 @@ function plugin_referer_body($page, $sort)
 
 	switch ($sort) {
 	case '0d': // 0d 最終更新日時(新着順)
-		usort($data, create_function('$a,$b', 'return $b[0] - $a[0];'));
+		usort($data, function($a, $b) {
+			return $b[0] - $a[0];
+		});
 		$color_last = $bg['cur'];
 		$arrow_last = $qm->m['plg_referer']['down'];
 		$sort_last = '0a';
 		break;
 	case '0a': // 0a 最終更新日時(日付順)
-		usort($data, create_function('$a,$b', 'return $a[0] - $b[0];'));
+		usort($data, function($a, $b) {
+			return $a[0] - $b[0];
+		});
 		$color_last = $bg['cur'];
 		$arrow_last = $qm->m['plg_referer']['up'];
 //		$sort_last = '0d';
 		break;
 	case '1d': // 1d 初回登録日時(新着順)
-		usort($data, create_function('$a,$b', 'return $b[1] - $a[1];'));
+		usort($data, function($a, $b) {
+			return $b[1] - $a[1];
+		});
 		$color_1st = $bg['cur'];
 		$arrow_1st = $qm->m['plg_referer']['down'];
 		$sort_1st = '1a';
 		break;
 	case '1a': // 1a 初回登録日時(日付順)
-		usort($data, create_function('$a,$b', 'return $a[1] - $b[1];'));
+		usort($data, function($a, $b) {
+			return $a[1] - $b[1];
+		});
 		$color_1st = $bg['cur'];
 		$arrow_1st = $qm->m['plg_referer']['up'];
 //		$sort_1st = '1d';
 		break;
 	case '2d': // 2d カウンタ(大きい順)
-		usort($data, create_function('$a,$b', 'return $b[2] - $a[2];'));
+		usort($data, function($a, $b) {
+			return $b[2] - $a[2];
+		});
 		$color_ctr = $bg['cur'];
 		$arrow_ctr = $qm->m['plg_referer']['down'];
 		$sort_ctr = '2a';
 		break;
 	case '2a': // 2a カウンタ(小さい順)
-		usort($data, create_function('$a,$b', 'return $a[2] - $b[2];'));
+		usort($data, function($a, $b) {
+			return $a[2] - $b[2];
+		});
 		$color_ctr = $bg['cur'];
 		$arrow_ctr = $qm->m['plg_referer']['up'];
 //		$sort_ctr = '2d';
 		break;
 	case '3': // 3 Referer
-		usort($data, create_function('$a,$b',
-			'return ($a[3] == $b[3]) ? 0 : (($a[3] > $b[3]) ? 1 : -1);'));
+		usort($data, function($a, $b) {
+			return ($a[3] == $b[3]) ? 0 : (($a[3] > $b[3]) ? 1 : -1);
+		});
 		$color_ref = $bg['cur'];
 		break;
 	}
