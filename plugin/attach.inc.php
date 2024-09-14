@@ -442,7 +442,7 @@ EOD;
 // ファイル
 class AttachFile
 {
-	var $page, $file, $age, $basename, $filename, $logname;
+	var $page, $file, $age, $basename, $filename, $logname, $md5hash;
 	var $time = 0;
 	var $size = 0;
 	var $time_str = '';

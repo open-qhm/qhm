@@ -17,6 +17,7 @@ function plugin_backup_action()
 	global $layout_pages, $style_name;
 	$qm = get_qm();
 
+	$page = $vars['page'];
 	$editable = edit_auth($page, FALSE, FALSE);
 	if (!$editable) {
 		header("Location: $script");
@@ -153,7 +154,7 @@ function plugin_backup_action()
 // Delete backup
 function plugin_backup_delete($page)
 {
-	global $vars, $layout_pages;
+	global $vars, $layout_pages, $script;
 
 	$is_layout = FALSE;
 	if (isset($layout_pages) && isset($layout_pages[$page]))

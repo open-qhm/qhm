@@ -512,7 +512,7 @@ class tarlib
 		if ($this->status != TARLIB_STATUS_CREATE)
 			return ''; // File is not created
 
-		unset($files);
+		$files = [];
 
 		//  指定されたパスのファイルのリストを取得する
 		$dp = @opendir($dir);

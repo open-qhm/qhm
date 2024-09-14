@@ -77,7 +77,7 @@ function plugin_googlemaps2_mark_inline() {
 }
 
 function plugin_googlemaps2_mark_output($lat, $lng, $params) {
-	global $vars;
+	global $vars, $script;
 	$qm = get_qm();
 
 	if (!defined('PLUGIN_GOOGLEMAPS2_DEF_KEY')) {

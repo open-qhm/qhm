@@ -34,6 +34,7 @@ function make_link($string, $page = '')
 // Converters of inline element
 class InlineConverter
 {
+	var $page;
 	var $converters; // as array()
 	var $pattern;
 	var $pos;

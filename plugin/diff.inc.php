@@ -13,6 +13,7 @@ function plugin_diff_action()
 	global $vars, $script;
 	global $layout_pages, $style_name;
 
+	$page = $vars['page'];
 	$editable = edit_auth($page, FALSE, FALSE);
 	if(!$editable){
 		header("Location: $script");

@@ -24,10 +24,10 @@ function plugin_conversion_convert()
 	global $vars, $script;
 	$qm = get_qm();
 	$qt = get_qt();
-    $page = isset($vars['page']) ? $vars['page'] : '';
-    
-    $args = func_get_args();
-    $num = func_num_args();
+	$page = isset($vars['page']) ? $vars['page'] : '';
+
+	$args = func_get_args();
+	$num = func_num_args();
     
 	//---- キャッシュのための処理を登録 -----
 	if($qt->create_cache) {
@@ -251,6 +251,7 @@ function plugin_conversion_action()
 	global $vars, $script;
 	$qm = get_qm();
 	$msg = plugin_conversion_msg();
+	$page = $vars['page'];
 	
 	//inlineプラグインからの呼び出し
 	if( isset($vars['mode']) 
