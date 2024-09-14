@@ -50,11 +50,15 @@ class PluginLsx
 
         // init
         $this->options = $this->default_options;
-        if (function_exists('mb_ereg')) { // extension_loaded('mbstring')
+        if (extension_loaded('mbstring')) {
             mb_regex_encoding(SOURCE_ENCODING);
-            $this->ereg = 'mb_ereg';
+            $this->ereg = function($pattern, $string) {
+                return mb_ereg($pattern, $string);
+            };
         } else {
-            $this->ereg = 'ereg';
+            $this->ereg = function($pattern, $string) {
+                return preg_match('/' . $pattern . '/', $string);
+            };
         }
     }
     
