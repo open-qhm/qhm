@@ -225,12 +225,15 @@ function get_search_words($words = array(), $do_escape = FALSE)
 	if (! isset($init)) {
 		// function: mb_convert_kana() is for Japanese code only
 		if (LANG == 'ja' && function_exists('mb_convert_kana')) {
-			$mb_convert_kana = create_function('$str, $option',
-				'return mb_convert_kana($str, $option, SOURCE_ENCODING);');
+			$mb_convert_kana = function($str, $option) {
+				return mb_convert_kana($str, $option, SOURCE_ENCODING);
+			};
 		} else {
-			$mb_convert_kana = create_function('$str, $option',
-				'return $str;');
+			$mb_convert_kana = function($str, $option) {
+				return $str;
+			};
 		}
+
 		if (SOURCE_ENCODING == 'EUC-JP') {
 			// Perl memo - Correct pattern-matching with EUC-JP
 			// http://www.din.or.jp/~ohzaki/perl.htm#JP_Match (Japanese)
@@ -1922,8 +1925,7 @@ if (!function_exists('str_getcsv'))
             $tmp    = preg_split("/".$eol."/",$input);
             if (is_array($tmp) && !empty($tmp))
             {
-                while (list($line_num, $line) = each($tmp))
-                {
+                foreach ($tmp as $line_num => $line) {
                     if (preg_match("/".$escape.$enclosure."/",$line))
                     {
                         while ($strlen = strlen($line))

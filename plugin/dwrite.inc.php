@@ -18,8 +18,7 @@
 *   
 */
 
-function plugin_dwrite_action()
-{
+function plugin_dwrite_action() {
 	global $vars, $script;
 	$qm = get_qm();
 
@@ -75,12 +74,10 @@ EOD;
 		if($cnt==0){
 			return array('msg'=>$qm->m['plg_dwrite']['title_err'], 'body'=>'<p>'. $qm->m['plg_dwrite']['err_cannot_found']. '</p>');
 		}
-	
 
 		$title = $qm->m['plg_dwrite']['title_confirm'];
-		
+
 		if( ! isset($vars['value']) ){
-		
 			$s_page = htmlspecialchars($vars['page']);
 			$s_code = htmlspecialchars($vars['code']);
 			
@@ -95,9 +92,7 @@ EOD;
 </form>
 EOD;
 		
-		}
-		else{
-
+		} else {
 			$s_page = htmlspecialchars($vars['page']);
 			$s_code = htmlspecialchars($vars['code']);
 			$s_value = htmlspecialchars( $vars['value'] );
@@ -119,33 +114,25 @@ EOD;
 EOD;
 
 		}
-		
-		
+
 		auth_catbody($title, $contents);
 		exit;
-	
-	}
-	else if( $vars['mode'] == 'do_write' ){
-
+	}	else if ($vars['mode'] == 'do_write') {
 		$code = $vars['code'];
 		$ms = array();
 		
 		$new_data = '';
-		foreach( get_source($vars['page']) as $line){
-		
-			if( $res = plugin_dwrite_getContent($code, $line) )
-			{
+		foreach ( get_source($vars['page']) as $line) {
+			if ($res = plugin_dwrite_getContent($code, $line)) {
 				$s = '&dwrite('.$code.'){'.$res.'};';
 				$r = '&dwrite('.$code.'){'.$vars['value'].'};';
 				
 				$new_data .= str_replace($s, $r, $line);
-
-			}
-			else{
+			} else {
 				$new_data .= $line;
 			}
 		}
-						
+
 		page_write($vars['page'], $new_data);
 
 		$title = $qm->replace('plg_dwrite.title_result', $vars['page']);
@@ -153,7 +140,6 @@ EOD;
 		$contents = $qm->replace('plg_dwrite.result', $url);
 		auth_catbody($title, $contents);
 		exit;
-
 	}
 
 	return array('msg'=>$title, 'body'=>$body);
