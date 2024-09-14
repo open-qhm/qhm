@@ -34,7 +34,7 @@ function plugin_qlg_convert()
 	$qm = get_qm();
 	$qt = get_qt();
 	$qt->setv('jquery_include', true);
-	$page = $vars['page']
+	$page = $vars['page'];
 	
 	$editable = edit_auth($page, FALSE, FALSE);
 
