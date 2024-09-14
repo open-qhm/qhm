@@ -98,6 +98,7 @@ class MapNode
 {
 	var $page;
 	var $is_page;
+	var $cache;
 	var $link;
 	var $id;
 	var $rels;
@@ -105,6 +106,7 @@ class MapNode
 	var $done;
 	var $hide_pattern;
 	var $name;
+	var $mark;
 
 	function __construct($page, $reverse = FALSE)
 	{
