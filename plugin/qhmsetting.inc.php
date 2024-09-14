@@ -1377,7 +1377,7 @@ function plugin_qhmsetting_remove_dir($dir, $remain_dir = false) {
 		while (false !== ($item = readdir($handle))) {
 			if ($item != "." && $item != "..") {
 				if (is_dir("$dir/$item")) {
-					remove_directory("$dir/$item");
+					rmdir("$dir/$item");
 				} else {
 					unlink("$dir/$item");
 				}

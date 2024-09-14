@@ -1028,7 +1028,7 @@ function show_insert_ref($filename)
  * Get Image Size
  *
  * @param string $image_path image's path or URL
- * @return array size of image OR FALSE
+ * @return mixed size of image OR FALSE
  */
 function plugin_show_get_imagesize($image_path = '')
 {
@@ -1067,7 +1067,6 @@ function plugin_show_get_imagesize($image_path = '')
 		$size = @getimagesize($file);
 		return $size;
 	}
-
 }
 
 /**

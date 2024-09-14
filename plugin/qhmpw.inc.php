@@ -225,7 +225,7 @@ function plugin_qhmpw_reset_password()
 
 	session_destroy();
 	$pwstr = '';
-	$pwstr = str_pad($pwstr, count($post['qhmpw']['password1']), "*", STR_PAD_LEFT);
+	$pwstr = str_pad($pwstr, strlen($post['qhmpw']['password1']), "*", STR_PAD_LEFT);
 	
 	$body = <<<EOD
 <h2>パスワードの再設定完了</h2>
