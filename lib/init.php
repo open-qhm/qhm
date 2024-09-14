@@ -83,11 +83,7 @@ define('SOURCE_ENCODING', 'UTF-8');
 define('CONTENT_CHARSET', 'UTF-8');
 
 // おかしな設定のサーバー対策
-if( ini_get('mbstring.encoding_translation')
-	&& ini_get('mbstring.http_input') != 'pass'
-	&& ini_get('mbstring.http_input') != 'auto'
-	&& ( strtoupper( ini_get('mbstring.internal_encoding') ) != SOURCE_ENCODING )
-){
+if (ini_get('mbstring.encoding_translation') && strtoupper(ini_get('mbstring.internal_encoding')) != SOURCE_ENCODING) {
 	define('WARNING_OF_ENCODING', 1);
 }
 
