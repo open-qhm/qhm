@@ -51,7 +51,7 @@ class PluginTaglist
 
     function convert() // taglist
     {
-        $args  = func_get_args();
+        $args = func_get_args();
         ///// Support old versions (The 1st arg is tagtok) ///
         $fisrtIsOption = FALSE;
         foreach ($this->options as $key => $val) {

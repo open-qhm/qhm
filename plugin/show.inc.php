@@ -119,6 +119,7 @@ function plugin_show_convert()
 	$args = func_get_args();
 	$args[] = '_block';
 	$params = plugin_show_body($args);
+	$is_bootstrap_skin = is_bootstrap_skin();
 
 	if (isset($params['_error']) && $params['_error'] != '') {
 		return "<p>#show(): {$params['_error']}</p>\n";
@@ -639,7 +640,8 @@ $(function(){
 	}
 	//指定されたクラスを追加する
 	$imgclass = ' class="' . h($params['class']) . '"';
-
+	// 縦横比に関する属性のようだが、未定義の経緯が不明なため空文字で初期化する
+	$ratio_attr = '';
 
 	if($params['label']!==FALSE && $params['label']!=''){
 		//画像を指定した場合、画像を表示する

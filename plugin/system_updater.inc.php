@@ -145,8 +145,9 @@ function plugin_system_updater_action_confirm()
 /**
 * システムファイルを移動し、完了画面を表示する。
 */
-function plugin_system_updater_action_complete()
-{
+function plugin_system_updater_action_complete() {
+	global $script;
+
 	$errmsg = '';
 	$data = array();
 

@@ -150,7 +150,7 @@ $pass_form
 EOD;
 		}
 
-		$helpstr = $qm->m['html']['view_help_message'];
+		$help_message = $qm->m['html']['view_help_message'];
 
 		$body = <<< EOD
 <div class="edit_form">
@@ -175,7 +175,7 @@ EOD;
    <div style="clear:both;"></div>
  </form>
 </div>
-{$help}
+{$help_message}
 EOD;
 
     $addscript = <<< EOD

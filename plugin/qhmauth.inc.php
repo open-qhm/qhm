@@ -25,7 +25,7 @@ function plugin_qhmauth_convert()
 
 function plugin_qhmauth_action()
 {
-	global $script, $auth_method_type, $auth_users, $edit_auth_pages;
+	global $script, $vars, $auth_method_type, $auth_users, $edit_auth_pages;
 	$qm = get_qm();
 
 	$page = isset($vars['page']) ? $vars['page'] : '';

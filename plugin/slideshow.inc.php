@@ -4,9 +4,8 @@
 //
 // Text lightbox2 plugin
 
-function plugin_slideshow_convert()
-{
-	global $vars;
+function plugin_slideshow_convert() {
+	global $vars, $script;
 	$qm = get_qm();
 	$qt = get_qt();
 	$qt->setv('jquery_include', true);
