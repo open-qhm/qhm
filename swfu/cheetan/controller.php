@@ -109,7 +109,7 @@ class CController extends CObject
 	
 	function SetViewExt( $ext )
 	{
-		if( $ext{0} != '.' )	$ext = '.' . $ext;
+		if( $ext[0] != '.' )	$ext = '.' . $ext;
 		$this->viewfile_ext	= $ext;
 	}
 	
