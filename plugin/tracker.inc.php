@@ -658,7 +658,7 @@ class Tracker_list
 	var $rows;
 	var $order;
 
-	function Tracker_list($page,$refer,&$config,$list)
+	function __construct($page,$refer,&$config,$list)
 	{
 		$this->page = $page;
 		$this->config = &$config;

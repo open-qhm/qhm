@@ -649,7 +649,7 @@ class Tag
      */
     var $reserved_keys = array('prod' => '^', 'diff' => '-');
 
-    function Tag($items = array(), $tags = array(), $tagcloud = null)
+    function __construct($items = array(), $tags = array(), $tagcloud = null)
     {
         $this->items = $items; 
         $this->tags = $tags;

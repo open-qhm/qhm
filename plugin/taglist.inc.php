@@ -13,7 +13,7 @@
 exist_plugin('tag') or die_message('tag.inc.php does not exist.');
 class PluginTaglist
 {
-    function PluginTaglist()
+    function __construct()
     {
         static $default_options = array();
         if (empty($default_options)) {
