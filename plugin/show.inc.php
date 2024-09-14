@@ -871,8 +871,7 @@ function show_form($page)
 	$msg_maxsize = $qm->replace('plg_attach.maxsize', number_format($maxsize/1024)."KB");
 
 	$pass = '';
-	if (ATTACHREF_PASSWORD_REQUIRE or ATTACHREF_UPLOAD_ADMIN_ONLY)
-	{
+	if (exist_plugin('attachref') && ATTACHREF_PASSWORD_REQUIRE or ATTACHREF_UPLOAD_ADMIN_ONLY) {
 		$title = $qm->m['plg_attach'][ATTACHREF_UPLOAD_ADMIN_ONLY ? 'adminpass' : 'password'];
 	}
 	return <<<EOD

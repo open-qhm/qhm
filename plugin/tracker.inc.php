@@ -657,6 +657,8 @@ class Tracker_list
 	var $pattern_fields;
 	var $rows;
 	var $order;
+	var $items;
+	var $pipe;
 
 	function __construct($page,$refer,&$config,$list)
 	{
