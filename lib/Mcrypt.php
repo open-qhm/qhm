@@ -38,7 +38,7 @@ class ORMcrypt{
 	//この値を変えると、ivデータの暗号化のiv文字列を変えられ、セキュリティーを高められますが、変えなくてもOK
 	private static $iviv_seed = '9ijhtr4';
 	
-	private $_mcrypt_exists;
+	private $_openssl_exists;
 	
 	private $cipher;
 	private $mode;
@@ -59,14 +59,13 @@ class ORMcrypt{
 			$this->key = $key;
 		}
 
-		$this->_mcrypt_exists = ( ! function_exists('mcrypt_encrypt')) ? FALSE : TRUE;
-		
-		if( $this->_mcrypt_exists )
-		{
-			$this->cipher   = MCRYPT_BLOWFISH;
-			$this->mode     = MCRYPT_MODE_CBC;
-			$this->iv_size  = mcrypt_get_iv_size($this->cipher, $this->mode);
-			$this->dummy_iv = str_pad('', $this->iv_size, self::$iviv_seed);
+		$this->_openssl_exists = function_exists('openssl_encrypt');
+
+		if ($this->_openssl_exists) {
+				// OpenSSLで対応する暗号方式とモードを指定
+				$this->cipher = 'BF-CBC'; // Blowfish-CBCに相当
+				$this->iv_size = openssl_cipher_iv_length($this->cipher);
+				$this->dummy_iv = str_pad('', $this->iv_size, self::$iviv_seed);
 		}
 	}
 	
@@ -96,15 +95,19 @@ class ORMcrypt{
 	*/
 	function encrypt($data)
 	{
-		if( $this->_mcrypt_exists )
+		if( $this->_openssl_exists )
 		{
 			$iv_size = $this->iv_size;
 			
-			srand(); //windows ready
-			$iv      = mcrypt_create_iv($iv_size, MCRYPT_DEV_RANDOM);
-			$crypt_msg = mcrypt_encrypt($this->cipher, $this->key, base64_encode($data),  $this->mode, $iv);
-			$crypt_iv  = mcrypt_encrypt($this->cipher, $this->key, base64_encode($iv),  $this->mode, $this->dummy_iv);
-			return array( base64_encode($crypt_msg), base64_encode($crypt_iv) );
+			$iv = random_bytes($iv_size);
+			// データをbase64エンコードして暗号化
+			$crypt_msg = openssl_encrypt(base64_encode($data), $this->cipher, $this->key, OPENSSL_RAW_DATA, $iv);
+
+			// IVも暗号化
+			$crypt_iv = openssl_encrypt(base64_encode($iv), $this->cipher, $this->key, OPENSSL_RAW_DATA, $this->dummy_iv);
+
+			// 暗号化されたメッセージとIVをbase64エンコードして返す
+			return array(base64_encode($crypt_msg), base64_encode($crypt_iv));
 		}
 		else // XOR Encrypt
 		{
@@ -123,7 +126,7 @@ class ORMcrypt{
 	*/
 	function decrypt($crypt_data, $crypt_iv)
 	{
-		if( $this->_mcrypt_exists )
+		if( $this->_openssl_exists )
 		{
 			$iv =  $this->_mdecrypt( base64_decode($crypt_iv), $this->dummy_iv);
 			$data = $this->_mdecrypt( base64_decode($crypt_data), $iv);
@@ -140,9 +143,10 @@ class ORMcrypt{
 	
 	function _mdecrypt($data, $iv)
 	{
-		return base64_decode(
-			rtrim( mcrypt_decrypt($this->cipher, $this->key, $data, $this->mode, $iv), "\0" )
-		);	
+		return rtrim(
+			openssl_decrypt($data, $this->cipher, $this->key, OPENSSL_RAW_DATA, $iv),
+			"\0"
+		);
 	}
 	
 	// --------------------------------------------------------------------
