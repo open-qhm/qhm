@@ -2046,3 +2046,13 @@ function wrap_script_tag($js, $delimiter = "\n") {
 	$lines[] = '</script>';
 	return join($delimiter, $lines) . $delimiter;
 }
+
+function str_replace_deep($search, $replace, $subject) {
+	if (is_array($subject)) {
+		foreach ($subject as $key => $value) {
+			$subject[$key] = str_replace_deep($search, $replace, $value);
+		}
+		return $subject;
+	}
+	return str_replace($search, $replace, $subject);
+}
