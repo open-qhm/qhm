@@ -97,7 +97,7 @@ class InlineConverter
 		$string = preg_replace_callback('/' . $this->pattern . '/x',
 			array(& $this, 'replace'), $string);
 
-		$arr = explode("\x08", make_line_rules(htmlspecialchars($string)));
+		$arr = explode("\x08", make_line_rules(htmlspecialchars($string, ENT_COMPAT)));
 		$retval = '';
 		while (! empty($arr)) {
 			$retval .= array_shift($arr) . array_shift($this->result);
