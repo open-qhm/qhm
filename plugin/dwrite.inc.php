@@ -147,14 +147,13 @@ EOD;
 
 function plugin_dwrite_inline()
 {
-	global $script, $vars,  $digest;
+	global $script, $vars, $digest;
 	static $number = array();
 	$qm = get_qm();
 
 	$page = isset($vars['page']) ? $vars['page'] : '';
-	
+
 	// dwrite-box-id in the page
-	
 
 	if (func_num_args() != 2) return $qm->replace('fmt_err_no_args', '#dwrite'). "\n";
 
@@ -163,16 +162,14 @@ function plugin_dwrite_inline()
 
 	$code = $args[0];
 	$text = $args[1];
-	
 
-    $editable = edit_auth($page, FALSE, FALSE);
-	if($editable){
+  $editable = edit_auth($page, FALSE, FALSE);
+	if ($editable) {
 		$href = $script.'?plugin=dwrite&page='.rawurlencode($page).'&code='
 			.$code.'&mode=make&KeepThis=true&TB_iframe=true&height=450&width=650';
 		$text = $text=='' ? $qm->m['plg_dwrite']['space'] : $text;
 		return '<a href="'.$href.'" class="thickbox" style="border-bottom:1px dashed;color:inherit;">'.$text.'</a>';	
-	}
-	else{
+	} else {
 		return $text;
 	}
 }
@@ -189,17 +186,17 @@ function plugin_dwrite_getContent($code, $line){
 		for($i=0; $i<$len; $i++){
 						
 			//stack trace
-			if($str{$i} == '{'){
+			if($str[$i] == '{'){
 				$stuck++;
 			}
-			else if( $i+1<$len && $str{$i}.$str{$i+1} == '};'){
+			else if( $i+1<$len && $str[$i].$str[$i+1] == '};'){
 				$stuck--;
 			}
 			
 			if($stuck==0)
 				break;
 			
-			$content .= $str{$i};
+			$content .= $str[$i];
 		}
 		
 		if($content == '')
@@ -211,4 +208,3 @@ function plugin_dwrite_getContent($code, $line){
 		return false;
 	}
 }
-?>
