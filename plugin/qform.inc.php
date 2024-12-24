@@ -1365,7 +1365,8 @@ function plugin_qform_do_finish($params, $url_sanitize = '0')
 			$param = array(
 				'host'=>'ASPMX.L.GOOGLE.com',
 				'port'=> 25,
-				'from'=>$udata['email'],
+				'from'=>$to_email, // 管理者のメールアドレスから送信
+				'replyto'=>$udata['email'], // ユーザーのメールアドレスを返信先に設定
 				'protocol'=>'SMTP',
 				'user'=>'root@'.$google_apps_domain, //SMTPサーバーのユーザーID
 				'pass' =>$passwd, //SMTPサーバーの認証パスワード
@@ -1393,6 +1394,8 @@ function plugin_qform_do_finish($params, $url_sanitize = '0')
 			$smail->set_params($name, $udata['email']);
 			$smail->subject = $subject;
 			$smail->to = array('name'=>$to_name, 'email'=>$to_email);
+			$smail->reply_to = $udata['email']; // ユーザーのメールアドレスを返信先に設定
+			$smail->from = array('name'=>$udata['lname'].$udata['fname'], 'email'=>$to_email); // 管理者のメールアドレスから送信
 
 			//添付ファイル
 			foreach($_SESSION['qform']['_FILES'] as $f){
