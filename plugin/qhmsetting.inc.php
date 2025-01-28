@@ -451,19 +451,6 @@ EOD;
 
 	}
 
-	//WordPressテーマのスキャン
-	$hd = opendir('skin/wordpress/');
-	$wp_dirs = array();
-	while( $entry = readdir($hd) )
-	{
-		if(is_dir('skin/wordpress/'.$entry) && ($entry!='.') && ($entry!='..') && (file_exists('skin/wordpress/'.$entry.'/index.php')))
-		{
-			$wp_dirs[] = $entry;
-		}
-	}
-	closedir($hd);
-	sort($wp_dirs);
-
 	//スマートフォンデザインのスキャン
 
 	$hd = opendir(SMART_DIR);
@@ -487,61 +474,10 @@ EOD;
 	//======================================================
 	//  HAIK専用デザイン設定フォーム
 	//======================================================
-	$wp_index = count($wp_dirs) ? '<li><a href="#wordpress">WordPressテーマの設定</a></li>' : '';
-	$body .= <<<EOD
-<p>　HAIK専用デザインを使う、もしくは、WordPressテンプレートを使うことができます。利用したいデザインは、事前に skin/hokukenstyle、もしくは、skin/wordpress にフォルダに分けて、アップロードしてください。</p>
-<ul class="list1">
-<li><strong>項目</strong>
-	<ul class="list2">
-		<li><a href="#qhmdesign">HAIK専用デザインの設定</a></li>
-		{$wp_index}
-		<li><a href="#smartdesign">スマートフォンのデザイン設定</a></li>
-	</ul>
-</li>
-</ul>
-EOD;
 	$body .= '<br />';
 	$body .= ($error!='') ? '<p style="color:red">'.$error.'</p>' : '';
 
-/*
-	$body .= '<h2 id="qhmdesign">QHM専用デザインの設定</h2>
-<div style="border:2px solid #ccc;padding:1em;background-color:#fafafa">
-';
-*/
-	$body .= '<h2 id="qhmlogo">ロゴの設定</h2>
-<div class="well">
-';
-
-
-	//デザインタイプの指定
-	if( $params['style_type'] == 'text' )
-	{
-		$logotype_msg = 'テキストを使う設定';
-		$img_tag = 'ロゴ画像なし';
-	}
-	else
-	{
-		$logotype_msg = '画像を使う設定';
-		$img_tag = '<img src="'.$logo_image.'" style="width:450px" />';
-	}
-
 	$body .= <<<EOD
-<form method="post" action="{$script}" enctype="multipart/form-data">
-	<p><label><input type="radio" name="qhmsetting[style_type]" checked="checked" value="none" />変更なし (現在: {$logotype_msg})</label></p>
-	<hr style="border-color: #ccc;border-style:solid;border-width:1px;border-bottom-style:none;" />
-	<p><label><input type="radio" name="qhmsetting[style_type]" id="logoImageRadio" value="image" /> 画像を使う(500KB以下推奨)：</label><input type="file" name="imagefile" id="logoImageButton" /><br />
-	<span style="font-size:80%">現在の設定：</span>{$img_tag}</p>
-	<p><label><input type="radio" name="qhmsetting[style_type]" id="logoTextRadio" value="text" /> テキストを使う</label><br />
-	<input type="text" name="qhmsetting[page_title]" id="logoTextInput" value="{$params['page_title']}" size="35" /></p>
-	<p>
-		<input type="submit" value="変更する" class="btn btn-primary" />
-		<input type="hidden" name="cmd" value="qhmsetting" />
-		<input type="hidden" name="mode" value="confirm" /><input type="hidden" name="phase" value="design" />
-		<input type="hidden" name="from" value="design_form" /><input type="hidden" name="pcmd" value="post" />
-	</p>
-</form>
-</div>
-
 <h2 id="qhmdesign">デザインテンプレート（テーマ）の設定</h2>
 <div class="well">
 
@@ -807,54 +743,7 @@ $(function(){
 ';
 //--</FTPAccess>--
 
-$body .= "</div>";
-
-	//======================================================
-	//  WordPressデザイン設定フォーム
-	//======================================================
-	if(count($wp_dirs)){
-		$wp_add_css = isset($_SESSION['wp_add_css'])? $_SESSION['wp_add_css']: $wp_add_css;
-		$body .= '<br /><br /><br /><h2 id="wordpress">WordPressテーマを利用する</h2>'."\n";
-		$body .= <<<EOD
-<div class="well">
-	<p>以下から、WordPressのテーマを選択して下さい。</p>
-<form method="post" action="{$script}">
-EOD;
-
-		$body .= '<select name="qhmsetting[enable_wp_theme_name]">';
-		foreach($wp_dirs as $dir){
-			$ckd = ( $dir == $params['enable_wp_theme_name'] ) ? 'selected="selected"' : '';
-			$body .= '<option value="'.$dir.'" '.$ckd.'>'.$dir.'</option>';
-		}
-		$body .= '</select>';
-
-		$body .= '
-※ロゴ画像は、選べません<br /><br />
-<b>追加スタイル</b><br />
-<textarea name="qhmsetting[wp_add_css]" rows="5" style="width:80%">'
-.$wp_add_css.
-'</textarea>
-<input type="hidden" name="phase" value="design" />
-<input type="hidden" name="mode" value="confirm" />
-<input type="hidden" name="from" value="design_form" />
-<input type="hidden" name="plugin" value="qhmsetting" />
-<input type="hidden" name="pcmd"   value="post" />
-<input type="hidden" name="enable_wp_theme" value="1" />
-<p style="text-align:center">
-	<input type="button" value="プレビュー" id="WpPreviewButton" style="" class="btn btn-primary" />
-	<input type="submit" value="設定を確認する" style="" class="btn btn-primary" /></p>
-</form>
-<p><strong>ご確認下さい : </strong></p>
-<ul style="margin-left:3%;">
-<li>WordPressのテーマは、ブログのためのデザインです。ご自身で多少のカスタマイズが必要です</li>
-<li>テンプレートに埋め込まれている文字や、サイドバーに読み込むリンクなど、適切に再編集して下さい</li>
-<li>標準的な作り方に沿わないテーマを使うと、一部のプラグインが動作しないことがあります</li>
-<li>WPテーマとの完全な互換性はありません。ご自身でのカスタマイズが必要となります</li>
-</ul>
-</div>
-';
-
-	}
+	$body .= "</div>";
 
 	//======================================================
 	// !スマートフォン デザイン設定
