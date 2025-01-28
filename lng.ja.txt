@@ -1596,6 +1596,7 @@ err_novideofile = "指定された $1 は、存在しません。"
 ;//   pp_button.inc.php
 ;///////////////////////////////////////
 [plg_pp_button]
+btn_title = "カートに追加"
 title_paypal = "PayPal - オンラインで安全・簡単にお支払い"
 err_usage    = "&pp_button(アカウント,商品名,価格[,商品コード]);"
 

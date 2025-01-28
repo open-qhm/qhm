@@ -35,7 +35,7 @@ function plugin_pp_button_inline()
 	
 	return <<<EOD
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:inline">
-<input type="submit" class="btn btn-primary" value="カートに追加">
+<input type="submit" class="btn btn-primary" value="{$qm->m['plg_pp_button']['btn_title']}">
 <img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
 <input type="hidden" name="add" value="1">
 <input type="hidden" name="cmd" value="_cart">
