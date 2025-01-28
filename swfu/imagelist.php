@@ -13,7 +13,7 @@ function action( &$c )
 	foreach($imgs as $k=>$v)
 	{
 		$fname = $v['name'];
-		$head = $fname{0};
+		$head = $fname[0];
 	
 		if(! isset($images[$head]) )
 			$images[$head] = array();
