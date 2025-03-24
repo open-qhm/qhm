@@ -215,9 +215,7 @@ function plugin_system_updater_get_latest_version()
 	$init_file_data = json_decode($json, true);
 	$version_json = json_decode(base64_decode($version_json_data['content']), true);
 	$version = $version_json["version"];
-	// debug:
-	return '8.0.0';
-	// return $version;
+	return $version;
 }
 
 function plugin_system_updater_move($source, $dist)
