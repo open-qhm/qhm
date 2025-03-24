@@ -77,6 +77,11 @@ function plugin_system_updater_unzip($zip_file, $extract_to)
 {
 	if ( ! file_exists($zip_file)) return;
 
+	// ディレクトリが存在しない場合は作成する
+	if ( ! file_exists($extract_to)) {
+		mkdir($extract_to, 0777, true);
+	}
+
 	$strategy = plugin_system_updater_unzip_strategy();
 	if ($strategy === 'ZipArchive') {
 		$zip = new ZipArchive;
