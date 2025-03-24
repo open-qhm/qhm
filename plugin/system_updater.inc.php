@@ -212,9 +212,9 @@ function plugin_system_updater_get_latest_version()
 	if ( ! $json) return false;
 
 	# バージョンを取得
-	$init_file_data = json_decode($json, true);
+	$version_json_data = json_decode($json, true);
 	$version_json = json_decode(base64_decode($version_json_data['content']), true);
-	$version = $version_json["version"];
+	$version = $version_json["latest"]["version"];
 	return $version;
 }
 
