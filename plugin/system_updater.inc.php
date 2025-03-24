@@ -117,8 +117,8 @@ function plugin_system_updater_action_confirm()
 	if ( ! $version) {
 		$errmsg = '最新版の情報が取得できません';
 	}
-	if ( ! version_compare($version, '6.0.0', '>=')) {
-		$errmsg = 'QHM v6 が公開されていません';
+	if ( ! version_compare($version, '8.0.0', '>=')) {
+		$errmsg = 'HAIK v8 がリリースされていません';
 	}
 
 	$data['errmsg'] = $errmsg;
@@ -194,11 +194,11 @@ function plugin_system_updater_action_complete()
 function plugin_system_updater_get_latest_version()
 {
 	// GitHub へ問い合わせて最新バージョンを確認する
-	$api_url = 'https://api.github.com/repos/open-qhm/qhm/contents/lib/init.php';
+	$api_url = 'https://api.github.com/repos/HAIK-CMS/HAIK-version/contents/version.json';
 	$opts = array(
 		'http' => array(
 			'method' => 'GET',
-			'header' => 'User-Agent: QHM Sytem Updater v' . QHM_VERSION,
+			'header' => 'User-Agent: HAIK System Updater v' . QHM_VERSION,
 		)
 	);
 	$context = stream_context_create($opts);
@@ -208,11 +208,11 @@ function plugin_system_updater_get_latest_version()
 
 	# バージョンを取得
 	$init_file_data = json_decode($json, true);
-	$init_file = base64_decode($init_file_data['content']);
-	$version = preg_match('/^define\(\'QHM_VERSION\', \'(.+)\'\);/m', $init_file, $mts)
-		? $mts[1]
-		: 0;
-	return $version;
+	$version_json = json_decode(base64_decode($version_json_data['content']), true);
+	$version = $version_json["version"];
+	// debug:
+	return '8.0.0';
+	// return $version;
 }
 
 function plugin_system_updater_move($source, $dist)
