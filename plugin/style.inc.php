@@ -187,7 +187,7 @@ function plugin_style_getStyle($name){
         $tmpstr = $ms[2];
 
         //border setting
-        switch($tmpstr{0}){
+        switch($tmpstr[0]){
             case 's':
                 $b_type = 'border:solid 1px '.$b_color;
                 break;
@@ -200,7 +200,7 @@ function plugin_style_getStyle($name){
         }
 
         //background color
-        if($tmpstr{1}=='s'){
+        if($tmpstr[1]=='s'){
             $bg_style = 'background-color:'.$bg_color_s;
         }
         else{
@@ -209,7 +209,7 @@ function plugin_style_getStyle($name){
         }
 
         //width
-        switch($tmpstr{2}){
+        switch($tmpstr[2]){
             case 's':
                 $bg_w = '60%'; break;
             case 'm':
