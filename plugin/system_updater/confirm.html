@@ -1,14 +1,18 @@
 <style>
-a.btn-primary {
+#admin_system_updater a.btn-primary {
   color: #fff;
 }
+#admin_system_updater h2.heading {
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
 </style>
-<div class="admin qhm-system-updater">
+<div class="admin qhm-system-updater" id="admin_system_updater">
 
   <div class="layoutbox">
 
-    <h2>バージョン情報</h2>
-    <hr />
+    <h2 class="heading">バージョン情報</h2>
 
     <div class="execute">
 
@@ -39,8 +43,7 @@ a.btn-primary {
       </table>
 
       <div>
-        <h2>最新版へのアップデート</h2>
-        <hr />
+        <h2 class="heading">最新版へのアップデート</h2>
         <div class="row">
           <div class="col-md-8">
             <a href="https://haik-cms.jp/index.php?update-request" class="btn btn-primary btn-block" target="_blank">HAIKアカウントをお持ちの方（会員）</a>
@@ -54,8 +57,7 @@ a.btn-primary {
       </div>
 
       <div class="confirm-action">
-        <h2>システムの修復</h2>
-        <hr />
+        <h2 class="heading">システムの修復</h2>
 
         <p>
           <strong>修復する</strong>を押すと、「システムの修復」を行い、全てのファイルをv<?php echo QHM_VERSION ?>の状態にします。
