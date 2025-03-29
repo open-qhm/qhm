@@ -77,6 +77,11 @@ function plugin_system_updater_unzip($zip_file, $extract_to)
 {
 	if ( ! file_exists($zip_file)) return;
 
+	// ディレクトリが存在しない場合は作成する
+	if ( ! file_exists($extract_to)) {
+		mkdir($extract_to, 0777, true);
+	}
+
 	$strategy = plugin_system_updater_unzip_strategy();
 	if ($strategy === 'ZipArchive') {
 		$zip = new ZipArchive;
@@ -117,8 +122,8 @@ function plugin_system_updater_action_confirm()
 	if ( ! $version) {
 		$errmsg = '最新版の情報が取得できません';
 	}
-	if ( ! version_compare($version, '6.0.0', '>=')) {
-		$errmsg = 'QHM v6 が公開されていません';
+	if ( ! version_compare($version, '8.0.0', '>=')) {
+		$errmsg = 'HAIK v8 がリリースされていません';
 	}
 
 	$data['errmsg'] = $errmsg;
@@ -195,11 +200,11 @@ function plugin_system_updater_action_complete() {
 function plugin_system_updater_get_latest_version()
 {
 	// GitHub へ問い合わせて最新バージョンを確認する
-	$api_url = 'https://api.github.com/repos/open-qhm/qhm/contents/lib/init.php';
+	$api_url = 'https://api.github.com/repos/HAIK-CMS/HAIK-version/contents/version.json';
 	$opts = array(
 		'http' => array(
 			'method' => 'GET',
-			'header' => 'User-Agent: QHM Sytem Updater v' . QHM_VERSION,
+			'header' => 'User-Agent: HAIK System Updater v' . QHM_VERSION,
 		)
 	);
 	$context = stream_context_create($opts);
@@ -208,11 +213,9 @@ function plugin_system_updater_get_latest_version()
 	if ( ! $json) return false;
 
 	# バージョンを取得
-	$init_file_data = json_decode($json, true);
-	$init_file = base64_decode($init_file_data['content']);
-	$version = preg_match('/^define\(\'QHM_VERSION\', \'(.+)\'\);/m', $init_file, $mts)
-		? $mts[1]
-		: 0;
+	$version_json_data = json_decode($json, true);
+	$version_json = json_decode(base64_decode($version_json_data['content']), true);
+	$version = $version_json["latest"]["version"];
 	return $version;
 }
 
