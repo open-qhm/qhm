@@ -46,7 +46,7 @@ function plugin_pp_button_inline()
 <input type="hidden" name="no_shipping" value="0">
 <input type="hidden" name="no_note" value="1">
 <input type="hidden" name="currency_code" value="JPY">
-<input type="hidden" name="lc" value="JP">
+<input type="hidden" name="lc" value="ja_JP">
 <input type="hidden" name="bn" value="PP-ShopCartBF">
 </form>	
 EOD;
