@@ -86,7 +86,7 @@ function plugin_show_inline()
 		$f_page = rawurlencode( $vars['page'] );
 		$f_args = rawurlencode($s_args);
 		$ret = <<<EOD
-<a href="$script?plugin=show&amp;show_no=$show_no&amp;show_opt=$f_args&amp;refer=$f_page&amp;digest=$digest" title="$btn_text" style="display:inline-block;width:300px;height:200px;background-color:#eee;text-align:center;line-height:200px;text-decoration:none;" class="img-rounded text-muted">300 x 200</a>
+<a href="$script?plugin=show&amp;show_no=$show_no&amp;show_opt=$f_args&amp;refer=$f_page&amp;digest=$digest" title="$btn_text" style="display:grid;place-items:center;border-radius:6px;width:100%;height:200px;background-color:#F5F5F7;margin-top:5px;margin-bottom:5px;font-size:14px;color:#3F6EB8;" class="img-rounded text-muted">+ 画像</a>
 EOD;
 		return $ret;
 	}
