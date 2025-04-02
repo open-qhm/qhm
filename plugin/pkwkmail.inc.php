@@ -275,11 +275,8 @@ function PKWKMAIL_formmaker($attr,$cnfm, $a_page)
 			//set value and sanitize - 値のセットと無害化。チェックボックスだけ特別扱いの変数
 			if( is_array( $v ) ) {
 				foreach( $v as $kk => $vv ) {
-					if(get_magic_quotes_gpc()) { $vv = stripslashes($vv); }
 					$render_value_arr[] = htmlspecialchars( $vv, ENT_QUOTES );
 				}
-			}else{
-				if( get_magic_quotes_gpc() ) $v = htmlspecialchars( stripslashes($v),ENT_QUOTES );
 			}
 			$render_value[] = $v ;
 		}
@@ -312,7 +309,7 @@ function PKWKMAIL_formmaker($attr,$cnfm, $a_page)
 
 		//title - 各質問項目 - th
 		$k[0] = htmlspecialchars($k[0], ENT_QUOTES);
-		$render_title[] .= "\t".'<th class="style_th"><label for="PKWKMAIL_'.$attr_name[$n].'">'.str_replace('&amp;br;','<br />',$k[0]).$render_must.'</label></th>'."\n";
+		$render_title[] = "\t".'<th class="style_th"><label for="PKWKMAIL_'.$attr_name[$n].'">'.str_replace('&amp;br;','<br />',$k[0]).$render_must.'</label></th>'."\n";
 
 		//parts
 		$render_element_arr = $value_arr = array() ;
@@ -332,47 +329,47 @@ function PKWKMAIL_formmaker($attr,$cnfm, $a_page)
 		case 'text':
 		case 'email':
 		case 'password': //text,email,password
-			$render_element[] .= "\t".'<td class="style_td"><input id="PKWKMAIL_'.$attr_name[$n].'" name="PKWKMAIL_'.$attr_name[$n].'" type="text" value="'.$render_value[$n].'" size="'.$k[5][0].'" /></td>'."\n";
+			$render_element[] = "\t".'<td class="style_td"><input id="PKWKMAIL_'.$attr_name[$n].'" name="PKWKMAIL_'.$attr_name[$n].'" type="text" value="'.$render_value[$n].'" size="'.$k[5][0].'" /></td>'."\n";
 			break;
 		case 'textarea': //textarea
-			$render_element[] .= "\t".'<td class="style_td"><textarea id="PKWKMAIL_'.$attr_name[$n].'" name="PKWKMAIL_'.$attr_name[$n].'" cols="'.$k[5][0].'" rows="'.$k[5][1].'">'.$render_value[$n].'</textarea></td>'."\n";
+			$render_element[] = "\t".'<td class="style_td"><textarea id="PKWKMAIL_'.$attr_name[$n].'" name="PKWKMAIL_'.$attr_name[$n].'" cols="'.$k[5][0].'" rows="'.$k[5][1].'">'.$render_value[$n].'</textarea></td>'."\n";
 			break;
 		case 'option': //option
 			$render_element[$n] = array() ;
-			$render_element_arr[] .= "\t".'<td class="style_td"><select id="PKWKMAIL_'.$attr_name[$n].'" name="PKWKMAIL_'.$attr_name[$n].'">'."\n";
+			$render_element_arr[] = "\t".'<td class="style_td"><select id="PKWKMAIL_'.$attr_name[$n].'" name="PKWKMAIL_'.$attr_name[$n].'">'."\n";
 			foreach($k[3] as $value_arr){
 				$value_arr = htmlspecialchars($value_arr, ENT_QUOTES);
 				$selected = ($value_arr == $render_value[$n]) ? ' selected="selected"' : '';
-				$render_element_arr[] .= "\t\t".'<option value="'.$value_arr.'"'.$selected.'>'.$value_arr."</option>\n";
+				$render_element_arr[] = "\t\t".'<option value="'.$value_arr.'"'.$selected.'>'.$value_arr."</option>\n";
 			}
-			$render_element_arr[] .= "\t".'</select></td>'."\n";
+			$render_element_arr[] = "\t".'</select></td>'."\n";
 			$render_element_arr_num = count($render_element_arr);
 			for($i=0;$i<$render_element_arr_num;++$i){
-				$render_element[$n][] .= $render_element_arr[$i];
+				$render_element[$n][] = $render_element_arr[$i];
 			}
 			break;
 		case 'radio':
 		case 'radio-br':
 			//radio
 			$render_element[$n] = array() ;
-			$render_element_arr[] .= "\t".'<td class="style_td">'."\n";
+			$render_element_arr[] = "\t".'<td class="style_td">'."\n";
 			foreach($k[3] as $value_arr){
 				$value_arr = htmlspecialchars($value_arr, ENT_QUOTES);
 				$checked = ($value_arr == $render_value[$n]) ? ' checked="checked"' : '';
-				$render_element_arr[] .= "\t\t".'<label><input type="radio" name="PKWKMAIL_'.$attr_name[$n].
+				$render_element_arr[] = "\t\t".'<label><input type="radio" name="PKWKMAIL_'.$attr_name[$n].
 						'" value="'.$value_arr.'"'.$checked.'/>'.$value_arr.'</label>'.$radio_break."\n";
 			}
-			$render_element_arr[] .= "\t".'</td>'."\n";
+			$render_element_arr[] = "\t".'</td>'."\n";
 			$render_element_arr_num = count($render_element_arr);
 			for($i=0;$i<$render_element_arr_num;++$i){
-				$render_element[$n][] .= $render_element_arr[$i];
+				$render_element[$n][] = $render_element_arr[$i];
 			}
 			break;
 		case 'checkbox':
 		case 'checkbox-br':
 			//checkbox
 			$render_element[$n] = array() ;
-			$render_element_arr[] .= "\t".'<td class="style_td">'."\n";
+			$render_element_arr[] = "\t".'<td class="style_td">'."\n";
 			foreach($k[3] as $value_arr) {
 				$value_arr = htmlspecialchars($value_arr, ENT_QUOTES);
 				$chked = false;
@@ -382,13 +379,13 @@ function PKWKMAIL_formmaker($attr,$cnfm, $a_page)
 					}
 				}
 				$checked = ($chked) ? ' checked="checked"' : '';
-				$render_element_arr[] .= "\t\t".'<label><input type="checkbox" name="PKWKMAIL_'.$attr_name[$n].
+				$render_element_arr[] = "\t\t".'<label><input type="checkbox" name="PKWKMAIL_'.$attr_name[$n].
 					'[]" value="'.$value_arr.'"'.$checked.'/>'.$value_arr.'</label>'.$checkbox_break."\n";
 			}
-			$render_element_arr[] .= "\t".'</td>'."\n";
+			$render_element_arr[] = "\t".'</td>'."\n";
 			$render_element_arr_num = count($render_element_arr);
 			for($i=0;$i<$render_element_arr_num;++$i) {
-				$render_element[$n][] .= $render_element_arr[$i];
+				$render_element[$n][] = $render_element_arr[$i];
 			}
 			break;
 		}
@@ -473,7 +470,6 @@ function PKWKMAIL_confirm( $attr, $a_page )
 			if(is_array($value)){
 				//set value and sanitize: checkbox - チェックボックスの場合
 				foreach($value as $v_key => $v_arr){
-					if(get_magic_quotes_gpc())$v_arr = stripslashes($v_arr);
 					$v_arr = htmlspecialchars($v_arr, ENT_QUOTES);
 					$value_arr[] = $v_arr;
 					//preparing send data - 送信用データ準備
@@ -481,7 +477,6 @@ function PKWKMAIL_confirm( $attr, $a_page )
 				}
 			}else{
 				//set value and sanitize: non checkbox - 非チェックボックス
-				if(get_magic_quotes_gpc())$value = stripslashes($value);
 				$value = htmlspecialchars($value, ENT_QUOTES);
 				//preparing send data - 送信用データ準備
 				if( strpos($key,'_email') ) $send_email_value = $value ;
@@ -583,10 +578,6 @@ function PKWKMAIL_sent($attr)
 	$mail_content['mail_adrs']      = htmlspecialchars($vars['mail_adrs'],ENT_QUOTES);
 	$mail_content['admin_adrs']     = $attr['admin_adrs'];
 	$mail_content['admin_reply_to'] = ! empty( $attr['admin_reply_to'] ) ? $attr['admin_reply_to'] : $mail_content['mail_adrs'];
-
-	foreach($mail_content as $key => $value) {
-		if(get_magic_quotes_gpc()) $mail_content[$key] = stripslashes($value);
-	}
 
 	//preparing rendering data - 画面作成用データ準備
 	$mail_content['render_scrn'] = explode('PKWKMAIL_LATER_RETRUN',$mail_content['mail_data']);

@@ -10,7 +10,7 @@ class CModel extends CObject
 	var	$name			= "";
 	var $table			= "";
 	var	$db;
-	var	$controler;
+	var	$controller;
 	var $validatefunc	= array();
 	var $validatemsg	= array();
 	var $validateresult	= array();

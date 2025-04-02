@@ -192,22 +192,21 @@ function catbody($title, $page, $body)
 		arsort($keys, SORT_NUMERIC);
 		$keys = get_search_words(array_keys($keys), TRUE);
 		$id = 0;
-		foreach ($keys as $key=>$pattern) {
-			$s_key    = htmlspecialchars($key);
-			$pattern  = '/' .
-				'<textarea[^>]*>.*?<\/textarea>' .	// Ignore textareas
-				'|' . '<[^>]*>' .			// Ignore tags
-				'|' . '&[^;]+;' .			// Ignore entities
-				'|' . '(' . $pattern . ')' .		// $matches[1]: Regex for a search word
+		foreach ($keys as $key => $pattern) {
+			$s_key = htmlspecialchars($key);
+			$pattern = '/' .
+				'<textarea[^>]*>.*?<\/textarea>' . // Ignore textareas
+				'|' . '<[^>]*>' . // Ignore tags
+				'|' . '&[^;]+;' . // Ignore entities
+				'|' . '(' . $pattern . ')' . // $matches[1]: Regex for a search word
 				'/sS';
-			$decorate_Nth_word = create_function(
-				'$matches',
-				'return (isset($matches[1])) ? ' .
-					'\'<strong class="word' .
-						$id .
-					'">\' . $matches[1] . \'</strong>\' : ' .
-					'$matches[0];'
-			);
+
+			$decorate_Nth_word = function($matches) use ($id) {
+				return isset($matches[1])
+					? '<strong class="word' . $id . '">' . $matches[1] . '</strong>'
+					: $matches[0];
+			};
+
 			$body  = preg_replace_callback($pattern, $decorate_Nth_word, $body);
 			$notes = preg_replace_callback($pattern, $decorate_Nth_word, $notes);
 			++$id;
@@ -728,21 +727,18 @@ $template
           <label class="control-label col-sm-2">記事の内容</label>
           <div class="controls col-sm-10">
               <textarea name="msg" id="msg" tabindex="4" rows="20" class="form-control">$s_postdata</textarea>
-  		</div>
-  	</div>
-      <div class="form-group">
-          <div class="controls col-sm-10 col-sm-offset-2">
-	  		<a class="show-thumbnail" href="#">サムネイルを指定する &gt;&gt;</a>
-  			<div class="set-thumbnail">
-  				<small>自動で本文の画像が使われます。<br />特別に指定したい場合、画像を画像名またはURLで指定してください。</small>
-                  <p style="color:#333;">画像名またはURL：<input type="text" name="image" value="{$data['image']}" tabindex="5" class="form-control" /></p>
-  				<p><small><span class="swfu"><a href="swfu/index_child.php">&gt;&gt;QHMのファイル管理（SWFU）を使って画像をアップする</a></span></small></p>
-  			</div>
-<!--  			<span class="swfu"><a href="swfu/index_child.php"><i class="icon-picture"></i>SWFU</a><span>
-			<p class="help-block">SWFUの画像を使う場合、画像詳細画面の<b>URL</b>をコピペしてください。</p>
--->
-  		</div>
-  	</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="controls col-sm-10 col-sm-offset-2">
+        <a class="show-thumbnail" href="#">サムネイルを指定する &gt;&gt;</a>
+        <div class="set-thumbnail">
+          <small>自動で本文の画像が使われます。<br />特別に指定したい場合、画像を画像名またはURLで指定してください。</small>
+          <p style="color:#333;">画像名またはURL：<input type="text" name="image" value="{$data['image']}" tabindex="5" class="form-control" /></p>
+          <p><small><span class="swfu"><a href="swfu/index_child.php">&gt;&gt;ファイル管理（SWFU）を使って画像をアップする</a></span></small></p>
+        </div>
+      </div>
+    </div>
       <div class="form-group">
         <div class="col-sm-10 col-sm-offset-2">
           <div style="float:{$buttons_align};">
@@ -1002,9 +998,10 @@ function make_line_rules($str)
 	global $line_rules;
 	static $pattern, $replace;
 
-	if (! isset($pattern)) {
-		$pattern = array_map(create_function('$a',
-			'return \'/\' . $a . \'/\';'), array_keys($line_rules));
+	if (!isset($pattern)) {
+		$pattern = array_map(function($a) {
+			return '/' . $a . '/';
+		}, array_keys($line_rules));
 		$replace = array_values($line_rules);
 		unset($line_rules);
 	}

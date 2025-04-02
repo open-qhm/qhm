@@ -7,7 +7,8 @@ function action( &$c )
 {
 	set_menu($c);
 	$c->set('_page_title','トップ');
-		
+
+	$ssid = session_id();
 	$page_name = isset($_GET['page']) ? $_GET['page'] : '';
 	$c->set('page_name', $page_name);
 	

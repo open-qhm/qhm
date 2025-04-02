@@ -22,7 +22,7 @@ function plugin_pp_cart_inline()
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:inline">
 <input type="hidden" name="cmd" value="_cart">
 <input type="hidden" name="business" value="{$pp_account}">
-<input type="image" src="https://www.paypal.com/ja_JP/i/btn/view_cart.gif" border="0" name="submit" alt="{$qm->m['plg_pp_button']['title_paypal']}">
+<input type="submit" class="btn btn-primary" value="{$qm->m['plg_pp_cart']['btn_title']}">
 <input type="hidden" name="display" value="1">
 </form>
 EOD;

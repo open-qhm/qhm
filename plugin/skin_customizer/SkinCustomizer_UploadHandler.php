@@ -2,9 +2,8 @@
 require(dirname(__FILE__).'/UploadHandler.php');
 
 class SkinCustomizer_UploadHandler extends UploadHandler {
-	
     function __construct($options = null, $initialize = true) {
-    	parent::__construct($options, $initialize);
+        parent::__construct($options, $initialize);
     }
 
     protected function get_full_url() {

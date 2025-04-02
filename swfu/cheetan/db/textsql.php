@@ -20,7 +20,7 @@ class CTextDB
 	var $cmpdesc;
 	var $lastid;
 
-	function CTextDB( $fpath = "" )
+	function __construct( $fpath = "" )
 	{
 		$this->fpath = $fpath;
 	}

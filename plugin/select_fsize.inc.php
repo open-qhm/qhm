@@ -54,7 +54,7 @@ function plugin_select_fsize_convert()
 	$path = str_replace('\\','', dirname($v['path'].'dummy') ); //windows iis対策
 	$path = $path=='/' ? $path : $path.'/';
 
-	plugin_select_fsize_set_assets();
+	plugin_select_fsize_set_assets($path);
 
 	$ret = <<<EOD
 <p class="plg_select_fsize" style="text-align:{$align}">
@@ -68,13 +68,13 @@ EOD;
 	return $ret;
 }
 
-function plugin_select_fsize_set_assets()
+function plugin_select_fsize_set_assets($path)
 {
-	plugin_select_fsize_set_js();
+	plugin_select_fsize_set_js($path);
 	plugin_select_fsize_set_css();
 }
 
-function plugin_select_fsize_set_js()
+function plugin_select_fsize_set_js($path)
 {
 	$qt = get_qt();
 

@@ -109,7 +109,7 @@ function make_str_rules($source)
 		$line = & $lines[$i]; // Modify directly
 
 		// Ignore null string and preformatted texts
-		if ($line == '' || $line{0} == ' ' || $line{0} == "\t") continue;
+		if ($line == '' || $line[0] == ' ' || $line[0] == "\t") continue;
 
 		// Modify this line?
 		if ($modify) {
@@ -862,6 +862,7 @@ function pkwk_touch_file($filename, $time = FALSE, $atime = FALSE)
 //regist tinyurl table
 function add_tinycode($page)
 {
+	global $whatsnew;
 	if($page=='')
 		return false;
 	$qm = get_qm();

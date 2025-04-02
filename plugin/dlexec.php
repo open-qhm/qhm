@@ -21,15 +21,18 @@
 error_reporting(0);
 ini_set('display_errors', 'Off');
 
+define('DATA_HOME',	'');
+
 //カレントディレクトリを、index.phpに変更
 $qhm_path = dirname(dirname(__FILE__));
 chdir($qhm_path);
 
 //ライブラリの読み込み
-require($qhm_path.'/pukiwiki.ini.php');
 require($qhm_path.'/lib/func.php');
+require($qhm_path.'/lib/html.php');
 require($qhm_path.'/lib/qhm_message.php');
 require($qhm_path.'/lib/simplemail.php');
+require($qhm_path.'/pukiwiki.ini.php');
 
 if( file_exists('lib/qdmail.php') ){
 	require_once('lib/qdmail.php');

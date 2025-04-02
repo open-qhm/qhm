@@ -2,9 +2,9 @@
 //mb_language("UTF-8");
 
 error_reporting(E_ERROR | E_PARSE); // Avoid E_WARNING, E_NOTICE, etc
-//error_reporting(E_ALL); // Debug purpose
+// error_reporting(E_ALL); // Debug purpose
 
-
+define('PKWK_DTD_HTML_5', 21);
 define('PKWK_DTD_XHTML_1_0_TRANSITIONAL','');
 define('DATA_HOME','');
 if(file_exists('../pukiwiki.ini.php'))
@@ -366,7 +366,6 @@ function format_bytes($size, $round = 1) {
  *
  *   @params
  *     $image <assoc>: a image record
- *     $print <boolean>: print buttons
  *
  */
 function get_buttons($image, $br = true)
@@ -418,10 +417,6 @@ function get_buttons($image, $br = true)
 
 	$past = basename($path);
 	$buttons .= '<br><button type="button" class="editmode button-paste" onclick="insert_cmd(\''.$past.'\');">ファイル名</buton>';
-
-	if ($print) {
-		echo $buttons;
-	}
 
 	return $buttons;
 }

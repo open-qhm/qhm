@@ -489,7 +489,7 @@ function plugin_edit_write()
 
 		//ブログの時は、ポストキャッシュを書き換える
 		$option = array('category' => $cat, 'image' => $image);
-		qblog_update_post($force, $page, $option);
+		qblog_update_post(FALSE, $page, $option);
 
 		//Ping送信を行う
 		if ( ! $notimestamp)

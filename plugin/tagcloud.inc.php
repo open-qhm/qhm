@@ -14,8 +14,10 @@ exist_plugin('tag') or die_message('tag.inc.php does not exist.');
 class PluginTagcloud
 {
     var $plugin_tag;
+    var $default_options;
+    var $options;
 
-    function PluginTagcloud()
+    function __construct()
     {
         static $default_options = array();
         if (empty($default_options)) {

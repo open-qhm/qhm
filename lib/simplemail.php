@@ -177,6 +177,7 @@ class SimpleMail{
 	}
 		
 	function send($body){
+		global $exclude_to_name;
 
 		//必ず、多言語設定をUTF-8と設定する
 		mb_language($this->language);

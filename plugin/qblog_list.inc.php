@@ -43,7 +43,7 @@ function plugin_qblog_list_init()
 function plugin_qblog_list_convert()
 {
 	global $vars, $qblog_date_format, $show_passage;
-	global $qblog_page_prefix, $qblog_defaultpage, $qblog_page_format, $qblog_close;
+	global $qblog_page_prefix, $qblog_defaultpage, $qblog_page_format, $qblog_close, $qblog_default_cat;
 	global $style_name;
 
 	//閉鎖中は何も表示しない

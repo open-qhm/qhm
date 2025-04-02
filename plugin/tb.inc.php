@@ -139,8 +139,9 @@ function plugin_tb_output_rsslist($tb_id)
 	foreach (tb_get(tb_get_filename($page)) as $arr) {
 		// _utime_, title, excerpt, _blog_name_
 		array_shift($arr); // Cut utime
-		list ($url, $title, $excerpt) = array_map(
-			create_function('$a', 'return htmlspecialchars($a);'), $arr);
+		list($url, $title, $excerpt) = array_map(function($a) {
+			return htmlspecialchars($a);
+		}, $arr);
 		$items .= <<<EOD
 
    <item>

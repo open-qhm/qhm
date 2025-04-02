@@ -35,7 +35,7 @@ function plugin_pp_button_inline()
 	
 	return <<<EOD
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:inline">
-<input type="image" src="https://www.paypal.com/ja_JP/JP/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="{$qm->m['plg_pp_button']['title_paypal']}">
+<input type="submit" class="btn btn-primary" value="{$qm->m['plg_pp_button']['btn_title']}">
 <img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
 <input type="hidden" name="add" value="1">
 <input type="hidden" name="cmd" value="_cart">
@@ -46,7 +46,7 @@ function plugin_pp_button_inline()
 <input type="hidden" name="no_shipping" value="0">
 <input type="hidden" name="no_note" value="1">
 <input type="hidden" name="currency_code" value="JPY">
-<input type="hidden" name="lc" value="JP">
+<input type="hidden" name="lc" value="ja_JP">
 <input type="hidden" name="bn" value="PP-ShopCartBF">
 </form>	
 EOD;

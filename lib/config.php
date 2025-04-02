@@ -27,7 +27,7 @@ class Config
 	var $name, $page; // Page name
 	var $objs = array();
 
-	function Config($name)
+	function __construct($name)
 	{
 		$this->name = $name;
 		$this->page = PKWK_CONFIG_PREFIX . $name;
@@ -45,7 +45,7 @@ class Config
 		foreach (get_source($this->page) as $line) {
 			if ($line == '') continue;
 
-			$head  = $line{0};	// The first letter
+			$head  = $line[0];	// The first letter
 			$level = strspn($line, $head);
 
 			if ($level > 3) {
@@ -135,7 +135,7 @@ class ConfigTable
 	var $after  = array();	// Page contents (except table ones)
 	var $values = array();	// Table contents
 
-	function ConfigTable($title, $obj = NULL)
+	function __construct($title, $obj = NULL)
 	{
 		if ($obj !== NULL) {
 			$this->title  = $obj->title;

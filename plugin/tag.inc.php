@@ -11,9 +11,9 @@
 
 class PluginTag extends Tag
 {
-    function PluginTag()
+    function __construct()
     {
-        parent::Tag();
+        parent::__construct();
         static $conf = array();
         if (empty($conf)) {
             $conf['listcmd'] = get_script_uri() . '?cmd=taglist&amp;tag=';
@@ -649,7 +649,7 @@ class Tag
      */
     var $reserved_keys = array('prod' => '^', 'diff' => '-');
 
-    function Tag($items = array(), $tags = array(), $tagcloud = null)
+    function __construct($items = array(), $tags = array(), $tagcloud = null)
     {
         $this->items = $items; 
         $this->tags = $tags;

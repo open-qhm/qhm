@@ -238,7 +238,7 @@ function plugin_theme_uploader_move($source, $dist)
 	$source = rtrim($source, '/');
 	$dist   = rtrim($dist, '/');
 	if (file_exists($dist) && ! is_dir($dist)) {
-		return "アップロード先 {$dsit} がフォルダではありません。";
+		return "アップロード先 {$dist} がフォルダではありません。";
 	} else {
 		if ( ! file_exists($dist)) {
 			mkdir($dist);

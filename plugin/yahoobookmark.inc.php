@@ -55,13 +55,13 @@ function plugin_yahoobookmark_inline()
 	{
 		$btn_img = 'http://i.yimg.jp/images/sicons/ybm16.gif';
 		$btn_width = '16';
-		$btn_heigth = '16';
+		$btn_height = '16';
 	}
 	else
 	{
 		$btn_img = 'http://i.yimg.jp/images/ybm/blogparts/addmy_btn.gif';
 		$btn_width = '125';
-		$btn_heigth = '17';
+		$btn_height = '17';
 	}
 	
 	if ($nowindow === TRUE)

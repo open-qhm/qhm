@@ -1090,14 +1090,20 @@ function plugin_qform_sanitize_url($str, $sanitize_level)
 	if ($sanitize_level === '1' OR $sanitize_level === 'true')
 	{
 		$ptns = array(
-			'/(?:https?|ftp)(?::\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)/e',
-			'/((?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]{2,3})([^a-zA-Z0-9])/e',
+			'/(?:https?|ftp)(?::\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)/',
+			'/((?:[a-zA-Z0-9-]+\.)+[a-zA-Z0-9]{2,3})([^a-zA-Z0-9])/',
 		);
 		$rpls = array(
-			'mb_convert_kana("$0", "A")',
-			'mb_convert_kana("$1", "A")."$2"',
+			function($matches) {
+					return mb_convert_kana($matches[0], "A");
+			},
+			function($matches) {
+					return mb_convert_kana($matches[1], "A") . $matches[2];
+			},
 		);
-		$str = preg_replace($ptns, $rpls, $str);
+		foreach ($ptns as $index => $ptn) {
+			$str = preg_replace_callback($ptn, $rpls[$index], $str);
+		}
 	}
 
 	return $str;

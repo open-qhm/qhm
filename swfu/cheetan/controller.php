@@ -27,11 +27,12 @@ class CController extends CObject
 	var $debug			= false;
 	
 	
-	function CController()
-	{
+	function __construct() {}
+
+	public function __get($name) {
+		return $this->m[$name] ?? $this->c[$name] ?? null;
 	}
-	
-	
+
 	function AddModel( $path, $name = "" )
 	{
 		$cname	= basename( $path, ".php" ); 
@@ -47,15 +48,13 @@ class CController extends CObject
 		{
 			require_once( $path );
 			$class = new $cname();
-//			if( !$class->table )	$class->table = $name;
 
 			//edited by hokuken 2008 10/20
 			$dir = dirname(__FILE__).'/../data/';
 			$class->table = $dir.$name.".txt";
 			
-			$class->SetController( $this );
-			$this->m[$name]	= &$class;
-			if( empty( $this->{$name} ) )	$this->{$name} = &$this->m[$name];
+			$class->SetController($this);
+			$this->m[$name]	= $class;
 		}
 		return TRUE;
 	}
@@ -85,7 +84,6 @@ class CController extends CObject
 			require_once( $path );
 			$class = new $cname();
 			$this->c[$name]	= $class;
-			if( empty( $this->{$name} ) )	$this->{$name} = &$this->c[$name];			
 		}
 		return TRUE;
 	}
@@ -111,7 +109,7 @@ class CController extends CObject
 	
 	function SetViewExt( $ext )
 	{
-		if( $ext{0} != '.' )	$ext = '.' . $ext;
+		if( $ext[0] != '.' )	$ext = '.' . $ext;
 		$this->viewfile_ext	= $ext;
 	}
 	

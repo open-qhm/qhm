@@ -60,7 +60,7 @@ class CAdmin extends CModel
 		$length = ($length > 0) ? $length : 40;
 		for ($i = 0; $i < $length; $i++)
 		{
-			$apikey .= $seed{rand(0, $seedlen-1)};
+			$apikey .= $seed[rand(0, $seedlen-1)];
 		}
 
 		$timestamp = ($timestamp === FALSE) ? time() : $timestamp;
@@ -100,7 +100,7 @@ class CAdmin extends CModel
 		$conf = $this->findoneby('name', 'labels');
 		if ($conf)
 		{
-			return explode($conf['value']);
+			return explode(',', $conf['value']);
 		}
 		else
 		{
@@ -113,7 +113,7 @@ class CAdmin extends CModel
 		$conf = $this->findoneby('name', 'labels');
 		if ($conf)
 		{
-			$conf['value'] = $value;
+			// $conf['value'] = $value;
 			$action = 'update';
 		}
 		else

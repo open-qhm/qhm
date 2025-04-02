@@ -13,7 +13,7 @@
 exist_plugin('tag') or die_message('tag.inc.php does not exist.');
 class PluginTaglist
 {
-    function PluginTaglist()
+    function __construct()
     {
         static $default_options = array();
         if (empty($default_options)) {
@@ -51,7 +51,7 @@ class PluginTaglist
 
     function convert() // taglist
     {
-        $args  = func_get_args();
+        $args = func_get_args();
         ///// Support old versions (The 1st arg is tagtok) ///
         $fisrtIsOption = FALSE;
         foreach ($this->options as $key => $val) {

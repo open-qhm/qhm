@@ -32,8 +32,9 @@ function plugin_fb_page_convert()
 	$qm = get_qm();
 	$qt = get_qt();
 	$qt->setv('jquery_include', true);
+	$page = $vars['page'];
 	
-    $editable = edit_auth($page, FALSE, FALSE);
+	$editable = edit_auth($page, FALSE, FALSE);
 
 	//本文部分以外のページに設置した場合、無効にする
 	if (isset($vars['page_alt']) && is_page($vars['page_alt']))

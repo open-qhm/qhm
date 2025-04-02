@@ -143,10 +143,8 @@ function plugin_include_template_action()
 	$include_template_protect = PLUGIN_INCLUDE_TEMPLATE_PROTECT;
 	$allow_eval = PLUGIN_INCLUDE_TEMPLATE_ALLOW_EVAL;
 
-//	$href  = 'javascript:history.go(-1)';
-//	$ret = "<a href=\"$href\">[戻る]</a><br><p/>";
-//	$body = $ret;
 	$body = '';
+	$ret = '';
 
 	$include_template = new include_template();
 

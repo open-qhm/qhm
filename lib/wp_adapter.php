@@ -572,12 +572,13 @@ function the_search_query(){
 //
 
 /*現在の記事の編集リンクを表示	 ループ中	 リンク・前後テキスト*/
-function edit_post_link($link='edit this', $before, $after){
+function edit_post_link($link, $before, $after){
 	global $script;
 	$qt = get_qt();
+	$link_text = $link || 'edit this';
 
 	$edit_link = $script.'?cmd=edit&page='.rawurlencode($qt->getv('_page'));
-	echo $before.'<a href="'.$edit_link.'">'.$link.'</a>'.$after;
+	echo $before.'<a href="'.$edit_link.'">'.$link_text.'</a>'.$after;
 }
 
 /*現在のコメントの編集リンクを表示	 ループ・コメントループ中	 リンク・前後テキスト*/

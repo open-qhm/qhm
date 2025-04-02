@@ -20,6 +20,8 @@ function plugin_ogp_convert()
 {
 	global $script, $vars, $ogp_tag;
 
+	$page = $vars['page'];
+
 	//$ogp_tag を有効にする
 	$ogp_tag = 1;
 
@@ -30,7 +32,7 @@ function plugin_ogp_convert()
 	}
 
 	//管理者かどうか
-    $editable = edit_auth($page, FALSE, FALSE);
+	$editable = edit_auth($page, FALSE, FALSE);
 
 	//引数を解析する
 	$args = func_get_args();
@@ -178,15 +180,16 @@ function plugin_ogp_get_aliases()
  */
 function plugin_ogp_set_template()
 {
-	global $ogp_tag, $add_xmlns;
+	global $ogp_tag, $add_xmlns, $vars;
 
 	if ( ! $ogp_tag) {
 		return;
 	}
 
 	$qt = get_qt();
+	$page = $vars['page'];
 
-    $editable = edit_auth($page, FALSE, FALSE);
+	$editable = edit_auth($page, FALSE, FALSE);
 
 	$defdata = plugin_ogp_get_defdata();
 

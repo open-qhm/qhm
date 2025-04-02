@@ -27,7 +27,7 @@ function plugin_fb_comments_init()
 
 function plugin_fb_comments_convert()
 {
-	global $script, $vars;
+	global $script, $vars, $defaultpage;
 	$page = $vars['page'];
 	$r_page = rawurlencode($page);
 	$qm = get_qm();

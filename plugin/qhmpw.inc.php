@@ -143,6 +143,7 @@ function plugin_qhmpw_form_reset($error = '')
 		$body = 'パスワードの設定ができません。<br />再度、パスワードの再発行を行ってください。';
 		return array('msg'=>$msg, 'body'=>$body);
 	}
+	$code = $vars['code'];
 
 	$body = <<<EOD
 <h2>パスワードの再設定</h2>
@@ -224,7 +225,7 @@ function plugin_qhmpw_reset_password()
 
 	session_destroy();
 	$pwstr = '';
-	$pwstr = str_pad($pwstr, count($post['qhmpw']['password1']), "*", STR_PAD_LEFT);
+	$pwstr = str_pad($pwstr, strlen($post['qhmpw']['password1']), "*", STR_PAD_LEFT);
 	
 	$body = <<<EOD
 <h2>パスワードの再設定完了</h2>
@@ -233,9 +234,7 @@ function plugin_qhmpw_reset_password()
 <p>再度、ログインが必要となります。<a href="{$script}?plugin=qhmauth" style="font-weight:bold;background-color:#ff6;">ここをクリック</a>して下さい</p>
 EOD;
 	
-	return array('msg'=>$msg, 'body'=>$body);
+	return array('msg'=>'パスワードの再設定完了', 'body'=>$body);
 
 
 }
-
-?>

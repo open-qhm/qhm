@@ -225,12 +225,15 @@ function get_search_words($words = array(), $do_escape = FALSE)
 	if (! isset($init)) {
 		// function: mb_convert_kana() is for Japanese code only
 		if (LANG == 'ja' && function_exists('mb_convert_kana')) {
-			$mb_convert_kana = create_function('$str, $option',
-				'return mb_convert_kana($str, $option, SOURCE_ENCODING);');
+			$mb_convert_kana = function($str, $option) {
+				return mb_convert_kana($str, $option, SOURCE_ENCODING);
+			};
 		} else {
-			$mb_convert_kana = create_function('$str, $option',
-				'return $str;');
+			$mb_convert_kana = function($str, $option) {
+				return $str;
+			};
 		}
+
 		if (SOURCE_ENCODING == 'EUC-JP') {
 			// Perl memo - Correct pattern-matching with EUC-JP
 			// http://www.din.or.jp/~ohzaki/perl.htm#JP_Match (Japanese)
@@ -720,13 +723,13 @@ function get_script_uri($init_uri = '')
 
 		// SCRIPT_NAME が'/'で始まっていない場合(cgiなど) REQUEST_URIを使ってみる
 		$path    = SCRIPT_NAME;
-		if ($path{0} != '/') {
-			if (! isset($_SERVER['REQUEST_URI']) || $_SERVER['REQUEST_URI']{0} != '/')
+		if ($path[0] != '/') {
+			if (! isset($_SERVER['REQUEST_URI']) || $_SERVER['REQUEST_URI'][0] != '/')
 				die_message($msg);
 
 			// REQUEST_URIをパースし、path部分だけを取り出す
 			$parse_url = parse_url($script . $_SERVER['REQUEST_URI']);
-			if (! isset($parse_url['path']) || $parse_url['path']{0} != '/')
+			if (! isset($parse_url['path']) || $parse_url['path'][0] != '/')
 				die_message($msg);
 
 			$path = $parse_url['path'];
@@ -768,16 +771,10 @@ function get_script_uri($init_uri = '')
 //
 function input_filter($param)
 {
-	static $magic_quotes_gpc = NULL;
-	if ($magic_quotes_gpc === NULL)
-	    $magic_quotes_gpc = get_magic_quotes_gpc();
-
 	if (is_array($param)) {
 		return array_map('input_filter', $param);
 	} else {
-		$result = str_replace("\0", '', $param);
-		if ($magic_quotes_gpc) $result = stripslashes($result);
-		return $result;
+		return str_replace("\0", '', $param);
 	}
 }
 
@@ -798,7 +795,7 @@ function csv_explode($separator, $string)
 
 	foreach ($matches[1] as $str) {
 		$len = strlen($str);
-		if ($len > 1 && $str{0} == '"' && $str{$len - 1} == '"')
+		if ($len > 1 && $str[0] == '"' && $str[$len - 1] == '"')
 			$str = str_replace('""', '"', substr($str, 1, -1));
 		$retval[] = $str;
 	}
@@ -808,7 +805,7 @@ function csv_explode($separator, $string)
 // Implode an array with CSV data format (escape double quotes)
 function csv_implode($glue, $pieces)
 {
-	$_glue = ($glue != '') ? '\\' . $glue{0} : '';
+	$_glue = ($glue != '') ? '\\' . $glue[0] : '';
 	$arr = array();
 	foreach ($pieces as $str) {
 		if (preg_match('/[' . '"' . "\n\r" . $_glue . ']/', $str))
@@ -1727,7 +1724,9 @@ class QHM_SkinCustomVariables {
 		$style_config = read_skin_config($style_name);
 		foreach ($style_config['custom_options'] as $name => $value)
 		{
-			$skin_custom_vars[$name] = $value['value'];
+			if (isset($value['value'])) {
+				$skin_custom_vars[$name] = $value['value'];
+			}
 		}
 
 		$custom_skin_file = CACHE_DIR.'custom_skin.'.$style_name.'.dat';
@@ -1926,8 +1925,7 @@ if (!function_exists('str_getcsv'))
             $tmp    = preg_split("/".$eol."/",$input);
             if (is_array($tmp) && !empty($tmp))
             {
-                while (list($line_num, $line) = each($tmp))
-                {
+                foreach ($tmp as $line_num => $line) {
                     if (preg_match("/".$escape.$enclosure."/",$line))
                     {
                         while ($strlen = strlen($line))
@@ -2047,4 +2045,14 @@ function wrap_script_tag($js, $delimiter = "\n") {
 	$lines[] = $js;
 	$lines[] = '</script>';
 	return join($delimiter, $lines) . $delimiter;
+}
+
+function str_replace_deep($search, $replace, $subject) {
+	if (is_array($subject)) {
+		foreach ($subject as $key => $value) {
+			$subject[$key] = str_replace_deep($search, $replace, $value);
+		}
+		return $subject;
+	}
+	return str_replace($search, $replace, $subject);
 }

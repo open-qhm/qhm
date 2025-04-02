@@ -149,8 +149,6 @@ function plugin_rename_phase2($err = '')
 ';
 	}
 
-
-
 	$msg_related = '';
 	$related = plugin_rename_getrelated($refer);
 	if (! empty($related))

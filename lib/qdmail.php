@@ -30,13 +30,7 @@ if (!defined('QD_DS')) {
 	define('QD_DS', DIRECTORY_SEPARATOR);
 }
 
-if ( defined('CAKE_CORE_INCLUDE_PATH') || defined('CAKE')) {
-	class QdmailBranch extends Object{
-	}
-}else{
-	class QdmailBranch{
-	}
-}
+class QdmailBranch{}
 
 if( !function_exists( 'qd_send_mail' ) ){
 
@@ -3728,7 +3722,7 @@ class QdmailComponent extends QdmailUserFunc{
 	//----------------------------
 	// Override Parent Method
 	//----------------------------
-	function & smtpObject(){
+	function & smtpObject( $null = false ){
 		if( isset( $this->Qdsmtp ) && is_object( $this->Qdsmtp ) ){
 			return $this->Qdsmtp;
 		}

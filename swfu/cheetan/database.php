@@ -88,7 +88,7 @@ class CDatabase extends CObject
 	}
 	
 	
-	function GetFindQuery( $query, $condition = "", $order = "", $limit = "", $group = "" )
+	function GetFindQuery( $query, $condition = "", $order = "", $limit = "", $group = "", $name = "" )
 	{
 		$driver	=& $this->GetDriver( $name );
 		return $driver->GetFindQuery( $query, $condition, $order, $limit, $group );
