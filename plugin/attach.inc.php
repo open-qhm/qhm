@@ -531,8 +531,8 @@ class AttachFile
 		$imglink = "$script?plugin=attach&amp;pcmd=open$param";
 		
 		if($editmode){
-			$insert_a = "<a href=\"#\" title=\"$fname\" onclick=\"javascript:jQuery.clickpad.cpInsert('&ref($fname,nolink,画像の説明);'); return false;\"><img src=\"image/ins-img.png\" alt=\"挿入\"/></a>";
-			$insert_a2 = "<a href=\"#\" title=\"$fname\" onclick=\"javascript:jQuery.clickpad.cpInsert('\\n#ref($fname,nolink,around,left,画像の説明);\\n'); return false;\"><img src=\"image/ins-img2.png\" alt=\"挿入２\"/></a>";
+			$insert_a = "<a href=\"#\" title=\"$fname\" onclick=\"javascript:window.insertText(null, '&ref($fname,nolink,画像の説明);'); return false;\"><img src=\"image/ins-img.png\" alt=\"挿入\"/></a>";
+			$insert_a2 = "<a href=\"#\" title=\"$fname\" onclick=\"javascript:window.insertText(null, '\\n#ref($fname,nolink,around,left,画像の説明);\\n'); return false;\"><img src=\"image/ins-img2.png\" alt=\"挿入２\"/></a>";
 			$sep = " | ";
 		}
 		else{

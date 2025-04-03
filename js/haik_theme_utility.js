@@ -5,11 +5,11 @@ $(function(){
         ev.source.postMessage({message: "openerIsEditable"}, "*");
       }
       else if (ev.data.message === "textareaClicked") {
-        $.clickpad.cpInsert(ev.data.insertText);
+        window.insertText(null, ev.data.insertText);
         ev.source.postMessage({message: "insertedText"}, "*");
       }
       else if (ev.data.message === "sendCode") {
-        $.clickpad.cpInsert(ev.data.code);
+        window.insertText(null, ev.data.code);
         tb_remove();
       }
     });    

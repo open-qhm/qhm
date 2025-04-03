@@ -1,3 +1,5 @@
+import { insertText } from './insert'
+
 /**
  * @param { string } buttonId
  * @param { import("./types").ButtonDefinition } buttonDefinition 
@@ -14,13 +16,10 @@ export const makeButtonVariantInsert = (buttonId, buttonDefinition) => {
   button.textContent = buttonDefinition.caption
   button.type = 'button'
   button.onclick = () => {
-    const textarea = document.querySelector('#msg')
-    const cursorPos = textarea.selectionStart
-    const textBefore = textarea.value.substring(0, cursorPos)
-    const textAfter = textarea.value.substring(cursorPos)
-    textarea.value = textBefore + buttonDefinition.value + textAfter
-    textarea.setSelectionRange(cursorPos + buttonDefinition.value.length, cursorPos + buttonDefinition.value.length)
-    textarea.focus()
+    insertText(
+      document.querySelector('#msg'),
+      buttonDefinition.value,
+    )
   }
 
   return button

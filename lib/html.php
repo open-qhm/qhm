@@ -923,7 +923,7 @@ EOD;
 					$title = h($v['name']);
 					$body .= '<a href="'.$prop.'" url="'.$path.'" rel="attachhref" class="thickbox" title="'.$title.'"><img src="image/file.png" width="20" height="20" alt="file" style="border-width:0" />'.$v['name'].'</a>';
 					$body .= <<<EOD
-<a href="#" title="$atitle1" onclick="javascript:jQuery.clickpad.cpInsert('&show({$v['name']},,{$v['description']});'); return false;"><img src="image/ins-img.png" alt="$imgtitle"/></a><a href="#" title="$atitle2" onclick="javascript:jQuery.clickpad.cpInsert('\\n#show({$v['name']},aroundl,{$v['description']})\\n'); return false;"><img src="image/ins-img2.png" alt="$imgtitle2" /></a>
+<a href="#" title="$atitle1" onclick="javascript:window.insertText(null, '&show({$v['name']},,{$v['description']});'); return false;"><img src="image/ins-img.png" alt="$imgtitle"/></a><a href="#" title="$atitle2" onclick="javascript:window.insertText(null, '\\n#show({$v['name']},aroundl,{$v['description']})\\n'); return false;"><img src="image/ins-img2.png" alt="$imgtitle2" /></a>
 EOD;
 				}
 				else{

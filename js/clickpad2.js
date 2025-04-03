@@ -1048,7 +1048,7 @@
         const selectedText = textarea.value.substring(selectionStart, selectionEnd);
         const textBefore = textarea.value.substring(0, selectionStart);
         const textAfter = textarea.value.substring(selectionEnd);
-        let insertText = buttonDefinition.value;
+        let insertText2 = buttonDefinition.value;
         const form2 = dialog.querySelector("form");
         const formData = new FormData(form2);
         const formValues = Array.from(formData.entries()).reduce((memo, [key, value]) => {
@@ -1065,12 +1065,12 @@
           const prefix = form2.querySelector(`[name="${key}"]`)?.dataset?.prefix ?? "";
           const joinedValue = values.join(",");
           const valueText = joinedValue.length > 0 ? prefix + joinedValue : joinedValue;
-          insertText = insertText.replace("${" + index + "}", valueText);
+          insertText2 = insertText2.replace("${" + index + "}", valueText);
         }
-        insertText = insertText.replace(/\$\{\d+\}/g, "");
-        insertText = insertText.replace("${selection}", selectedText);
-        textarea.value = textBefore + insertText + textAfter;
-        textarea.setSelectionRange(selectionStart, selectionStart + insertText.length);
+        insertText2 = insertText2.replace(/\$\{\d+\}/g, "");
+        insertText2 = insertText2.replace("${selection}", selectedText);
+        textarea.value = textBefore + insertText2 + textAfter;
+        textarea.setSelectionRange(selectionStart, selectionStart + insertText2.length);
         dialog.close();
         textarea.focus();
       };
@@ -1085,6 +1085,18 @@
     return button;
   };
 
+  // js/clickpad2/insert.js
+  var insertText = (textarea, text) => {
+    const target = textarea || document.querySelector("#msg");
+    const cursorPos = target.selectionStart;
+    const textBefore = target.value.substring(0, cursorPos);
+    const textAfter = target.value.substring(cursorPos);
+    target.value = textBefore + text + textAfter;
+    target.setSelectionRange(cursorPos + text.length, cursorPos + text.length);
+    target.focus();
+  };
+  window.insertText = insertText;
+
   // js/clickpad2/variant-insert.js
   var makeButtonVariantInsert = (buttonId, buttonDefinition) => {
     if (buttonDefinition.variant !== "insert") {
@@ -1097,13 +1109,10 @@
     button.textContent = buttonDefinition.caption;
     button.type = "button";
     button.onclick = () => {
-      const textarea = document.querySelector("#msg");
-      const cursorPos = textarea.selectionStart;
-      const textBefore = textarea.value.substring(0, cursorPos);
-      const textAfter = textarea.value.substring(cursorPos);
-      textarea.value = textBefore + buttonDefinition.value + textAfter;
-      textarea.setSelectionRange(cursorPos + buttonDefinition.value.length, cursorPos + buttonDefinition.value.length);
-      textarea.focus();
+      insertText(
+        document.querySelector("#msg"),
+        buttonDefinition.value
+      );
     };
     return button;
   };

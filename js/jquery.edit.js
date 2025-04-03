@@ -340,7 +340,7 @@ $(document).ready(function(){
 		.click(function(e){
 				var insert_cmd = $(this).children('span.insert_cmd').text();
 				insert_cmd = insert_cmd.replace(/##LF##/g, '\n');
-				$.clickpad.cpInsert(insert_cmd);
+        window.insertText(null, insert_cmd);
 				return false;
 		});
 
@@ -376,13 +376,13 @@ $(document).ready(function(){
 					var $$ = $(this);
 					if (i == 0) {
 						$$.click(function(){
-							jQuery.clickpad.cpInsert("&show("+file.name+",,"+file.text+");");
+							window.insertText(null, "&show("+file.name+",,"+file.text+");");
 							return false;
 						});
 					}
 					else {
 						$$.click(function(){
-							jQuery.clickpad.cpInsert("\n#show("+file.name+",aroundl,"+file.text+")\n");
+							window.insertText(null, "\n#show("+file.name+",aroundl,"+file.text+")\n");
 							return false;
 						});
 					}
