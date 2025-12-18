@@ -1,6 +1,12 @@
 {
   "require": {
-    "php":"^7.0.0",
+    "php": "^7.0.0",
     "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6"
+  },
+  "scripts": {
+    "test": "phpunit"
   }
 }
