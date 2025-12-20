@@ -6,6 +6,15 @@ class QHMTemplateTest extends TestCase
 {
   private $qt;
 
+  public static function setUpBeforeClass(): void
+  {
+      define('CACHE_DIR', BASE_PATH . '/cache/');
+      define('CONTENT_CHARSET', 'UTF-8');
+      define('TEMPLATE_ENCODE', 'UTF-8');
+      require_once LIB_DIR . 'func.php';
+      require_once LIB_DIR . 'qhm_template.php';
+  }
+
   protected function setUp(): void
   {
     // Reset singleton for each test

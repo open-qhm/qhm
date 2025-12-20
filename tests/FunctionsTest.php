@@ -4,6 +4,11 @@ use PHPUnit\Framework\TestCase;
 
 class FunctionsTest extends TestCase
 {
+  public static function setUpBeforeClass(): void
+  {
+      require_once LIB_DIR . 'func.php';
+  }
+
   /**
    * @test
    */
