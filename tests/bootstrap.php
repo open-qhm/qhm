@@ -3,6 +3,8 @@
  * PHPUnit bootstrap file
  */
 
+error_reporting(E_ALL);
+
 define('BASE_PATH', dirname(__DIR__));
 define('LIB_DIR', BASE_PATH . '/lib/');
 define('PLUGIN_DIR', BASE_PATH . '/plugin/');

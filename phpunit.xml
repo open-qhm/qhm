@@ -5,6 +5,10 @@
   bootstrap="tests/bootstrap.php"
   colors="true"
   verbose="true"
+  convertErrorsToExceptions="true"
+  convertNoticesToExceptions="false"
+  convertWarningsToExceptions="false"
+  convertDeprecationsToExceptions="false"
 >
   <testsuites>
     <testsuite name="QHM Test Suite">
