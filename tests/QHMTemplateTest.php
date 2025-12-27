@@ -13,9 +13,8 @@ class QHMTemplateTest extends TestCase
 
   public static function setUpBeforeClass(): void
   {
-      define('CACHE_DIR', BASE_PATH . '/cache/');
-      define('CONTENT_CHARSET', 'UTF-8');
-      define('TEMPLATE_ENCODE', 'UTF-8');
+      if (!defined('CONTENT_CHARSET')) define('CONTENT_CHARSET', 'UTF-8');
+      if (!defined('TEMPLATE_ENCODE')) define('TEMPLATE_ENCODE', 'UTF-8');
       require_once LIB_DIR . 'func.php';
       require_once LIB_DIR . 'qhm_template.php';
   }

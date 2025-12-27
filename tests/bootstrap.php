@@ -9,6 +9,7 @@ define('BASE_PATH', dirname(__DIR__));
 define('LIB_DIR', BASE_PATH . '/lib/');
 define('PLUGIN_DIR', BASE_PATH . '/plugin/');
 define('DATA_DIR', BASE_PATH . '/tests/data/wiki/');
+define('CACHE_DIR', BASE_PATH . '/cache/');
 define('SOURCE_ENCODING', 'UTF-8');
 define('LANG', 'ja');
 

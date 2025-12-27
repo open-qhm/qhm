@@ -19,11 +19,6 @@ class QHMMessageTest extends TestCase
         // Change to project root so QHM_Message can find lng.ja.txt
         chdir(BASE_PATH);
 
-        // Define CACHE_DIR if not defined
-        if (!defined('CACHE_DIR')) {
-            define('CACHE_DIR', BASE_PATH . '/cache');
-        }
-
         require_once LIB_DIR . 'qhm_message.php';
     }
 
