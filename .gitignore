@@ -20,6 +20,10 @@ vendor
 # Development
 node_modules
 .php-version
+.phpunit.result.cache
 
 # Build
 tmp/*
+
+# Tests
+tests/data/*

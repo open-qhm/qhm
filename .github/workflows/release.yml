@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          extensions: mbstring
+          coverage: none
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run tests
+        run: composer test
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Build update package
+        run: |
+          VERSION=${{ steps.version.outputs.VERSION }}
+          mkdir -p tmp/update_${VERSION}
+
+          rsync -av --exclude='.git' \
+            --exclude='attach/' --exclude='backup/' \
+            --exclude='cache/' --exclude='wiki/' \
+            --exclude='cacheqblog/' --exclude='cacheqhm/' \
+            --exclude='counter/' --exclude='diff/' \
+            --exclude='swfu/data/' --exclude='swfu/d/' \
+            --exclude='*.ini.php' --exclude='.htaccess' \
+            --exclude='.github/' \
+            --exclude='.devcontainer/' \
+            --exclude='tests/' --exclude='phpunit.xml' \
+            --exclude='node_modules/' --exclude='vendor/' \
+            . tmp/update_${VERSION}/
+
+          mkdir -p tmp/update_${VERSION}/cacheqhm
+          mkdir -p tmp/update_${VERSION}/cacheqblog
+          touch tmp/update_${VERSION}/cacheqhm/index.html
+          touch tmp/update_${VERSION}/cacheqblog/index.html
+
+          cd tmp && zip -r update_${VERSION}.zip update_${VERSION}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: v${{ steps.version.outputs.VERSION }}
+          body: |
+            手動更新には「更新ファイル」をダウンロードしてご利用ください。
+          files: tmp/update_*.zip

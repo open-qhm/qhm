@@ -1,0 +1,15 @@
+{
+  "name": "QHM Development",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "postCreateCommand": "composer install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug"
+      ]
+    }
+  }
+}
