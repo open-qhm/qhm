@@ -1,4 +1,10 @@
 <?php
+/**
+ * Tests for plugin/icon.inc.php
+ *
+ * @covers plugin_icon_inline
+ * @covers plugin_icon_convert
+ */
 
 use PHPUnit\Framework\TestCase;
 

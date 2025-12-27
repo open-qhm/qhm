@@ -1,4 +1,11 @@
 <?php
+/**
+ * Tests for plugin/button.inc.php
+ *
+ * @covers plugin_button_inline
+ * @covers plugin_button_convert
+ * @covers plugin_button_body
+ */
 
 use PHPUnit\Framework\TestCase;
 

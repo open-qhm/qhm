@@ -1,4 +1,11 @@
 <?php
+/**
+ * Tests for lib/func.php
+ *
+ * @covers h
+ * @covers strip_autolink
+ * @covers is_url
+ */
 
 use PHPUnit\Framework\TestCase;
 

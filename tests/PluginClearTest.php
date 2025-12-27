@@ -1,4 +1,9 @@
 <?php
+/**
+ * Tests for plugin/clear.inc.php
+ *
+ * @covers plugin_clear_convert
+ */
 
 use PHPUnit\Framework\TestCase;
 

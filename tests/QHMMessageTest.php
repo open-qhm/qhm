@@ -1,4 +1,9 @@
 <?php
+/**
+ * Tests for lib/qhm_message.php
+ *
+ * @covers QHM_Message
+ */
 
 use PHPUnit\Framework\TestCase;
 

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Tests for lib/qhm_template.php
+ *
+ * @covers QHM_Template
+ */
 
 use PHPUnit\Framework\TestCase;
 

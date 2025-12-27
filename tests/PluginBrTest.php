@@ -1,4 +1,9 @@
 <?php
+/**
+ * Tests for plugin/br.inc.php
+ *
+ * @covers plugin_br_inline
+ */
 
 use PHPUnit\Framework\TestCase;
 

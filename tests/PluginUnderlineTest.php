@@ -1,4 +1,9 @@
 <?php
+/**
+ * Tests for plugin/underline.inc.php
+ *
+ * @covers plugin_underline_inline
+ */
 
 use PHPUnit\Framework\TestCase;
 
