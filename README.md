@@ -3,6 +3,10 @@ HAIK
 
 HAIK は、[PukiWiki][pukiwiki] をベースにしたウェブサイト作成システムです。
 
+> [!IMPORTANT]
+> HAIKはアーカイブされました。
+> v8 以降（PHP8対応版）へのアップデートについては[HAIK-CMS](https://haik-cms.jp/)へお問い合わせください。
+
 ## Description
 
 HAIK はPHPの動作する環境へ設置するだけですぐに使えるウェブサイト作成システムです。

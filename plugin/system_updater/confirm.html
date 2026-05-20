@@ -1,16 +1,29 @@
-<div class="admin qhm-system-updater">
+<style>
+#admin_system_updater a.btn-primary {
+  color: #fff;
+}
+#admin_system_updater h2.heading {
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
+}
+#admin_system_updater .description {
+  margin-top: 16px;
+}
+</style>
+<div class="admin qhm-system-updater" id="admin_system_updater">
 
   <div class="layoutbox">
 
-    <h2>HAIK アップデートの確認</h2>
+    <h2 class="heading">バージョン情報</h2>
 
     <div class="execute">
 
       <div class="description">
         <?php if ($enable_new_version): ?>
           <p>
-            最新版<code>v<?php echo h($version)?></code>が見つかりました。<br>
-            よろしければ、<strong>アップデートする</strong>を押してアップデートを開始してください。
+            最新版<code>v<?php echo h($version)?></code>がリリースされています。<br>
+            サーバーのPHPバージョン8.0以上で利用するには、v8.0.0以上へのバージョンアップが必要です。
           </p>
         <?php else: ?>
           <p>
@@ -23,27 +36,42 @@
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th style="width: 10em">バージョン</th>
-            <td>
-              <code>v<?php echo h($version)?></code>
+            <td align="center" style="width: 15em; font-weight: bold;">利用中のバージョン</td>
+            <td align="center">
+              <code>v<?php echo QHM_VERSION ?></code>
             </td>
+            <td align="center">※PHP7までの対応版</td>
           </tr>
         </tbody>
       </table>
 
-      <div class="alert alert-info">
-        <i class="glyphicon glyphicon-info-sign"></i> 全てのファイルを最新版にします。
-        独自にファイルを書き換えている場合、必ず事前にバックアップを取ってください。
+      <div>
+        <h2 class="heading">最新版へのアップデート</h2>
+        <div class="row">
+          <div class="col-md-8">
+            <a href="https://member.haik-cms.jp/index.php?update-request" class="btn btn-primary btn-block" target="_blank">HAIKライセンスをお持ちの方（会員）</a>
+            <p>※会員サイトからアップデートを行ってください。</p>
+
+            <a href="https://haik-cms.jp/index.php?signup-form" class="btn btn-primary btn-block" target="_blank">HAIKライセンスをお持ちでない方</a>
+            <p>※会員登録後、会員サイトからアップデートを行ってください。</p>
+          </div>
+        </div>
+
       </div>
 
       <div class="confirm-action">
+        <h2 class="heading">システムの修復</h2>
 
+        <p>
+          <strong>修復する</strong>を押すと、「システムの修復」を行い、全てのファイルをv<?php echo QHM_VERSION ?>の状態にします。
+          独自にファイルを書き換えている場合、必ず事前にバックアップを取ってください。
+        </p>
         <form method="post" action="<?php echo h($script)?>">
           <input type="hidden" name="cmd" value="system_updater">
           <input type="hidden" name="mode" value="complete">
 
           <div class="alert alert-primary">
-            <button type="submit" class="btn btn-primary">アップデートする</button>
+            <button type="submit" class="btn btn-primary">修復する</button>
             <a href="<?php echo h($script)?>?cmd=system_updater" class="btn btn-link">キャンセル</a>
           </div>
         </form>
